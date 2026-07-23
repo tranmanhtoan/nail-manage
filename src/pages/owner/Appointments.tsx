@@ -217,9 +217,8 @@ export function Appointments() {
     load()
   }
 
-  // Drag & Drop — supports both mouse (desktop) and touch (mobile/iOS)
-  const touchStartRef = useRef<{ idx: number; startY: number; startX: number } | null>(null)
-  const [touchDragIdx, setTouchDragIdx] = useState<number | null>(null)
+  // Drag & Drop — desktop: HTML5 drag, mobile: tap to select + arrow buttons
+  const [selectedRotationIdx, setSelectedRotationIdx] = useState<number | null>(null)
 
   function handleDragStart(idx: number) { setDragIdx(idx) }
   function handleDragOver(e: React.DragEvent, idx: number) {
@@ -233,58 +232,30 @@ export function Appointments() {
     await saveRotationOrder()
   }
 
-  // Touch handlers for iOS
-  function handleTouchStart(idx: number, e: React.TouchEvent) {
-    const touch = e.touches[0]
-    touchStartRef.current = { idx, startY: touch.clientY, startX: touch.clientX }
-    // Long press to start drag
-    const timer = setTimeout(() => {
-      setTouchDragIdx(idx)
-      setDragIdx(idx)
-    }, 200)
-    ;(e.currentTarget as HTMLElement).dataset.timer = String(timer)
+  // Mobile: tap to select, then use arrows to move
+  function handleCardTap(idx: number) {
+    setSelectedRotationIdx(selectedRotationIdx === idx ? null : idx)
   }
 
-  function handleTouchMove(e: React.TouchEvent) {
-    if (touchDragIdx === null) {
-      // Cancel drag if moved too far before long-press
-      const touch = e.touches[0]
-      if (touchStartRef.current) {
-        const dx = Math.abs(touch.clientX - touchStartRef.current.startX)
-        if (dx > 10) {
-          const timer = (e.currentTarget as HTMLElement).dataset.timer
-          if (timer) clearTimeout(parseInt(timer))
-        }
-      }
-      return
-    }
-    e.preventDefault()
-    const touch = e.touches[0]
-    const elements = document.elementsFromPoint(touch.clientX, touch.clientY)
-    const card = elements.find(el => el.getAttribute('data-rotation-idx'))
-    if (card) {
-      const targetIdx = parseInt(card.getAttribute('data-rotation-idx')!)
-      if (targetIdx !== dragIdx && !isNaN(targetIdx)) {
-        const n = [...rotation]; const [d] = n.splice(dragIdx!, 1); n.splice(targetIdx, 0, d)
-        setRotation(n); setDragIdx(targetIdx)
-      }
-    }
+  async function moveEmployee(direction: 'left' | 'right') {
+    if (selectedRotationIdx === null) return
+    const targetIdx = direction === 'left' ? selectedRotationIdx - 1 : selectedRotationIdx + 1
+    if (targetIdx < 0 || targetIdx >= rotation.length) return
+
+    const n = [...rotation]
+    const [moved] = n.splice(selectedRotationIdx, 1)
+    n.splice(targetIdx, 0, moved)
+    setRotation(n)
+    setSelectedRotationIdx(targetIdx)
+    await saveRotationOrder(n)
   }
 
-  function handleTouchEnd() {
-    if (touchDragIdx !== null) {
-      setTouchDragIdx(null)
-      setDragIdx(null)
-      saveRotationOrder()
+  async function saveRotationOrder(list?: RotationEmployee[]) {
+    const toSave = list ?? rotation
+    for (let i = 0; i < toSave.length; i++) {
+      await supabase.from('employees').update({ rotation_order: i }).eq('id', toSave[i].id)
     }
-    touchStartRef.current = null
-  }
-
-  async function saveRotationOrder() {
-    for (let i = 0; i < rotation.length; i++) {
-      await supabase.from('employees').update({ rotation_order: i }).eq('id', rotation[i].id)
-    }
-    const updated = rotation.map((emp) => ({
+    const updated = toSave.map((emp) => ({
       ...emp,
       status: (emp.status === 'busy' ? 'busy' : 'available') as RotationStatus,
     }))
@@ -321,24 +292,22 @@ export function Appointments() {
           </span>
         </div>
 
-        <div className="flex gap-4 overflow-x-auto pb-3 -mx-2 px-2" style={{ scrollbarWidth: 'none' }}
-          onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
-        >
+        <div className="flex gap-4 overflow-x-auto pb-3 -mx-2 px-2" style={{ scrollbarWidth: 'none' }}>
           {rotation.map((emp, idx) => {
             const isNext = emp.status === 'next'
             const isBusy = emp.status === 'busy'
+            const isSelected = selectedRotationIdx === idx
             return (
               <div
                 key={emp.id}
-                data-rotation-idx={idx}
                 draggable
                 onDragStart={(e) => { e.dataTransfer.effectAllowed = 'move'; handleDragStart(idx) }}
                 onDragOver={(e) => handleDragOver(e, idx)}
                 onDragEnd={handleDragEnd}
-                onTouchStart={(e) => handleTouchStart(idx, e)}
-                className={`flex-shrink-0 w-40 p-4 rounded-[1rem] text-center relative cursor-grab active:cursor-grabbing transition-transform ${
+                onClick={() => handleCardTap(idx)}
+                className={`flex-shrink-0 w-40 p-4 rounded-[1rem] text-center relative cursor-grab active:cursor-grabbing transition-all ${
                   dragIdx === idx ? 'opacity-50 scale-95' : ''
-                } ${touchDragIdx === idx ? 'scale-105 shadow-xl z-50' : ''} ${
+                } ${isSelected ? 'ring-2 ring-[#864e5a] ring-offset-2' : ''} ${
                   isNext
                     ? 'border-2 border-[#864e5a] shadow-[0_0_20px_rgba(134,78,90,0.15)]'
                     : 'opacity-80 border border-gray-200'
@@ -387,6 +356,35 @@ export function Appointments() {
             )
           })}
         </div>
+
+        {/* Mobile reorder controls — hiện khi tap chọn 1 NV */}
+        {selectedRotationIdx !== null && (
+          <div className="flex items-center justify-center gap-4 mt-3">
+            <button
+              onClick={() => moveEmployee('left')}
+              disabled={selectedRotationIdx === 0}
+              className="w-10 h-10 rounded-full bg-[#864e5a] text-white flex items-center justify-center disabled:opacity-30 active:scale-90 transition-transform text-lg font-bold"
+            >
+              ◀
+            </button>
+            <span className="text-sm text-gray-600 font-medium">
+              {rotation[selectedRotationIdx]?.name.split(' ')[0]}
+            </span>
+            <button
+              onClick={() => moveEmployee('right')}
+              disabled={selectedRotationIdx === rotation.length - 1}
+              className="w-10 h-10 rounded-full bg-[#864e5a] text-white flex items-center justify-center disabled:opacity-30 active:scale-90 transition-transform text-lg font-bold"
+            >
+              ▶
+            </button>
+            <button
+              onClick={() => setSelectedRotationIdx(null)}
+              className="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center text-sm"
+            >
+              ✕
+            </button>
+          </div>
+        )}
 
         {/* Turn stats */}
         {rotation.length > 0 && (
@@ -627,8 +625,8 @@ function AppointmentCard({ apt, onStatusChange, onEdit, t }: {
 
       {/* Detail Modal */}
       {showDetail && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4" onClick={() => setShowDetail(false)}>
-          <div className="bg-white rounded-2xl w-full max-w-sm p-6 space-y-4" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/40 z-[60] flex items-center justify-center p-4" onClick={() => setShowDetail(false)}>
+          <div className="bg-white rounded-2xl w-full max-w-sm p-6 space-y-4 max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-lg font-bold text-gray-900">{t('appointments.detail')}</h3>
 
             <div className="space-y-3 text-sm">
@@ -777,8 +775,8 @@ function NewAppointmentForm({ employees, services, onSave, onClose, t, defaultDa
   }
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-end sm:items-center justify-center">
-      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 max-h-[85vh] overflow-y-auto modal-sheet">
+    <div className="fixed inset-0 bg-black/40 z-[60] flex items-end sm:items-center justify-center">
+      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 pb-10 max-h-[90vh] overflow-y-auto modal-sheet">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold">{editing ? t('appointments.editAppointment') : t('appointments.newAppointment')}</h3>
           <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600"><X size={20} /></button>
