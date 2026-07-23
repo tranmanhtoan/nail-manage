@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Users, Scissors, Settings2, ToggleLeft, ToggleRight } from 'lucide-react'
+import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield } from 'lucide-react'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { useAuthStore } from '@/store/authStore'
+import { useSuperModeStore } from '@/store/superModeStore'
 import { Employees } from './Employees'
 import { Services } from './Services'
 import { supabase } from '@/lib/supabase'
@@ -25,6 +26,7 @@ const DEFAULT_TOGGLES: FeatureToggles = {
 export function Settings() {
   const { t } = useTranslation()
   const { logout } = useAuthStore()
+  const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
   const [tab, setTab] = useState<Tab>('general')
   const [toggles, setToggles] = useState<FeatureToggles>(DEFAULT_TOGGLES)
   const [saving, setSaving] = useState(false)
@@ -132,6 +134,32 @@ export function Settings() {
 
             {saving && (
               <p className="text-xs text-gray-400 text-center">{t('common.saving')}...</p>
+            )}
+          </div>
+
+          {/* Super Mode */}
+          <div
+            className={`rounded-[1rem] p-5 space-y-3 border ${superMode ? 'border-red-300 bg-red-50/60' : 'border-[rgba(134,78,90,0.1)]'}`}
+            style={!superMode ? { background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' } : undefined}
+          >
+            <div className="flex items-center gap-2">
+              <Shield size={16} className={superMode ? 'text-red-600' : 'text-gray-400'} />
+              <h3 className="text-[13px] font-semibold text-red-600 uppercase tracking-widest">Super Mode</h3>
+            </div>
+            <div className="flex items-center justify-between py-1">
+              <div className="flex-1 min-w-0 mr-3">
+                <p className="text-sm font-medium text-gray-800">Chế độ quản trị nâng cao</p>
+                <p className="text-xs text-gray-500 mt-0.5">Cho phép sửa trạng thái, giá, tip, nguồn tiền, dịch vụ của mọi cuộc hẹn</p>
+              </div>
+              <button
+                onClick={toggleSuperMode}
+                className={`shrink-0 transition-colors ${superMode ? 'text-red-600' : 'text-gray-300'}`}
+              >
+                {superMode ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
+              </button>
+            </div>
+            {superMode && (
+              <p className="text-xs text-red-500 font-medium">⚠️ Super Mode đang bật — cẩn thận khi chỉnh sửa</p>
             )}
           </div>
 

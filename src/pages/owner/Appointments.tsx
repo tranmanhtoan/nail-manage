@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, Calendar, User, X } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { useSuperModeStore } from '@/store/superModeStore'
 import type { AppointmentStatus } from '@/lib/database.types'
 
 interface AppointmentRow {
@@ -54,6 +55,7 @@ function getChibiEmoji(name: string) {
 
 export function Appointments() {
   const { t } = useTranslation()
+  const superMode = useSuperModeStore((s) => s.superMode)
   const [appointments, setAppointments] = useState<AppointmentRow[]>([])
   const [weekCounts, setWeekCounts] = useState<Record<string, number>>({})
   const [rotation, setRotation] = useState<RotationEmployee[]>([])
@@ -550,6 +552,10 @@ export function Appointments() {
                 onStatusChange={updateStatus}
                 onEdit={() => { setEditingApt(apt); setShowForm(true) }}
                 t={t}
+                superMode={superMode}
+                services={services}
+                employees={employees}
+                onReload={load}
               />
             ))
           })()}
@@ -582,16 +588,27 @@ export function Appointments() {
 
 // ─── AppointmentCard: tap for detail ─────────────────────────────────────────
 
-function AppointmentCard({ apt, onStatusChange, onEdit, t }: {
+function AppointmentCard({ apt, onStatusChange, onEdit, t, superMode, services, employees, onReload }: {
   apt: AppointmentRow
   onStatusChange: (id: string, status: AppointmentStatus) => void
   onEdit: () => void
   t: (k: string) => string
+  superMode: boolean
+  services: { id: string; name: string; price: number }[]
+  employees: { id: string; name: string }[]
+  onReload: () => void
 }) {
   const [showDetail, setShowDetail] = useState(false)
   const [tipInput, setTipInput] = useState(apt.tip?.toString() ?? '0')
   const [priceInput, setPriceInput] = useState(apt.price?.toString() ?? '0')
   const [savingPayment, setSavingPayment] = useState(false)
+
+  // Super mode edit states
+  const [editStatus, setEditStatus] = useState<AppointmentStatus>(apt.status)
+  const [editServiceId, setEditServiceId] = useState(apt.service ? services.find(s => s.name === apt.service?.name)?.id ?? '' : '')
+  const [editEmployeeId, setEditEmployeeId] = useState(apt.employee_id ?? '')
+  const [editPaymentMethod, setEditPaymentMethod] = useState<string>('cash')
+  const [savingSuper, setSavingSuper] = useState(false)
 
   const { time, ampm } = (() => {
     const [h, m] = apt.time.split(':')
@@ -622,6 +639,25 @@ function AppointmentCard({ apt, onStatusChange, onEdit, t }: {
     }).eq('id', apt.id)
     setSavingPayment(false)
     setShowDetail(false)
+    onReload()
+  }
+
+  async function saveSuperEdit() {
+    setSavingSuper(true)
+    const updates: Record<string, unknown> = {
+      status: editStatus,
+      price: parseFloat(priceInput) || 0,
+      tip: parseFloat(tipInput) || 0,
+      payment_method: editPaymentMethod,
+    }
+    if (editServiceId) updates.service_id = editServiceId
+    if (editEmployeeId) updates.employee_id = editEmployeeId
+    else updates.employee_id = null
+
+    await supabase.from('appointments').update(updates).eq('id', apt.id)
+    setSavingSuper(false)
+    setShowDetail(false)
+    onReload()
   }
 
   return (
@@ -691,95 +727,145 @@ function AppointmentCard({ apt, onStatusChange, onEdit, t }: {
 
             <hr className="border-gray-100" />
 
-            {/* Completed: show price/tip inputs */}
-            {isCompleted && (
-              <div className="space-y-3">
+            {/* ══ SUPER MODE: Full edit form ══ */}
+            {superMode && (
+              <div className="space-y-3 border border-red-200 rounded-xl p-4 bg-red-50/30">
+                <p className="text-xs font-bold text-red-600 uppercase">⚡ Super Mode Edit</p>
+
+                {/* Status */}
                 <div>
-                  <label className="text-xs font-medium text-gray-500">{t('appointments.pricePaid')}</label>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-gray-400">$</span>
-                    <input
-                      type="number"
-                      inputMode="decimal"
-                      value={priceInput}
-                      onChange={(e) => setPriceInput(e.target.value)}
-                      className="flex-1 px-3 py-2 rounded-lg border border-gray-200 outline-none focus:border-[#864e5a] text-sm"
-                    />
+                  <label className="text-xs font-medium text-gray-600">Trạng thái</label>
+                  <select value={editStatus} onChange={(e) => setEditStatus(e.target.value as AppointmentStatus)}
+                    className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-200 text-sm outline-none focus:border-[#864e5a]">
+                    <option value="booked">Đang chờ</option>
+                    <option value="in_progress">Đang xử lý</option>
+                    <option value="completed">Hoàn thành</option>
+                    <option value="cancelled">Đã hủy</option>
+                    <option value="no_show">No Show</option>
+                  </select>
+                </div>
+
+                {/* Service */}
+                <div>
+                  <label className="text-xs font-medium text-gray-600">Dịch vụ</label>
+                  <select value={editServiceId} onChange={(e) => setEditServiceId(e.target.value)}
+                    className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-200 text-sm outline-none focus:border-[#864e5a]">
+                    <option value="">-- Chọn --</option>
+                    {services.map((s) => <option key={s.id} value={s.id}>{s.name} — ${s.price}</option>)}
+                  </select>
+                </div>
+
+                {/* Employee */}
+                <div>
+                  <label className="text-xs font-medium text-gray-600">Nhân viên</label>
+                  <select value={editEmployeeId} onChange={(e) => setEditEmployeeId(e.target.value)}
+                    className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-200 text-sm outline-none focus:border-[#864e5a]">
+                    <option value="">Unassigned</option>
+                    {employees.map((emp) => <option key={emp.id} value={emp.id}>{emp.name}</option>)}
+                  </select>
+                </div>
+
+                {/* Price & Tip */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-medium text-gray-600">Giá ($)</label>
+                    <input type="number" inputMode="decimal" value={priceInput} onChange={(e) => setPriceInput(e.target.value)}
+                      className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-200 text-sm outline-none focus:border-[#864e5a]" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-600">Tip ($)</label>
+                    <input type="number" inputMode="decimal" value={tipInput} onChange={(e) => setTipInput(e.target.value)}
+                      className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-200 text-sm outline-none focus:border-[#864e5a]" />
                   </div>
                 </div>
+
+                {/* Payment method */}
                 <div>
-                  <label className="text-xs font-medium text-gray-500">{t('quickEntry.tip')}</label>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-gray-400">$</span>
-                    <input
-                      type="number"
-                      inputMode="decimal"
-                      value={tipInput}
-                      onChange={(e) => setTipInput(e.target.value)}
-                      className="flex-1 px-3 py-2 rounded-lg border border-gray-200 outline-none focus:border-[#864e5a] text-sm"
-                    />
-                  </div>
+                  <label className="text-xs font-medium text-gray-600">Nguồn tiền</label>
+                  <select value={editPaymentMethod} onChange={(e) => setEditPaymentMethod(e.target.value)}
+                    className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-200 text-sm outline-none focus:border-[#864e5a]">
+                    <option value="cash">Tiền mặt</option>
+                    <option value="card">Thẻ</option>
+                    <option value="zelle">Zelle</option>
+                    <option value="other">Khác</option>
+                  </select>
                 </div>
+
                 <button
-                  onClick={savePayment}
-                  disabled={savingPayment}
-                  className="w-full py-2.5 bg-[#864e5a] text-white font-semibold rounded-xl text-sm disabled:opacity-50"
+                  onClick={saveSuperEdit}
+                  disabled={savingSuper}
+                  className="w-full py-2.5 bg-red-600 text-white font-semibold rounded-xl text-sm disabled:opacity-50"
                 >
-                  {savingPayment ? '...' : t('common.save')}
+                  {savingSuper ? '...' : 'Lưu thay đổi (Super)'}
                 </button>
               </div>
             )}
 
-            {/* Not locked: show action buttons */}
-            {!isLocked && (() => {
-              return (
-                <div className="flex flex-col gap-2">
-                  {/* Start — owner có thể bắt đầu bất kỳ lúc nào (walk-in sớm) */}
-                  {apt.status === 'booked' && (
-                    <button
-                      onClick={() => { onStatusChange(apt.id, 'in_progress'); setShowDetail(false) }}
-                      className="w-full py-2.5 bg-amber-50 text-amber-800 font-semibold rounded-xl text-sm"
-                    >
-                      {t('appointments.startWork')}
+            {/* ══ Normal mode actions ══ */}
+            {!superMode && (
+              <>
+                {/* Completed: show price/tip inputs */}
+                {isCompleted && (
+                  <div className="space-y-3">
+                    <div>
+                      <label className="text-xs font-medium text-gray-500">{t('appointments.pricePaid')}</label>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-gray-400">$</span>
+                        <input type="number" inputMode="decimal" value={priceInput} onChange={(e) => setPriceInput(e.target.value)}
+                          className="flex-1 px-3 py-2 rounded-lg border border-gray-200 outline-none focus:border-[#864e5a] text-sm" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-gray-500">{t('quickEntry.tip')}</label>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-gray-400">$</span>
+                        <input type="number" inputMode="decimal" value={tipInput} onChange={(e) => setTipInput(e.target.value)}
+                          className="flex-1 px-3 py-2 rounded-lg border border-gray-200 outline-none focus:border-[#864e5a] text-sm" />
+                      </div>
+                    </div>
+                    <button onClick={savePayment} disabled={savingPayment}
+                      className="w-full py-2.5 bg-[#864e5a] text-white font-semibold rounded-xl text-sm disabled:opacity-50">
+                      {savingPayment ? '...' : t('common.save')}
                     </button>
-                  )}
-                  {/* Complete — chỉ khi đang in_progress */}
-                  {apt.status === 'in_progress' && (
-                    <button
-                      onClick={() => { onStatusChange(apt.id, 'completed'); setShowDetail(false) }}
-                      className="w-full py-2.5 bg-green-50 text-green-800 font-semibold rounded-xl text-sm"
-                    >
-                      {t('appointments.complete')}
-                    </button>
-                  )}
-                  {/* Edit — only if still booked (not started yet) */}
-                  {apt.status === 'booked' && (
-                    <button
-                      onClick={() => { setShowDetail(false); onEdit() }}
-                      className="w-full py-2.5 bg-[#864e5a]/10 text-[#864e5a] font-semibold rounded-xl text-sm"
-                    >
-                      {t('common.edit')}
-                    </button>
-                  )}
-                  {/* Cancel — can cancel booked or in_progress */}
-                  <button
-                    onClick={() => { onStatusChange(apt.id, 'cancelled'); setShowDetail(false) }}
-                    className="w-full py-2.5 text-red-500 font-medium text-sm"
-                  >
-                    {t('appointments.cancelAppointment')}
-                  </button>
-                </div>
-              )
-            })()}
+                  </div>
+                )}
 
-            {/* Cancelled: just close */}
-            {isCancelled && (
-              <button
-                onClick={() => setShowDetail(false)}
-                className="w-full py-2.5 text-gray-500 font-medium text-sm"
-              >
-                {t('common.cancel')}
-              </button>
+                {/* Not locked: show action buttons */}
+                {!isLocked && (
+                  <div className="flex flex-col gap-2">
+                    {apt.status === 'booked' && (
+                      <button onClick={() => { onStatusChange(apt.id, 'in_progress'); setShowDetail(false) }}
+                        className="w-full py-2.5 bg-amber-50 text-amber-800 font-semibold rounded-xl text-sm">
+                        {t('appointments.startWork')}
+                      </button>
+                    )}
+                    {apt.status === 'in_progress' && (
+                      <button onClick={() => { onStatusChange(apt.id, 'completed'); setShowDetail(false) }}
+                        className="w-full py-2.5 bg-green-50 text-green-800 font-semibold rounded-xl text-sm">
+                        {t('appointments.complete')}
+                      </button>
+                    )}
+                    {apt.status === 'booked' && (
+                      <button onClick={() => { setShowDetail(false); onEdit() }}
+                        className="w-full py-2.5 bg-[#864e5a]/10 text-[#864e5a] font-semibold rounded-xl text-sm">
+                        {t('common.edit')}
+                      </button>
+                    )}
+                    <button onClick={() => { onStatusChange(apt.id, 'cancelled'); setShowDetail(false) }}
+                      className="w-full py-2.5 text-red-500 font-medium text-sm">
+                      {t('appointments.cancelAppointment')}
+                    </button>
+                  </div>
+                )}
+
+                {/* Cancelled: just close */}
+                {isCancelled && (
+                  <button onClick={() => setShowDetail(false)}
+                    className="w-full py-2.5 text-gray-500 font-medium text-sm">
+                    {t('common.cancel')}
+                  </button>
+                )}
+              </>
             )}
           </div>
         </div>
