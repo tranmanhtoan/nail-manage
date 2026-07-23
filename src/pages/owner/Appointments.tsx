@@ -160,7 +160,16 @@ export function Appointments() {
   }
 
   async function updateStatus(id: string, status: AppointmentStatus) {
-    await supabase.from('appointments').update({ status }).eq('id', id)
+    const updateData: Record<string, unknown> = { status }
+
+    // Khi chuyển sang "in_progress": cập nhật time = thời điểm hiện tại
+    if (status === 'in_progress') {
+      const now = new Date()
+      const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:00`
+      updateData.time = currentTime
+    }
+
+    await supabase.from('appointments').update(updateData).eq('id', id)
     load()
   }
 
@@ -688,15 +697,10 @@ function AppointmentCard({ apt, onStatusChange, onEdit, t }: {
 
             {/* Not locked: show action buttons */}
             {!isLocked && (() => {
-              // Check if appointment time has arrived
-              const now = new Date()
-              const aptDateTime = new Date(`${apt.date}T${apt.time}`)
-              const timeArrived = now >= aptDateTime
-
               return (
                 <div className="flex flex-col gap-2">
-                  {/* Start — only if time has arrived and status is booked */}
-                  {apt.status === 'booked' && timeArrived && (
+                  {/* Start — owner có thể bắt đầu bất kỳ lúc nào (walk-in sớm) */}
+                  {apt.status === 'booked' && (
                     <button
                       onClick={() => { onStatusChange(apt.id, 'in_progress'); setShowDetail(false) }}
                       className="w-full py-2.5 bg-amber-50 text-amber-800 font-semibold rounded-xl text-sm"
@@ -704,7 +708,7 @@ function AppointmentCard({ apt, onStatusChange, onEdit, t }: {
                       {t('appointments.startWork')}
                     </button>
                   )}
-                  {/* Complete — only if in_progress */}
+                  {/* Complete — chỉ khi đang in_progress */}
                   {apt.status === 'in_progress' && (
                     <button
                       onClick={() => { onStatusChange(apt.id, 'completed'); setShowDetail(false) }}
