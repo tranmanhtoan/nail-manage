@@ -16,6 +16,8 @@ interface EmployeeSummary {
   count: number
   revenue: number
   commission: number
+  payType: string
+  payRate: number | null
 }
 
 interface EmployeeAppointment {
@@ -71,7 +73,7 @@ export function Reports() {
 
     const { data } = await supabase
       .from('appointments')
-      .select('price, tip, employee_id, service_id, services(name), employees(name, commission_rate)')
+      .select('price, tip, employee_id, service_id, services(name), employees(name, commission_rate, pay_type, split_rate, fixed_salary)')
       .gte('date', start)
       .lte('date', end)
       .eq('status', 'completed')
@@ -92,13 +94,25 @@ export function Reports() {
     // Employee Summaries — by revenue
     const empMap = new Map<string, EmployeeSummary>()
     for (const row of rows) {
-      const emp = row.employees as unknown as { name: string; commission_rate: number | null } | null
+      const emp = row.employees as unknown as { name: string; commission_rate: number | null; pay_type: string | null; split_rate: number | null; fixed_salary: number | null } | null
       const key = row.employee_id ?? 'unknown'
-      const existing = empMap.get(key) ?? { id: key, name: emp?.name ?? 'Unknown', count: 0, revenue: 0, commission: 0 }
+      const payType = emp?.pay_type ?? 'commission'
+      const rate = payType === 'split' ? (emp?.split_rate ?? 60) : (emp?.commission_rate ?? 60)
+
+      const existing = empMap.get(key) ?? { id: key, name: emp?.name ?? 'Unknown', count: 0, revenue: 0, commission: 0, payType, payRate: rate }
       existing.count += 1
       existing.revenue += row.price + row.tip
-      const rate = emp?.commission_rate ?? 60
-      existing.commission += (row.price * rate / 100) + row.tip
+
+      // Calculate employee earnings based on pay type
+      if (payType === 'commission') {
+        existing.commission += (row.price * rate / 100) + row.tip
+      } else if (payType === 'split') {
+        existing.commission += ((row.price + row.tip) * rate / 100)
+      } else {
+        // fixed salary — show tip only as variable income
+        existing.commission += row.tip
+      }
+
       empMap.set(key, existing)
     }
     setEmployeeSummaries([...empMap.values()].sort((a, b) => b.revenue - a.revenue))
@@ -360,10 +374,20 @@ export function Reports() {
                       <p className="text-lg font-bold text-[#864e5a]">{formatCurrency(selectedEmployee.revenue)}</p>
                       <p className="text-[10px] text-gray-500 uppercase">Doanh thu</p>
                     </div>
-                    <div className="bg-gray-50 rounded-xl p-3 text-center">
+                    <div className="bg-emerald-50 rounded-xl p-3 text-center">
                       <p className="text-lg font-bold text-emerald-600">{formatCurrency(selectedEmployee.commission)}</p>
-                      <p className="text-[10px] text-gray-500 uppercase">Thu nhập</p>
+                      <p className="text-[10px] text-gray-500 uppercase">NV nhận</p>
                     </div>
+                  </div>
+
+                  {/* Pay type info */}
+                  <div className="bg-amber-50 rounded-xl p-3 flex items-center justify-between">
+                    <span className="text-xs text-amber-800 font-medium">Hình thức chia:</span>
+                    <span className="text-xs font-bold text-amber-900">
+                      {selectedEmployee.payType === 'commission' && `Hoa hồng ${selectedEmployee.payRate}% giá + 100% tip`}
+                      {selectedEmployee.payType === 'split' && `Chia ${selectedEmployee.payRate}% tổng (giá + tip)`}
+                      {selectedEmployee.payType === 'fixed' && `Lương cố định + tip`}
+                    </span>
                   </div>
 
                   {/* Appointment table */}
@@ -435,8 +459,14 @@ export function Reports() {
                       <td className="right">${employeeAppointments.reduce((s, a) => s + a.price, 0)}</td>
                       <td className="right">${employeeAppointments.reduce((s, a) => s + a.tip, 0)}</td>
                     </tr>
+                    <tr>
+                      <td colSpan={5}>
+                        Hình thức: {selectedEmployee.payType === 'commission' ? `Hoa hồng ${selectedEmployee.payRate}% giá + 100% tip` :
+                          selectedEmployee.payType === 'split' ? `Chia ${selectedEmployee.payRate}% tổng` : 'Lương cố định + tip'}
+                      </td>
+                    </tr>
                     <tr className="total-row">
-                      <td colSpan={3}>Thu nhập NV (commission + tip)</td>
+                      <td colSpan={3}>NV nhận</td>
                       <td colSpan={2} className="right">${selectedEmployee.commission.toFixed(0)}</td>
                     </tr>
                   </tfoot>
