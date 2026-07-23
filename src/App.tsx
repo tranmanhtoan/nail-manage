@@ -43,7 +43,7 @@ export default function App() {
           element={
             <div className="min-h-screen bg-gray-50">
               <Header />
-              <main className="pb-16">
+              <main className="pb-20">
                 <Routes>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/appointments" element={<Appointments />} />
@@ -67,7 +67,7 @@ export default function App() {
           element={
             <div className="min-h-screen bg-gray-50">
               <Header />
-              <main className="pb-16">
+              <main className="pb-20">
                 <Routes>
                   <Route path="/my-schedule" element={<MySchedule />} />
                   <Route path="/my-earnings" element={<MyEarnings />} />

@@ -14,7 +14,27 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Mobile safe area */
+/* Mobile safe area - iOS PWA */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Ensure body accounts for safe areas */
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  min-height: 100%;
 }

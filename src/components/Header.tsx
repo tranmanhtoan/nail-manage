@@ -11,7 +11,7 @@ export function Header() {
   if (!user) return null
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
+    <header className="sticky top-0 z-40 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between safe-top">
       <h1 className="text-lg font-bold text-primary">{t('app.name')}</h1>
       <div className="flex items-center gap-2">
         <LanguageSwitch />
