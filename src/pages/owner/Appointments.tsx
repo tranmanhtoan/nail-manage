@@ -64,6 +64,7 @@ export function Appointments() {
   const [editingApt, setEditingApt] = useState<AppointmentRow | null>(null)
   const [dragIdx, setDragIdx] = useState<number | null>(null)
   const [statusFilter, setStatusFilter] = useState<'all' | AppointmentStatus>('all')
+  const [unassignedCount, setUnassignedCount] = useState(0)
   const dateInputRef = useRef<HTMLInputElement>(null)
 
   const dateStr = selectedDate.toISOString().slice(0, 10)
@@ -109,11 +110,24 @@ export function Appointments() {
 
     const turnCounts = new Map<string, number>()
     const lastCompletedTime = new Map<string, string>() // employee_id -> latest completed time
+    const busyStartTime = new Map<string, string>() // employee_id -> time they started (in_progress)
+    const unassigned = apts.filter((a) => !a.employee_id && a.status !== 'cancelled').length
+    setUnassignedCount(unassigned)
+
     for (const apt of apts) {
-      if (apt.status === 'completed' && apt.employee_id) {
+      // Lượt = tất cả appointments được gán cho NV (completed + in_progress + booked), trừ cancelled
+      if (apt.employee_id && apt.status !== 'cancelled') {
         turnCounts.set(apt.employee_id, (turnCounts.get(apt.employee_id) ?? 0) + 1)
+      }
+      // Track last completed time for idle calculation
+      if (apt.status === 'completed' && apt.employee_id) {
         const prev = lastCompletedTime.get(apt.employee_id)
         if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
+      }
+      // Track busy start time
+      if (apt.status === 'in_progress' && apt.employee_id) {
+        const prev = busyStartTime.get(apt.employee_id)
+        if (!prev || apt.time < prev) busyStartTime.set(apt.employee_id, apt.time)
       }
     }
 
@@ -130,7 +144,7 @@ export function Appointments() {
       const isBusy = busyEmployeeIds.has(emp.id)
       let idleMinutes: number | null = null
 
-      // Only calculate idle for today
+      // Calculate idle for today (only for non-busy employees)
       if (!isBusy && dateStr === todayStr) {
         const lastTime = lastCompletedTime.get(emp.id)
         if (lastTime) {
@@ -151,6 +165,21 @@ export function Appointments() {
         turnCount: turnCounts.get(emp.id) ?? 0,
         idleMinutes,
       }
+    })
+
+    // Sort: busy employees first (sorted by start time asc), then available by rotation_order
+    rotationList.sort((a, b) => {
+      if (a.status === 'busy' && b.status !== 'busy') return -1
+      if (a.status !== 'busy' && b.status === 'busy') return 1
+      if (a.status === 'busy' && b.status === 'busy') {
+        const aTime = busyStartTime.get(a.id) ?? '99:99'
+        const bTime = busyStartTime.get(b.id) ?? '99:99'
+        return aTime.localeCompare(bTime)
+      }
+      // Both available — keep rotation_order from empList
+      const aIdx = empList.findIndex((e) => e.id === a.id)
+      const bIdx = empList.findIndex((e) => e.id === b.id)
+      return aIdx - bIdx
     })
 
     // First available in list order = "next"
@@ -232,8 +261,10 @@ export function Appointments() {
     await saveRotationOrder()
   }
 
-  // Mobile: tap to select, then use arrows to move
+  // Mobile: tap to select, then use arrows to move (only non-busy)
   function handleCardTap(idx: number) {
+    // Không cho chọn NV đang busy
+    if (rotation[idx]?.status === 'busy') return
     setSelectedRotationIdx(selectedRotationIdx === idx ? null : idx)
   }
 
@@ -241,6 +272,8 @@ export function Appointments() {
     if (selectedRotationIdx === null) return
     const targetIdx = direction === 'left' ? selectedRotationIdx - 1 : selectedRotationIdx + 1
     if (targetIdx < 0 || targetIdx >= rotation.length) return
+    // Không cho nhảy qua NV đang busy
+    if (rotation[targetIdx]?.status === 'busy') return
 
     const n = [...rotation]
     const [moved] = n.splice(selectedRotationIdx, 1)
@@ -342,12 +375,11 @@ export function Appointments() {
 
                 {/* Status */}
                 <p className={`text-xs mt-0.5 ${
-                  isNext ? 'text-[#864e5a]/70' :
                   isBusy ? 'text-amber-600 flex items-center justify-center gap-1' :
+                  isNext ? 'text-[#864e5a]/70' :
                   'text-gray-500'
                 }`}>
-                  {isNext ? t('appointments.ready') :
-                   isBusy ? <><span className="w-2 h-2 rounded-full bg-amber-500 inline-block" /> {t('appointments.working')}</> :
+                  {isBusy ? <><span className="w-2 h-2 rounded-full bg-amber-500 inline-block" /> {t('appointments.working')}</> :
                    emp.idleMinutes !== null && emp.idleMinutes > 0
                      ? `${t('appointments.idle')} ${emp.idleMinutes >= 60 ? `${Math.floor(emp.idleMinutes / 60)}h${emp.idleMinutes % 60 > 0 ? emp.idleMinutes % 60 + 'm' : ''}` : emp.idleMinutes + 'm'}`
                      : t('appointments.ready')}
@@ -362,7 +394,7 @@ export function Appointments() {
           <div className="flex items-center justify-center gap-4 mt-3">
             <button
               onClick={() => moveEmployee('left')}
-              disabled={selectedRotationIdx === 0}
+              disabled={selectedRotationIdx === 0 || rotation[selectedRotationIdx! - 1]?.status === 'busy'}
               className="w-10 h-10 rounded-full bg-[#864e5a] text-white flex items-center justify-center disabled:opacity-30 active:scale-90 transition-transform text-lg font-bold"
             >
               ◀
@@ -394,6 +426,11 @@ export function Appointments() {
                 {emp.name.split(' ')[0]}: <strong className="text-gray-900">{emp.turnCount}</strong> {t('appointments.turns')}
               </span>
             ))}
+            {unassignedCount > 0 && (
+              <span className="text-sm bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 text-gray-500 backdrop-blur-sm">
+                Unassigned: <strong className="text-gray-700">{unassignedCount}</strong> {t('appointments.turns')}
+              </span>
+            )}
           </div>
         )}
       </section>
