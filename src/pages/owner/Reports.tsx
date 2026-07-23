@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Download, Wallet } from 'lucide-react'
+import { Wallet, X, Printer } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 type Period = 'day' | 'week' | 'month'
@@ -10,60 +10,75 @@ interface ServiceRevenue {
   revenue: number
 }
 
-interface StaffProductivity {
+interface EmployeeSummary {
+  id: string
   name: string
   count: number
+  revenue: number
+  commission: number
 }
 
-interface TopPerformer {
-  name: string
-  title: string
-  revenue: number
+interface EmployeeAppointment {
+  date: string
+  time: string
+  service: string
+  price: number
+  tip: number
 }
 
 export function Reports() {
   const { t } = useTranslation()
   const [period, setPeriod] = useState<Period>('week')
   const [serviceRevenue, setServiceRevenue] = useState<ServiceRevenue[]>([])
-  const [staffProductivity, setStaffProductivity] = useState<StaffProductivity[]>([])
-  const [topPerformers, setTopPerformers] = useState<TopPerformer[]>([])
+  const [employeeSummaries, setEmployeeSummaries] = useState<EmployeeSummary[]>([])
   const [loading, setLoading] = useState(true)
+
+  // Detail modal
+  const [selectedEmployee, setSelectedEmployee] = useState<EmployeeSummary | null>(null)
+  const [employeeAppointments, setEmployeeAppointments] = useState<EmployeeAppointment[]>([])
+  const [loadingDetail, setLoadingDetail] = useState(false)
+  const printRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     loadReport()
   }, [period])
 
-  function getDateRange(): string {
+  function getDateRange(): { start: string; end: string } {
     const today = new Date()
     const todayStr = today.toISOString().slice(0, 10)
 
-    if (period === 'day') return todayStr
+    if (period === 'day') return { start: todayStr, end: todayStr }
 
     if (period === 'week') {
       const dayOfWeek = today.getDay()
       const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1
       const monday = new Date(today)
       monday.setDate(today.getDate() - mondayOffset)
-      return monday.toISOString().slice(0, 10)
+      const sunday = new Date(monday)
+      sunday.setDate(monday.getDate() + 6)
+      return { start: monday.toISOString().slice(0, 10), end: sunday.toISOString().slice(0, 10) }
     }
 
     // month
-    return todayStr.slice(0, 8) + '01'
+    const monthStart = todayStr.slice(0, 8) + '01'
+    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0)
+    return { start: monthStart, end: nextMonth.toISOString().slice(0, 10) }
   }
 
   async function loadReport() {
     setLoading(true)
-    const startDate = getDateRange()
+    const { start, end } = getDateRange()
 
     const { data } = await supabase
       .from('appointments')
-      .select('price, tip, employee_id, service_id, services(name), employees(name)')
-      .gte('date', startDate)
+      .select('price, tip, employee_id, service_id, services(name), employees(name, commission_rate)')
+      .gte('date', start)
+      .lte('date', end)
       .eq('status', 'completed')
 
     const rows = data ?? []
 
-    // Service Revenue — group by service
+    // Service Revenue
     const svcMap = new Map<string, { name: string; revenue: number }>()
     for (const row of rows) {
       const svc = row.services as unknown as { name: string } | null
@@ -72,43 +87,87 @@ export function Reports() {
       existing.revenue += row.price + row.tip
       svcMap.set(key, existing)
     }
-    const svcList = [...svcMap.values()].sort((a, b) => b.revenue - a.revenue).slice(0, 5)
-    setServiceRevenue(svcList)
+    setServiceRevenue([...svcMap.values()].sort((a, b) => b.revenue - a.revenue).slice(0, 5))
 
-    // Staff Productivity — count appointments per employee
-    const empCountMap = new Map<string, { name: string; count: number; revenue: number }>()
+    // Employee Summaries — by revenue
+    const empMap = new Map<string, EmployeeSummary>()
     for (const row of rows) {
-      const emp = row.employees as unknown as { name: string } | null
+      const emp = row.employees as unknown as { name: string; commission_rate: number | null } | null
       const key = row.employee_id ?? 'unknown'
-      const existing = empCountMap.get(key) ?? { name: emp?.name ?? 'Unknown', count: 0, revenue: 0 }
+      const existing = empMap.get(key) ?? { id: key, name: emp?.name ?? 'Unknown', count: 0, revenue: 0, commission: 0 }
       existing.count += 1
       existing.revenue += row.price + row.tip
-      empCountMap.set(key, existing)
+      const rate = emp?.commission_rate ?? 60
+      existing.commission += (row.price * rate / 100) + row.tip
+      empMap.set(key, existing)
     }
-    const staffList = [...empCountMap.values()].sort((a, b) => b.count - a.count).slice(0, 6)
-    setStaffProductivity(staffList)
-
-    // Top Performers — by revenue
-    const topList = [...empCountMap.values()]
-      .sort((a, b) => b.revenue - a.revenue)
-      .slice(0, 5)
-      .map((emp) => ({
-        name: emp.name,
-        title: emp.count >= 10 ? 'Senior Specialist' : 'Technician',
-        revenue: emp.revenue,
-      }))
-    setTopPerformers(topList)
+    setEmployeeSummaries([...empMap.values()].sort((a, b) => b.revenue - a.revenue))
 
     setLoading(false)
   }
 
+  async function openEmployeeDetail(emp: EmployeeSummary) {
+    setSelectedEmployee(emp)
+    setLoadingDetail(true)
+
+    const { start, end } = getDateRange()
+    const { data } = await supabase
+      .from('appointments')
+      .select('date, time, price, tip, services(name)')
+      .eq('employee_id', emp.id)
+      .gte('date', start)
+      .lte('date', end)
+      .eq('status', 'completed')
+      .order('date', { ascending: true })
+      .order('time', { ascending: true })
+
+    const apts: EmployeeAppointment[] = (data ?? []).map((row) => ({
+      date: row.date,
+      time: row.time,
+      service: (row.services as unknown as { name: string } | null)?.name ?? '-',
+      price: row.price,
+      tip: row.tip,
+    }))
+    setEmployeeAppointments(apts)
+    setLoadingDetail(false)
+  }
+
+  function handlePrint() {
+    if (!printRef.current) return
+    const printContent = printRef.current.innerHTML
+    const win = window.open('', '_blank', 'width=400,height=600')
+    if (!win) return
+    win.document.write(`
+      <html>
+        <head>
+          <title>Pay Statement - ${selectedEmployee?.name}</title>
+          <style>
+            body { font-family: -apple-system, sans-serif; padding: 20px; font-size: 12px; color: #333; }
+            h2 { font-size: 16px; margin-bottom: 4px; }
+            h3 { font-size: 13px; color: #666; margin-top: 0; }
+            table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+            th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #eee; font-size: 11px; }
+            th { font-weight: 600; color: #555; border-bottom: 2px solid #ddd; }
+            .right { text-align: right; }
+            .total-row { border-top: 2px solid #333; font-weight: bold; font-size: 13px; }
+            .footer { margin-top: 20px; text-align: center; color: #999; font-size: 10px; }
+            @media print { body { padding: 10px; } }
+          </style>
+        </head>
+        <body>
+          ${printContent}
+          <div class="footer">Generated by NailPro &bull; ${new Date().toLocaleDateString('vi-VN')}</div>
+        </body>
+      </html>
+    `)
+    win.document.close()
+    setTimeout(() => { win.print(); win.close() }, 300)
+  }
+
   function formatCurrency(value: number) {
-    if (value >= 1000000) return `$${(value / 1000000).toFixed(1)}M`
-    if (value >= 1000) return `$${(value / 1000).toFixed(1)}k`
     return `$${value.toFixed(0)}`
   }
 
-  // Bar color gradient based on rank
   const barColors = [
     'bg-[#864e5a]',
     'bg-[#864e5a]/80',
@@ -117,7 +176,6 @@ export function Reports() {
     'bg-[#864e5a]/25',
   ]
 
-  // Avatar helpers
   function getInitials(name: string) {
     return name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()
   }
@@ -139,9 +197,8 @@ export function Reports() {
   }
 
   const maxServiceRevenue = serviceRevenue.length > 0 ? serviceRevenue[0].revenue : 1
-  const maxStaffCount = staffProductivity.length > 0 ? Math.max(...staffProductivity.map((s) => s.count), 1) : 1
-
   const periodLabel = period === 'day' ? t('reports.thisDay') : period === 'week' ? t('reports.thisWeek') : t('reports.thisMonth')
+  const { start: periodStart, end: periodEnd } = getDateRange()
 
   if (loading) {
     return (
@@ -159,10 +216,6 @@ export function Reports() {
           <h1 className="text-2xl font-bold text-gray-900">{t('reports.title')}</h1>
           <p className="text-sm text-gray-500 mt-0.5">{t('reports.subtitle')}</p>
         </div>
-        <button className="flex items-center gap-1.5 bg-[#864e5a] text-white text-xs font-semibold px-3 py-2 rounded-xl">
-          <Download size={14} />
-          {t('reports.export')}
-        </button>
       </div>
 
       {/* Period Filters */}
@@ -181,6 +234,55 @@ export function Reports() {
           </button>
         ))}
       </div>
+
+      {/* Top Performers — clickable */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-bold text-gray-900">{t('reports.topPerformers')}</h2>
+
+        {employeeSummaries.length === 0 ? (
+          <p className="text-sm text-gray-400 text-center py-4">{t('reports.noData')}</p>
+        ) : (
+          <div className="space-y-3">
+            {employeeSummaries.map((emp, i) => (
+              <div
+                key={emp.id}
+                onClick={() => openEmployeeDetail(emp)}
+                className="p-4 rounded-[1rem] flex items-center gap-4 border-l-4 border-[#864e5a]/30 cursor-pointer active:scale-[0.98] transition-transform"
+                style={{
+                  background: 'rgba(255, 248, 248, 0.6)',
+                  backdropFilter: 'blur(12px)',
+                  borderRight: '1px solid rgba(134,78,90,0.1)',
+                  borderTop: '1px solid rgba(134,78,90,0.1)',
+                  borderBottom: '1px solid rgba(134,78,90,0.1)',
+                }}
+              >
+                {/* Rank */}
+                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
+                  i === 0 ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-500'
+                }`}>
+                  {i + 1}
+                </div>
+                {/* Avatar */}
+                <div
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold ${getAvatarColor(emp.name)}`}
+                >
+                  {getInitials(emp.name)}
+                </div>
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-gray-900">{emp.name}</p>
+                  <p className="text-xs text-gray-500">{emp.count} {t('appointments.turns')} &bull; {periodLabel}</p>
+                </div>
+                {/* Revenue */}
+                <div className="text-right">
+                  <p className="text-sm font-bold text-[#864e5a]">{formatCurrency(emp.revenue)}</p>
+                  <p className="text-[10px] text-gray-400">doanh thu</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
 
       {/* Service Revenue Card */}
       <div
@@ -216,87 +318,134 @@ export function Reports() {
         )}
       </div>
 
-      {/* Staff Productivity Card */}
-      <div
-        className="rounded-[1rem] p-5 border border-[rgba(134,78,90,0.1)]"
-        style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
-      >
-        <h2 className="text-lg font-bold text-gray-900 mb-4">{t('reports.staffProductivity')}</h2>
-
-        {staffProductivity.length === 0 ? (
-          <p className="text-sm text-gray-400 py-4 text-center">{t('reports.noData')}</p>
-        ) : (
-          <>
-            {/* Bar chart */}
-            <div className="flex items-end justify-between gap-3 h-32 mb-3">
-              {staffProductivity.map((staff, i) => {
-                const height = (staff.count / maxStaffCount) * 100
-                return (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                    <span className="text-[10px] font-medium text-gray-500">{staff.count}</span>
-                    <div
-                      className="w-full max-w-[32px] bg-[#864e5a] rounded-md"
-                      style={{ height: `${Math.max(height, 8)}%` }}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-            <div className="flex justify-between gap-3">
-              {staffProductivity.map((staff, i) => (
-                <span key={i} className="flex-1 text-center text-[10px] text-gray-500 truncate">
-                  {staff.name.split(' ')[0]}
-                </span>
-              ))}
-            </div>
-            <p className="text-[10px] text-gray-400 text-center mt-2 uppercase tracking-wide">
-              {t('reports.appointmentsPerWeek')}
-            </p>
-          </>
-        )}
-      </div>
-
-      {/* Top Performers */}
-      <section className="space-y-4">
-        <h2 className="text-lg font-bold text-gray-900">{t('reports.topPerformers')}</h2>
-
-        {topPerformers.length === 0 ? (
-          <p className="text-sm text-gray-400 text-center py-4">{t('reports.noData')}</p>
-        ) : (
-          <div className="space-y-3">
-            {topPerformers.map((performer, i) => (
-              <div
-                key={i}
-                className="p-4 rounded-[1rem] flex items-center gap-4 border-l-4 border-[#864e5a]/30"
-                style={{
-                  background: 'rgba(255, 248, 248, 0.6)',
-                  backdropFilter: 'blur(12px)',
-                  borderRight: '1px solid rgba(134,78,90,0.1)',
-                  borderTop: '1px solid rgba(134,78,90,0.1)',
-                  borderBottom: '1px solid rgba(134,78,90,0.1)',
-                }}
-              >
-                {/* Avatar */}
-                <div
-                  className={`w-11 h-11 rounded-full flex items-center justify-center text-xs font-bold ${getAvatarColor(performer.name)}`}
-                >
-                  {getInitials(performer.name)}
-                </div>
-                {/* Info */}
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900">{performer.name}</p>
-                  <p className="text-xs text-gray-500">{performer.title}</p>
-                </div>
-                {/* Revenue */}
-                <div className="text-right">
-                  <p className="text-sm font-bold text-gray-900">{formatCurrency(performer.revenue)}</p>
-                  <p className="text-[10px] text-gray-400">{periodLabel}</p>
-                </div>
+      {/* ═══ Employee Detail Modal ═══ */}
+      {selectedEmployee && (
+        <div className="fixed inset-0 bg-black/40 z-[60] flex items-end sm:items-center justify-center" onClick={() => setSelectedEmployee(null)}>
+          <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl max-h-[90vh] overflow-hidden flex flex-col modal-sheet" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-5 pb-3 border-b border-gray-100">
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">{selectedEmployee.name}</h3>
+                <p className="text-xs text-gray-500">
+                  {new Date(periodStart).toLocaleDateString('vi-VN')} — {new Date(periodEnd).toLocaleDateString('vi-VN')}
+                </p>
               </div>
-            ))}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handlePrint}
+                  className="p-2 bg-[#864e5a]/10 text-[#864e5a] rounded-xl active:scale-90 transition-transform"
+                  title="Print / PDF"
+                >
+                  <Printer size={18} />
+                </button>
+                <button onClick={() => setSelectedEmployee(null)} className="p-2 text-gray-400">
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="overflow-y-auto flex-1 p-5 space-y-4">
+              {loadingDetail ? (
+                <p className="text-center text-gray-400 py-8">Loading...</p>
+              ) : (
+                <>
+                  {/* Summary stats */}
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="bg-gray-50 rounded-xl p-3 text-center">
+                      <p className="text-lg font-bold text-gray-900">{selectedEmployee.count}</p>
+                      <p className="text-[10px] text-gray-500 uppercase">Lượt</p>
+                    </div>
+                    <div className="bg-gray-50 rounded-xl p-3 text-center">
+                      <p className="text-lg font-bold text-[#864e5a]">{formatCurrency(selectedEmployee.revenue)}</p>
+                      <p className="text-[10px] text-gray-500 uppercase">Doanh thu</p>
+                    </div>
+                    <div className="bg-gray-50 rounded-xl p-3 text-center">
+                      <p className="text-lg font-bold text-emerald-600">{formatCurrency(selectedEmployee.commission)}</p>
+                      <p className="text-[10px] text-gray-500 uppercase">Thu nhập</p>
+                    </div>
+                  </div>
+
+                  {/* Appointment table */}
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-xs text-gray-500 border-b border-gray-200">
+                          <th className="text-left py-2 font-medium">Ngày</th>
+                          <th className="text-left py-2 font-medium">Dịch vụ</th>
+                          <th className="text-right py-2 font-medium">Giá</th>
+                          <th className="text-right py-2 font-medium">Tip</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {employeeAppointments.map((apt, i) => (
+                          <tr key={i} className="border-b border-gray-50">
+                            <td className="py-2 text-gray-700 whitespace-nowrap">
+                              {new Date(apt.date + 'T00:00:00').toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' })}
+                              <span className="text-gray-400 ml-1 text-xs">{apt.time.slice(0, 5)}</span>
+                            </td>
+                            <td className="py-2 text-gray-700 truncate max-w-[100px]">{apt.service}</td>
+                            <td className="py-2 text-right font-medium">${apt.price}</td>
+                            <td className="py-2 text-right text-emerald-600">${apt.tip}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <tfoot>
+                        <tr className="border-t-2 border-gray-200 font-bold">
+                          <td colSpan={2} className="py-2">Tổng</td>
+                          <td className="py-2 text-right">{formatCurrency(employeeAppointments.reduce((s, a) => s + a.price, 0))}</td>
+                          <td className="py-2 text-right text-emerald-600">{formatCurrency(employeeAppointments.reduce((s, a) => s + a.tip, 0))}</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Hidden print content */}
+            <div className="hidden">
+              <div ref={printRef}>
+                <h2>Pay Statement — {selectedEmployee.name}</h2>
+                <h3>{new Date(periodStart).toLocaleDateString('vi-VN')} — {new Date(periodEnd).toLocaleDateString('vi-VN')}</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Ngày</th>
+                      <th>Giờ</th>
+                      <th>Dịch vụ</th>
+                      <th className="right">Giá</th>
+                      <th className="right">Tip</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {employeeAppointments.map((apt, i) => (
+                      <tr key={i}>
+                        <td>{new Date(apt.date + 'T00:00:00').toLocaleDateString('vi-VN')}</td>
+                        <td>{apt.time.slice(0, 5)}</td>
+                        <td>{apt.service}</td>
+                        <td className="right">${apt.price}</td>
+                        <td className="right">${apt.tip}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="total-row">
+                      <td colSpan={3}>Tổng cộng</td>
+                      <td className="right">${employeeAppointments.reduce((s, a) => s + a.price, 0)}</td>
+                      <td className="right">${employeeAppointments.reduce((s, a) => s + a.tip, 0)}</td>
+                    </tr>
+                    <tr className="total-row">
+                      <td colSpan={3}>Thu nhập NV (commission + tip)</td>
+                      <td colSpan={2} className="right">${selectedEmployee.commission.toFixed(0)}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
           </div>
-        )}
-      </section>
+        </div>
+      )}
     </div>
   )
 }
