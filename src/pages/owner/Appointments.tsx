@@ -208,7 +208,10 @@ export function Appointments() {
     load()
   }
 
-  // Drag & Drop
+  // Drag & Drop — supports both mouse (desktop) and touch (mobile/iOS)
+  const touchStartRef = useRef<{ idx: number; startY: number; startX: number } | null>(null)
+  const [touchDragIdx, setTouchDragIdx] = useState<number | null>(null)
+
   function handleDragStart(idx: number) { setDragIdx(idx) }
   function handleDragOver(e: React.DragEvent, idx: number) {
     e.preventDefault()
@@ -218,11 +221,60 @@ export function Appointments() {
   }
   async function handleDragEnd() {
     setDragIdx(null)
-    // Save new order to DB
+    await saveRotationOrder()
+  }
+
+  // Touch handlers for iOS
+  function handleTouchStart(idx: number, e: React.TouchEvent) {
+    const touch = e.touches[0]
+    touchStartRef.current = { idx, startY: touch.clientY, startX: touch.clientX }
+    // Long press to start drag
+    const timer = setTimeout(() => {
+      setTouchDragIdx(idx)
+      setDragIdx(idx)
+    }, 200)
+    ;(e.currentTarget as HTMLElement).dataset.timer = String(timer)
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+    if (touchDragIdx === null) {
+      // Cancel drag if moved too far before long-press
+      const touch = e.touches[0]
+      if (touchStartRef.current) {
+        const dx = Math.abs(touch.clientX - touchStartRef.current.startX)
+        if (dx > 10) {
+          const timer = (e.currentTarget as HTMLElement).dataset.timer
+          if (timer) clearTimeout(parseInt(timer))
+        }
+      }
+      return
+    }
+    e.preventDefault()
+    const touch = e.touches[0]
+    const elements = document.elementsFromPoint(touch.clientX, touch.clientY)
+    const card = elements.find(el => el.getAttribute('data-rotation-idx'))
+    if (card) {
+      const targetIdx = parseInt(card.getAttribute('data-rotation-idx')!)
+      if (targetIdx !== dragIdx && !isNaN(targetIdx)) {
+        const n = [...rotation]; const [d] = n.splice(dragIdx!, 1); n.splice(targetIdx, 0, d)
+        setRotation(n); setDragIdx(targetIdx)
+      }
+    }
+  }
+
+  function handleTouchEnd() {
+    if (touchDragIdx !== null) {
+      setTouchDragIdx(null)
+      setDragIdx(null)
+      saveRotationOrder()
+    }
+    touchStartRef.current = null
+  }
+
+  async function saveRotationOrder() {
     for (let i = 0; i < rotation.length; i++) {
       await supabase.from('employees').update({ rotation_order: i }).eq('id', rotation[i].id)
     }
-    // Re-assign "next" to first non-busy after reorder
     const updated = rotation.map((emp) => ({
       ...emp,
       status: (emp.status === 'busy' ? 'busy' : 'available') as RotationStatus,
@@ -260,20 +312,24 @@ export function Appointments() {
           </span>
         </div>
 
-        <div className="flex gap-4 overflow-x-auto pb-3 -mx-2 px-2" style={{ scrollbarWidth: 'none' }}>
+        <div className="flex gap-4 overflow-x-auto pb-3 -mx-2 px-2" style={{ scrollbarWidth: 'none' }}
+          onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
+        >
           {rotation.map((emp, idx) => {
             const isNext = emp.status === 'next'
             const isBusy = emp.status === 'busy'
             return (
               <div
                 key={emp.id}
+                data-rotation-idx={idx}
                 draggable
                 onDragStart={(e) => { e.dataTransfer.effectAllowed = 'move'; handleDragStart(idx) }}
                 onDragOver={(e) => handleDragOver(e, idx)}
                 onDragEnd={handleDragEnd}
+                onTouchStart={(e) => handleTouchStart(idx, e)}
                 className={`flex-shrink-0 w-40 p-4 rounded-[1rem] text-center relative cursor-grab active:cursor-grabbing transition-transform ${
                   dragIdx === idx ? 'opacity-50 scale-95' : ''
-                } ${
+                } ${touchDragIdx === idx ? 'scale-105 shadow-xl z-50' : ''} ${
                   isNext
                     ? 'border-2 border-[#864e5a] shadow-[0_0_20px_rgba(134,78,90,0.15)]'
                     : 'opacity-80 border border-gray-200'
@@ -718,7 +774,7 @@ function NewAppointmentForm({ employees, services, onSave, onClose, t, defaultDa
 
   return (
     <div className="fixed inset-0 bg-black/40 z-50 flex items-end sm:items-center justify-center">
-      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 max-h-[85vh] overflow-y-auto">
+      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 max-h-[85vh] overflow-y-auto modal-sheet">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold">{editing ? t('appointments.editAppointment') : t('appointments.newAppointment')}</h3>
           <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600"><X size={20} /></button>

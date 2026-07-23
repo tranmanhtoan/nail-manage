@@ -204,7 +204,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
 
   return (
     <div className="fixed inset-0 bg-black/40 z-50 flex items-end sm:items-center justify-center">
-      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 max-h-[85vh] overflow-y-auto">
+      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 max-h-[85vh] overflow-y-auto modal-sheet">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold">{employee ? t('common.edit') : t('employee.addNew')}</h3>
           <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600"><X size={20} /></button>
