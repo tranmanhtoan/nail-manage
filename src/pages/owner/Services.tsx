@@ -85,13 +85,9 @@ export function Services() {
                   {/* Toggle */}
                   <button
                     onClick={(e) => toggleActive(svc, e)}
-                    className={`relative w-11 h-6 rounded-full transition-colors ${
-                      svc.is_active ? 'bg-[#864e5a]' : 'bg-gray-300'
-                    }`}
+                    className={`shrink-0 transition-colors ${svc.is_active ? 'text-[#864e5a]' : 'text-gray-300'}`}
                   >
-                    <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
-                      svc.is_active ? 'translate-x-[22px]' : 'translate-x-0.5'
-                    }`} />
+                    {svc.is_active ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
                   </button>
                 </div>
               </div>
