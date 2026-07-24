@@ -183,7 +183,9 @@
     "featureAppointments": "Appointments",
     "featureAppointmentsDesc": "Enable appointment booking system",
     "featureReports": "Reports",
-    "featureReportsDesc": "Show revenue reports and analytics"
+    "featureReportsDesc": "Show revenue reports and analytics",
+    "kioskPin": "Kiosk PIN",
+    "kioskPinDesc": "PIN code for kiosk/tablet mode (min 4 digits)"
   },
   "reports": {
     "title": "Analytics",
