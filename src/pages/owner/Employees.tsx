@@ -31,7 +31,7 @@ export function Employees() {
         const tempPassword = generateTempPassword()
         const authEmail = toAuthEmail(loginId)
 
-        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        const { data: signUpData, error: signUpError } = await supabaseAdmin.auth.signUp({
           email: authEmail,
           password: tempPassword,
           options: {
@@ -62,7 +62,7 @@ export function Employees() {
     const tempPassword = generateTempPassword()
     const authEmail = create_email ? create_email : toAuthEmail(loginId)
 
-    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+    const { data: signUpData, error: signUpError } = await supabaseAdmin.auth.signUp({
       email: authEmail,
       password: tempPassword,
       options: {
@@ -97,7 +97,7 @@ export function Employees() {
       const tempPassword = generateTempPassword()
       const authEmail = toAuthEmail(loginId)
 
-      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+      const { data: signUpData, error: signUpError } = await supabaseAdmin.auth.signUp({
         email: authEmail,
         password: tempPassword,
         options: {
