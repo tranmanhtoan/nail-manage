@@ -59,7 +59,21 @@ export function QuickEntry() {
     setEmployees(empList)
     setServices(svcRes.data ?? [])
 
-    // Calculate idle minutes and find next employee
+    // If logged in as employee, find their employee_id and auto-select
+    if (user?.role === 'employee') {
+      const { data: myEmp } = await supabase
+        .from('employees')
+        .select('id')
+        .eq('profile_id', user.id)
+        .single()
+      if (myEmp) {
+        const me = myEmp as { id: string }
+        setMyEmployeeId(me.id)
+        setEmployeeId(me.id)
+      }
+    }
+
+    // Calculate idle minutes
     const apts = aptsRes.data ?? []
     const busyIds = new Set(apts.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!))
     const lastCompletedTime = new Map<string, string>()
