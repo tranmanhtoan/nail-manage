@@ -142,6 +142,15 @@ create policy "Users read own profile" on public.profiles for select
 create policy "Owner read all profiles" on public.profiles for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'owner'));
 
+-- Secure view for login screen (only exposes id, full_name, role — no email)
+create view public.login_profiles as
+  select id, full_name, role
+  from public.profiles
+  where role in ('owner', 'employee');
+
+-- Grant anonymous and authenticated access to the view
+grant select on public.login_profiles to anon, authenticated;
+
 -- Function to auto-create profile on signup
 create or replace function public.handle_new_user()
 returns trigger as $$

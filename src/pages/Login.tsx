@@ -7,7 +7,6 @@ import { supabase } from '@/lib/supabase'
 
 interface ProfileOption {
   id: string
-  email: string
   full_name: string
   role: string
 }
