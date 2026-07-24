@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, CalendarDays, PenLine, BarChart3, Shield } from 'lucide-react'
+import { LayoutDashboard, CalendarDays, PenLine, BarChart3, Settings } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 
 export function BottomNav() {
