@@ -229,7 +229,7 @@ grant execute on function public.get_my_employee() to authenticated;
 -- RPC function for employees to get their appointments (bypasses RLS)
 create or replace function public.get_my_appointments(p_date date, p_date_from date default null)
 returns table(
-  id uuid, date date, time time, status text, price numeric, tip numeric,
+  apt_id uuid, apt_date date, apt_time time, apt_status text, apt_price numeric, apt_tip numeric,
   customer_name text, service_name text
 ) as $$
 declare
@@ -239,7 +239,6 @@ begin
   if v_employee_id is null then return; end if;
 
   if p_date_from is not null then
-    -- Range query (for earnings)
     return query
       select a.id, a.date, a.time, a.status, a.price, a.tip,
              c.name as customer_name, s.name as service_name
@@ -251,7 +250,6 @@ begin
         and a.date >= p_date_from
       order by a.date desc, a.time desc;
   else
-    -- Single day query (for schedule)
     return query
       select a.id, a.date, a.time, a.status, a.price, a.tip,
              c.name as customer_name, s.name as service_name
