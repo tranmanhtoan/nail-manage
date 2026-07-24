@@ -134,7 +134,7 @@ function calcEarnings(emp: MyEmployee, revenue: number, tips: number): number {
     case 'commission':
       return revenue * ((emp.commission_rate ?? 0) / 100) + tips
     case 'fixed':
-      return tips
+      return (emp.fixed_salary ?? 0) + tips
     case 'split':
       return (revenue + tips) * ((emp.split_rate ?? 0) / 100)
     default:

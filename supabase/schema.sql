@@ -213,7 +213,7 @@ begin
     p_price,
     p_tip,
     current_date,
-    to_char(now(), 'HH24:MI'),
+    now()::time,
     'completed',
     'walk_in',
     p_payment_method
