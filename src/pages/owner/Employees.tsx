@@ -91,6 +91,7 @@ export function Employees() {
     if (!confirm(`Tạo tài khoản đăng nhập cho ${missingProfiles.length} nhân viên chưa có?`)) return
 
     const results: { login: string; password: string; name: string }[] = []
+    const errors: string[] = []
 
     for (const emp of missingProfiles) {
       const loginId = emp.name.toLowerCase().replace(/[^a-z0-9]/g, '')
@@ -102,14 +103,31 @@ export function Employees() {
         password: tempPassword,
         options: {
           data: { full_name: emp.name, role: 'employee' },
-          emailRedirectTo: window.location.origin,
         },
       })
 
-      if (!signUpError && signUpData.user) {
-        await supabase.from('employees').update({ profile_id: signUpData.user.id }).eq('id', emp.id)
-        results.push({ login: loginId, password: tempPassword, name: emp.name })
+      if (signUpError) {
+        errors.push(`${emp.name}: ${signUpError.message}`)
+        continue
       }
+
+      // Check if user was actually created (not just a duplicate with no identities)
+      const userId = signUpData.user?.id
+      const hasIdentities = (signUpData.user?.identities?.length ?? 0) > 0
+
+      if (userId && hasIdentities) {
+        await supabase.from('employees').update({ profile_id: userId }).eq('id', emp.id)
+        results.push({ login: loginId, password: tempPassword, name: emp.name })
+      } else if (userId && !hasIdentities) {
+        // User already exists — try to find existing profile and link
+        errors.push(`${emp.name}: tài khoản "${loginId}" đã tồn tại`)
+      } else {
+        errors.push(`${emp.name}: không tạo được user`)
+      }
+    }
+
+    if (errors.length > 0) {
+      alert('Một số lỗi:\n' + errors.join('\n'))
     }
 
     if (results.length > 0) {
