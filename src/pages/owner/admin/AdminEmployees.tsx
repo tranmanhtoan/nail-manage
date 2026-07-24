@@ -94,3 +94,50 @@ export function AdminEmployees() {
           <Plus size={16} /> Thêm
         </button>
       </div>
+
+      {/* Employee list */}
+      <div className="space-y-3">
+        {employees.map((emp) => (
+          <div
+            key={emp.id}
+            className={`p-4 rounded-[1rem] border-l-4 ${
+              emp.is_active ? 'border-[#864e5a]/30' : 'border-gray-300 opacity-60'
+            }`}
+            style={{
+              background: emp.is_active ? 'rgba(255, 248, 248, 0.6)' : 'rgba(245, 245, 245, 0.8)',
+              backdropFilter: 'blur(12px)',
+              borderRight: '1px solid rgba(134,78,90,0.1)',
+              borderTop: '1px solid rgba(134,78,90,0.1)',
+              borderBottom: '1px solid rgba(134,78,90,0.1)',
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <div className="min-w-0">
+                <p className="font-semibold text-gray-900 truncate">{emp.name}</p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  {emp.pay_type === 'commission' && `Commission ${emp.commission_rate}%`}
+                  {emp.pay_type === 'fixed' && `Fixed $${emp.fixed_salary}/wk`}
+                  {emp.pay_type === 'split' && `Split ${emp.split_rate}%`}
+                  {!emp.profile_id && <span className="ml-2 text-amber-600">• Chưa có tài khoản</span>}
+                </p>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={() => { setShowResetPassword(emp); setNewPassword(''); setResetSuccess(false) }}
+                  className="p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-amber-50 hover:text-amber-700"
+                  title="Đổi password"
+                >
+                  <KeyRound size={16} />
+                </button>
+                <button
+                  onClick={() => { setEditing(emp); setShowForm(true) }}
+                  className="p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-[#864e5a]/10 hover:text-[#864e5a]"
+                  title="Sửa"
+                >
+                  <User size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
