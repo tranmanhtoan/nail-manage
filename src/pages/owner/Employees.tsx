@@ -240,6 +240,59 @@ function CredsModal({ creds, onClose }: { creds: { login: string; password: stri
   )
 }
 
+function BulkCredsModal({ creds, onClose }: { creds: { login: string; password: string; name: string }[]; onClose: () => void }) {
+  const [copied, setCopied] = useState(false)
+
+  const copyAll = () => {
+    const text = creds.map((c) => `${c.name}: Login: ${c.login} / Password: ${c.password}`).join('\n')
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black/40 z-[60] flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-sm rounded-2xl p-6 space-y-4 max-h-[85vh] overflow-y-auto">
+        <h3 className="text-lg font-bold text-center text-gray-900">Tạo {creds.length} tài khoản thành công!</h3>
+        <p className="text-sm text-gray-600 text-center">
+          Lưu lại thông tin đăng nhập cho nhân viên:
+        </p>
+
+        <div className="space-y-2">
+          {creds.map((c, i) => (
+            <div
+              key={i}
+              className="rounded-xl p-3 font-mono text-xs border border-[rgba(134,78,90,0.1)]"
+              style={{ background: 'rgba(255, 248, 248, 0.6)' }}
+            >
+              <p className="font-sans font-semibold text-sm text-gray-900 mb-1">{c.name}</p>
+              <div className="flex justify-between">
+                <span className="text-gray-500">Login:</span>
+                <span className="text-gray-900">{c.login}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-500">Pass:</span>
+                <span className="text-gray-900">{c.password}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={copyAll}
+          className="w-full py-3 bg-gray-100 rounded-xl text-sm font-medium flex items-center justify-center gap-2"
+        >
+          {copied ? <><Check size={16} className="text-[#864e5a]" /> Copied!</> : <><Copy size={16} /> Copy tất cả</>}
+        </button>
+
+        <button onClick={onClose} className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl">
+          Đóng
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function EmployeeForm({ employee, onSave, onClose }: {
   employee: Employee | null
   onSave: (form: Partial<Employee> & { create_username?: string; create_email?: string }) => void
