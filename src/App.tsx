@@ -43,7 +43,7 @@ export default function App() {
 
       {/* Kiosk user logged in but navigated away — keep on kiosk */}
       {user?.role === 'kiosk' && (
-        <Route path="*" element={<Navigate to="/kiosk" replace />} />
+        <Route path="*" element={<Navigate to="/kiosk/quick" replace />} />
       )}
 
       {/* Owner routes */}
