@@ -34,9 +34,19 @@ export default function App() {
     <Routes>
       {/* Public pages */}
       <Route path="/book" element={<BookingPage />} />
-      <Route path="/kiosk/*" element={<PinGate><KioskLayout /></PinGate>} />
-      {/* Legacy route redirect */}
-      <Route path="/kiosk" element={<Navigate to="/kiosk/quick" replace />} />
+
+      {/* Kiosk: only accessible when not logged in or logged in as kiosk */}
+      {(!user || user.role === 'kiosk') && (
+        <Route path="/kiosk/*" element={<PinGate><KioskLayout /></PinGate>} />
+      )}
+
+      {/* If employee/owner hits /kiosk, redirect to their home */}
+      {user && user.role === 'employee' && (
+        <Route path="/kiosk/*" element={<Navigate to="/my-schedule" replace />} />
+      )}
+      {user && user.role === 'owner' && (
+        <Route path="/kiosk/*" element={<Navigate to="/dashboard" replace />} />
+      )}
 
       {/* Auth */}
       {!user && <Route path="*" element={<Login />} />}
