@@ -21,14 +21,31 @@ export function MyEarnings() {
   useEffect(() => { if (user) load() }, [period, user])
 
   async function load() {
-    const { data: emp } = await supabase
+    // Try to find employee by profile_id first, then fallback to name match
+    let empData: Employee | null = null
+
+    const { data: empByProfile } = await supabase
       .from('employees')
       .select('*')
       .eq('profile_id', user!.id)
       .single()
 
-    if (!emp) return
-    const empData = emp as Employee
+    if (empByProfile) {
+      empData = empByProfile as Employee
+    } else {
+      // Fallback: match by name if profile_id not linked
+      const { data: empByName } = await supabase
+        .from('employees')
+        .select('*')
+        .eq('name', user!.name)
+        .single()
+
+      if (empByName) {
+        empData = empByName as Employee
+      }
+    }
+
+    if (!empData) return
     setEmployee(empData)
 
     const today = new Date().toISOString().slice(0, 10)
