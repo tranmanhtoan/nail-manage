@@ -1,6 +1,6 @@
 import { useAuthStore } from '@/store/authStore'
 import { LanguageSwitch } from './LanguageSwitch'
-import { LogOut, Settings, UserCircle } from 'lucide-react'
+import { LogOut, Settings, UserCircle, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
