@@ -146,11 +146,11 @@ export function Login() {
             {/* Selected user */}
             <div className="flex flex-col items-center gap-3 py-2">
               <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl bg-gray-100 border-2 border-[#864e5a]">
-                {getChibiEmoji(selectedProfile.full_name || selectedProfile.email)}
+                {getChibiEmoji(selectedProfile.full_name)}
               </div>
               <div className="text-center">
                 <p className="font-bold text-lg text-gray-900">
-                  {selectedProfile.full_name || selectedProfile.email.split('@')[0]}
+                  {selectedProfile.full_name}
                 </p>
                 <p className="text-xs text-gray-500 capitalize">{selectedProfile.role}</p>
               </div>
