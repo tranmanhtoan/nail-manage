@@ -387,7 +387,7 @@ export function Reports() {
                     <span className="text-xs font-bold text-amber-900">
                       {selectedEmployee.payType === 'commission' && `Hoa hồng ${selectedEmployee.payRate}% giá + 100% tip`}
                       {selectedEmployee.payType === 'split' && `Chia ${selectedEmployee.payRate}% tổng (giá + tip)`}
-                      {selectedEmployee.payType === 'fixed' && `Lương cố định + tip`}
+                      {selectedEmployee.payType === 'fixed' && `Lương cố định $${selectedEmployee.payRate ?? 0} + tip`}
                     </span>
                   </div>
 
