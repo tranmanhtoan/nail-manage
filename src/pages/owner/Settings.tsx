@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield } from 'lucide-react'
+import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield, KeyRound } from 'lucide-react'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { useAuthStore } from '@/store/authStore'
 import { useSuperModeStore } from '@/store/superModeStore'
