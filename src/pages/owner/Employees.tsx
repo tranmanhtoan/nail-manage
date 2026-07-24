@@ -23,41 +23,61 @@ export function Employees() {
     const { create_username, create_email, ...empData } = form
 
     if (editing) {
-      await supabase.from('employees').update(empData).eq('id', editing.id)
+      // If editing an employee without a profile, create one now
+      if (!editing.profile_id) {
+        const loginId = empData.name?.toLowerCase().replace(/[^a-z0-9]/g, '') || editing.name.toLowerCase().replace(/[^a-z0-9]/g, '')
+        const tempPassword = generateTempPassword()
+        const authEmail = toAuthEmail(loginId)
+
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+          email: authEmail,
+          password: tempPassword,
+          options: {
+            data: { full_name: empData.name || editing.name, role: 'employee' },
+            emailRedirectTo: window.location.origin,
+          },
+        })
+
+        if (!signUpError && signUpData.user) {
+          await supabase.from('employees').update({ ...empData, profile_id: signUpData.user.id }).eq('id', editing.id)
+          setCreatedCreds({ login: loginId, password: tempPassword })
+        } else {
+          await supabase.from('employees').update(empData).eq('id', editing.id)
+          if (signUpError) alert(`Lỗi tạo tài khoản: ${signUpError.message}`)
+        }
+      } else {
+        await supabase.from('employees').update(empData).eq('id', editing.id)
+      }
+
       setShowForm(false)
       setEditing(null)
       load()
       return
     }
 
+    // Creating new employee — always create login account
+    const loginId = create_username || empData.name?.toLowerCase().replace(/[^a-z0-9]/g, '') || 'employee'
     const tempPassword = generateTempPassword()
-    const loginId = create_username || create_email
+    const authEmail = create_email ? create_email : toAuthEmail(loginId)
 
-    if (loginId) {
-      const authEmail = toAuthEmail(loginId)
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+      email: authEmail,
+      password: tempPassword,
+      options: {
+        data: { full_name: empData.name, role: 'employee' },
+        emailRedirectTo: window.location.origin,
+      },
+    })
 
-      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-        email: authEmail,
-        password: tempPassword,
-        options: {
-          data: { full_name: empData.name, role: 'employee' },
-          emailRedirectTo: window.location.origin,
-        },
-      })
-
-      if (signUpError) {
-        alert(`Error creating account: ${signUpError.message}`)
-        return
-      }
-
-      const profileId = signUpData.user?.id ?? null
-      await supabase.from('employees').insert({ ...empData, profile_id: profileId })
-
-      setCreatedCreds({ login: loginId, password: tempPassword })
-    } else {
-      await supabase.from('employees').insert(empData)
+    if (signUpError) {
+      alert(`Lỗi tạo tài khoản: ${signUpError.message}`)
+      return
     }
 
+    const profileId = signUpData.user?.id ?? null
+    await supabase.from('employees').insert({ ...empData, profile_id: profileId })
+
+    setCreatedCreds({ login: create_email || loginId, password: tempPassword })
     setShowForm(false)
     setEditing(null)
     load()
