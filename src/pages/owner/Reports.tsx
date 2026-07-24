@@ -98,6 +98,7 @@ export function Reports() {
       const key = row.employee_id ?? 'unknown'
       const payType = emp?.pay_type ?? 'commission'
       const rate = payType === 'split' ? (emp?.split_rate ?? 60) : (emp?.commission_rate ?? 60)
+      const fixedSalary = emp?.fixed_salary ?? 0
 
       const existing = empMap.get(key) ?? { id: key, name: emp?.name ?? 'Unknown', count: 0, revenue: 0, commission: 0, payType, payRate: rate }
       existing.count += 1
@@ -110,7 +111,7 @@ export function Reports() {
         existing.commission += ((row.price + row.tip) * rate / 100)
       } else {
         // fixed salary + tips
-        existing.commission += row.tip
+        existing.commission = fixedSalary + rows.filter((r) => (r.employee_id ?? 'unknown') === key).reduce((s, r) => s + r.tip, 0)
       }
 
       empMap.set(key, existing)
