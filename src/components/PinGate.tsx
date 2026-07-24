@@ -4,10 +4,8 @@ import { Delete, Lock, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { toAuthEmail } from '@/lib/auth-helpers'
 
-const KIOSK_PIN = import.meta.env.VITE_KIOSK_PIN || '1234'
 const KIOSK_EMAIL = import.meta.env.VITE_KIOSK_EMAIL || ''
 const KIOSK_PASSWORD = import.meta.env.VITE_KIOSK_PASSWORD || ''
-const PIN_LENGTH = KIOSK_PIN.length
 
 interface PinGateProps {
   children: React.ReactNode
@@ -17,28 +15,44 @@ export function PinGate({ children }: PinGateProps) {
   const { t } = useTranslation()
   const [unlocked, setUnlocked] = useState(false)
   const [checking, setChecking] = useState(true)
+  const [kioskPin, setKioskPin] = useState('')
   const [pin, setPin] = useState('')
   const [error, setError] = useState(false)
   const [logging, setLogging] = useState(false)
   const [loginError, setLoginError] = useState('')
 
-  // Check if already logged in as kiosk
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    async function init() {
+      // Check if already logged in
+      const { data: { session } } = await supabase.auth.getSession()
       if (session) {
         setUnlocked(true)
+        setChecking(false)
+        return
       }
+
+      // Fetch PIN from shop_settings
+      const { data } = await supabase
+        .from('shop_settings')
+        .select('value')
+        .eq('key', 'kiosk_pin')
+        .maybeSingle()
+
+      const row = data as { value: string } | null
+      setKioskPin(row?.value || '1234')
       setChecking(false)
-    })
+    }
+    init()
   }, [])
+
+  const pinLength = kioskPin.length || 4
 
   const handleDigit = useCallback((digit: string) => {
     setError(false)
     setLoginError('')
     const next = pin + digit
-    if (next.length === PIN_LENGTH) {
-      if (next === KIOSK_PIN) {
-        // PIN correct → auto-login with kiosk account
+    if (next.length === pinLength) {
+      if (next === kioskPin) {
         loginKiosk()
       } else {
         setError(true)
@@ -48,8 +62,8 @@ export function PinGate({ children }: PinGateProps) {
         }, 600)
       }
     }
-    setPin(next.slice(0, PIN_LENGTH))
-  }, [pin])
+    setPin(next.slice(0, pinLength))
+  }, [pin, kioskPin, pinLength])
 
   const handleDelete = useCallback(() => {
     setPin((prev) => prev.slice(0, -1))
@@ -99,7 +113,7 @@ export function PinGate({ children }: PinGateProps) {
 
       {/* PIN dots */}
       <div className="flex gap-3 mb-8">
-        {Array.from({ length: PIN_LENGTH }).map((_, i) => (
+        {Array.from({ length: pinLength }).map((_, i) => (
           <div
             key={i}
             className={`w-4 h-4 rounded-full transition-all duration-150 ${
