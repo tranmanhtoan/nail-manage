@@ -24,7 +24,7 @@ export default function App() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-primary text-xl font-bold">💅 NailPro</div>
+        <div className="animate-pulse text-primary text-xl font-bold">💅 MCC Nail & Spa</div>
       </div>
     )
   }
