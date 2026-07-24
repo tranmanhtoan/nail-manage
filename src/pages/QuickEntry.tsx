@@ -183,41 +183,71 @@ export function QuickEntry() {
       {/* Form Step */}
       {step === 'form' && (
         <div className="mt-6 space-y-6">
-          {/* Employee avatar selection */}
+          {/* Employee card selection */}
           <div>
             <label className="block text-sm font-semibold text-gray-800 mb-3">
               {t('quickEntry.selectEmployee')}
             </label>
-            <div className="flex gap-4 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
-              {employees.map((emp) => (
-                <button
-                  key={emp.id}
-                  type="button"
-                  onClick={() => setEmployeeId(emp.id)}
-                  className={`flex flex-col items-center gap-1.5 min-w-[64px] transition-all ${
-                    employeeId === emp.id ? 'scale-105' : 'opacity-70'
-                  }`}
-                >
-                  <div
-                    className={`w-14 h-14 rounded-full flex items-center justify-center text-sm font-bold ring-2 transition-all ${
-                      getAvatarColor(emp.name)
-                    } ${
-                      employeeId === emp.id
-                        ? 'ring-[#864e5a] ring-offset-2'
-                        : 'ring-transparent'
+            <div className="flex gap-4 overflow-x-auto pb-3 -mx-2 px-2" style={{ scrollbarWidth: 'none' }}>
+              {employees.map((emp) => {
+                const isSelected = employeeId === emp.id
+                const isNext = emp.id === nextEmployeeId
+                const idle = idleMinutes[emp.id]
+                const isBusy = idle === null
+
+                return (
+                  <button
+                    key={emp.id}
+                    type="button"
+                    onClick={() => setEmployeeId(emp.id)}
+                    className={`flex-shrink-0 w-40 p-4 rounded-[1rem] text-center relative transition-all ${
+                      isSelected
+                        ? 'border-2 border-[#864e5a] shadow-[0_0_20px_rgba(134,78,90,0.15)]'
+                        : 'opacity-80 border border-gray-200'
                     }`}
+                    style={{
+                      background: 'rgba(255, 248, 248, 0.6)',
+                      backdropFilter: 'blur(12px)',
+                    }}
                   >
-                    {getInitials(emp.name)}
-                  </div>
-                  <span
-                    className={`text-xs text-center leading-tight max-w-[64px] truncate ${
-                      employeeId === emp.id ? 'font-semibold text-gray-900' : 'text-gray-600'
-                    }`}
-                  >
-                    {emp.name.split(' ').slice(0, 2).join(' ')}
-                  </span>
-                </button>
-              ))}
+                    {/* Badge Next */}
+                    {isNext && (
+                      <div className="absolute -top-[1px] -right-[1px] bg-[#864e5a] text-white text-[10px] px-2 py-1 rounded-bl-lg rounded-tr-[1rem] font-bold z-10">
+                        {t('appointments.nextUp')}
+                      </div>
+                    )}
+
+                    {/* Avatar */}
+                    <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl mb-3 ${
+                      isSelected
+                        ? 'p-1 border-2 border-[#864e5a]'
+                        : 'bg-gray-100'
+                    }`}>
+                      {getChibiEmoji(emp.name)}
+                    </div>
+
+                    {/* Name */}
+                    <p className={`font-semibold text-base truncate ${
+                      isSelected ? 'text-[#864e5a]' : 'text-gray-900'
+                    }`}>
+                      {emp.name.split(' ').slice(0, 2).join(' ')}
+                    </p>
+
+                    {/* Idle/Status */}
+                    <p className={`text-xs mt-0.5 ${
+                      isBusy ? 'text-amber-600' :
+                      isSelected ? 'text-[#864e5a]/70' :
+                      'text-gray-500'
+                    }`}>
+                      {isBusy
+                        ? t('appointments.working')
+                        : idle !== null && idle > 0
+                          ? formatIdle(idle)
+                          : t('appointments.ready')}
+                    </p>
+                  </button>
+                )
+              })}
             </div>
           </div>
 
