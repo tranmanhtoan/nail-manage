@@ -83,7 +83,7 @@ export function Appointments() {
 
   async function loadFormData() {
     const [empsRes, svcsRes] = await Promise.all([
-      supabase.from('employees').select('id, name, is_active, rotation_order').eq('is_active', true).order('rotation_order'),
+      supabase.from('employees').select('id, name, is_active, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
       supabase.from('services').select('id, name, price').eq('is_active', true).order('name'),
     ])
     setEmployees((empsRes.data ?? []) as Employee[])
