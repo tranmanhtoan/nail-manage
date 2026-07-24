@@ -1,8 +1,12 @@
 import { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Delete, Lock } from 'lucide-react'
+import { Delete, Lock, Loader2 } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+import { toAuthEmail } from '@/lib/auth-helpers'
 
 const KIOSK_PIN = import.meta.env.VITE_KIOSK_PIN || '1234'
+const KIOSK_EMAIL = import.meta.env.VITE_KIOSK_EMAIL || ''
+const KIOSK_PASSWORD = import.meta.env.VITE_KIOSK_PASSWORD || ''
 const PIN_LENGTH = KIOSK_PIN.length
 
 interface PinGateProps {
@@ -14,13 +18,17 @@ export function PinGate({ children }: PinGateProps) {
   const [unlocked, setUnlocked] = useState(false)
   const [pin, setPin] = useState('')
   const [error, setError] = useState(false)
+  const [logging, setLogging] = useState(false)
+  const [loginError, setLoginError] = useState('')
 
   const handleDigit = useCallback((digit: string) => {
     setError(false)
+    setLoginError('')
     const next = pin + digit
     if (next.length === PIN_LENGTH) {
       if (next === KIOSK_PIN) {
-        setUnlocked(true)
+        // PIN correct → auto-login with kiosk account
+        loginKiosk()
       } else {
         setError(true)
         setTimeout(() => {
@@ -35,7 +43,28 @@ export function PinGate({ children }: PinGateProps) {
   const handleDelete = useCallback(() => {
     setPin((prev) => prev.slice(0, -1))
     setError(false)
+    setLoginError('')
   }, [])
+
+  async function loginKiosk() {
+    setLogging(true)
+    setLoginError('')
+
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email: toAuthEmail(KIOSK_EMAIL),
+      password: KIOSK_PASSWORD,
+    })
+
+    setLogging(false)
+
+    if (authError) {
+      setLoginError(authError.message)
+      setPin('')
+      return
+    }
+
+    setUnlocked(true)
+  }
 
   if (unlocked) return <>{children}</>
 
@@ -65,9 +94,20 @@ export function PinGate({ children }: PinGateProps) {
         ))}
       </div>
 
-      {/* Error message */}
+      {/* Error messages */}
       {error && (
         <p className="text-red-500 text-sm font-medium mb-4">{t('pin.incorrect')}</p>
+      )}
+      {loginError && (
+        <p className="text-red-500 text-sm font-medium mb-4">{loginError}</p>
+      )}
+
+      {/* Loading state */}
+      {logging && (
+        <div className="flex items-center gap-2 mb-4">
+          <Loader2 className="animate-spin text-[#864e5a]" size={18} />
+          <span className="text-sm text-gray-500">{t('pin.connecting')}</span>
+        </div>
       )}
 
       {/* Number pad */}
@@ -79,7 +119,8 @@ export function PinGate({ children }: PinGateProps) {
               <button
                 key="del"
                 onClick={handleDelete}
-                className="h-16 rounded-2xl flex items-center justify-center text-gray-500 active:bg-gray-100 transition-colors"
+                disabled={logging}
+                className="h-16 rounded-2xl flex items-center justify-center text-gray-500 active:bg-gray-100 transition-colors disabled:opacity-40"
               >
                 <Delete size={24} />
               </button>
@@ -89,7 +130,8 @@ export function PinGate({ children }: PinGateProps) {
             <button
               key={key}
               onClick={() => handleDigit(key)}
-              className="h-16 rounded-2xl bg-white border border-gray-200 text-2xl font-semibold text-gray-800 active:bg-[#864e5a]/10 active:border-[#864e5a]/30 transition-all active:scale-95"
+              disabled={logging}
+              className="h-16 rounded-2xl bg-white border border-gray-200 text-2xl font-semibold text-gray-800 active:bg-[#864e5a]/10 active:border-[#864e5a]/30 transition-all active:scale-95 disabled:opacity-40"
             >
               {key}
             </button>
