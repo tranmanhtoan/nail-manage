@@ -52,7 +52,7 @@ export function QuickEntry() {
   async function loadData() {
     setLoading(true)
     const [empRes, svcRes, aptsRes] = await Promise.all([
-      supabase.from('employees').select('id, name, rotation_order').eq('is_active', true).order('rotation_order'),
+      supabase.from('employees').select('id, name, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
       supabase.from('services').select('id, name, price').eq('is_active', true).order('name'),
       supabase.from('appointments').select('employee_id, status, time').eq('date', new Date().toISOString().split('T')[0]),
     ])
