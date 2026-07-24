@@ -75,7 +75,7 @@ export function BookingPage() {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 p-4">
       <div className="max-w-md mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-primary">💅 {t('booking.title')}</h1>
+          <h1 className="text-2xl font-bold text-primary">💅 {t('app.name')}</h1>
           <LanguageSwitch />
         </div>
 
