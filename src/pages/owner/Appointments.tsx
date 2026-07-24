@@ -162,8 +162,18 @@ export function Appointments() {
           const completedMinutes = parseInt(h) * 60 + parseInt(m)
           idleMinutes = Math.max(0, nowMinutes - completedMinutes)
         } else {
-          // No completed today — idle since shift start
-          idleMinutes = Math.max(0, nowMinutes - shiftStartMinutes)
+          // No completed today — idle since activation or shift start (whichever is later)
+          let startMinutes = shiftStartMinutes
+          if (emp.activated_at) {
+            const activatedDate = new Date(emp.activated_at)
+            const activatedDateStr = activatedDate.toISOString().slice(0, 10)
+            if (activatedDateStr === todayStr) {
+              // Activated today — use activation time if after shift start
+              const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
+              startMinutes = Math.max(shiftStartMinutes, activatedMinutes)
+            }
+          }
+          idleMinutes = Math.max(0, nowMinutes - startMinutes)
         }
       }
 
