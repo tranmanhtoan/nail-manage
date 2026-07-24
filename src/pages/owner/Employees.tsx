@@ -96,6 +96,12 @@ export function Employees() {
 
   const missingProfiles = employees.filter((e) => !e.profile_id && e.is_active)
 
+  async function toggleEmployeeActive(emp: Employee, e: React.MouseEvent) {
+    e.stopPropagation()
+    await supabase.from('employees').update({ is_active: !emp.is_active }).eq('id', emp.id)
+    load()
+  }
+
   async function createMissingAccounts() {
     if (!confirm(`Tạo tài khoản đăng nhập cho ${missingProfiles.length} nhân viên chưa có?`)) return
 
