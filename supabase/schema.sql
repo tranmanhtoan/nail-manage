@@ -120,7 +120,10 @@ create policy "Kiosk read employees" on public.employees for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk') and is_active = true);
 
 create policy "Kiosk insert appointments" on public.appointments for insert
-  with check (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk') and source = 'walk_in' and status = 'completed');
+  with check (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk') and source = 'walk_in');
+
+create policy "Kiosk read appointments" on public.appointments for select
+  using (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk'));
 
 create policy "Kiosk read services" on public.services for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk') and is_active = true);
