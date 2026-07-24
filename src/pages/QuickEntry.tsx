@@ -34,6 +34,10 @@ export function QuickEntry() {
   const [tip, setTip] = useState('')
   const [paymentMethod, setPaymentMethod] = useState<'cash' | 'card'>('cash')
 
+  // Rotation data
+  const [idleMinutes, setIdleMinutes] = useState<Record<string, number | null>>({})
+  const [nextEmployeeId, setNextEmployeeId] = useState<string | null>(null)
+
   // Derived
   const selectedEmployee = employees.find((e) => e.id === employeeId)
   const selectedService = services.find((s) => s.id === serviceId)
@@ -44,12 +48,50 @@ export function QuickEntry() {
 
   async function loadData() {
     setLoading(true)
-    const [empRes, svcRes] = await Promise.all([
-      supabase.from('employees').select('id, name').eq('is_active', true).order('name'),
+    const [empRes, svcRes, aptsRes] = await Promise.all([
+      supabase.from('employees').select('id, name, rotation_order').eq('is_active', true).order('rotation_order'),
       supabase.from('services').select('id, name, price').eq('is_active', true).order('name'),
+      supabase.from('appointments').select('employee_id, status, time').eq('date', new Date().toISOString().split('T')[0]),
     ])
-    setEmployees(empRes.data ?? [])
+    const empList = (empRes.data ?? []) as Employee[]
+    setEmployees(empList)
     setServices(svcRes.data ?? [])
+
+    // Calculate idle minutes and find next employee
+    const apts = aptsRes.data ?? []
+    const busyIds = new Set(apts.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!))
+    const lastCompletedTime = new Map<string, string>()
+    for (const apt of apts) {
+      if (apt.status === 'completed' && apt.employee_id) {
+        const prev = lastCompletedTime.get(apt.employee_id)
+        if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
+      }
+    }
+
+    const now = new Date()
+    const nowMinutes = now.getHours() * 60 + now.getMinutes()
+    const shiftStart = 9 * 60
+
+    const idleMap: Record<string, number | null> = {}
+    let firstAvailableId: string | null = null
+
+    for (const emp of empList) {
+      if (busyIds.has(emp.id)) {
+        idleMap[emp.id] = null // busy
+      } else {
+        const lastTime = lastCompletedTime.get(emp.id)
+        if (lastTime) {
+          const [h, m] = lastTime.split(':')
+          idleMap[emp.id] = Math.max(0, nowMinutes - (parseInt(h) * 60 + parseInt(m)))
+        } else {
+          idleMap[emp.id] = Math.max(0, nowMinutes - shiftStart)
+        }
+        if (!firstAvailableId) firstAvailableId = emp.id
+      }
+    }
+
+    setIdleMinutes(idleMap)
+    setNextEmployeeId(firstAvailableId)
     setLoading(false)
   }
 
