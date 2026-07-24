@@ -83,6 +83,39 @@ export function Employees() {
     load()
   }
 
+  const missingProfiles = employees.filter((e) => !e.profile_id && e.is_active)
+
+  async function createMissingAccounts() {
+    if (!confirm(`Tạo tài khoản đăng nhập cho ${missingProfiles.length} nhân viên chưa có?`)) return
+
+    const results: { login: string; password: string; name: string }[] = []
+
+    for (const emp of missingProfiles) {
+      const loginId = emp.name.toLowerCase().replace(/[^a-z0-9]/g, '')
+      const tempPassword = generateTempPassword()
+      const authEmail = toAuthEmail(loginId)
+
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email: authEmail,
+        password: tempPassword,
+        options: {
+          data: { full_name: emp.name, role: 'employee' },
+          emailRedirectTo: window.location.origin,
+        },
+      })
+
+      if (!signUpError && signUpData.user) {
+        await supabase.from('employees').update({ profile_id: signUpData.user.id }).eq('id', emp.id)
+        results.push({ login: loginId, password: tempPassword, name: emp.name })
+      }
+    }
+
+    if (results.length > 0) {
+      setBulkCreds(results)
+    }
+    load()
+  }
+
   return (
     <div className="max-w-lg mx-auto px-5 py-6 pb-24 space-y-6">
       <div className="flex items-center justify-between">
@@ -94,6 +127,16 @@ export function Employees() {
           <Plus size={16} /> {t('employee.addNew')}
         </button>
       </div>
+
+      {/* Banner: create accounts for employees missing profiles */}
+      {missingProfiles.length > 0 && (
+        <button
+          onClick={createMissingAccounts}
+          className="w-full p-3 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-800 font-medium text-left"
+        >
+          ⚠️ {missingProfiles.length} nhân viên chưa có tài khoản đăng nhập. Bấm để tạo tất cả.
+        </button>
+      )}
 
       <div className="space-y-3">
         {employees.map((emp) => (
