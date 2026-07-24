@@ -69,6 +69,7 @@ export default function App() {
                   <Route path="/customers" element={<Customers />} />
                   <Route path="/quick-entry" element={<QuickEntry />} />
                   <Route path="/reports" element={<Reports />} />
+                  <Route path="/admin" element={<Admin />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="*" element={<Navigate to="/dashboard" replace />} />
                 </Routes>
