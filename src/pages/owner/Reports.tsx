@@ -109,7 +109,7 @@ export function Reports() {
       } else if (payType === 'split') {
         existing.commission += ((row.price + row.tip) * rate / 100)
       } else {
-        // fixed salary — show tip only as variable income
+        // fixed salary + tips
         existing.commission += row.tip
       }
 
