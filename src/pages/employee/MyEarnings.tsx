@@ -20,12 +20,24 @@ interface MyEmployee {
   split_rate: number | null
 }
 
+interface AppointmentRow {
+  apt_id: string
+  apt_date: string
+  apt_time: string
+  apt_status: string
+  apt_price: number
+  apt_tip: number
+  customer_name: string | null
+  service_name: string | null
+}
+
 export function MyEarnings() {
   const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const [period, setPeriod] = useState<'today' | 'week' | 'month'>('week')
   const [data, setData] = useState<EarningData>({ totalServices: 0, totalRevenue: 0, totalTips: 0, myEarnings: 0 })
   const [employee, setEmployee] = useState<MyEmployee | null>(null)
+  const [appointments, setAppointments] = useState<AppointmentRow[]>([])
 
   useEffect(() => { if (user) load() }, [period, user])
 
@@ -46,12 +58,13 @@ export function MyEarnings() {
     if (period === 'month') dateFrom = monthStart
 
     // Get appointments via RPC (bypasses RLS)
-    const { data: appointments } = await supabase.rpc('get_my_appointments', {
+    const { data: aptData } = await supabase.rpc('get_my_appointments', {
       p_date: today,
       p_date_from: dateFrom,
     })
 
-    const rows = (appointments ?? []) as { apt_price: number; apt_tip: number }[]
+    const rows = (aptData ?? []) as AppointmentRow[]
+    setAppointments(rows)
 
     const totalRevenue = rows.reduce((s, a) => s + a.apt_price, 0)
     const totalTips = rows.reduce((s, a) => s + a.apt_tip, 0)
@@ -63,6 +76,14 @@ export function MyEarnings() {
       totalTips,
       myEarnings,
     })
+  }
+
+  function formatTime(time: string) {
+    const [h, m] = time.split(':')
+    const hour = parseInt(h)
+    const ampm = hour >= 12 ? 'PM' : 'AM'
+    const h12 = hour % 12 || 12
+    return `${h12}:${m} ${ampm}`
   }
 
   return (
@@ -124,6 +145,52 @@ export function MyEarnings() {
           <p className="text-xs text-gray-500 mt-1">Tips</p>
         </div>
       </div>
+
+      {/* Appointment detail list */}
+      <section className="space-y-3">
+        <h3 className="text-lg font-bold text-gray-900">Chi tiết</h3>
+
+        {appointments.length === 0 ? (
+          <p className="text-sm text-gray-400 text-center py-6">Chưa có dữ liệu</p>
+        ) : (
+          <div className="overflow-x-auto rounded-[1rem] border border-[rgba(134,78,90,0.1)]" style={{ background: 'rgba(255, 248, 248, 0.6)' }}>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-xs text-gray-500 border-b border-gray-200">
+                  <th className="text-left py-3 px-3 font-medium">Ngày</th>
+                  <th className="text-left py-3 px-3 font-medium">Dịch vụ</th>
+                  <th className="text-right py-3 px-3 font-medium">Giá</th>
+                  <th className="text-right py-3 px-3 font-medium">Tip</th>
+                </tr>
+              </thead>
+              <tbody>
+                {appointments.map((apt) => (
+                  <tr key={apt.apt_id} className="border-b border-gray-50">
+                    <td className="py-2.5 px-3 text-gray-700 whitespace-nowrap">
+                      {new Date(apt.apt_date + 'T00:00:00').toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' })}
+                      <span className="text-gray-400 ml-1 text-xs">{formatTime(apt.apt_time)}</span>
+                    </td>
+                    <td className="py-2.5 px-3 text-gray-700 truncate max-w-[120px]">{apt.service_name ?? '-'}</td>
+                    <td className="py-2.5 px-3 text-right font-medium">${apt.apt_price}</td>
+                    <td className="py-2.5 px-3 text-right text-emerald-600">${apt.apt_tip}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr className="border-t-2 border-gray-200 font-bold">
+                  <td colSpan={2} className="py-3 px-3">Tổng</td>
+                  <td className="py-3 px-3 text-right">${data.totalRevenue}</td>
+                  <td className="py-3 px-3 text-right text-emerald-600">${data.totalTips}</td>
+                </tr>
+                <tr className="bg-[#864e5a]/5">
+                  <td colSpan={2} className="py-3 px-3 font-bold text-[#864e5a]">Tôi nhận</td>
+                  <td colSpan={2} className="py-3 px-3 text-right font-bold text-[#864e5a] text-lg">${data.myEarnings.toFixed(0)}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        )}
+      </section>
     </div>
   )
 }
