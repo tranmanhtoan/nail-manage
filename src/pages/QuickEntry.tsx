@@ -159,7 +159,7 @@ export function QuickEntry() {
   }
 
   function resetForm() {
-    setEmployeeId('')
+    setEmployeeId(myEmployeeId || '')
     setServiceId('')
     setAmount('')
     setTip('')
