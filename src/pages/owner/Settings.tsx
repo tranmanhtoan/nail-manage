@@ -30,6 +30,8 @@ export function Settings() {
   const [tab, setTab] = useState<Tab>('general')
   const [toggles, setToggles] = useState<FeatureToggles>(DEFAULT_TOGGLES)
   const [saving, setSaving] = useState(false)
+  const [kioskPin, setKioskPin] = useState('')
+  const [pinSaved, setPinSaved] = useState(false)
 
   useEffect(() => {
     loadToggles()
