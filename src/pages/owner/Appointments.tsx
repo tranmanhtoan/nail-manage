@@ -101,7 +101,7 @@ export function Appointments() {
         .select('*, customer:customers(name, phone), employee:employees(name), service:services(name)')
         .eq('date', dateStr)
         .order('time'),
-      supabase.from('employees').select('id, name, is_active, rotation_order').eq('is_active', true).order('rotation_order'),
+      supabase.from('employees').select('id, name, is_active, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
       supabase.from('appointments').select('date').gte('date', weekStart).lte('date', weekEnd),
     ])
 
