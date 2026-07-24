@@ -183,7 +183,9 @@
     "featureAppointments": "Lịch hẹn",
     "featureAppointmentsDesc": "Bật hệ thống đặt lịch hẹn",
     "featureReports": "Báo cáo",
-    "featureReportsDesc": "Hiển thị báo cáo doanh thu và phân tích"
+    "featureReportsDesc": "Hiển thị báo cáo doanh thu và phân tích",
+    "kioskPin": "Mã PIN Kiosk",
+    "kioskPinDesc": "Mã PIN cho chế độ tablet/kiosk (tối thiểu 4 số)"
   },
   "reports": {
     "title": "Phân tích",
