@@ -103,6 +103,9 @@ create policy "Employee read services" on public.services for select
 create policy "Employee own data" on public.employees for select
   using (profile_id = auth.uid());
 
+create policy "Employee read active employees" on public.employees for select
+  using (exists (select 1 from public.profiles where id = auth.uid() and role = 'employee') and is_active = true);
+
 create policy "Employee own appointments" on public.appointments for select
   using (employee_id in (select id from public.employees where profile_id = auth.uid()));
 

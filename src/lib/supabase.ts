@@ -6,3 +6,11 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string
 // ponytail: skip typed client generic — real types come from `supabase gen types`
 // when connected to actual DB. Using untyped client for now.
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+// Separate client for creating new users (avoids session conflict with logged-in owner)
+export const supabaseAdmin = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    autoRefreshToken: false,
+    persistSession: false,
+  },
+})
