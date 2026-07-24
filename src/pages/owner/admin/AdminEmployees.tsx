@@ -222,3 +222,32 @@ function PasswordResult({ password, onClose }: { password: string; onClose: () =
     </div>
   )
 }
+
+function EmployeeForm({ employee, onSave, onClose }: {
+  employee: Employee | null
+  onSave: (form: Partial<Employee> & { create_username?: string }) => void
+  onClose: () => void
+}) {
+  const { t } = useTranslation()
+  const [name, setName] = useState(employee?.name ?? '')
+  const [phone, setPhone] = useState(employee?.phone ?? '')
+  const [email, setEmail] = useState(employee?.email ?? '')
+  const [username, setUsername] = useState('')
+  const [payType, setPayType] = useState<PayType>(employee?.pay_type ?? 'commission')
+  const [commissionRate, setCommissionRate] = useState(employee?.commission_rate ?? 60)
+  const [fixedSalary, setFixedSalary] = useState(employee?.fixed_salary ?? 0)
+  const [splitRate, setSplitRate] = useState(employee?.split_rate ?? 60)
+  const [isActive, setIsActive] = useState(employee?.is_active ?? true)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSave({
+      name, phone: phone || null, email: email || null,
+      pay_type: payType,
+      commission_rate: payType === 'commission' ? commissionRate : null,
+      fixed_salary: payType === 'fixed' ? fixedSalary : null,
+      split_rate: payType === 'split' ? splitRate : null,
+      is_active: isActive,
+      ...(!employee && username ? { create_username: username } : {}),
+    })
+  }
