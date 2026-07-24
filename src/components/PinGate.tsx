@@ -79,6 +79,14 @@ export function PinGate({ children }: PinGateProps) {
 
   if (unlocked) return <>{children}</>
 
+  if (checking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="animate-spin text-[#864e5a]" size={32} />
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50 px-6">
       {/* Lock icon */}
