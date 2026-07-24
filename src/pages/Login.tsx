@@ -37,11 +37,10 @@ export function Login() {
 
   async function loadProfiles() {
     setLoadingProfiles(true)
-    // Load profiles that can log in (owner + employee roles)
+    // Use the secure view that only exposes id, full_name, role
     const { data } = await supabase
-      .from('profiles')
-      .select('id, email, full_name, role')
-      .in('role', ['owner', 'employee'])
+      .from('login_profiles')
+      .select('id, full_name, role')
       .order('role')
       .order('full_name')
 
