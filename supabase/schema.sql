@@ -171,6 +171,102 @@ $$ language sql security definer;
 
 grant execute on function public.get_login_email(uuid) to anon, authenticated;
 
+-- RPC function for employees to create completed appointments (bypasses RLS)
+create or replace function public.quick_entry_submit(
+  p_employee_id uuid,
+  p_service_id uuid,
+  p_price numeric,
+  p_tip numeric default 0,
+  p_payment_method text default 'cash'
+)
+returns uuid as $$
+declare
+  v_id uuid;
+begin
+  -- Verify the calling user is linked to this employee OR is kiosk/owner
+  if not exists (
+    select 1 from public.profiles where id = auth.uid() and role in ('owner', 'kiosk')
+  ) and not exists (
+    select 1 from public.employees where id = p_employee_id and profile_id = auth.uid()
+  ) then
+    raise exception 'Not authorized';
+  end if;
+
+  insert into public.appointments (employee_id, service_id, price, tip, date, time, status, source, payment_method)
+  values (
+    p_employee_id,
+    p_service_id,
+    p_price,
+    p_tip,
+    current_date,
+    to_char(now() at time zone 'America/New_York', 'HH24:MI'),
+    'completed',
+    'walk_in',
+    p_payment_method
+  )
+  returning id into v_id;
+
+  return v_id;
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.quick_entry_submit(uuid, uuid, numeric, numeric, text) to authenticated;
+
+-- RPC function for employees to get their own employee record (bypasses RLS)
+create or replace function public.get_my_employee()
+returns table(id uuid, name text, pay_type text, commission_rate numeric, fixed_salary numeric, split_rate numeric) as $$
+begin
+  return query
+    select e.id, e.name, e.pay_type, e.commission_rate, e.fixed_salary, e.split_rate
+    from public.employees e
+    where e.profile_id = auth.uid()
+    limit 1;
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.get_my_employee() to authenticated;
+
+-- RPC function for employees to get their appointments (bypasses RLS)
+create or replace function public.get_my_appointments(p_date date, p_date_from date default null)
+returns table(
+  id uuid, date date, time time, status text, price numeric, tip numeric,
+  customer_name text, service_name text
+) as $$
+declare
+  v_employee_id uuid;
+begin
+  select e.id into v_employee_id from public.employees e where e.profile_id = auth.uid() limit 1;
+  if v_employee_id is null then return; end if;
+
+  if p_date_from is not null then
+    -- Range query (for earnings)
+    return query
+      select a.id, a.date, a.time, a.status, a.price, a.tip,
+             c.name as customer_name, s.name as service_name
+      from public.appointments a
+      left join public.customers c on c.id = a.customer_id
+      left join public.services s on s.id = a.service_id
+      where a.employee_id = v_employee_id
+        and a.status = 'completed'
+        and a.date >= p_date_from
+      order by a.date desc, a.time desc;
+  else
+    -- Single day query (for schedule)
+    return query
+      select a.id, a.date, a.time, a.status, a.price, a.tip,
+             c.name as customer_name, s.name as service_name
+      from public.appointments a
+      left join public.customers c on c.id = a.customer_id
+      left join public.services s on s.id = a.service_id
+      where a.employee_id = v_employee_id
+        and a.date = p_date
+      order by a.time;
+  end if;
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.get_my_appointments(date, date) to authenticated;
+
 -- Function to auto-create profile on signup
 create or replace function public.handle_new_user()
 returns trigger as $$
