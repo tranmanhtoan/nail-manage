@@ -90,7 +90,6 @@ export function QuickEntry() {
     }
 
     setIdleMinutes(idleMap)
-    setNextEmployeeId(firstAvailableId)
     setLoading(false)
   }
 
