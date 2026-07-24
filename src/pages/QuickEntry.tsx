@@ -36,7 +36,6 @@ export function QuickEntry() {
 
   // Rotation data
   const [idleMinutes, setIdleMinutes] = useState<Record<string, number | null>>({})
-  const [nextEmployeeId, setNextEmployeeId] = useState<string | null>(null)
 
   // Derived
   const selectedEmployee = employees.find((e) => e.id === employeeId)
