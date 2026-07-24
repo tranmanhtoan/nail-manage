@@ -30,6 +30,12 @@ export function Services() {
     load()
   }
 
+  async function toggleActive(svc: Service, e: React.MouseEvent) {
+    e.stopPropagation()
+    await supabase.from('services').update({ is_active: !svc.is_active }).eq('id', svc.id)
+    load()
+  }
+
   const grouped = services.reduce((acc, s) => {
     const cat = s.category || 'other'
     if (!acc[cat]) acc[cat] = []
