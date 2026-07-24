@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Check, ChevronLeft, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { useAuthStore } from '@/store/authStore'
 
 interface Employee {
   id: string
@@ -19,6 +20,7 @@ type Step = 'form' | 'review'
 
 export function QuickEntry() {
   const { t } = useTranslation()
+  const user = useAuthStore((s) => s.user)
 
   const [employees, setEmployees] = useState<Employee[]>([])
   const [services, setServices] = useState<Service[]>([])
@@ -29,6 +31,7 @@ export function QuickEntry() {
 
   // Form state
   const [employeeId, setEmployeeId] = useState('')
+  const [myEmployeeId, setMyEmployeeId] = useState<string | null>(null)
   const [serviceId, setServiceId] = useState('')
   const [amount, setAmount] = useState('')
   const [tip, setTip] = useState('')
