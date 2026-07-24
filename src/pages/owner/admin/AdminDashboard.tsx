@@ -50,3 +50,44 @@ export function AdminDashboard() {
     })
     setLoading(false)
   }
+
+  if (loading) {
+    return <div className="flex items-center justify-center p-12">
+      <div className="animate-pulse text-[#864e5a] font-bold">Loading...</div>
+    </div>
+  }
+
+  const cards = [
+    { label: 'Tài khoản (Users)', value: stats.totalProfiles, icon: UserCheck, color: 'bg-violet-100 text-violet-700' },
+    { label: 'Nhân viên', value: `${stats.activeEmployees}/${stats.totalEmployees}`, sub: 'active/total', icon: Users, color: 'bg-emerald-100 text-emerald-700' },
+    { label: 'Dịch vụ', value: `${stats.activeServices}/${stats.totalServices}`, sub: 'active/total', icon: Scissors, color: 'bg-amber-100 text-amber-700' },
+    { label: 'Lịch hẹn hôm nay', value: stats.todayAppointments, icon: CalendarDays, color: 'bg-sky-100 text-sky-700' },
+    { label: 'Tổng lịch hẹn', value: stats.totalAppointments, icon: CalendarDays, color: 'bg-rose-100 text-rose-700' },
+    { label: 'Khách hàng', value: stats.totalCustomers, icon: UserCheck, color: 'bg-teal-100 text-teal-700' },
+  ]
+
+  return (
+    <div className="px-5 py-6 pb-24 space-y-6">
+      <h2 className="text-2xl font-bold text-gray-900">Tổng quan hệ thống</h2>
+
+      <div className="grid grid-cols-2 gap-3">
+        {cards.map((card) => (
+          <div
+            key={card.label}
+            className="rounded-[1rem] p-4 border border-[rgba(134,78,90,0.1)]"
+            style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
+          >
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-medium text-gray-500">{card.label}</span>
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${card.color}`}>
+                <card.icon size={16} />
+              </div>
+            </div>
+            <p className="text-2xl font-bold text-gray-900">{card.value}</p>
+            {card.sub && <p className="text-xs text-gray-400 mt-1">{card.sub}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
