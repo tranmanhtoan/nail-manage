@@ -207,15 +207,8 @@ export function Login() {
           </div>
         )}
 
-        <div className="mt-4 flex items-center justify-center gap-4">
+        <div className="mt-4 flex items-center justify-center">
           <LanguageSwitch />
-          <button
-            onClick={() => navigate('/kiosk')}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:border-[#864e5a] hover:text-[#864e5a] transition-colors"
-          >
-            <Monitor size={16} />
-            Kiosk
-          </button>
         </div>
       </div>
     </div>
