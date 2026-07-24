@@ -34,7 +34,9 @@ export default function App() {
     <Routes>
       {/* Public pages */}
       <Route path="/book" element={<BookingPage />} />
-      <Route path="/kiosk" element={<PinGate><QuickEntry /></PinGate>} />
+      <Route path="/kiosk/*" element={<PinGate><KioskLayout /></PinGate>} />
+      {/* Legacy route redirect */}
+      <Route path="/kiosk" element={<Navigate to="/kiosk/quick" replace />} />
 
       {/* Auth */}
       {!user && <Route path="*" element={<Login />} />}
