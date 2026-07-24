@@ -103,3 +103,74 @@ export function AdminServices() {
           </div>
         </div>
       ))}
+
+      {showForm && (
+        <ServiceForm
+          service={editing}
+          onSave={save}
+          onClose={() => { setShowForm(false); setEditing(null) }}
+        />
+      )}
+    </div>
+  )
+}
+
+function ServiceForm({ service, onSave, onClose }: {
+  service: Service | null
+  onSave: (form: Partial<Service>) => void
+  onClose: () => void
+}) {
+  const { t } = useTranslation()
+  const [name, setName] = useState(service?.name ?? '')
+  const [category, setCategory] = useState(service?.category ?? 'manicure')
+  const [price, setPrice] = useState(service?.price ?? 0)
+  const [duration, setDuration] = useState(service?.duration_minutes ?? 30)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSave({ name, category, price, duration_minutes: duration, is_active: true })
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black/40 z-[60] flex items-end sm:items-center justify-center">
+      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 pb-10 max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold">{service ? 'Sửa dịch vụ' : 'Thêm dịch vụ'}</h3>
+          <button onClick={onClose} className="p-1 text-gray-400"><X size={20} /></button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-sm font-medium text-gray-700">{t('common.name')}</label>
+            <input value={name} onChange={(e) => setName(e.target.value)} required
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-gray-700">Loại</label>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none">
+              {CATEGORIES.map((c) => (
+                <option key={c} value={c}>{t(`service.categories.${c}`)}</option>
+              ))}
+            </select>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-sm font-medium text-gray-700">Giá ($)</label>
+              <input type="number" value={price} onChange={(e) => setPrice(+e.target.value)} min={0}
+                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+            </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">Thời gian (min)</label>
+              <input type="number" value={duration} onChange={(e) => setDuration(+e.target.value)} min={5} step={5}
+                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+            </div>
+          </div>
+          <button type="submit" className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl active:scale-[0.98] transition-transform">
+            {t('common.save')}
+          </button>
+        </form>
+      </div>
+    </div>
+  )
+}
