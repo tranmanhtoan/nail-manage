@@ -145,33 +145,23 @@ export function QuickEntry() {
     setSuccess(false)
   }
 
-  // Get initials for avatar
-  function getInitials(name: string) {
-    return name
-      .split(' ')
-      .map((w) => w[0])
-      .join('')
-      .slice(0, 2)
-      .toUpperCase()
-  }
-
-  // Generate a consistent pastel color from name
-  function getAvatarColor(name: string) {
-    const colors = [
-      'bg-rose-100 text-rose-700',
-      'bg-sky-100 text-sky-700',
-      'bg-violet-100 text-violet-700',
-      'bg-amber-100 text-amber-700',
-      'bg-teal-100 text-teal-700',
-      'bg-indigo-100 text-indigo-700',
-      'bg-orange-100 text-orange-700',
-      'bg-emerald-100 text-emerald-700',
-    ]
+  // Chibi emoji based on name hash
+  function getChibiEmoji(name: string) {
+    const chibis = ['👩‍🎨', '👩‍💼', '💇‍♀️', '💅', '👩‍🔧', '🧑‍🎨', '👩‍⚕️', '🧑‍💻']
     let hash = 0
     for (let i = 0; i < name.length; i++) {
       hash = name.charCodeAt(i) + ((hash << 5) - hash)
     }
-    return colors[Math.abs(hash) % colors.length]
+    return chibis[Math.abs(hash) % chibis.length]
+  }
+
+  function formatIdle(minutes: number) {
+    if (minutes >= 60) {
+      const h = Math.floor(minutes / 60)
+      const m = minutes % 60
+      return `${t('appointments.idle')} ${h}h${m > 0 ? m + 'm' : ''}`
+    }
+    return `${t('appointments.idle')} ${minutes}m`
   }
 
   const isFormValid = serviceId && amount && parseFloat(amount) > 0
