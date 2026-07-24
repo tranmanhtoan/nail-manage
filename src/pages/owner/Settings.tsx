@@ -161,6 +161,36 @@ export function Settings() {
             )}
           </div>
 
+          {/* Kiosk PIN */}
+          <div
+            className="rounded-[1rem] p-5 space-y-3 border border-[rgba(134,78,90,0.1)]"
+            style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
+          >
+            <div className="flex items-center gap-2">
+              <KeyRound size={16} className="text-[#864e5a]" />
+              <h3 className="text-[13px] font-semibold text-[#864e5a] uppercase tracking-widest">{t('settings.kioskPin')}</h3>
+            </div>
+            <p className="text-xs text-gray-500">{t('settings.kioskPinDesc')}</p>
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                value={kioskPin}
+                onChange={(e) => setKioskPin(e.target.value.replace(/\D/g, '').slice(0, 8))}
+                maxLength={8}
+                className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none text-center text-lg font-mono tracking-[0.3em]"
+              />
+              <button
+                onClick={saveKioskPin}
+                disabled={!kioskPin || kioskPin.length < 4}
+                className="px-4 py-3 bg-[#864e5a] text-white font-semibold rounded-xl text-sm disabled:opacity-40 active:scale-[0.98] transition-transform"
+              >
+                {pinSaved ? '✓' : t('common.save')}
+              </button>
+            </div>
+          </div>
+
           {/* Super Mode */}
           <div
             className={`rounded-[1rem] p-5 space-y-3 border ${superMode ? 'border-red-300 bg-red-50/60' : 'border-[rgba(134,78,90,0.1)]'}`}
