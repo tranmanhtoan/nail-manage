@@ -36,16 +36,19 @@ export function Employees() {
           password: tempPassword,
           options: {
             data: { full_name: empData.name || editing.name, role: 'employee' },
-            emailRedirectTo: window.location.origin,
           },
         })
 
-        if (!signUpError && signUpData.user) {
-          await supabase.from('employees').update({ ...empData, profile_id: signUpData.user.id }).eq('id', editing.id)
+        const userId = signUpData?.user?.id
+        const hasIdentities = (signUpData?.user?.identities?.length ?? 0) > 0
+
+        if (!signUpError && userId && hasIdentities) {
+          await supabase.from('employees').update({ ...empData, profile_id: userId }).eq('id', editing.id)
           setCreatedCreds({ login: loginId, password: tempPassword })
         } else {
           await supabase.from('employees').update(empData).eq('id', editing.id)
           if (signUpError) alert(`Lỗi tạo tài khoản: ${signUpError.message}`)
+          else if (!hasIdentities) alert(`Tài khoản "${loginId}" đã tồn tại`)
         }
       } else {
         await supabase.from('employees').update(empData).eq('id', editing.id)
