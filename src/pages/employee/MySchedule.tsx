@@ -23,19 +23,34 @@ export function MySchedule() {
   useEffect(() => { if (user) load() }, [date, user])
 
   async function load() {
-    const { data: emp } = await supabase
+    // Try profile_id first, then fallback to name match
+    let empId: string | null = null
+
+    const { data: empByProfile } = await supabase
       .from('employees')
       .select('id')
       .eq('profile_id', user!.id)
       .single()
 
-    if (!emp) return
-    const empData = emp as { id: string }
+    if (empByProfile) {
+      empId = (empByProfile as { id: string }).id
+    } else {
+      const { data: empByName } = await supabase
+        .from('employees')
+        .select('id')
+        .eq('name', user!.name)
+        .single()
+      if (empByName) {
+        empId = (empByName as { id: string }).id
+      }
+    }
+
+    if (!empId) return
 
     const { data } = await supabase
       .from('appointments')
       .select('*, customer:customers(name), service:services(name)')
-      .eq('employee_id', empData.id)
+      .eq('employee_id', empId)
       .eq('date', date)
       .order('time')
 

@@ -107,7 +107,12 @@ create policy "Employee own appointments" on public.appointments for select
   using (employee_id in (select id from public.employees where profile_id = auth.uid()));
 
 create policy "Employee create appointments" on public.appointments for insert
-  with check (employee_id in (select id from public.employees where profile_id = auth.uid()));
+  with check (
+    employee_id in (select id from public.employees where profile_id = auth.uid())
+  );
+
+create policy "Employee update own appointments" on public.appointments for update
+  using (employee_id in (select id from public.employees where profile_id = auth.uid()));
 
 create policy "Employee read customers" on public.customers for select
   using (auth.uid() is not null);
