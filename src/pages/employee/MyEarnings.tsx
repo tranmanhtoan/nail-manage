@@ -94,7 +94,7 @@ export function MyEarnings() {
         {employee && (
           <p className="text-xs text-gray-400 mt-2">
             {employee.pay_type === 'commission' && `${employee.commission_rate}% commission`}
-            {employee.pay_type === 'fixed' && `Fixed + Tips`}
+            {employee.pay_type === 'fixed' && `Fixed $${employee.fixed_salary ?? 0} + Tips`}
             {employee.pay_type === 'split' && `${employee.split_rate}/${100 - (employee.split_rate ?? 0)} split`}
           </p>
         )}
