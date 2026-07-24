@@ -178,9 +178,11 @@ export function Employees() {
           <div
             key={emp.id}
             onClick={() => { setEditing(emp); setShowForm(true) }}
-            className="p-4 rounded-[1rem] flex items-center justify-between cursor-pointer active:scale-[0.98] transition-transform border-l-4 border-[#864e5a]/30"
+            className={`p-4 rounded-[1rem] flex items-center justify-between cursor-pointer active:scale-[0.98] transition-transform border-l-4 ${
+              emp.is_active ? 'border-[#864e5a]/30' : 'border-gray-300 opacity-60'
+            }`}
             style={{
-              background: 'rgba(255, 248, 248, 0.6)',
+              background: emp.is_active ? 'rgba(255, 248, 248, 0.6)' : 'rgba(245, 245, 245, 0.8)',
               backdropFilter: 'blur(12px)',
               borderRight: '1px solid rgba(134,78,90,0.1)',
               borderTop: '1px solid rgba(134,78,90,0.1)',
@@ -188,21 +190,26 @@ export function Employees() {
             }}
           >
             <div>
-              <p className="font-semibold text-gray-900">{emp.name}</p>
+              <p className={`font-semibold ${emp.is_active ? 'text-gray-900' : 'text-gray-400'}`}>{emp.name}</p>
               <p className="text-xs text-gray-500 mt-0.5">
                 {emp.phone}
-                {!emp.profile_id && <span className="ml-2 text-amber-600">• Chưa có tài khoản</span>}
+                {!emp.profile_id && emp.is_active && <span className="ml-2 text-amber-600">• Chưa có tài khoản</span>}
               </p>
             </div>
-            <div className="text-right text-xs">
-              <span className={`inline-block px-2.5 py-1 rounded-full font-semibold ${emp.is_active ? 'bg-[#864e5a]/10 text-[#864e5a]' : 'bg-gray-100 text-gray-500'}`}>
-                {emp.is_active ? 'Active' : 'Inactive'}
-              </span>
-              <p className="text-gray-500 mt-1.5">
-                {emp.pay_type === 'commission' && `${emp.commission_rate}%`}
-                {emp.pay_type === 'fixed' && `$${emp.fixed_salary}/wk`}
-                {emp.pay_type === 'split' && `${emp.split_rate}%`}
-              </p>
+            <div className="flex items-center gap-3">
+              <div className="text-right text-xs">
+                <p className="text-gray-500">
+                  {emp.pay_type === 'commission' && `${emp.commission_rate}%`}
+                  {emp.pay_type === 'fixed' && `$${emp.fixed_salary}/wk`}
+                  {emp.pay_type === 'split' && `${emp.split_rate}%`}
+                </p>
+              </div>
+              <button
+                onClick={(e) => toggleEmployeeActive(emp, e)}
+                className={`shrink-0 transition-colors ${emp.is_active ? 'text-[#864e5a]' : 'text-gray-300'}`}
+              >
+                {emp.is_active ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
+              </button>
             </div>
           </div>
         ))}
