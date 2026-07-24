@@ -70,6 +70,18 @@ export function QuickEntry() {
         const me = myEmp as { id: string }
         setMyEmployeeId(me.id)
         setEmployeeId(me.id)
+      } else {
+        // Fallback: match by name
+        const { data: myEmpByName } = await supabase
+          .from('employees')
+          .select('id')
+          .eq('name', user.name)
+          .single()
+        if (myEmpByName) {
+          const me = myEmpByName as { id: string }
+          setMyEmployeeId(me.id)
+          setEmployeeId(me.id)
+        }
       }
     }
 
