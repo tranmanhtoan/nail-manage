@@ -182,6 +182,10 @@ export function Employees() {
       {createdCreds && (
         <CredsModal creds={createdCreds} onClose={() => setCreatedCreds(null)} />
       )}
+
+      {bulkCreds && (
+        <BulkCredsModal creds={bulkCreds} onClose={() => setBulkCreds(null)} />
+      )}
     </div>
   )
 }
