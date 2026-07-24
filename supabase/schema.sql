@@ -9,7 +9,7 @@ create table public.profiles (
   id uuid references auth.users on delete cascade primary key,
   email text not null,
   full_name text not null,
-  role text not null default 'employee' check (role in ('owner', 'employee')),
+  role text not null default 'employee' check (role in ('owner', 'employee', 'kiosk')),
   phone text,
   avatar_url text,
   created_at timestamptz default now()
@@ -115,16 +115,19 @@ create policy "Employee read customers" on public.customers for select
 create policy "Employee create customers" on public.customers for insert
   with check (auth.uid() is not null);
 
+-- Kiosk mode: kiosk role can read active employees and insert walk-in appointments
+create policy "Kiosk read employees" on public.employees for select
+  using (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk') and is_active = true);
+
+create policy "Kiosk insert appointments" on public.appointments for insert
+  with check (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk') and source = 'walk_in' and status = 'completed');
+
+create policy "Kiosk read services" on public.services for select
+  using (exists (select 1 from public.profiles where id = auth.uid() and role = 'kiosk') and is_active = true);
+
 -- Public booking: anyone can insert appointments (for online booking page)
 create policy "Public booking insert" on public.appointments for insert
   with check (source = 'online' and status = 'booked');
-
--- Kiosk mode: anonymous can read active employees and insert walk-in appointments
-create policy "Kiosk read employees" on public.employees for select
-  using (is_active = true);
-
-create policy "Kiosk insert appointments" on public.appointments for insert
-  with check (source = 'walk_in' and status = 'completed');
 
 create policy "Public read services" on public.services for select
   using (is_active = true);

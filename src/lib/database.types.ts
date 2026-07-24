@@ -3,7 +3,7 @@
 
 export type PayType = 'commission' | 'fixed' | 'split'
 export type AppointmentStatus = 'booked' | 'in_progress' | 'completed' | 'cancelled' | 'no_show'
-export type UserRole = 'owner' | 'employee'
+export type UserRole = 'owner' | 'employee' | 'kiosk'
 
 export interface Employee {
   id: string
