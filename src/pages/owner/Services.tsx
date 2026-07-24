@@ -65,9 +65,11 @@ export function Services() {
               <div
                 key={svc.id}
                 onClick={() => { setEditing(svc); setShowForm(true) }}
-                className="p-4 rounded-[1rem] flex justify-between items-center cursor-pointer active:scale-[0.98] transition-transform border-l-4 border-[#864e5a]/30"
+                className={`p-4 rounded-[1rem] flex justify-between items-center cursor-pointer active:scale-[0.98] transition-transform border-l-4 ${
+                  svc.is_active ? 'border-[#864e5a]/30' : 'border-gray-300 opacity-60'
+                }`}
                 style={{
-                  background: 'rgba(255, 248, 248, 0.6)',
+                  background: svc.is_active ? 'rgba(255, 248, 248, 0.6)' : 'rgba(245, 245, 245, 0.8)',
                   backdropFilter: 'blur(12px)',
                   borderRight: '1px solid rgba(134,78,90,0.1)',
                   borderTop: '1px solid rgba(134,78,90,0.1)',
@@ -75,10 +77,23 @@ export function Services() {
                 }}
               >
                 <div>
-                  <p className="font-semibold text-gray-900">{svc.name}</p>
+                  <p className={`font-semibold ${svc.is_active ? 'text-gray-900' : 'text-gray-400 line-through'}`}>{svc.name}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{svc.duration_minutes} min</p>
                 </div>
-                <p className="font-bold text-[#864e5a]">${svc.price}</p>
+                <div className="flex items-center gap-3">
+                  <p className={`font-bold ${svc.is_active ? 'text-[#864e5a]' : 'text-gray-400'}`}>${svc.price}</p>
+                  {/* Toggle */}
+                  <button
+                    onClick={(e) => toggleActive(svc, e)}
+                    className={`relative w-11 h-6 rounded-full transition-colors ${
+                      svc.is_active ? 'bg-[#864e5a]' : 'bg-gray-300'
+                    }`}
+                  >
+                    <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
+                      svc.is_active ? 'translate-x-[22px]' : 'translate-x-0.5'
+                    }`} />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
