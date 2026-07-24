@@ -11,7 +11,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'],
       manifest: {
-        name: 'Nail Salon Manager',
+        name: 'MCC Nail & Spa',
         short_name: 'MCC Nail',
         description: 'Nail salon management tool',
         theme_color: '#ec4899',
