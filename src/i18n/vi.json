@@ -209,7 +209,8 @@
   "pin": {
     "title": "Nhập mã PIN",
     "subtitle": "Nhập mã PIN của tiệm để vào chế độ kiosk",
-    "incorrect": "Sai mã PIN, thử lại"
+    "incorrect": "Sai mã PIN, thử lại",
+    "connecting": "Đang kết nối..."
   },
   "quickEntry": {
     "title": "Nhập nhanh",
