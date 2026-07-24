@@ -98,7 +98,12 @@ export function Employees() {
 
   async function toggleEmployeeActive(emp: Employee, e: React.MouseEvent) {
     e.stopPropagation()
-    await supabase.from('employees').update({ is_active: !emp.is_active }).eq('id', emp.id)
+    const updates: Record<string, unknown> = { is_active: !emp.is_active }
+    // When activating, record the activation time
+    if (!emp.is_active) {
+      updates.activated_at = new Date().toISOString()
+    }
+    await supabase.from('employees').update(updates).eq('id', emp.id)
     load()
   }
 

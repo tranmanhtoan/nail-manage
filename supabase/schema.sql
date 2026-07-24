@@ -28,6 +28,7 @@ create table public.employees (
   split_rate numeric,
   rotation_order integer not null default 0,
   is_active boolean default true,
+  activated_at timestamptz default now(),
   created_at timestamptz default now()
 );
 
