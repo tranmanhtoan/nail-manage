@@ -59,3 +59,38 @@ export function AdminEmployees() {
     setEditing(null)
     load()
   }
+
+  async function resetPassword(emp: Employee) {
+    if (!emp.profile_id) {
+      alert('Nhân viên chưa có tài khoản đăng nhập')
+      return
+    }
+    setResetLoading(true)
+    const pass = newPassword || generateTempPassword()
+
+    const { error } = await supabaseAdmin.auth.admin.updateUserById(emp.profile_id, {
+      password: pass,
+    })
+
+    if (error) {
+      alert(`Lỗi đổi password: ${error.message}`)
+      setResetLoading(false)
+      return
+    }
+
+    setNewPassword(pass)
+    setResetLoading(false)
+    setResetSuccess(true)
+  }
+
+  return (
+    <div className="px-5 py-6 pb-24 space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-gray-900">Quản lý nhân viên</h2>
+        <button
+          onClick={() => { setEditing(null); setShowForm(true) }}
+          className="flex items-center gap-1 bg-[#864e5a] text-white px-3 py-2 rounded-xl text-sm font-semibold"
+        >
+          <Plus size={16} /> Thêm
+        </button>
+      </div>
