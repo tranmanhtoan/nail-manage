@@ -70,7 +70,6 @@ export function Employees() {
       password: tempPassword,
       options: {
         data: { full_name: empData.name, role: 'employee' },
-        emailRedirectTo: window.location.origin,
       },
     })
 
@@ -79,10 +78,17 @@ export function Employees() {
       return
     }
 
-    const profileId = signUpData.user?.id ?? null
-    await supabase.from('employees').insert({ ...empData, profile_id: profileId })
+    const userId = signUpData.user?.id
+    const hasIdentities = (signUpData.user?.identities?.length ?? 0) > 0
 
-    setCreatedCreds({ login: create_email || loginId, password: tempPassword })
+    if (userId && hasIdentities) {
+      await supabase.from('employees').insert({ ...empData, profile_id: userId })
+      setCreatedCreds({ login: create_email || loginId, password: tempPassword })
+    } else {
+      // User might already exist — create employee without linking
+      await supabase.from('employees').insert(empData)
+      alert(`Tài khoản "${loginId}" đã tồn tại. Nhân viên được tạo nhưng chưa link tài khoản.`)
+    }
     setShowForm(false)
     setEditing(null)
     load()
