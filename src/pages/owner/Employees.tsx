@@ -11,6 +11,7 @@ export function Employees() {
   const [showForm, setShowForm] = useState(false)
   const [editing, setEditing] = useState<Employee | null>(null)
   const [createdCreds, setCreatedCreds] = useState<{ login: string; password: string } | null>(null)
+  const [bulkCreds, setBulkCreds] = useState<{ login: string; password: string; name: string }[] | null>(null)
 
   useEffect(() => { load() }, [])
 
