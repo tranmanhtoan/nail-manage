@@ -23,38 +23,22 @@ export function MySchedule() {
   useEffect(() => { if (user) load() }, [date, user])
 
   async function load() {
-    // Try profile_id first, then fallback to name match
-    let empId: string | null = null
+    // Use RPC function to bypass RLS
+    const { data } = await supabase.rpc('get_my_appointments', {
+      p_date: date,
+    })
 
-    const { data: empByProfile } = await supabase
-      .from('employees')
-      .select('id')
-      .eq('profile_id', user!.id)
-      .single()
-
-    if (empByProfile) {
-      empId = (empByProfile as { id: string }).id
-    } else {
-      const { data: empByName } = await supabase
-        .from('employees')
-        .select('id')
-        .eq('name', user!.name)
-        .single()
-      if (empByName) {
-        empId = (empByName as { id: string }).id
-      }
-    }
-
-    if (!empId) return
-
-    const { data } = await supabase
-      .from('appointments')
-      .select('*, customer:customers(name), service:services(name)')
-      .eq('employee_id', empId)
-      .eq('date', date)
-      .order('time')
-
-    setItems((data as unknown as ScheduleItem[]) ?? [])
+    const rows = (data ?? []) as { id: string; date: string; time: string; status: string; price: number; tip: number; customer_name: string | null; service_name: string | null }[]
+    setItems(rows.map((r) => ({
+      id: r.id,
+      date: r.date,
+      time: r.time,
+      status: r.status,
+      price: r.price,
+      tip: r.tip,
+      customer: r.customer_name ? { name: r.customer_name } : null,
+      service: r.service_name ? { name: r.service_name } : null,
+    })))
   }
 
   return (
