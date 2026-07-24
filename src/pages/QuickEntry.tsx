@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 interface Employee {
   id: string
   name: string
+  rotation_order: number
 }
 
 interface Service {
