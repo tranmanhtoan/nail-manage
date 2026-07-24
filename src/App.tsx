@@ -78,26 +78,9 @@ export default function App() {
         />
       )}
 
-      {/* Employee routes */}
+      {/* Employee routes — with inactivity timeout & floating back/home */}
       {user?.role === 'employee' && (
-        <Route
-          path="*"
-          element={
-            <div className="min-h-screen bg-gray-50">
-              <Header />
-              <main className="pb-20">
-                <Routes>
-                  <Route path="/my-schedule" element={<MySchedule />} />
-                  <Route path="/my-earnings" element={<MyEarnings />} />
-                  <Route path="/check-in" element={<CheckIn />} />
-                  <Route path="/quick-entry" element={<QuickEntry />} />
-                  <Route path="*" element={<Navigate to="/my-schedule" replace />} />
-                </Routes>
-              </main>
-              <BottomNav />
-            </div>
-          }
-        />
+        <Route path="*" element={<EmployeeLayout />} />
       )}
     </Routes>
   )
