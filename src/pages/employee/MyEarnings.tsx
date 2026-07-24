@@ -51,10 +51,10 @@ export function MyEarnings() {
       p_date_from: dateFrom,
     })
 
-    const rows = (appointments ?? []) as { price: number; tip: number }[]
+    const rows = (appointments ?? []) as { apt_price: number; apt_tip: number }[]
 
-    const totalRevenue = rows.reduce((s, a) => s + a.price, 0)
-    const totalTips = rows.reduce((s, a) => s + a.tip, 0)
+    const totalRevenue = rows.reduce((s, a) => s + a.apt_price, 0)
+    const totalTips = rows.reduce((s, a) => s + a.apt_tip, 0)
     const myEarnings = calcEarnings(empData, totalRevenue, totalTips)
 
     setData({
