@@ -141,3 +141,56 @@ export function AdminEmployees() {
           </div>
         ))}
       </div>
+
+      {/* Edit form modal */}
+      {showForm && (
+        <EmployeeForm
+          employee={editing}
+          onSave={save}
+          onClose={() => { setShowForm(false); setEditing(null) }}
+        />
+      )}
+
+      {/* Reset password modal */}
+      {showResetPassword && (
+        <div className="fixed inset-0 bg-black/40 z-[60] flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-sm rounded-2xl p-6 space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-bold text-gray-900">Đổi mật khẩu</h3>
+              <button onClick={() => setShowResetPassword(null)} className="p-1 text-gray-400">
+                <X size={20} />
+              </button>
+            </div>
+
+            <p className="text-sm text-gray-600">
+              Nhân viên: <strong>{showResetPassword.name}</strong>
+            </p>
+
+            {!resetSuccess ? (
+              <>
+                <div>
+                  <label className="text-sm font-medium text-gray-700">Mật khẩu mới</label>
+                  <input
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Để trống = tạo tự động"
+                    className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none"
+                  />
+                </div>
+                <button
+                  onClick={() => resetPassword(showResetPassword)}
+                  disabled={resetLoading}
+                  className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl disabled:opacity-50"
+                >
+                  {resetLoading ? <Loader2 className="animate-spin mx-auto" size={20} /> : 'Đổi mật khẩu'}
+                </button>
+              </>
+            ) : (
+              <PasswordResult password={newPassword} onClose={() => setShowResetPassword(null)} />
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
