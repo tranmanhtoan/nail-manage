@@ -12,7 +12,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'],
       manifest: {
         name: 'Nail Salon Manager',
-        short_name: 'NailPro',
+        short_name: 'MCC Nail',
         description: 'Nail salon management tool',
         theme_color: '#ec4899',
         background_color: '#ec4899',
