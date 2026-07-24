@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
-import { Lock, ChevronLeft, Loader2 } from 'lucide-react'
+import { Lock, ChevronLeft, Loader2, Monitor } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 interface ProfileOption {
