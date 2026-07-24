@@ -210,12 +210,7 @@ export function QuickEntry() {
                       backdropFilter: 'blur(12px)',
                     }}
                   >
-                    {/* Badge Next */}
-                    {isNext && (
-                      <div className="absolute -top-[1px] -right-[1px] bg-[#864e5a] text-white text-[10px] px-2 py-1 rounded-bl-lg rounded-tr-[1rem] font-bold z-10">
-                        {t('appointments.nextUp')}
-                      </div>
-                    )}
+                    {/* Badge Next - not shown in QuickEntry */}
 
                     {/* Avatar */}
                     <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl mb-3 ${
