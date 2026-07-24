@@ -230,7 +230,8 @@ export function QuickEntry() {
       {/* Form Step */}
       {step === 'form' && (
         <div className="mt-6 space-y-6">
-          {/* Employee card selection */}
+          {/* Employee card selection — hidden when logged in as employee */}
+          {user?.role !== 'employee' && (
           <div>
             <label className="block text-sm font-semibold text-gray-800 mb-3">
               {t('quickEntry.selectEmployee')}
