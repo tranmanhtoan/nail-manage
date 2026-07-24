@@ -125,6 +125,25 @@ export function Login() {
                   </p>
                 </button>
               ))}
+
+              {/* Kiosk card — same style as owner */}
+              <button
+                onClick={() => navigate('/kiosk')}
+                className="p-4 rounded-[1rem] text-center relative transition-all border border-gray-200 hover:border-[#864e5a] hover:shadow-[0_0_20px_rgba(134,78,90,0.15)] active:scale-95"
+                style={{
+                  background: 'rgba(255, 248, 248, 0.6)',
+                  backdropFilter: 'blur(12px)',
+                }}
+              >
+                <div className="absolute -top-[1px] -right-[1px] bg-gray-600 text-white text-[10px] px-2 py-1 rounded-bl-lg rounded-tr-[1rem] font-bold">
+                  Kiosk
+                </div>
+                <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl mb-3 bg-gray-100">
+                  <Monitor size={32} className="text-gray-600" />
+                </div>
+                <p className="font-semibold text-base text-gray-900">Kiosk</p>
+                <p className="text-xs mt-0.5 text-gray-500">Chế độ tablet</p>
+              </button>
             </div>
 
             {profiles.length === 0 && (
