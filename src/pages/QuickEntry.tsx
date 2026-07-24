@@ -150,38 +150,19 @@ export function QuickEntry() {
     if (!serviceId || !amount) return
     setSubmitting(true)
 
-    // For employee role, always use their own ID (RLS requires it)
+    // For employee role, always use their own ID
     const effectiveEmployeeId = user?.role === 'employee' && myEmployeeId
       ? myEmployeeId
       : employeeId || null
 
-    let error: { message: string } | null = null
-
-    if (effectiveEmployeeId) {
-      // Use RPC function to bypass RLS
-      const { error: rpcError } = await supabase.rpc('quick_entry_submit', {
-        p_employee_id: effectiveEmployeeId,
-        p_service_id: serviceId,
-        p_price: parseFloat(amount),
-        p_tip: tip ? parseFloat(tip) : 0,
-        p_payment_method: paymentMethod,
-      })
-      error = rpcError
-    } else {
-      // No employee selected — direct insert (owner/kiosk)
-      const { error: insertError } = await supabase.from('appointments').insert({
-        employee_id: null,
-        service_id: serviceId,
-        price: parseFloat(amount),
-        tip: tip ? parseFloat(tip) : 0,
-        date: new Date().toISOString().split('T')[0],
-        time: new Date().toTimeString().split(' ')[0].slice(0, 5),
-        status: 'completed',
-        source: 'walk_in',
-        payment_method: paymentMethod,
-      })
-      error = insertError
-    }
+    // Always use RPC to bypass RLS for all roles
+    const { error } = await supabase.rpc('quick_entry_submit', {
+      p_employee_id: effectiveEmployeeId,
+      p_service_id: serviceId,
+      p_price: parseFloat(amount),
+      p_tip: tip ? parseFloat(tip) : 0,
+      p_payment_method: paymentMethod,
+    })
 
     setSubmitting(false)
 

@@ -171,24 +171,38 @@ $$ language sql security definer;
 
 grant execute on function public.get_login_email(uuid) to anon, authenticated;
 
--- RPC function for employees to create completed appointments (bypasses RLS)
+-- RPC function for quick entry submit (bypasses RLS for all roles)
 create or replace function public.quick_entry_submit(
-  p_employee_id uuid,
-  p_service_id uuid,
-  p_price numeric,
+  p_employee_id uuid default null,
+  p_service_id uuid default null,
+  p_price numeric default 0,
   p_tip numeric default 0,
   p_payment_method text default 'cash'
 )
 returns uuid as $$
 declare
   v_id uuid;
+  v_role text;
 begin
-  -- Verify the calling user is linked to this employee OR is kiosk/owner
-  if not exists (
-    select 1 from public.profiles where id = auth.uid() and role in ('owner', 'kiosk')
-  ) and not exists (
-    select 1 from public.employees where id = p_employee_id and profile_id = auth.uid()
-  ) then
+  -- Get caller's role
+  select role into v_role from public.profiles where id = auth.uid();
+
+  -- Authorization check
+  if v_role = 'owner' or v_role = 'kiosk' then
+    -- Owner and kiosk can submit for any employee
+    null;
+  elsif v_role = 'employee' then
+    -- Employee can only submit for themselves
+    if p_employee_id is not null and not exists (
+      select 1 from public.employees where id = p_employee_id and profile_id = auth.uid()
+    ) then
+      raise exception 'Not authorized';
+    end if;
+    -- If no employee_id provided, auto-assign their own
+    if p_employee_id is null then
+      select id into p_employee_id from public.employees where profile_id = auth.uid() limit 1;
+    end if;
+  else
     raise exception 'Not authorized';
   end if;
 
@@ -199,7 +213,7 @@ begin
     p_price,
     p_tip,
     current_date,
-    to_char(now() at time zone 'America/New_York', 'HH24:MI'),
+    to_char(now(), 'HH24:MI'),
     'completed',
     'walk_in',
     p_payment_method
