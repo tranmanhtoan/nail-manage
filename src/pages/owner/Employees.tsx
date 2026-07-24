@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Plus, X, Mail, Copy, Check, User } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 import { toAuthEmail } from '@/lib/auth-helpers'
 import type { Employee, PayType } from '@/lib/database.types'
 
