@@ -25,6 +25,7 @@ interface Employee {
   name: string
   is_active: boolean
   rotation_order: number
+  activated_at: string | null
 }
 
 interface Service {
