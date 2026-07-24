@@ -119,6 +119,13 @@ create policy "Employee create customers" on public.customers for insert
 create policy "Public booking insert" on public.appointments for insert
   with check (source = 'online' and status = 'booked');
 
+-- Kiosk mode: anonymous can read active employees and insert walk-in appointments
+create policy "Kiosk read employees" on public.employees for select
+  using (is_active = true);
+
+create policy "Kiosk insert appointments" on public.appointments for insert
+  with check (source = 'walk_in' and status = 'completed');
+
 create policy "Public read services" on public.services for select
   using (is_active = true);
 

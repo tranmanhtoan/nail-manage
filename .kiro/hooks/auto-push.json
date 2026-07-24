@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Auto commit and push on file save",
+      "trigger": "PostFileSave",
+      "description": "Automatically commits and pushes changes whenever a code file is saved, triggering Vercel auto-deploy.",
+      "matcher": "\\.(tsx?|json|css|html)$",
+      "action": {
+        "type": "command",
+        "command": "cd \"/Users/trantoan/Library/CloudStorage/OneDrive-Personal/___VibeCode/Kiro/Nail Manange\" && git add -A && git diff --cached --quiet || (git commit -m \"auto: update $(date +%H:%M)\" && git push)"
+      }
+    }
+  ]
+}
