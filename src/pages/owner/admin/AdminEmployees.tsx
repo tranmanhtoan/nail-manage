@@ -6,7 +6,6 @@ import { toAuthEmail } from '@/lib/auth-helpers'
 import type { Employee, PayType } from '@/lib/database.types'
 
 export function AdminEmployees() {
-  useTranslation()
   const [employees, setEmployees] = useState<Employee[]>([])
   const [showForm, setShowForm] = useState(false)
   const [editing, setEditing] = useState<Employee | null>(null)
