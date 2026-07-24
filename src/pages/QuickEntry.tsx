@@ -375,8 +375,8 @@ export function QuickEntry() {
                     <span className="text-gray-500 text-sm">{t('quickEntry.selectEmployee')}</span>
                     <div className="flex items-center gap-2">
                       {selectedEmployee && (
-                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${getAvatarColor(selectedEmployee.name)}`}>
-                          {getInitials(selectedEmployee.name)}
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-sm bg-gray-100">
+                          {getChibiEmoji(selectedEmployee.name)}
                         </div>
                       )}
                       <span className="font-medium text-sm">
