@@ -53,7 +53,16 @@ export function Login() {
     if (!selectedProfile) return
     setLoading(true)
     setError('')
-    const err = await login(selectedProfile.email, password)
+
+    // Get email via RPC (not exposed in view)
+    const { data: email } = await supabase.rpc('get_login_email', { profile_id: selectedProfile.id })
+    if (!email) {
+      setError('Account not found')
+      setLoading(false)
+      return
+    }
+
+    const err = await login(email as string, password)
     if (err) setError(err)
     setLoading(false)
   }

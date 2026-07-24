@@ -151,6 +151,14 @@ create view public.login_profiles as
 -- Grant anonymous and authenticated access to the view
 grant select on public.login_profiles to anon, authenticated;
 
+-- RPC function to get email by profile ID (used internally during login)
+create or replace function public.get_login_email(profile_id uuid)
+returns text as $$
+  select email from public.profiles where id = profile_id and role in ('owner', 'employee');
+$$ language sql security definer;
+
+grant execute on function public.get_login_email(uuid) to anon, authenticated;
+
 -- Function to auto-create profile on signup
 create or replace function public.handle_new_user()
 returns trigger as $$
