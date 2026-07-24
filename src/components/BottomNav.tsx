@@ -12,7 +12,7 @@ export function BottomNav() {
     { to: '/appointments', icon: CalendarDays, label: t('nav.appointments') },
     { to: '/quick-entry', icon: PenLine, label: t('nav.quickEntry') },
     { to: '/reports', icon: BarChart3, label: t('nav.reports') },
-    { to: '/admin', icon: Shield, label: 'Admin' },
+    { to: '/settings', icon: Settings, label: t('nav.settings') },
   ]
 
   const employeeTabs = [
