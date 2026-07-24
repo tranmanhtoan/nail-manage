@@ -9,13 +9,11 @@ import { Appointments } from '@/pages/owner/Appointments'
 import { Customers } from '@/pages/owner/Customers'
 import { Settings } from '@/pages/owner/Settings'
 import { Reports } from '@/pages/owner/Reports'
-import { MySchedule } from '@/pages/employee/MySchedule'
-import { MyEarnings } from '@/pages/employee/MyEarnings'
-import { CheckIn } from '@/pages/employee/CheckIn'
 import { BookingPage } from '@/pages/booking/BookingPage'
 import { QuickEntry } from '@/pages/QuickEntry'
 import { PinGate } from '@/components/PinGate'
 import { KioskLayout } from '@/pages/kiosk/KioskLayout'
+import { EmployeeLayout } from '@/components/EmployeeLayout'
 
 export default function App() {
   const { user, loading, checkSession } = useAuthStore()
