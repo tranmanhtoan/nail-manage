@@ -15,6 +15,7 @@ import { CheckIn } from '@/pages/employee/CheckIn'
 import { BookingPage } from '@/pages/booking/BookingPage'
 import { QuickEntry } from '@/pages/QuickEntry'
 import { PinGate } from '@/components/PinGate'
+import { KioskLayout } from '@/pages/kiosk/KioskLayout'
 
 export default function App() {
   const { user, loading, checkSession } = useAuthStore()
