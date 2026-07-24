@@ -109,12 +109,12 @@ export function Login() {
 
                   {/* Avatar */}
                   <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl mb-3 bg-gray-100">
-                    {getChibiEmoji(profile.full_name || profile.email)}
+                    {getChibiEmoji(profile.full_name)}
                   </div>
 
                   {/* Name */}
                   <p className="font-semibold text-base truncate text-gray-900">
-                    {profile.full_name || profile.email.split('@')[0]}
+                    {profile.full_name}
                   </p>
 
                   {/* Role */}
