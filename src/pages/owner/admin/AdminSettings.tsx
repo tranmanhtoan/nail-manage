@@ -151,3 +151,42 @@ export function AdminSettings() {
           </button>
         </div>
       </div>
+
+      {/* Logout */}
+      <button
+        onClick={logout}
+        className="w-full py-3 bg-red-50 text-red-600 font-semibold rounded-xl flex items-center justify-center gap-2"
+      >
+        <LogOut size={18} />
+        {t('auth.logout')}
+      </button>
+    </div>
+  )
+}
+
+function ToggleRow({
+  label,
+  description,
+  enabled,
+  onChange,
+}: {
+  label: string
+  description: string
+  enabled: boolean
+  onChange: () => void
+}) {
+  return (
+    <div className="flex items-center justify-between py-2">
+      <div className="flex-1 min-w-0 mr-3">
+        <p className="text-sm font-medium text-gray-800">{label}</p>
+        <p className="text-xs text-gray-500 mt-0.5">{description}</p>
+      </div>
+      <button
+        onClick={onChange}
+        className={`shrink-0 transition-colors ${enabled ? 'text-[#864e5a]' : 'text-gray-300'}`}
+      >
+        {enabled ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
+      </button>
+    </div>
+  )
+}
