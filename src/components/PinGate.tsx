@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Delete, Lock, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
@@ -16,10 +16,21 @@ interface PinGateProps {
 export function PinGate({ children }: PinGateProps) {
   const { t } = useTranslation()
   const [unlocked, setUnlocked] = useState(false)
+  const [checking, setChecking] = useState(true)
   const [pin, setPin] = useState('')
   const [error, setError] = useState(false)
   const [logging, setLogging] = useState(false)
   const [loginError, setLoginError] = useState('')
+
+  // Check if already logged in as kiosk
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setUnlocked(true)
+      }
+      setChecking(false)
+    })
+  }, [])
 
   const handleDigit = useCallback((digit: string) => {
     setError(false)
