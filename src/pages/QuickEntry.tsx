@@ -292,6 +292,7 @@ export function QuickEntry() {
               })}
             </div>
           </div>
+          )}
 
           {/* Service select */}
           <div>
