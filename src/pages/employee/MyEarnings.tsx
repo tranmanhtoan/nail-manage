@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
-import type { Employee, PayType } from '@/lib/database.types'
+import type { PayType } from '@/lib/database.types'
 
 interface EarningData {
   totalServices: number
@@ -11,41 +11,30 @@ interface EarningData {
   myEarnings: number
 }
 
+interface MyEmployee {
+  id: string
+  name: string
+  pay_type: string
+  commission_rate: number | null
+  fixed_salary: number | null
+  split_rate: number | null
+}
+
 export function MyEarnings() {
   const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const [period, setPeriod] = useState<'today' | 'week' | 'month'>('week')
   const [data, setData] = useState<EarningData>({ totalServices: 0, totalRevenue: 0, totalTips: 0, myEarnings: 0 })
-  const [employee, setEmployee] = useState<Employee | null>(null)
+  const [employee, setEmployee] = useState<MyEmployee | null>(null)
 
   useEffect(() => { if (user) load() }, [period, user])
 
   async function load() {
-    // Try to find employee by profile_id first, then fallback to name match
-    let empData: Employee | null = null
-
-    const { data: empByProfile } = await supabase
-      .from('employees')
-      .select('*')
-      .eq('profile_id', user!.id)
-      .single()
-
-    if (empByProfile) {
-      empData = empByProfile as Employee
-    } else {
-      // Fallback: match by name if profile_id not linked
-      const { data: empByName } = await supabase
-        .from('employees')
-        .select('*')
-        .eq('name', user!.name)
-        .single()
-
-      if (empByName) {
-        empData = empByName as Employee
-      }
-    }
-
-    if (!empData) return
+    // Get my employee record via RPC (bypasses RLS)
+    const { data: empRows } = await supabase.rpc('get_my_employee')
+    const empArr = empRows as MyEmployee[] | null
+    if (!empArr || empArr.length === 0) return
+    const empData = empArr[0]
     setEmployee(empData)
 
     const today = new Date().toISOString().slice(0, 10)
@@ -56,19 +45,13 @@ export function MyEarnings() {
     if (period === 'week') dateFrom = weekAgo
     if (period === 'month') dateFrom = monthStart
 
-    let query = supabase
-      .from('appointments')
-      .select('price, tip')
-      .eq('employee_id', empData.id)
-      .eq('status', 'completed')
-      .gte('date', dateFrom)
+    // Get appointments via RPC (bypasses RLS)
+    const { data: appointments } = await supabase.rpc('get_my_appointments', {
+      p_date: today,
+      p_date_from: dateFrom,
+    })
 
-    if (period === 'today') {
-      query = query.eq('date', today)
-    }
-
-    const { data: appointments } = await query
-    const rows = (appointments as { price: number; tip: number }[]) ?? []
+    const rows = (appointments ?? []) as { price: number; tip: number }[]
 
     const totalRevenue = rows.reduce((s, a) => s + a.price, 0)
     const totalTips = rows.reduce((s, a) => s + a.tip, 0)
@@ -145,7 +128,7 @@ export function MyEarnings() {
   )
 }
 
-function calcEarnings(emp: Employee, revenue: number, tips: number): number {
+function calcEarnings(emp: MyEmployee, revenue: number, tips: number): number {
   const payType = emp.pay_type as PayType
   switch (payType) {
     case 'commission':
