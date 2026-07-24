@@ -72,7 +72,6 @@ export function QuickEntry() {
     const shiftStart = 9 * 60
 
     const idleMap: Record<string, number | null> = {}
-    let firstAvailableId: string | null = null
 
     for (const emp of empList) {
       if (busyIds.has(emp.id)) {
