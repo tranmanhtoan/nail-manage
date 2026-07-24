@@ -8,6 +8,7 @@ interface Employee {
   id: string
   name: string
   rotation_order: number
+  activated_at: string | null
 }
 
 interface Service {
