@@ -290,3 +290,60 @@ function EmployeeForm({ employee, onSave, onClose }: {
               />
             </div>
           )}
+
+          <div>
+            <label className="text-sm font-medium text-gray-700">Loại lương</label>
+            <select value={payType} onChange={(e) => setPayType(e.target.value as PayType)}
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none">
+              <option value="commission">Commission</option>
+              <option value="fixed">Fixed</option>
+              <option value="split">Split</option>
+            </select>
+          </div>
+
+          {payType === 'commission' && (
+            <div>
+              <label className="text-sm font-medium text-gray-700">Commission rate (%)</label>
+              <input type="number" value={commissionRate ?? 0} onChange={(e) => setCommissionRate(+e.target.value)}
+                min={0} max={100}
+                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+            </div>
+          )}
+          {payType === 'fixed' && (
+            <div>
+              <label className="text-sm font-medium text-gray-700">Salary ($/week)</label>
+              <input type="number" value={fixedSalary ?? 0} onChange={(e) => setFixedSalary(+e.target.value)}
+                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+            </div>
+          )}
+          {payType === 'split' && (
+            <div>
+              <label className="text-sm font-medium text-gray-700">Split rate (% cho NV)</label>
+              <input type="number" value={splitRate ?? 0} onChange={(e) => setSplitRate(+e.target.value)}
+                min={0} max={100}
+                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+            </div>
+          )}
+
+          <div className="flex items-center gap-2">
+            <input type="checkbox" id="emp-active" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} className="rounded accent-[#864e5a]" />
+            <label htmlFor="emp-active" className="text-sm">Active</label>
+          </div>
+
+          <button type="submit" className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl active:scale-[0.98] transition-transform">
+            {t('common.save')}
+          </button>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+function generateTempPassword(): string {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+  let pass = ''
+  for (let i = 0; i < 6; i++) {
+    pass += chars[Math.floor(Math.random() * chars.length)]
+  }
+  return pass
+}
