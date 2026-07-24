@@ -251,3 +251,42 @@ function EmployeeForm({ employee, onSave, onClose }: {
       ...(!employee && username ? { create_username: username } : {}),
     })
   }
+
+  return (
+    <div className="fixed inset-0 bg-black/40 z-[60] flex items-end sm:items-center justify-center">
+      <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 pb-10 max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold">{employee ? 'Sửa nhân viên' : 'Thêm nhân viên'}</h3>
+          <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600"><X size={20} /></button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-sm font-medium text-gray-700">{t('common.name')}</label>
+            <input value={name} onChange={(e) => setName(e.target.value)} required
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-gray-700">{t('common.phone')}</label>
+            <input value={phone ?? ''} onChange={(e) => setPhone(e.target.value)}
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-gray-700">Email (optional)</label>
+            <input value={email ?? ''} onChange={(e) => setEmail(e.target.value)} type="email"
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
+          </div>
+
+          {!employee && (
+            <div>
+              <label className="text-sm font-medium text-gray-700">Username (đăng nhập)</label>
+              <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9._-]/g, ''))}
+                placeholder="vd: anna, minh.nguyen"
+                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none"
+              />
+            </div>
+          )}
