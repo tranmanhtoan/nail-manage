@@ -209,7 +209,8 @@
   "pin": {
     "title": "Enter PIN",
     "subtitle": "Enter the shop PIN to access kiosk mode",
-    "incorrect": "Incorrect PIN, try again"
+    "incorrect": "Incorrect PIN, try again",
+    "connecting": "Connecting..."
   },
   "quickEntry": {
     "title": "Quick Entry",
