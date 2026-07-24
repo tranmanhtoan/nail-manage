@@ -172,8 +172,13 @@ create policy "Owner full access" on public.shop_settings for all
 create policy "All authenticated read" on public.shop_settings for select
   using (auth.uid() is not null);
 
+-- Allow anonymous read of kiosk_pin only (for PIN gate before login)
+create policy "Public read kiosk_pin" on public.shop_settings for select
+  using (key = 'kiosk_pin');
+
 -- Default feature toggles
 insert into public.shop_settings (key, value) values
   ('quick_entry_enabled', 'true'),
   ('appointments_enabled', 'true'),
-  ('reports_enabled', 'true');
+  ('reports_enabled', 'true'),
+  ('kiosk_pin', '1234');
