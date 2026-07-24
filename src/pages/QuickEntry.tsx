@@ -100,6 +100,7 @@ export function QuickEntry() {
     const now = new Date()
     const nowMinutes = now.getHours() * 60 + now.getMinutes()
     const shiftStart = 9 * 60
+    const todayStr = now.toISOString().slice(0, 10)
 
     const idleMap: Record<string, number | null> = {}
 
@@ -112,7 +113,17 @@ export function QuickEntry() {
           const [h, m] = lastTime.split(':')
           idleMap[emp.id] = Math.max(0, nowMinutes - (parseInt(h) * 60 + parseInt(m)))
         } else {
-          idleMap[emp.id] = Math.max(0, nowMinutes - shiftStart)
+          // No completed today — idle since activation or shift start (whichever is later)
+          let startMinutes = shiftStart
+          if (emp.activated_at) {
+            const activatedDate = new Date(emp.activated_at)
+            const activatedDateStr = activatedDate.toISOString().slice(0, 10)
+            if (activatedDateStr === todayStr) {
+              const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
+              startMinutes = Math.max(shiftStart, activatedMinutes)
+            }
+          }
+          idleMap[emp.id] = Math.max(0, nowMinutes - startMinutes)
         }
       }
     }
