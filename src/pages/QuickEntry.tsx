@@ -191,7 +191,6 @@ export function QuickEntry() {
             <div className="flex gap-4 overflow-x-auto pb-3 -mx-2 px-2" style={{ scrollbarWidth: 'none' }}>
               {employees.map((emp) => {
                 const isSelected = employeeId === emp.id
-                const isNext = emp.id === nextEmployeeId
                 const idle = idleMinutes[emp.id]
                 const isBusy = idle === null
 
