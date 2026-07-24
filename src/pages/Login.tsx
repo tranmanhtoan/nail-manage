@@ -24,6 +24,7 @@ function getChibiEmoji(name: string) {
 
 export function Login() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const login = useAuthStore((s) => s.login)
   const [profiles, setProfiles] = useState<ProfileOption[]>([])
   const [selectedProfile, setSelectedProfile] = useState<ProfileOption | null>(null)
