@@ -126,8 +126,13 @@ export function QuickEntry() {
     if (!serviceId || !amount) return
     setSubmitting(true)
 
+    // For employee role, always use their own ID (RLS requires it)
+    const effectiveEmployeeId = user?.role === 'employee' && myEmployeeId
+      ? myEmployeeId
+      : employeeId || null
+
     const { error } = await supabase.from('appointments').insert({
-      employee_id: employeeId || null,
+      employee_id: effectiveEmployeeId,
       service_id: serviceId,
       price: parseFloat(amount),
       tip: tip ? parseFloat(tip) : 0,
@@ -142,9 +147,14 @@ export function QuickEntry() {
 
     if (!error) {
       setSuccess(true)
+      // Reload data so idle time resets
+      loadData()
       setTimeout(() => {
         resetForm()
       }, 1500)
+    } else {
+      console.error('Submit error:', error)
+      alert(`Error: ${error.message}`)
     }
   }
 
