@@ -194,3 +194,31 @@ export function AdminEmployees() {
     </div>
   )
 }
+
+function PasswordResult({ password, onClose }: { password: string; onClose: () => void }) {
+  const [copied, setCopied] = useState(false)
+
+  const copy = () => {
+    navigator.clipboard.writeText(password)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="p-4 rounded-xl bg-green-50 border border-green-200 text-center">
+        <p className="text-sm text-green-800 font-medium">Đổi thành công!</p>
+        <p className="text-lg font-mono font-bold text-green-900 mt-2">{password}</p>
+      </div>
+      <button
+        onClick={copy}
+        className="w-full py-3 bg-gray-100 rounded-xl text-sm font-medium flex items-center justify-center gap-2"
+      >
+        {copied ? <><Check size={16} className="text-green-600" /> Đã copy!</> : <><Copy size={16} /> Copy mật khẩu</>}
+      </button>
+      <button onClick={onClose} className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl">
+        Đóng
+      </button>
+    </div>
+  )
+}
