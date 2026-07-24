@@ -155,7 +155,10 @@ export function Employees() {
           >
             <div>
               <p className="font-semibold text-gray-900">{emp.name}</p>
-              <p className="text-xs text-gray-500 mt-0.5">{emp.phone}</p>
+              <p className="text-xs text-gray-500 mt-0.5">
+                {emp.phone}
+                {!emp.profile_id && <span className="ml-2 text-amber-600">• Chưa có tài khoản</span>}
+              </p>
             </div>
             <div className="text-right text-xs">
               <span className={`inline-block px-2.5 py-1 rounded-full font-semibold ${emp.is_active ? 'bg-[#864e5a]/10 text-[#864e5a]' : 'bg-gray-100 text-gray-500'}`}>
