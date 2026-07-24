@@ -206,6 +206,11 @@
     "topServices": "Top Services",
     "noData": "No data yet"
   },
+  "pin": {
+    "title": "Enter PIN",
+    "subtitle": "Enter the shop PIN to access kiosk mode",
+    "incorrect": "Incorrect PIN, try again"
+  },
   "quickEntry": {
     "title": "Quick Entry",
     "subtitle": "Record your services for today's session.",

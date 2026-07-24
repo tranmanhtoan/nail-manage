@@ -14,6 +14,7 @@ import { MyEarnings } from '@/pages/employee/MyEarnings'
 import { CheckIn } from '@/pages/employee/CheckIn'
 import { BookingPage } from '@/pages/booking/BookingPage'
 import { QuickEntry } from '@/pages/QuickEntry'
+import { PinGate } from '@/components/PinGate'
 
 export default function App() {
   const { user, loading, checkSession } = useAuthStore()
@@ -30,8 +31,9 @@ export default function App() {
 
   return (
     <Routes>
-      {/* Public booking page */}
+      {/* Public pages */}
       <Route path="/book" element={<BookingPage />} />
+      <Route path="/kiosk" element={<PinGate><QuickEntry /></PinGate>} />
 
       {/* Auth */}
       {!user && <Route path="*" element={<Login />} />}

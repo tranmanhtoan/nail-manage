@@ -206,6 +206,11 @@
     "topServices": "Dịch vụ nổi bật",
     "noData": "Chưa có dữ liệu"
   },
+  "pin": {
+    "title": "Nhập mã PIN",
+    "subtitle": "Nhập mã PIN của tiệm để vào chế độ kiosk",
+    "incorrect": "Sai mã PIN, thử lại"
+  },
   "quickEntry": {
     "title": "Nhập nhanh",
     "subtitle": "Ghi nhận dịch vụ trong ca hôm nay.",
