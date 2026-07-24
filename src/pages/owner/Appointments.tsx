@@ -74,6 +74,12 @@ export function Appointments() {
   useEffect(() => { load() }, [dateStr])
   useEffect(() => { loadFormData() }, [])
 
+  // Auto-refresh every 30s so idle times stay current
+  useEffect(() => {
+    const interval = setInterval(() => { load() }, 30000)
+    return () => clearInterval(interval)
+  }, [dateStr])
+
   async function loadFormData() {
     const [empsRes, svcsRes] = await Promise.all([
       supabase.from('employees').select('id, name, is_active, rotation_order').eq('is_active', true).order('rotation_order'),
