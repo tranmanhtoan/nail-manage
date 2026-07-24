@@ -84,7 +84,6 @@ export function QuickEntry() {
         } else {
           idleMap[emp.id] = Math.max(0, nowMinutes - shiftStart)
         }
-        if (!firstAvailableId) firstAvailableId = emp.id
       }
     }
 
