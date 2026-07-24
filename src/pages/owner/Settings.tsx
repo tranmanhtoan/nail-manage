@@ -35,7 +35,29 @@ export function Settings() {
 
   useEffect(() => {
     loadToggles()
+    loadKioskPin()
   }, [])
+
+  async function loadKioskPin() {
+    const { data } = await supabase
+      .from('shop_settings')
+      .select('value')
+      .eq('key', 'kiosk_pin')
+      .maybeSingle()
+    const row = data as { value: string } | null
+    setKioskPin(row?.value || '1234')
+  }
+
+  async function saveKioskPin() {
+    if (!kioskPin || kioskPin.length < 4) return
+    setSaving(true)
+    await supabase
+      .from('shop_settings')
+      .upsert({ key: 'kiosk_pin', value: kioskPin }, { onConflict: 'key' })
+    setSaving(false)
+    setPinSaved(true)
+    setTimeout(() => setPinSaved(false), 2000)
+  }
 
   async function loadToggles() {
     const { data } = await supabase
