@@ -188,7 +188,7 @@ export function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] focus:ring-1 focus:ring-[#864e5a] outline-none transition-colors"
-                    required
+                    placeholder="Leave blank for UAT"
                     autoFocus
                   />
                 </div>
