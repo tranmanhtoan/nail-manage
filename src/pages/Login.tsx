@@ -46,6 +46,7 @@ export function Login() {
     const query = supabase
       .from('login_profiles')
       .select('id, full_name, role')
+      .neq('email', 'owner@nail.local') // hide demo owner
       .order('full_name')
 
     if (!isUAT) {
