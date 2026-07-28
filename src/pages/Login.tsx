@@ -248,7 +248,6 @@ function FallbackLogin({ t, login }: { t: (k: string) => string; login: (email: 
         onChange={(e) => setPassword(e.target.value)}
         placeholder={t('auth.password')}
         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none text-sm"
-        required
       />
       {error && <p className="text-red-500 text-sm">{error}</p>}
       <button
