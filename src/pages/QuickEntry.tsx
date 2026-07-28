@@ -4,6 +4,7 @@ import { Check, ChevronLeft, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
 import { useSyncStore } from '@/store/syncStore'
+import { OfflineSyncBanner } from '@/components/OfflineSyncBanner'
 
 interface Employee {
   id: string
