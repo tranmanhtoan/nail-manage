@@ -293,6 +293,11 @@ export function QuickEntry() {
       <h1 className="text-2xl font-bold text-gray-900">{t('quickEntry.title')}</h1>
       <p className="text-sm text-gray-500 mt-1">{t('quickEntry.subtitle')}</p>
 
+      {/* Offline Sync Status */}
+      <div className="mt-4">
+        <OfflineSyncBanner />
+      </div>
+
       {/* Form Step */}
       {step === 'form' && (
         <div className="mt-6 space-y-6">
