@@ -42,15 +42,32 @@ export function Login() {
 
   async function loadProfiles() {
     setLoadingProfiles(true)
-    // Only show owners on the main login page
-    const { data } = await supabase
+    // In UAT mode, show ALL profiles (owner + employee) for easy testing
+    const query = supabase
       .from('login_profiles')
       .select('id, full_name, role')
-      .eq('role', 'owner')
       .order('full_name')
 
+    if (!isUAT) {
+      query.eq('role', 'owner')
+    }
+
+    const { data } = await query
     setProfiles((data as ProfileOption[]) ?? [])
     setLoadingProfiles(false)
+  }
+
+  async function handleProfileSelect(profile: ProfileOption) {
+    if (isUAT) {
+      // UAT mode: login directly without password
+      setLoading(true)
+      setError('')
+      const err = await loginByProfile(profile.id)
+      if (err) setError(err)
+      setLoading(false)
+    } else {
+      setSelectedProfile(profile)
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
