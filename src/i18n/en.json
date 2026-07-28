@@ -227,5 +227,20 @@
     "reviewTitle": "Review & Confirm",
     "submit": "Submit",
     "success": "Saved successfully!"
+  },
+  "sync": {
+    "offline": "You are offline",
+    "offlineHint": "Entries will be saved locally and synced when you reconnect.",
+    "pending": "{{count}} entry pending sync",
+    "pending_plural": "{{count}} entries pending sync",
+    "syncing": "Syncing...",
+    "willSync": "Will sync automatically when online.",
+    "syncNow": "Sync now",
+    "failed": "{{count}} entry failed to sync",
+    "failed_plural": "{{count}} entries failed to sync",
+    "failedHint": "Tap retry or dismiss.",
+    "retry": "Retry",
+    "success": "{{count}} entry synced successfully!",
+    "success_plural": "{{count}} entries synced successfully!"
   }
 }
