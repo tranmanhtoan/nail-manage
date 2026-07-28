@@ -115,8 +115,9 @@ export function Login() {
               {profiles.map((profile) => (
                 <button
                   key={profile.id}
-                  onClick={() => setSelectedProfile(profile)}
-                  className="p-4 rounded-[1rem] text-center relative transition-all border border-gray-200 hover:border-[#864e5a] hover:shadow-[0_0_20px_rgba(134,78,90,0.15)] active:scale-95"
+                  onClick={() => handleProfileSelect(profile)}
+                  disabled={loading}
+                  className="p-4 rounded-[1rem] text-center relative transition-all border border-gray-200 hover:border-[#864e5a] hover:shadow-[0_0_20px_rgba(134,78,90,0.15)] active:scale-95 disabled:opacity-50"
                   style={{
                     background: 'rgba(255, 248, 248, 0.6)',
                     backdropFilter: 'blur(12px)',
