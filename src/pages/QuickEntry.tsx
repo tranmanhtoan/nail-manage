@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Check, ChevronLeft, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
+import { useSyncStore } from '@/store/syncStore'
 
 interface Employee {
   id: string
@@ -51,85 +52,139 @@ export function QuickEntry() {
 
   async function loadData() {
     setLoading(true)
-    const [empRes, svcRes, aptsRes] = await Promise.all([
-      supabase.from('employees').select('id, name, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
-      supabase.from('services').select('id, name, price').eq('is_active', true).order('name'),
-      supabase.from('appointments').select('employee_id, status, time').eq('date', new Date().toISOString().split('T')[0]),
-    ])
-    const empList = (empRes.data ?? []) as Employee[]
-    setEmployees(empList)
-    setServices(svcRes.data ?? [])
+    const isOffline = !navigator.onLine
 
-    // If logged in as employee, find their employee_id and auto-select
-    if (user?.role === 'employee') {
-      const { data: myEmp } = await supabase
-        .from('employees')
-        .select('id')
-        .eq('profile_id', user.id)
-        .single()
-      if (myEmp) {
-        const me = myEmp as { id: string }
-        setMyEmployeeId(me.id)
-        setEmployeeId(me.id)
-      } else {
-        // Fallback: match by name
-        const { data: myEmpByName } = await supabase
+    if (isOffline) {
+      const cachedEmps = localStorage.getItem('cached_employees')
+      const cachedSvcs = localStorage.getItem('cached_services')
+      const empList = cachedEmps ? JSON.parse(cachedEmps) : []
+      const svcList = cachedSvcs ? JSON.parse(cachedSvcs) : []
+
+      setEmployees(empList)
+      setServices(svcList)
+
+      const idleMap: Record<string, number | null> = {}
+      for (const emp of empList) {
+        idleMap[emp.id] = 0 // ready/available
+      }
+      setIdleMinutes(idleMap)
+
+      // Auto-select employee if logged in as employee
+      if (user?.role === 'employee' && empList.length > 0) {
+        const cachedMyEmpId = localStorage.getItem(`my_employee_id_${user.id}`)
+        if (cachedMyEmpId) {
+          setMyEmployeeId(cachedMyEmpId)
+          setEmployeeId(cachedMyEmpId)
+        } else {
+          const myEmp = empList.find((e: any) => e.name === user.name)
+          if (myEmp) {
+            setMyEmployeeId(myEmp.id)
+            setEmployeeId(myEmp.id)
+            localStorage.setItem(`my_employee_id_${user.id}`, myEmp.id)
+          }
+        }
+      }
+
+      setLoading(false)
+      return
+    }
+
+    try {
+      const [empRes, svcRes, aptsRes] = await Promise.all([
+        supabase.from('employees').select('id, name, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
+        supabase.from('services').select('id, name, price').eq('is_active', true).order('name'),
+        supabase.from('appointments').select('employee_id, status, time').eq('date', new Date().toISOString().split('T')[0]),
+      ])
+      const empList = (empRes.data ?? []) as Employee[]
+      const svcList = (svcRes.data ?? []) as Service[]
+
+      setEmployees(empList)
+      setServices(svcList)
+
+      // Cache data
+      if (empRes.data) localStorage.setItem('cached_employees', JSON.stringify(empRes.data))
+      if (svcRes.data) localStorage.setItem('cached_services', JSON.stringify(svcRes.data))
+
+      // If logged in as employee, find their employee_id and auto-select
+      if (user?.role === 'employee') {
+        const { data: myEmp } = await supabase
           .from('employees')
           .select('id')
-          .eq('name', user.name)
+          .eq('profile_id', user.id)
           .single()
-        if (myEmpByName) {
-          const me = myEmpByName as { id: string }
+        if (myEmp) {
+          const me = myEmp as { id: string }
           setMyEmployeeId(me.id)
           setEmployeeId(me.id)
-        }
-      }
-    }
-
-    // Calculate idle minutes
-    const apts = aptsRes.data ?? []
-    const busyIds = new Set(apts.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!))
-    const lastCompletedTime = new Map<string, string>()
-    for (const apt of apts) {
-      if (apt.status === 'completed' && apt.employee_id) {
-        const prev = lastCompletedTime.get(apt.employee_id)
-        if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
-      }
-    }
-
-    const now = new Date()
-    const nowMinutes = now.getHours() * 60 + now.getMinutes()
-    const shiftStart = 9 * 60
-    const todayStr = now.toISOString().slice(0, 10)
-
-    const idleMap: Record<string, number | null> = {}
-
-    for (const emp of empList) {
-      if (busyIds.has(emp.id)) {
-        idleMap[emp.id] = null // busy
-      } else {
-        const lastTime = lastCompletedTime.get(emp.id)
-        if (lastTime) {
-          const [h, m] = lastTime.split(':')
-          idleMap[emp.id] = Math.max(0, nowMinutes - (parseInt(h) * 60 + parseInt(m)))
+          localStorage.setItem(`my_employee_id_${user.id}`, me.id)
         } else {
-          // No completed today — idle since activation or shift start (whichever is later)
-          let startMinutes = shiftStart
-          if (emp.activated_at) {
-            const activatedDate = new Date(emp.activated_at)
-            const activatedDateStr = activatedDate.toISOString().slice(0, 10)
-            if (activatedDateStr === todayStr) {
-              const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
-              startMinutes = Math.max(shiftStart, activatedMinutes)
-            }
+          // Fallback: match by name
+          const { data: myEmpByName } = await supabase
+            .from('employees')
+            .select('id')
+            .eq('name', user.name)
+            .single()
+          if (myEmpByName) {
+            const me = myEmpByName as { id: string }
+            setMyEmployeeId(me.id)
+            setEmployeeId(me.id)
+            localStorage.setItem(`my_employee_id_${user.id}`, me.id)
           }
-          idleMap[emp.id] = Math.max(0, nowMinutes - startMinutes)
         }
       }
-    }
 
-    setIdleMinutes(idleMap)
-    setLoading(false)
+      // Calculate idle minutes
+      const apts = aptsRes.data ?? []
+      const busyIds = new Set(apts.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!))
+      const lastCompletedTime = new Map<string, string>()
+      for (const apt of apts) {
+        if (apt.status === 'completed' && apt.employee_id) {
+          const prev = lastCompletedTime.get(apt.employee_id)
+          if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
+        }
+      }
+
+      const now = new Date()
+      const nowMinutes = now.getHours() * 60 + now.getMinutes()
+      const shiftStart = 9 * 60
+      const todayStr = now.toISOString().slice(0, 10)
+
+      const idleMap: Record<string, number | null> = {}
+
+      for (const emp of empList) {
+        if (busyIds.has(emp.id)) {
+          idleMap[emp.id] = null // busy
+        } else {
+          const lastTime = lastCompletedTime.get(emp.id)
+          if (lastTime) {
+            const [h, m] = lastTime.split(':')
+            idleMap[emp.id] = Math.max(0, nowMinutes - (parseInt(h) * 60 + parseInt(m)))
+          } else {
+            // No completed today — idle since activation or shift start (whichever is later)
+            let startMinutes = shiftStart
+            if (emp.activated_at) {
+              const activatedDate = new Date(emp.activated_at)
+              const activatedDateStr = activatedDate.toISOString().slice(0, 10)
+              if (activatedDateStr === todayStr) {
+                const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
+                startMinutes = Math.max(shiftStart, activatedMinutes)
+              }
+            }
+            idleMap[emp.id] = Math.max(0, nowMinutes - startMinutes)
+          }
+        }
+      }
+
+      setIdleMinutes(idleMap)
+    } catch (err) {
+      console.error('Error fetching online data, loading cache', err)
+      const cachedEmps = localStorage.getItem('cached_employees')
+      const cachedSvcs = localStorage.getItem('cached_services')
+      setEmployees(cachedEmps ? JSON.parse(cachedEmps) : [])
+      setServices(cachedSvcs ? JSON.parse(cachedSvcs) : [])
+    } finally {
+      setLoading(false)
+    }
   }
 
   function handleServiceChange(id: string) {
@@ -155,14 +210,27 @@ export function QuickEntry() {
       ? myEmployeeId
       : employeeId || null
 
-    // Always use RPC to bypass RLS for all roles
-    const { error } = await supabase.rpc('quick_entry_submit', {
+    const payload = {
       p_employee_id: effectiveEmployeeId,
       p_service_id: serviceId,
       p_price: parseFloat(amount),
       p_tip: tip ? parseFloat(tip) : 0,
       p_payment_method: paymentMethod,
-    })
+    }
+
+    if (!navigator.onLine) {
+      useSyncStore.getState().enqueueAction('quick_entry_submit', payload)
+      
+      setSubmitting(false)
+      setSuccess(true)
+      setTimeout(() => {
+        resetForm()
+      }, 1500)
+      return
+    }
+
+    // Always use RPC to bypass RLS for all roles
+    const { error } = await supabase.rpc('quick_entry_submit', payload)
 
     setSubmitting(false)
 

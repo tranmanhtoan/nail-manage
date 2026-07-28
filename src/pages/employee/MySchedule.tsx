@@ -23,22 +23,44 @@ export function MySchedule() {
   useEffect(() => { if (user) load() }, [date, user])
 
   async function load() {
-    // Use RPC function to bypass RLS
-    const { data } = await supabase.rpc('get_my_appointments', {
-      p_date: date,
-    })
+    const isOffline = !navigator.onLine
+    const cacheKey = `my_schedule_${user?.id}_${date}`
 
-    const rows = (data ?? []) as { apt_id: string; apt_date: string; apt_time: string; apt_status: string; apt_price: number; apt_tip: number; customer_name: string | null; service_name: string | null }[]
-    setItems(rows.map((r) => ({
-      id: r.apt_id,
-      date: r.apt_date,
-      time: r.apt_time,
-      status: r.apt_status,
-      price: r.apt_price,
-      tip: r.apt_tip,
-      customer: r.customer_name ? { name: r.customer_name } : null,
-      service: r.service_name ? { name: r.service_name } : null,
-    })))
+    if (isOffline) {
+      const cached = localStorage.getItem(cacheKey)
+      if (cached) {
+        setItems(JSON.parse(cached))
+      } else {
+        setItems([])
+      }
+      return
+    }
+
+    try {
+      // Use RPC function to bypass RLS
+      const { data } = await supabase.rpc('get_my_appointments', {
+        p_date: date,
+      })
+
+      const rows = (data ?? []) as { apt_id: string; apt_date: string; apt_time: string; apt_status: string; apt_price: number; apt_tip: number; customer_name: string | null; service_name: string | null }[]
+      const formattedItems = rows.map((r) => ({
+        id: r.apt_id,
+        date: r.apt_date,
+        time: r.apt_time,
+        status: r.apt_status,
+        price: r.apt_price,
+        tip: r.apt_tip,
+        customer: r.customer_name ? { name: r.customer_name } : null,
+        service: r.service_name ? { name: r.service_name } : null,
+      }))
+
+      setItems(formattedItems)
+      localStorage.setItem(cacheKey, JSON.stringify(formattedItems))
+    } catch (err) {
+      console.error('Failed to load online schedule:', err)
+      const cached = localStorage.getItem(cacheKey)
+      if (cached) setItems(JSON.parse(cached))
+    }
   }
 
   return (

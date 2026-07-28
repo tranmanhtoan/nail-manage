@@ -13,10 +13,10 @@ export function EmployeeLayout() {
   useInactivityTimeout()
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300 md:pl-64">
       <Header />
       <FloatingBackHome />
-      <main className="pb-20">
+      <main className="pb-20 md:pb-6">
         <Routes>
           <Route path="/my-schedule" element={<MySchedule />} />
           <Route path="/my-earnings" element={<MyEarnings />} />

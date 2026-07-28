@@ -42,40 +42,84 @@ export function MyEarnings() {
   useEffect(() => { if (user) load() }, [period, user])
 
   async function load() {
-    // Get my employee record via RPC (bypasses RLS)
-    const { data: empRows } = await supabase.rpc('get_my_employee')
-    const empArr = empRows as MyEmployee[] | null
-    if (!empArr || empArr.length === 0) return
-    const empData = empArr[0]
-    setEmployee(empData)
+    const isOffline = !navigator.onLine
+    const empCacheKey = `my_employee_${user?.id}`
+    const earningsCacheKey = `my_earnings_${user?.id}_${period}`
 
-    const today = new Date().toISOString().slice(0, 10)
-    const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
-    const monthStart = today.slice(0, 8) + '01'
+    if (isOffline) {
+      const cachedEmp = localStorage.getItem(empCacheKey)
+      let empData: MyEmployee | null = null
+      if (cachedEmp) {
+        empData = JSON.parse(cachedEmp)
+        setEmployee(empData)
+      }
 
-    let dateFrom = today
-    if (period === 'week') dateFrom = weekAgo
-    if (period === 'month') dateFrom = monthStart
+      const cachedEarnings = localStorage.getItem(earningsCacheKey)
+      if (cachedEarnings) {
+        const parsed = JSON.parse(cachedEarnings)
+        setAppointments(parsed.appointments)
+        setData(parsed.data)
+      } else {
+        setAppointments([])
+        setData({ totalServices: 0, totalRevenue: 0, totalTips: 0, myEarnings: 0 })
+      }
+      return
+    }
 
-    // Get appointments via RPC (bypasses RLS)
-    const { data: aptData } = await supabase.rpc('get_my_appointments', {
-      p_date: today,
-      p_date_from: dateFrom,
-    })
+    try {
+      // Get my employee record via RPC (bypasses RLS)
+      const { data: empRows } = await supabase.rpc('get_my_employee')
+      const empArr = empRows as MyEmployee[] | null
+      if (!empArr || empArr.length === 0) return
+      const empData = empArr[0]
+      setEmployee(empData)
+      localStorage.setItem(empCacheKey, JSON.stringify(empData))
 
-    const rows = (aptData ?? []) as AppointmentRow[]
-    setAppointments(rows)
+      const today = new Date().toISOString().slice(0, 10)
+      const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
+      const monthStart = today.slice(0, 8) + '01'
 
-    const totalRevenue = rows.reduce((s, a) => s + a.apt_price, 0)
-    const totalTips = rows.reduce((s, a) => s + a.apt_tip, 0)
-    const myEarnings = calcEarnings(empData, totalRevenue, totalTips)
+      let dateFrom = today
+      if (period === 'week') dateFrom = weekAgo
+      if (period === 'month') dateFrom = monthStart
 
-    setData({
-      totalServices: rows.length,
-      totalRevenue,
-      totalTips,
-      myEarnings,
-    })
+      // Get appointments via RPC (bypasses RLS)
+      const { data: aptData } = await supabase.rpc('get_my_appointments', {
+        p_date: today,
+        p_date_from: dateFrom,
+      })
+
+      const rows = (aptData ?? []) as AppointmentRow[]
+      setAppointments(rows)
+
+      const totalRevenue = rows.reduce((s, a) => s + a.apt_price, 0)
+      const totalTips = rows.reduce((s, a) => s + a.apt_tip, 0)
+      const myEarnings = calcEarnings(empData, totalRevenue, totalTips)
+
+      const payloadData = {
+        totalServices: rows.length,
+        totalRevenue,
+        totalTips,
+        myEarnings,
+      }
+      setData(payloadData)
+
+      localStorage.setItem(
+        earningsCacheKey,
+        JSON.stringify({ appointments: rows, data: payloadData })
+      )
+    } catch (err) {
+      console.error('Failed to load online earnings:', err)
+      const cachedEmp = localStorage.getItem(empCacheKey)
+      if (cachedEmp) setEmployee(JSON.parse(cachedEmp))
+      
+      const cachedEarnings = localStorage.getItem(earningsCacheKey)
+      if (cachedEarnings) {
+        const parsed = JSON.parse(cachedEarnings)
+        setAppointments(parsed.appointments)
+        setData(parsed.data)
+      }
+    }
   }
 
   function formatTime(time: string) {

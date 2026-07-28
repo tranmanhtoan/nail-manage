@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield, KeyRound } from 'lucide-react'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { useAuthStore } from '@/store/authStore'
+import { useThemeStore } from '@/store/themeStore'
 import { useSuperModeStore } from '@/store/superModeStore'
 import { Employees } from './Employees'
 import { Services } from './Services'
@@ -24,8 +25,9 @@ const DEFAULT_TOGGLES: FeatureToggles = {
 }
 
 export function Settings() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { logout } = useAuthStore()
+  const { darkMode, toggleDarkMode } = useThemeStore()
   const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
   const [tab, setTab] = useState<Tab>('general')
   const [toggles, setToggles] = useState<FeatureToggles>(DEFAULT_TOGGLES)
@@ -127,6 +129,29 @@ export function Settings() {
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-800">{t('settings.language')}</span>
               <LanguageSwitch />
+            </div>
+          </div>
+
+          {/* Dark Mode */}
+          <div
+            className="rounded-[1rem] p-4 border border-[rgba(134,78,90,0.1)]"
+            style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
+                  {t('settings.darkMode') || (i18n.language === 'vi' ? 'Chế độ tối' : 'Dark Mode')}
+                </span>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  {t('settings.darkModeDesc') || (i18n.language === 'vi' ? 'Giao diện tối dịu mắt' : 'Dark color theme for nighttime')}
+                </p>
+              </div>
+              <button
+                onClick={toggleDarkMode}
+                className={`shrink-0 transition-colors ${darkMode ? 'text-[#864e5a] dark:text-[#c9949f]' : 'text-gray-300'}`}
+              >
+                {darkMode ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
+              </button>
             </div>
           </div>
 

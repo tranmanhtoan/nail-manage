@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
 import type { Service } from '@/lib/database.types'
+import { useSyncStore } from '@/store/syncStore'
 
 export function CheckIn() {
   const { t } = useTranslation()
@@ -15,14 +16,86 @@ export function CheckIn() {
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
-    supabase.from('services').select('*').eq('is_active', true).order('name')
-      .then(({ data }) => setServices((data as Service[]) ?? []))
+    const loadServices = async () => {
+      if (!navigator.onLine) {
+        const cached = localStorage.getItem('cached_services')
+        if (cached) setServices(JSON.parse(cached))
+        return
+      }
+      try {
+        const { data } = await supabase.from('services').select('*').eq('is_active', true).order('name')
+        if (data) {
+          setServices((data as Service[]) ?? [])
+          localStorage.setItem('cached_services', JSON.stringify(data))
+        }
+      } catch (err) {
+        console.error('Failed to load services:', err)
+        const cached = localStorage.getItem('cached_services')
+        if (cached) setServices(JSON.parse(cached))
+      }
+    }
+    loadServices()
   }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!user || !selectedService) return
 
+    // OFFLINE FLOW
+    if (!navigator.onLine) {
+      let empId = localStorage.getItem(`my_employee_id_${user.id}`)
+      if (!empId) {
+        const cachedEmpsStr = localStorage.getItem('cached_employees')
+        const cachedEmps = cachedEmpsStr ? JSON.parse(cachedEmpsStr) : []
+        const match = cachedEmps.find((e: any) => e.name === user.name)
+        if (match) {
+          empId = match.id
+        }
+      }
+
+      if (!empId) {
+        alert(t('common.error') || 'Error: Employee record not found in cache. Please try again when online.')
+        return
+      }
+
+      const service = services.find((s) => s.id === selectedService)!
+      let clientCustomerId: string | null = null
+
+      if (customerName) {
+        clientCustomerId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2) + '-' + Math.random().toString(36).substring(2)
+        useSyncStore.getState().enqueueAction('create_customer', {
+          id: clientCustomerId,
+          name: customerName,
+          phone: customerPhone || null,
+        })
+      }
+
+      const today = new Date().toISOString().slice(0, 10)
+      const now = new Date().toTimeString().slice(0, 5)
+
+      useSyncStore.getState().enqueueAction('insert_appointment', {
+        employee_id: empId,
+        service_id: service.id,
+        customer_id: clientCustomerId,
+        date: today,
+        time: now,
+        price: service.price,
+        tip,
+        status: 'completed',
+        source: 'walk_in',
+        notes: null,
+      })
+
+      setSuccess(true)
+      setCustomerName('')
+      setCustomerPhone('')
+      setSelectedService('')
+      setTip(0)
+      setTimeout(() => setSuccess(false), 3000)
+      return
+    }
+
+    // ONLINE FLOW
     const { data: emp } = await supabase
       .from('employees')
       .select('id')

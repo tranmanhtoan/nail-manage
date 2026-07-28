@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
+import { useThemeStore } from '@/store/themeStore'
+import { useSyncStore } from '@/store/syncStore'
 import { Header } from '@/components/Header'
 import { BottomNav } from '@/components/BottomNav'
 import { Login } from '@/pages/Login'
@@ -16,10 +18,17 @@ import { PinGate } from '@/components/PinGate'
 import { KioskLayout } from '@/pages/kiosk/KioskLayout'
 import { EmployeeLayout } from '@/components/EmployeeLayout'
 
+
 export default function App() {
   const { user, loading, checkSession } = useAuthStore()
+  const { initTheme } = useThemeStore()
+  const { init: initSync } = useSyncStore()
 
-  useEffect(() => { checkSession() }, [checkSession])
+  useEffect(() => {
+    checkSession()
+    initTheme()
+    initSync()
+  }, [checkSession, initTheme, initSync])
 
   if (loading) {
     return (
@@ -60,9 +69,9 @@ export default function App() {
         <Route
           path="*"
           element={
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300 md:pl-64">
               <Header />
-              <main className="pb-20">
+              <main className="pb-20 md:pb-6">
                 <Routes>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/appointments" element={<Appointments />} />

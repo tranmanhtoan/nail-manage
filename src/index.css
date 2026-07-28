@@ -51,3 +51,97 @@ body {
     font-size: 16px !important;
   }
 }
+
+/* Dark Mode overrides */
+.dark body {
+  background-color: #030712 !important;
+  color: #f3f4f6 !important;
+}
+
+/* Global Glassmorphic Card adaptations for Dark Mode */
+.dark *[style*="rgba(255, 248, 248, 0.6)"],
+.dark *[style*="rgba(255, 248, 248, 0.8)"],
+.dark *[style*="rgba(255, 248, 248, 0.65)"] {
+  background: rgba(30, 24, 25, 0.7) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #f3f4f6 !important;
+}
+
+.dark *[style*="rgba(134,78,90,0.1)"] {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dark *[style*="background: rgb(255, 248, 248)"] {
+  background-color: #111827 !important;
+  color: #f3f4f6 !important;
+}
+
+/* General Dark Mode Elements */
+.dark input:not([type="checkbox"]):not([type="radio"]),
+.dark select,
+.dark textarea {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+
+.dark select option {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Custom class overrides to support Tailwind utility styles in dark mode */
+.dark .text-gray-900 { color: #f3f4f6 !important; }
+.dark .text-gray-800 { color: #e5e7eb !important; }
+.dark .text-gray-700 { color: #d1d5db !important; }
+.dark .text-gray-600 { color: #9ca3af !important; }
+.dark .text-gray-500 { color: #9ca3af !important; }
+.dark .text-gray-400 { color: #6b7280 !important; }
+
+.dark .bg-white { background-color: #111827 !important; }
+.dark .bg-gray-50 { background-color: #030712 !important; }
+.dark .bg-gray-100 { background-color: #1f2937 !important; }
+
+.dark .border-gray-200 { border-color: #374151 !important; }
+.dark .border-gray-100 { border-color: #1f2937 !important; }
+.dark hr { border-color: #374151 !important; }
+
+/* iOS & Safari compatibility rules */
+*[style*="backdropFilter"] {
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.dark *[style*="rgba(255, 248, 248, 0.6)"],
+.dark *[style*="rgba(255, 248, 248, 0.8)"],
+.dark *[style*="rgba(255, 248, 248, 0.65)"] {
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Enable elastic scrolling on lists */
+.scroll-touch-smooth {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* Active feedback animations for touch viewports */
+.touch-interactive {
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.touch-interactive:active {
+  transform: scale(0.96) !important;
+  opacity: 0.85;
+}
+
+/* Disable sticky hover states on touch screens */
+@media (hover: none) {
+  .hover\:bg-gray-100:hover { background-color: transparent !important; }
+  .hover\:bg-gray-50:hover { background-color: transparent !important; }
+  .hover\:bg-gray-200:hover { background-color: transparent !important; }
+}
+
+

@@ -12,7 +12,7 @@ export function LanguageSwitch() {
   return (
     <button
       onClick={toggle}
-      className="px-2 py-1 text-xs font-medium rounded bg-gray-100 hover:bg-gray-200 transition-colors"
+      className="px-2 py-1 text-xs font-medium rounded bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors"
       aria-label="Switch language"
     >
       {i18n.language === 'en' ? '🇻🇳 VI' : '🇺🇸 EN'}
