@@ -26,12 +26,15 @@ export function Login() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const login = useAuthStore((s) => s.login)
+  const loginByProfile = useAuthStore((s) => s.loginByProfile)
   const [profiles, setProfiles] = useState<ProfileOption[]>([])
   const [selectedProfile, setSelectedProfile] = useState<ProfileOption | null>(null)
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [loadingProfiles, setLoadingProfiles] = useState(true)
+
+  const isUAT = import.meta.env.VITE_UAT_MODE === 'true'
 
   useEffect(() => {
     loadProfiles()
