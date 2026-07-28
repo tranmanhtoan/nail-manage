@@ -227,5 +227,20 @@
     "reviewTitle": "Xác nhận thông tin",
     "submit": "Gửi",
     "success": "Đã lưu thành công!"
+  },
+  "sync": {
+    "offline": "Bạn đang ngoại tuyến",
+    "offlineHint": "Dữ liệu sẽ được lưu cục bộ và đồng bộ khi có mạng lại.",
+    "pending": "{{count}} mục đang chờ đồng bộ",
+    "pending_plural": "{{count}} mục đang chờ đồng bộ",
+    "syncing": "Đang đồng bộ...",
+    "willSync": "Sẽ tự đồng bộ khi có mạng.",
+    "syncNow": "Đồng bộ ngay",
+    "failed": "{{count}} mục đồng bộ thất bại",
+    "failed_plural": "{{count}} mục đồng bộ thất bại",
+    "failedHint": "Nhấn thử lại hoặc bỏ qua.",
+    "retry": "Thử lại",
+    "success": "Đã đồng bộ {{count}} mục thành công!",
+    "success_plural": "Đã đồng bộ {{count}} mục thành công!"
   }
 }
