@@ -40,7 +40,7 @@ export function BottomNav() {
       {/* Mobile view */}
       <nav className={`fixed bottom-0 inset-x-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-bottom z-50 transition-colors duration-300 md:hidden ${
         isKeyboardOpen ? 'hidden' : 'block'
-      }`}>
+      }`} role="navigation" aria-label="Main navigation">
         <div className="flex justify-around items-center h-16">
           {tabs.map(({ to, icon: Icon, label }) => (
             <NavLink
