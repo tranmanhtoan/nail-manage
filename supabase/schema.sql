@@ -12,6 +12,7 @@ create table public.profiles (
   role text not null default 'employee' check (role in ('owner', 'employee', 'kiosk')),
   phone text,
   avatar_url text,
+  pin text default null, -- 4-digit PIN for login authentication
   created_at timestamptz default now()
 );
 
@@ -154,10 +155,10 @@ create policy "Users read own profile" on public.profiles for select
 create policy "Owner read all profiles" on public.profiles for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'owner'));
 
--- Secure view for login screen (only exposes id, full_name, role — no email)
+-- Secure view for login screen (exposes id, full_name, role, pin)
 -- Only employees shown here; owner logs in via PIN on home screen
 create view public.login_profiles as
-  select id, full_name, role
+  select id, full_name, role, pin
   from public.profiles
   where role = 'employee';
 

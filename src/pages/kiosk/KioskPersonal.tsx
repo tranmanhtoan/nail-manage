@@ -4,13 +4,13 @@ import { ChevronLeft, Loader2, Fingerprint, Delete } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
 
-const LOGIN_PIN = import.meta.env.VITE_OWNER_PIN || '1234'
 const PIN_LENGTH = 4
 
 interface ProfileOption {
   id: string
   full_name: string
   role: string
+  pin: string | null
 }
 
 // Chibi emoji based on name hash
@@ -42,7 +42,7 @@ export function KioskPersonal() {
     setLoadingProfiles(true)
     const { data } = await supabase
       .from('login_profiles')
-      .select('id, full_name, role')
+      .select('id, full_name, role, pin')
       .eq('role', 'employee')
       .order('full_name')
     setProfiles((data as ProfileOption[]) ?? [])
@@ -68,7 +68,19 @@ export function KioskPersonal() {
 
   async function verifyPin(enteredPin: string) {
     if (!selectedProfile) return
-    if (enteredPin === LOGIN_PIN) {
+
+    // Check against the profile's own PIN
+    if (!selectedProfile.pin) {
+      setShaking(true)
+      setError('Chưa đặt PIN. Liên hệ Owner để cài đặt.')
+      setTimeout(() => {
+        setPin('')
+        setShaking(false)
+      }, 500)
+      return
+    }
+
+    if (enteredPin === selectedProfile.pin) {
       setLoading(true)
       const err = await loginByProfile(selectedProfile.id)
       if (err) {
@@ -76,7 +88,6 @@ export function KioskPersonal() {
         setPin('')
         setLoading(false)
       }
-      // If success, App.tsx redirects to employee routes
     } else {
       setShaking(true)
       setError('PIN không đúng')
