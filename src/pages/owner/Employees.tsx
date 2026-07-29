@@ -51,6 +51,7 @@ export function Employees() {
 
         if (!signUpError && userId && hasIdentities) {
           await supabase.from('employees').update({ ...empData, profile_id: userId }).eq('id', editing.id)
+          await updatePin(userId)
           setCreatedCreds({ login: loginId, password: tempPassword })
         } else {
           await supabase.from('employees').update(empData).eq('id', editing.id)
@@ -59,6 +60,7 @@ export function Employees() {
         }
       } else {
         await supabase.from('employees').update(empData).eq('id', editing.id)
+        await updatePin(editing.profile_id)
       }
 
       setShowForm(false)
