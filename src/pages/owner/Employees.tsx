@@ -21,8 +21,15 @@ export function Employees() {
     setEmployees((data as Employee[]) ?? [])
   }
 
-  async function save(form: Partial<Employee> & { create_username?: string; create_email?: string }) {
-    const { create_username, create_email, ...empData } = form
+  async function save(form: Partial<Employee> & { create_username?: string; create_email?: string; set_pin?: string }) {
+    const { create_username, create_email, set_pin, ...empData } = form
+
+    // Update PIN in profiles table if provided
+    async function updatePin(profileId: string) {
+      if (set_pin && set_pin.length === 4) {
+        await supabase.from('profiles').update({ pin: set_pin }).eq('id', profileId)
+      }
+    }
 
     if (editing) {
       // If editing an employee without a profile, create one now
