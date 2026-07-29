@@ -26,6 +26,10 @@ export function initAuthListener(onSessionExpired: () => void) {
   if (authListenerInitialized) return
   authListenerInitialized = true
 
+  // Skip auth listener in UAT mode — no real Supabase session
+  const isUAT = import.meta.env.VITE_UAT_MODE === 'true'
+  if (isUAT) return
+
   supabase.auth.onAuthStateChange((event, _session) => {
     if (event === 'TOKEN_REFRESHED') {
       // Token refreshed successfully — no action needed
