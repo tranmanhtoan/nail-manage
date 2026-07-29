@@ -1,32 +1,68 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { ChevronLeft, Loader2, Monitor, Crown } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+
+interface ProfileOption {
+  id: string
+  full_name: string
+  role: string
+}
+
+// Chibi emoji based on name hash
+function getChibiEmoji(name: string) {
+  const chibis = ['👩‍🎨', '👩‍💼', '💇‍♀️', '💅', '👩‍🔧', '🧑‍🎨', '👩‍⚕️', '🧑‍💻']
+  let hash = 0
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash)
+  }
+  return chibis[Math.abs(hash) % chibis.length]
+}
 
 export function Login() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const login = useAuthStore((s) => s.login)
+  const loginByProfile = useAuthStore((s) => s.loginByProfile)
   const [showOwnerLogin, setShowOwnerLogin] = useState(false)
-  const [username, setUsername] = useState('')
+  const [profiles, setProfiles] = useState<ProfileOption[]>([])
+  const [loadingProfiles, setLoadingProfiles] = useState(false)
+  const [loginLoadingId, setLoginLoadingId] = useState<string | null>(null)
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
+  useEffect(() => {
+    if (showOwnerLogin) {
+      loadProfiles()
+    }
+  }, [showOwnerLogin])
+
+  async function loadProfiles() {
+    setLoadingProfiles(true)
+    const { data } = await supabase
+      .from('login_profiles')
+      .select('id, full_name, role')
+      .eq('role', 'owner')
+      .order('full_name')
+
+    setProfiles((data as ProfileOption[]) ?? [])
+    setLoadingProfiles(false)
+  }
+
+  async function handleProfileClick(profile: ProfileOption) {
+    setLoginLoadingId(profile.id)
     setError('')
-    // ponytail: password disabled temporarily — pass empty string
-    const err = await login(username, '')
-    if (err) setError(err)
-    setLoading(false)
+    const err = await loginByProfile(profile.id)
+    if (err) {
+      setError(err)
+      setLoginLoadingId(null)
+    }
+    // If login succeeds, App.tsx will redirect to owner routes
   }
 
   function handleBack() {
     setShowOwnerLogin(false)
-    setUsername('')
     setError('')
   }
 
@@ -81,7 +117,7 @@ export function Login() {
             </button>
           </div>
         ) : (
-          /* ═══ Owner Login Form (password disabled) ═══ */
+          /* ═══ Owner Login: Profile list — click to login ═══ */
           <div className="bg-white rounded-2xl shadow-lg p-6 space-y-5">
             <button
               onClick={handleBack}
@@ -91,38 +127,51 @@ export function Login() {
               {t('common.back')}
             </button>
 
-            <div className="flex flex-col items-center gap-3 py-2">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl bg-gray-100 border-2 border-[#864e5a]">
-                <Crown size={32} className="text-[#864e5a]" />
-              </div>
+            <div className="flex flex-col items-center gap-2 py-1">
               <p className="font-bold text-lg text-gray-900">Owner Login</p>
+              <p className="text-sm text-gray-500">Chọn tài khoản để đăng nhập</p>
             </div>
 
-            {/* ponytail: password field removed temporarily. To re-enable, add back password input and pass it to login() */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] focus:ring-1 focus:ring-[#864e5a] outline-none transition-colors"
-                  placeholder={t('auth.username')}
-                  required
-                  autoCapitalize="none"
-                  autoFocus
-                />
+            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+            {loadingProfiles ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="animate-spin text-[#864e5a]" size={32} />
               </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-4">
+                {profiles.map((profile) => (
+                  <button
+                    key={profile.id}
+                    onClick={() => handleProfileClick(profile)}
+                    disabled={loginLoadingId !== null}
+                    className="p-4 rounded-[1rem] text-center relative transition-all border border-gray-200 hover:border-[#864e5a] hover:shadow-[0_0_20px_rgba(134,78,90,0.15)] active:scale-95 disabled:opacity-50"
+                    style={{
+                      background: 'rgba(255, 248, 248, 0.6)',
+                      backdropFilter: 'blur(12px)',
+                    }}
+                  >
+                    {loginLoadingId === profile.id && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-white/70 rounded-[1rem] z-10">
+                        <Loader2 className="animate-spin text-[#864e5a]" size={24} />
+                      </div>
+                    )}
+                    <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-2xl mb-2 bg-gray-100 border-2 border-[#864e5a]">
+                      {getChibiEmoji(profile.full_name)}
+                    </div>
+                    <p className="font-semibold text-sm truncate text-gray-900">
+                      {profile.full_name}
+                    </p>
+                  </button>
+                ))}
 
-              {error && <p className="text-red-500 text-sm">{error}</p>}
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl disabled:opacity-50 transition-all active:scale-[0.98]"
-              >
-                {loading ? <Loader2 className="animate-spin mx-auto" size={20} /> : t('auth.login')}
-              </button>
-            </form>
+                {profiles.length === 0 && (
+                  <p className="col-span-2 text-center text-gray-400 py-8 text-sm">
+                    Chưa có tài khoản owner nào
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         )}
 
