@@ -39,7 +39,7 @@ export function Login() {
   async function verifyPin(enteredPin: string) {
     if (enteredPin === OWNER_PIN) {
       setLoading(true)
-      const err = await login('owner', '')
+      const err = await login(OWNER_EMAIL, '')
       if (err) {
         setError(err)
         setPin('')
