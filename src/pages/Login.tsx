@@ -4,20 +4,50 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { ChevronLeft, Loader2, Monitor, Crown, Fingerprint, Delete } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
-const OWNER_PIN = import.meta.env.VITE_OWNER_PIN || '1234'
-const OWNER_EMAIL = import.meta.env.VITE_OWNER_EMAIL || 'owner@nail.local'
 const PIN_LENGTH = 4
+
+interface OwnerProfile {
+  id: string
+  full_name: string
+  role: string
+  pin: string | null
+}
 
 export function Login() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const login = useAuthStore((s) => s.login)
-  const [showOwnerLogin, setShowOwnerLogin] = useState(false)
+  const loginByProfile = useAuthStore((s) => s.loginByProfile)
+
+  const [ownerProfile, setOwnerProfile] = useState<OwnerProfile | null>(null)
+  const [showPinPad, setShowPinPad] = useState(false)
   const [pin, setPin] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [shaking, setShaking] = useState(false)
+
+  async function handleOwnerClick() {
+    setLoading(true)
+    setError('')
+    // Fetch owner profile from DB
+    const { data, error: fetchError } = await supabase
+      .from('login_profiles')
+      .select('id, full_name, role, pin')
+      .eq('role', 'owner')
+      .limit(1)
+      .single()
+
+    if (fetchError || !data) {
+      setError('Không tìm thấy tài khoản Owner')
+      setLoading(false)
+      return
+    }
+
+    setOwnerProfile(data as OwnerProfile)
+    setShowPinPad(true)
+    setLoading(false)
+  }
 
   const handlePinInput = useCallback((digit: string) => {
     setPin((prev) => {
@@ -29,7 +59,7 @@ export function Login() {
       }
       return newPin
     })
-  }, [])
+  }, [ownerProfile])
 
   const handleDelete = useCallback(() => {
     setPin((prev) => prev.slice(0, -1))
@@ -37,9 +67,21 @@ export function Login() {
   }, [])
 
   async function verifyPin(enteredPin: string) {
-    if (enteredPin === OWNER_PIN) {
+    if (!ownerProfile) return
+
+    if (!ownerProfile.pin) {
+      setShaking(true)
+      setError('Chưa đặt PIN. Hãy cài PIN trong database.')
+      setTimeout(() => {
+        setPin('')
+        setShaking(false)
+      }, 500)
+      return
+    }
+
+    if (enteredPin === ownerProfile.pin) {
       setLoading(true)
-      const err = await login(OWNER_EMAIL, '')
+      const err = await loginByProfile(ownerProfile.id)
       if (err) {
         setError(err)
         setPin('')
@@ -56,6 +98,7 @@ export function Login() {
   }
 
   async function handleBiometric() {
+    if (!ownerProfile) return
     setError('')
     setLoading(true)
     try {
@@ -89,8 +132,8 @@ export function Login() {
             rp: { name: 'NailPro', id: window.location.hostname },
             user: {
               id: crypto.getRandomValues(new Uint8Array(16)),
-              name: 'owner',
-              displayName: 'Owner',
+              name: ownerProfile.full_name,
+              displayName: ownerProfile.full_name,
             },
             pubKeyCredParams: [{ alg: -7, type: 'public-key' }],
             authenticatorSelection: {
@@ -108,9 +151,8 @@ export function Login() {
         }
       }
 
-      // Biometric passed — login as owner
-      setLoading(true)
-      const err = await login(OWNER_EMAIL, '')
+      // Biometric passed — login
+      const err = await loginByProfile(ownerProfile.id)
       if (err) setError(err)
     } catch {
       setError('Lỗi xác thực sinh trắc học')
@@ -119,7 +161,8 @@ export function Login() {
   }
 
   function handleBack() {
-    setShowOwnerLogin(false)
+    setShowPinPad(false)
+    setOwnerProfile(null)
     setPin('')
     setError('')
   }
@@ -133,13 +176,14 @@ export function Login() {
           <p className="text-gray-500 mt-1">{t('auth.login')}</p>
         </div>
 
-        {!showOwnerLogin ? (
+        {!showPinPad ? (
           /* ═══ Mode Selection: Owner vs Kiosk ═══ */
           <div className="grid grid-cols-2 gap-4">
             {/* Owner card */}
             <button
-              onClick={() => setShowOwnerLogin(true)}
-              className="p-6 rounded-[1rem] text-center relative transition-all border border-gray-200 hover:border-[#864e5a] hover:shadow-[0_0_20px_rgba(134,78,90,0.15)] active:scale-95"
+              onClick={handleOwnerClick}
+              disabled={loading}
+              className="p-6 rounded-[1rem] text-center relative transition-all border border-gray-200 hover:border-[#864e5a] hover:shadow-[0_0_20px_rgba(134,78,90,0.15)] active:scale-95 disabled:opacity-50"
               style={{
                 background: 'rgba(255, 248, 248, 0.6)',
                 backdropFilter: 'blur(12px)',
@@ -149,7 +193,7 @@ export function Login() {
                 Owner
               </div>
               <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl mb-3 bg-gray-100">
-                <Crown size={32} className="text-[#864e5a]" />
+                {loading ? <Loader2 className="animate-spin text-[#864e5a]" size={28} /> : <Crown size={32} className="text-[#864e5a]" />}
               </div>
               <p className="font-semibold text-base text-gray-900">Owner</p>
               <p className="text-xs mt-0.5 text-gray-500">Quản lý tiệm</p>
@@ -173,9 +217,11 @@ export function Login() {
               <p className="font-semibold text-base text-gray-900">Kiosk</p>
               <p className="text-xs mt-0.5 text-gray-500">Chế độ tablet</p>
             </button>
+
+            {error && <p className="col-span-2 text-red-500 text-sm text-center mt-2">{error}</p>}
           </div>
         ) : (
-          /* ═══ Owner Login: PIN + Face ID ═══ */
+          /* ═══ Owner PIN + Face ID ═══ */
           <div className="bg-white rounded-2xl shadow-lg p-6 space-y-5">
             <button
               onClick={handleBack}
@@ -185,11 +231,11 @@ export function Login() {
               {t('common.back')}
             </button>
 
-            <div className="flex flex-col items-center gap-3 py-2">
+            <div className="flex flex-col items-center gap-2 py-2">
               <div className="w-16 h-16 rounded-full flex items-center justify-center bg-gray-100 border-2 border-[#864e5a]">
                 <Crown size={28} className="text-[#864e5a]" />
               </div>
-              <p className="font-bold text-lg text-gray-900">Owner Login</p>
+              <p className="font-bold text-lg text-gray-900">{ownerProfile?.full_name}</p>
               <p className="text-sm text-gray-500">Nhập PIN hoặc dùng Face ID</p>
             </div>
 

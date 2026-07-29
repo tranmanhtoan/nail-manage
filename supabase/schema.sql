@@ -156,11 +156,11 @@ create policy "Owner read all profiles" on public.profiles for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'owner'));
 
 -- Secure view for login screen (exposes id, full_name, role, pin)
--- Only employees shown here; owner logs in via PIN on home screen
+-- All roles except kiosk can login from this screen
 create view public.login_profiles as
   select id, full_name, role, pin
   from public.profiles
-  where role = 'employee';
+  where role in ('owner', 'employee');
 
 -- Grant anonymous and authenticated access to the view
 grant select on public.login_profiles to anon, authenticated;
