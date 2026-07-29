@@ -190,6 +190,7 @@ export const useSyncStore = create<SyncState>()(
         // Move failed items back to queue with reset retry count
         const retryActions: SyncAction[] = failedItems.map((item) => ({
           id: item.id,
+          idempotencyKey: item.idempotencyKey,
           type: item.type,
           payload: item.payload,
           timestamp: item.timestamp,
