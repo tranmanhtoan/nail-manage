@@ -370,6 +370,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
       is_active: isActive,
       ...(!employee && username ? { create_username: username } : {}),
       ...(!employee && !username && email ? { create_email: email } : {}),
+      ...(pinCode ? { set_pin: pinCode } : {}),
     })
   }
 
