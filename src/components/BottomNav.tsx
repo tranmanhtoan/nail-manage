@@ -60,7 +60,7 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop/Tablet Sidebar view */}
-      <aside className="fixed left-0 top-0 bottom-0 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 z-50 hidden md:flex flex-col py-6 px-4 transition-colors duration-300">
+      <aside className="fixed left-0 top-0 bottom-0 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 z-50 hidden md:flex flex-col py-6 px-4 transition-colors duration-300" role="navigation" aria-label="Sidebar navigation">
         <div className="flex items-center gap-2 mb-8 px-2 select-none">
           <span className="text-2xl">💅</span>
           <span className="font-bold text-lg text-primary dark:text-[#c9949f]">{t('app.name')}</span>

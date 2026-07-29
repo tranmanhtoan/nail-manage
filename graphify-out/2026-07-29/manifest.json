@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "src/App.tsx": {
-    "mtime": 1785340466.0140667,
-    "ast_hash": "2a6dcd68b45e79d0b0e3940c62ba842a",
+    "mtime": 1785340670.7981853,
+    "ast_hash": "287181fd6aa5a4a3f59ad5e513fa8440",
     "semantic_hash": ""
   },
   "src/components/BottomNav.tsx": {
@@ -60,9 +60,9 @@
     "semantic_hash": "90246fb8a0054c5a9b1a436a4ec8a9cd"
   },
   "src/components/PinGate.tsx": {
-    "mtime": 1784864687.4437358,
-    "ast_hash": "db3fb8cdbfcced08bde24d39ba67d53a",
-    "semantic_hash": "db3fb8cdbfcced08bde24d39ba67d53a"
+    "mtime": 1785340727.790235,
+    "ast_hash": "02fc80422288824ee503befeb226b98d",
+    "semantic_hash": ""
   },
   "src/hooks/useInactivityTimeout.ts": {
     "mtime": 1784881403.5562384,
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785340612.0352979,
-    "ast_hash": "c1bc9fa0dad5c4847cb23e5b276a63e6",
+    "mtime": 1785340710.9335968,
+    "ast_hash": "c2f77dd024086c1793f03112338f993a",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {

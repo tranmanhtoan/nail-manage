@@ -21,3 +21,4 @@
 - Chỉnh sửa `src/App.tsx` — Import initAuthListener để kích hoạt auth session monitoring
 - Chỉnh sửa `src/index.css` — Thêm accessibility: focus-visible ring, skip-link, touch-target, prefers-reduced-motion, high-contrast text
 - Chỉnh sửa `src/components/PinGate.tsx` — Thêm keyboard event handler cho phép nhập PIN bằng bàn phím vật lý
+- Chỉnh sửa `src/components/BottomNav.tsx` — Thêm role="navigation" và aria-label cho nav element

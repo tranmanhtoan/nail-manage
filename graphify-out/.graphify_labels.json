@@ -1,11 +1,11 @@
 {
   "0": "validations.ts",
-  "1": "Settings.tsx",
+  "1": "Employees.tsx",
   "2": "supabase.ts",
   "3": "dependencies",
   "4": "compilerOptions",
   "5": "devDependencies",
-  "6": "Appointments.tsx",
+  "6": "Settings.tsx",
   "7": "Dashboard.tsx",
   "8": "useAuthStore",
   "9": "vite-env.d.ts",
@@ -14,6 +14,5 @@
   "12": "MCC Nail & Spa — Tổng quan Module",
   "13": "App.tsx",
   "14": "[2026-07-29]",
-  "15": "QuickEntry.tsx",
-  "16": "Reports.tsx"
+  "15": "AdminSettings.tsx"
 }
