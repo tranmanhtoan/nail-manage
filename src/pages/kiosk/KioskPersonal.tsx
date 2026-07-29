@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Loader2, Lock, ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Loader2, Fingerprint, Delete } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
+
+const LOGIN_PIN = import.meta.env.VITE_OWNER_PIN || '1234'
+const PIN_LENGTH = 4
 
 interface ProfileOption {
   id: string
@@ -22,13 +25,14 @@ function getChibiEmoji(name: string) {
 
 export function KioskPersonal() {
   const { t } = useTranslation()
-  const login = useAuthStore((s) => s.login)
+  const loginByProfile = useAuthStore((s) => s.loginByProfile)
   const [profiles, setProfiles] = useState<ProfileOption[]>([])
   const [selectedProfile, setSelectedProfile] = useState<ProfileOption | null>(null)
-  const [password, setPassword] = useState('')
+  const [pin, setPin] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [loadingProfiles, setLoadingProfiles] = useState(true)
+  const [shaking, setShaking] = useState(false)
 
   useEffect(() => {
     loadProfiles()
@@ -36,42 +40,120 @@ export function KioskPersonal() {
 
   async function loadProfiles() {
     setLoadingProfiles(true)
-    // Only show employees (not owners)
     const { data } = await supabase
       .from('login_profiles')
       .select('id, full_name, role')
       .eq('role', 'employee')
       .order('full_name')
-
     setProfiles((data as ProfileOption[]) ?? [])
     setLoadingProfiles(false)
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!selectedProfile) return
-    setLoading(true)
+  const handlePinInput = useCallback((digit: string) => {
+    setPin((prev) => {
+      if (prev.length >= PIN_LENGTH) return prev
+      const newPin = prev + digit
+      setError('')
+      if (newPin.length === PIN_LENGTH) {
+        setTimeout(() => verifyPin(newPin), 50)
+      }
+      return newPin
+    })
+  }, [selectedProfile])
+
+  const handleDelete = useCallback(() => {
+    setPin((prev) => prev.slice(0, -1))
     setError('')
+  }, [])
 
-    // Get email via RPC
-    const { data: email } = await supabase.rpc('get_login_email', { profile_id: selectedProfile.id })
-    if (!email) {
-      setError('Không tìm thấy tài khoản')
-      setLoading(false)
-      return
+  async function verifyPin(enteredPin: string) {
+    if (!selectedProfile) return
+    if (enteredPin === LOGIN_PIN) {
+      setLoading(true)
+      const err = await loginByProfile(selectedProfile.id)
+      if (err) {
+        setError(err)
+        setPin('')
+        setLoading(false)
+      }
+      // If success, App.tsx redirects to employee routes
+    } else {
+      setShaking(true)
+      setError('PIN không đúng')
+      setTimeout(() => {
+        setPin('')
+        setShaking(false)
+      }, 500)
     }
+  }
 
-    const err = await login(email as string, password)
-    if (err) {
-      setError(err)
-      setLoading(false)
+  async function handleBiometric() {
+    if (!selectedProfile) return
+    setError('')
+    setLoading(true)
+    try {
+      if (!window.PublicKeyCredential) {
+        setError('Thiết bị không hỗ trợ sinh trắc học')
+        setLoading(false)
+        return
+      }
+
+      const available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
+      if (!available) {
+        setError('Face ID / Touch ID không khả dụng')
+        setLoading(false)
+        return
+      }
+
+      const credential = await navigator.credentials.get({
+        publicKey: {
+          challenge: crypto.getRandomValues(new Uint8Array(32)),
+          timeout: 60000,
+          userVerification: 'required',
+          rpId: window.location.hostname,
+          allowCredentials: [],
+        },
+      }).catch(() => null)
+
+      if (!credential) {
+        const created = await navigator.credentials.create({
+          publicKey: {
+            challenge: crypto.getRandomValues(new Uint8Array(32)),
+            rp: { name: 'NailPro', id: window.location.hostname },
+            user: {
+              id: crypto.getRandomValues(new Uint8Array(16)),
+              name: selectedProfile.full_name,
+              displayName: selectedProfile.full_name,
+            },
+            pubKeyCredParams: [{ alg: -7, type: 'public-key' }],
+            authenticatorSelection: {
+              authenticatorAttachment: 'platform',
+              userVerification: 'required',
+            },
+            timeout: 60000,
+          },
+        }).catch(() => null)
+
+        if (!created) {
+          setError('Xác thực bị hủy')
+          setLoading(false)
+          return
+        }
+      }
+
+      const err = await loginByProfile(selectedProfile.id)
+      if (err) {
+        setError(err)
+      }
+    } catch {
+      setError('Lỗi xác thực sinh trắc học')
     }
-    // If login succeeds, the auth state changes and App.tsx will redirect to employee routes
+    setLoading(false)
   }
 
   function handleBack() {
     setSelectedProfile(null)
-    setPassword('')
+    setPin('')
     setError('')
   }
 
@@ -101,12 +183,9 @@ export function KioskPersonal() {
                 backdropFilter: 'blur(12px)',
               }}
             >
-              {/* Avatar */}
               <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-3xl mb-3 bg-gray-100">
                 {getChibiEmoji(profile.full_name)}
               </div>
-
-              {/* Name */}
               <p className="font-semibold text-base truncate text-gray-900">
                 {profile.full_name}
               </p>
@@ -120,7 +199,7 @@ export function KioskPersonal() {
           )}
         </div>
       ) : (
-        /* Password entry */
+        /* PIN + Face ID entry */
         <div className="mt-6 bg-white rounded-2xl shadow-lg p-6 space-y-5">
           <button
             onClick={handleBack}
@@ -131,42 +210,66 @@ export function KioskPersonal() {
           </button>
 
           {/* Selected user */}
-          <div className="flex flex-col items-center gap-3 py-2">
-            <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl bg-gray-100 border-2 border-[#864e5a]">
+          <div className="flex flex-col items-center gap-2 py-2">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center text-2xl bg-gray-100 border-2 border-[#864e5a]">
               {getChibiEmoji(selectedProfile.full_name)}
             </div>
-            <p className="font-bold text-lg text-gray-900">
-              {selectedProfile.full_name}
-            </p>
+            <p className="font-bold text-lg text-gray-900">{selectedProfile.full_name}</p>
+            <p className="text-sm text-gray-500">Nhập PIN hoặc dùng Face ID</p>
           </div>
 
-          {/* Password form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('auth.password')}</label>
-              <div className="relative">
-                <Lock size={18} className="absolute left-3 top-3.5 text-gray-400" />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] focus:ring-1 focus:ring-[#864e5a] outline-none transition-colors"
-                  required
-                  autoFocus
-                />
-              </div>
+          {/* PIN dots */}
+          <div className={`flex justify-center gap-3 ${shaking ? 'animate-shake' : ''}`}>
+            {Array.from({ length: PIN_LENGTH }).map((_, i) => (
+              <div
+                key={i}
+                className={`w-4 h-4 rounded-full transition-all duration-200 ${
+                  i < pin.length ? 'bg-[#864e5a] scale-110' : 'bg-gray-200'
+                }`}
+              />
+            ))}
+          </div>
+
+          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+          {loading ? (
+            <div className="flex justify-center py-6">
+              <Loader2 className="animate-spin text-[#864e5a]" size={32} />
             </div>
-
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl disabled:opacity-50 transition-all active:scale-[0.98]"
-            >
-              {loading ? <Loader2 className="animate-spin mx-auto" size={20} /> : t('auth.login')}
-            </button>
-          </form>
+          ) : (
+            /* Number pad */
+            <div className="grid grid-cols-3 gap-3 max-w-[240px] mx-auto">
+              {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((digit) => (
+                <button
+                  key={digit}
+                  onClick={() => handlePinInput(digit)}
+                  className="w-16 h-16 rounded-full bg-gray-50 border border-gray-200 text-xl font-semibold text-gray-800 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all flex items-center justify-center mx-auto"
+                >
+                  {digit}
+                </button>
+              ))}
+              <button
+                onClick={handleBiometric}
+                className="w-16 h-16 rounded-full bg-gray-50 border border-gray-200 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all flex items-center justify-center mx-auto"
+                title="Face ID / Touch ID"
+              >
+                <Fingerprint size={24} className="text-[#864e5a]" />
+              </button>
+              <button
+                onClick={() => handlePinInput('0')}
+                className="w-16 h-16 rounded-full bg-gray-50 border border-gray-200 text-xl font-semibold text-gray-800 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all flex items-center justify-center mx-auto"
+              >
+                0
+              </button>
+              <button
+                onClick={handleDelete}
+                className="w-16 h-16 rounded-full bg-gray-50 border border-gray-200 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all flex items-center justify-center mx-auto"
+                title="Xóa"
+              >
+                <Delete size={22} className="text-gray-600" />
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
