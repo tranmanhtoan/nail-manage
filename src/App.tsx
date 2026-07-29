@@ -39,6 +39,10 @@ export default function App() {
     checkSession()
     initTheme()
     initSync()
+    initAuthListener(() => {
+      // Session expired — force logout and let the app re-render to Login
+      useAuthStore.getState().logout()
+    })
   }, [checkSession, initTheme, initSync])
 
   if (loading) {

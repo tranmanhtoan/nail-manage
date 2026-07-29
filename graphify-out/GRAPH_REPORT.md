@@ -1,16 +1,16 @@
 # Graph Report - Nail Manange  (2026-07-29)
 
 ## Corpus Check
-- 58 files · ~34,274 words
+- 58 files · ~34,295 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 288 nodes · 443 edges · 17 communities (15 shown, 2 thin omitted)
+- 288 nodes · 445 edges · 17 communities (15 shown, 2 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3bb0dfb8`
+- Built from commit: `fef2b59b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -70,7 +70,7 @@ Cohesion: 0.10
 Nodes (10): PinGateProps, toAuthEmail(), Employees(), CATEGORIES, Services(), DEFAULT_TOGGLES, FeatureToggles, Tab (+2 more)
 
 ### Community 2 - "supabase.ts"
-Cohesion: 0.07
+Cohesion: 0.08
 Nodes (20): Appointment, Customer, Employee, Service, supabase, supabaseAdmin, supabaseAnonKey, supabaseUrl (+12 more)
 
 ### Community 3 - "dependencies"
@@ -103,7 +103,7 @@ Nodes (15): 10. `src/hooks/` — Custom Hooks, 11. `src/i18n/` — Đa ngôn ng�
 
 ### Community 13 - "App.tsx"
 Cohesion: 0.08
-Nodes (14): Admin, Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate (+6 more)
+Nodes (15): Admin, Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate (+7 more)
 
 ### Community 14 - "[2026-07-29]"
 Cohesion: 0.40
@@ -118,7 +118,7 @@ Cohesion: 0.33
 Nodes (4): EmployeeAppointment, EmployeeSummary, Period, ServiceRevenue
 
 ## Knowledge Gaps
-- **132 isolated node(s):** `Thêm mới`, `Chỉnh sửa`, `supabaseUrl`, `supabaseAnonKey`, `CacheEntry` (+127 more)
+- **132 isolated node(s):** `Thêm mới`, `Chỉnh sửa`, `Dashboard`, `Appointments`, `Customers` (+127 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -126,16 +126,16 @@ Nodes (4): EmployeeAppointment, EmployeeSummary, Period, ServiceRevenue
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `supabase` connect `supabase.ts` to `Settings.tsx`, `Appointments.tsx`, `Dashboard.tsx`, `useAuthStore`, `QuickEntry.tsx`, `Reports.tsx`?**
-  _High betweenness centrality (0.076) - this node is a cross-community bridge._
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `useAuthStore` to `Settings.tsx`, `supabase.ts`, `Dashboard.tsx`, `App.tsx`, `QuickEntry.tsx`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
-- **What connects `Thêm mới`, `Chỉnh sửa`, `supabaseUrl` to the rest of the system?**
+  _High betweenness centrality (0.042) - this node is a cross-community bridge._
+- **What connects `Thêm mới`, `Chỉnh sửa`, `Dashboard` to the rest of the system?**
   _132 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `validations.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.125 - nodes in this community are weakly interconnected._
 - **Should `Settings.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.10144927536231885 - nodes in this community are weakly interconnected._
 - **Should `supabase.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.07373737373737374 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07610993657505286 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
