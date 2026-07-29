@@ -156,4 +156,63 @@ body {
   animation: shake 0.4s ease-in-out;
 }
 
+/* ─── Accessibility Improvements ─────────────────────────────────────────── */
+
+/* Visible focus ring for keyboard navigation (not mouse) */
+:focus-visible {
+  outline: 2px solid #864e5a;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove outline for mouse/touch users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip to content link (screen reader + keyboard) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: #864e5a;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Ensure minimum touch target size (44x44px WCAG 2.5.5) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* High contrast text for primary color on light bg (WCAG AA) */
+.text-primary-accessible {
+  color: #6b3a45; /* darker shade — 4.8:1 contrast on white */
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse, .animate-spin, .animate-shake {
+    animation: none !important;
+  }
+}
+
 

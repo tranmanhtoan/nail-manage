@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "src/App.tsx": {
-    "mtime": 1785340655.650164,
-    "ast_hash": "0fcbda39efa511c8bceac6fe88b8ce84",
+    "mtime": 1785340670.7981853,
+    "ast_hash": "287181fd6aa5a4a3f59ad5e513fa8440",
     "semantic_hash": ""
   },
   "src/components/BottomNav.tsx": {
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785340647.1660106,
-    "ast_hash": "54b2f18793dff461d525e2133d718b6c",
+    "mtime": 1785340663.501929,
+    "ast_hash": "16d6cdd4450420b2d2a4da5df6886daa",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
