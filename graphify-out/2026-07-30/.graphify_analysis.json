@@ -1,0 +1,491 @@
+{
+  "communities": {
+    "0": [
+      "src_lib_database_types",
+      "src_lib_database_types_appointment",
+      "src_lib_database_types_customer",
+      "src_lib_database_types_service",
+      "src_lib_supabase",
+      "src_lib_supabase_supabase",
+      "src_lib_supabase_supabaseanonkey",
+      "src_lib_supabase_supabaseurl",
+      "src_pages_booking_bookingpage",
+      "src_pages_booking_bookingpage_bookingpage",
+      "src_pages_employee_checkin",
+      "src_pages_owner_admin",
+      "src_pages_owner_admin_admin",
+      "src_pages_owner_admin_admindashboard",
+      "src_pages_owner_admin_admindashboard_admindashboard",
+      "src_pages_owner_admin_admindashboard_adminstats",
+      "src_pages_owner_admin_adminemployees_adminemployees",
+      "src_pages_owner_admin_adminservices",
+      "src_pages_owner_admin_adminservices_adminservices",
+      "src_pages_owner_admin_adminservices_categories",
+      "src_pages_owner_admin_adminservices_serviceform",
+      "src_pages_owner_admin_tab",
+      "src_pages_owner_customers",
+      "src_pages_owner_customers_customerform",
+      "src_pages_owner_customers_customers",
+      "src_pages_owner_services",
+      "src_pages_owner_services_categories",
+      "src_pages_owner_services_serviceform",
+      "src_pages_owner_services_services",
+      "src_store_datastore",
+      "src_store_datastore_cacheentry",
+      "src_store_datastore_datastate",
+      "src_store_datastore_emptycache",
+      "src_store_datastore_getcached",
+      "src_store_datastore_isstale",
+      "src_store_datastore_setcache",
+      "src_store_datastore_usedatastore",
+      "src_store_syncstore",
+      "src_store_syncstore_failedaction",
+      "src_store_syncstore_generateidempotencykey",
+      "src_store_syncstore_syncaction",
+      "src_store_syncstore_syncstate"
+    ],
+    "1": [
+      "src_components_bottomnav",
+      "src_components_bottomnav_bottomnav",
+      "src_components_employeelayout",
+      "src_components_employeelayout_employeelayout",
+      "src_components_floatingbackhome",
+      "src_components_floatingbackhome_floatingbackhome",
+      "src_components_header",
+      "src_components_header_header",
+      "src_components_languageswitch",
+      "src_components_languageswitch_languageswitch",
+      "src_hooks_useinactivitytimeout",
+      "src_hooks_useinactivitytimeout_useinactivitytimeout",
+      "src_lib_database_types_userrole",
+      "src_pages_employee_checkin_checkin",
+      "src_pages_employee_myearnings_myearnings",
+      "src_pages_employee_myschedule",
+      "src_pages_employee_myschedule_myschedule",
+      "src_pages_employee_myschedule_scheduleitem",
+      "src_pages_login",
+      "src_pages_login_login",
+      "src_pages_login_ownerprofile",
+      "src_pages_owner_admin_adminsettings",
+      "src_pages_owner_admin_adminsettings_adminsettings",
+      "src_pages_owner_admin_adminsettings_default_toggles",
+      "src_pages_owner_admin_adminsettings_featuretoggles",
+      "src_pages_owner_admin_adminsettings_togglerow",
+      "src_pages_quickentry_quickentry",
+      "src_store_authstore",
+      "src_store_authstore_authstate",
+      "src_store_authstore_useauthstore"
+    ],
+    "2": [
+      "src_app",
+      "src_app_admin",
+      "src_app_app",
+      "src_app_appointments",
+      "src_app_bookingpage",
+      "src_app_customers",
+      "src_app_dashboard",
+      "src_app_employeelayout",
+      "src_app_kiosklayout",
+      "src_app_pageloader",
+      "src_app_pingate",
+      "src_app_quickentry",
+      "src_app_reports",
+      "src_app_settings",
+      "src_components_errorboundary",
+      "src_components_errorboundary_errorboundary",
+      "src_components_errorboundary_errorboundary_componentdidcatch",
+      "src_components_errorboundary_errorboundary_constructor",
+      "src_components_errorboundary_errorboundary_getderivedstatefromerror",
+      "src_components_errorboundary_errorboundary_render",
+      "src_components_errorboundary_errorboundaryprops",
+      "src_components_errorboundary_errorboundarystate",
+      "src_components_errorboundary_errorfallback",
+      "src_i18n",
+      "src_i18n_index",
+      "src_lib_supabase_initauthlistener",
+      "src_main"
+    ],
+    "3": [
+      "package",
+      "package_devdependencies",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_vite",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_typescript",
+      "package_devdependencies_vite",
+      "package_devdependencies_vite_plugin_pwa",
+      "package_devdependencies_vitejs_plugin_react",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_preview",
+      "package_type",
+      "package_version",
+      "tailwindcss",
+      "tailwindcss_vite",
+      "types_react",
+      "types_react_dom",
+      "typescript",
+      "vite",
+      "vite_plugin_pwa",
+      "vitejs_plugin_react"
+    ],
+    "4": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_es2023",
+      "ref_src",
+      "ref_vite_client",
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowarbitraryextensions",
+      "tsconfig_compileroptions_allowimportingtsextensions",
+      "tsconfig_compileroptions_erasablesyntaxonly",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduledetection",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_nofallthroughcasesinswitch",
+      "tsconfig_compileroptions_nounusedlocals",
+      "tsconfig_compileroptions_nounusedparameters",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_compileroptions_types",
+      "tsconfig_compileroptions_verbatimmodulesyntax",
+      "tsconfig_include"
+    ],
+    "5": [
+      "src_components_pingate",
+      "src_components_pingate_pingate",
+      "src_components_pingate_pingateprops",
+      "src_lib_auth_helpers",
+      "src_lib_auth_helpers_fromauthemail",
+      "src_lib_auth_helpers_toauthemail",
+      "src_lib_database_types_employee",
+      "src_lib_database_types_paytype",
+      "src_lib_supabase_supabaseadmin",
+      "src_pages_employee_myearnings",
+      "src_pages_employee_myearnings_appointmentrow",
+      "src_pages_employee_myearnings_calcearnings",
+      "src_pages_employee_myearnings_earningdata",
+      "src_pages_employee_myearnings_myemployee",
+      "src_pages_owner_admin_adminemployees",
+      "src_pages_owner_admin_adminemployees_employeeform",
+      "src_pages_owner_admin_adminemployees_generatetemppassword",
+      "src_pages_owner_admin_adminemployees_passwordresult",
+      "src_pages_owner_employees",
+      "src_pages_owner_employees_bulkcredsmodal",
+      "src_pages_owner_employees_credsmodal",
+      "src_pages_owner_employees_employeeform",
+      "src_pages_owner_employees_employees",
+      "src_pages_owner_employees_generatetemppassword"
+    ],
+    "6": [
+      "src_lib_database_types_appointmentstatus",
+      "src_pages_owner_appointments",
+      "src_pages_owner_appointments_appointmentcard",
+      "src_pages_owner_appointments_appointmentrow",
+      "src_pages_owner_appointments_appointments",
+      "src_pages_owner_appointments_employee",
+      "src_pages_owner_appointments_getchibiemoji",
+      "src_pages_owner_appointments_newappointmentform",
+      "src_pages_owner_appointments_rotationemployee",
+      "src_pages_owner_appointments_rotationstatus",
+      "src_pages_owner_appointments_service",
+      "src_pages_owner_settings",
+      "src_pages_owner_settings_default_toggles",
+      "src_pages_owner_settings_featuretoggles",
+      "src_pages_owner_settings_settings",
+      "src_pages_owner_settings_tab",
+      "src_pages_owner_settings_togglerow",
+      "src_store_supermodestore",
+      "src_store_supermodestore_supermodestate",
+      "src_store_supermodestore_usesupermodestore",
+      "src_store_themestore",
+      "src_store_themestore_themestate",
+      "src_store_themestore_usethemestore"
+    ],
+    "7": [
+      "i18next",
+      "lucide_react",
+      "package_dependencies",
+      "package_dependencies_i18next",
+      "package_dependencies_lucide_react",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_react_i18next",
+      "package_dependencies_react_router_dom",
+      "package_dependencies_supabase_supabase_js",
+      "package_dependencies_zod",
+      "package_dependencies_zustand",
+      "react",
+      "react_dom",
+      "react_i18next",
+      "react_router_dom",
+      "supabase_supabase_js",
+      "zod",
+      "zustand"
+    ],
+    "8": [
+      "docs_project_overview",
+      "docs_project_overview_10_src_hooks_custom_hooks",
+      "docs_project_overview_11_src_i18n_đa_ngôn_ngữ_i18next",
+      "docs_project_overview_12_hạ_tầng_cấu_hình",
+      "docs_project_overview_1_src_pages_owner_module_chủ_tiệm_owner",
+      "docs_project_overview_2_src_pages_employee_module_nhân_viên_employee",
+      "docs_project_overview_3_src_pages_kiosk_module_kiosk_tablet_dùng_chung",
+      "docs_project_overview_4_src_pages_booking_module_đặt_lịch_online_public",
+      "docs_project_overview_5_src_pages_quickentry_tsx_nhập_nhanh_shared",
+      "docs_project_overview_6_src_pages_login_tsx_đăng_nhập",
+      "docs_project_overview_7_src_store_state_management_zustand",
+      "docs_project_overview_8_src_components_components_dùng_chung",
+      "docs_project_overview_9_src_lib_thư_viện_utilities",
+      "docs_project_overview_kiến_trúc_tổng_thể",
+      "docs_project_overview_mcc_nail_spa_tổng_quan_module",
+      "docs_project_overview_tech_stack"
+    ],
+    "9": [
+      "src_lib_validations",
+      "src_lib_validations_appointmentinput",
+      "src_lib_validations_appointmentschema",
+      "src_lib_validations_bookinginput",
+      "src_lib_validations_bookingschema",
+      "src_lib_validations_customerinput",
+      "src_lib_validations_customerschema",
+      "src_lib_validations_employeeinput",
+      "src_lib_validations_employeeschema",
+      "src_lib_validations_logininput",
+      "src_lib_validations_loginschema",
+      "src_lib_validations_quickentryinput",
+      "src_lib_validations_quickentryschema",
+      "src_lib_validations_serviceinput",
+      "src_lib_validations_serviceschema",
+      "src_lib_validations_validate"
+    ],
+    "10": [
+      "src_components_offlinesyncbanner",
+      "src_components_offlinesyncbanner_offlinesyncbanner",
+      "src_pages_kiosk_kiosklayout",
+      "src_pages_kiosk_kiosklayout_kiosklayout",
+      "src_pages_kiosk_kioskpersonal",
+      "src_pages_kiosk_kioskpersonal_getchibiemoji",
+      "src_pages_kiosk_kioskpersonal_kioskpersonal",
+      "src_pages_kiosk_kioskpersonal_profileoption",
+      "src_pages_quickentry",
+      "src_pages_quickentry_employee",
+      "src_pages_quickentry_service",
+      "src_pages_quickentry_step",
+      "src_store_syncstore_usesyncstore"
+    ],
+    "11": [
+      "src_pages_owner_dashboard",
+      "src_pages_owner_dashboard_dailydata",
+      "src_pages_owner_dashboard_dashboard",
+      "src_pages_owner_dashboard_employeeoption",
+      "src_pages_owner_dashboard_getmonthshort",
+      "src_pages_owner_dashboard_linechart",
+      "src_pages_owner_dashboard_perftab",
+      "src_pages_owner_dashboard_recentitem",
+      "src_pages_owner_dashboard_stats"
+    ],
+    "12": [
+      "src_pages_owner_reports",
+      "src_pages_owner_reports_employeeappointment",
+      "src_pages_owner_reports_employeesummary",
+      "src_pages_owner_reports_period",
+      "src_pages_owner_reports_reports",
+      "src_pages_owner_reports_servicerevenue"
+    ],
+    "13": [
+      "docs_changelog",
+      "docs_changelog_2026_07_29",
+      "docs_changelog_chỉnh_sửa",
+      "docs_changelog_mcc_nail_spa_changelog",
+      "docs_changelog_thêm_mới"
+    ],
+    "14": [
+      "src_vite_env_d",
+      "src_vite_env_d_importmeta",
+      "src_vite_env_d_importmetaenv"
+    ],
+    "15": [
+      "vercel",
+      "vercel_rewrites"
+    ],
+    "16": [
+      "vite_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.07665505226480836,
+    "1": 0.13333333333333333,
+    "2": 0.07977207977207977,
+    "3": 0.07692307692307693,
+    "4": 0.07692307692307693,
+    "5": 0.10507246376811594,
+    "6": 0.11857707509881422,
+    "7": 0.10526315789473684,
+    "8": 0.125,
+    "9": 0.125,
+    "10": 0.21794871794871795,
+    "11": 0.25,
+    "12": 0.3333333333333333,
+    "13": 0.4,
+    "14": 0.6666666666666666,
+    "15": 1.0,
+    "16": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_store_authstore_useauthstore",
+      "label": "useAuthStore",
+      "degree": 25
+    },
+    {
+      "id": "src_lib_supabase_supabase",
+      "label": "supabase",
+      "degree": 23
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 19
+    },
+    {
+      "id": "docs_project_overview_mcc_nail_spa_tổng_quan_module",
+      "label": "MCC Nail & Spa — Tổng quan Module",
+      "degree": 15
+    },
+    {
+      "id": "src_store_syncstore_usesyncstore",
+      "label": "useSyncStore",
+      "degree": 9
+    },
+    {
+      "id": "src_components_languageswitch_languageswitch",
+      "label": "LanguageSwitch()",
+      "degree": 6
+    },
+    {
+      "id": "src_lib_database_types_service",
+      "label": "Service",
+      "degree": 6
+    },
+    {
+      "id": "src_components_errorboundary_errorboundary",
+      "label": "ErrorBoundary",
+      "degree": 6
+    },
+    {
+      "id": "src_components_header_header",
+      "label": "Header()",
+      "degree": 5
+    },
+    {
+      "id": "src_lib_auth_helpers_toauthemail",
+      "label": "toAuthEmail()",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Dashboard()",
+      "target": "useAuthStore",
+      "source_files": [
+        "src/pages/owner/Dashboard.tsx",
+        "src/store/authStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `Dashboard()` unexpectedly reaches hub `useAuthStore`"
+    },
+    {
+      "source": "Header()",
+      "target": "useSyncStore",
+      "source_files": [
+        "src/components/Header.tsx",
+        "src/store/syncStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "KioskPersonal()",
+      "target": "useAuthStore",
+      "source_files": [
+        "src/pages/kiosk/KioskPersonal.tsx",
+        "src/store/authStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "Settings()",
+      "target": "useAuthStore",
+      "source_files": [
+        "src/pages/owner/Settings.tsx",
+        "src/store/authStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "App()",
+      "target": "useSyncStore",
+      "source_files": [
+        "src/App.tsx",
+        "src/store/syncStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `supabase` connect `supabase.ts` to `useAuthStore`, `Employees.tsx`, `Settings.tsx`, `QuickEntry.tsx`, `Dashboard.tsx`, `Reports.tsx`?",
+      "why": "High betweenness centrality (0.062) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `useAuthStore` connect `useAuthStore` to `supabase.ts`, `App.tsx`, `Employees.tsx`, `Settings.tsx`, `QuickEntry.tsx`, `Dashboard.tsx`?",
+      "why": "High betweenness centrality (0.041) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Thêm mới`, `Chỉnh sửa`, `1. `src/pages/owner/` — Module chủ tiệm (Owner)` to the rest of the system?",
+      "why": "132 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `supabase.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07665505226480836 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `useAuthStore` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `App.tsx` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07977207977207977 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `devDependencies` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

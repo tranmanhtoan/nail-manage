@@ -271,16 +271,76 @@ export function Dashboard() {
         </div>
 
         {/* Month label */}
-        <div className="px-5 mt-1 flex items-center justify-between">
+        <div className="px-5 mt-1 flex items-center justify-between relative">
           <div className="flex items-baseline gap-2">
             <span className="text-sm font-semibold text-gray-900">
               {i18n.language === 'vi' ? 'Tháng này' : 'This Month'}
             </span>
             <span className="text-sm text-gray-400">{getMonthLabel(selectedDate)}</span>
           </div>
-          <button className="p-1 text-gray-400 hover:text-gray-600">
+          <button
+            onClick={() => {
+              setPickerYear(new Date(selectedDate + 'T00:00:00').getFullYear())
+              setShowMonthPicker(!showMonthPicker)
+            }}
+            className="p-1 text-gray-400 hover:text-violet-600 transition-colors"
+          >
             <Calendar size={16} />
           </button>
+
+          {/* Month Picker Popup */}
+          {showMonthPicker && (
+            <div className="absolute right-0 top-8 z-50 bg-white rounded-xl shadow-lg border border-gray-200 p-4 w-64">
+              {/* Year navigation */}
+              <div className="flex items-center justify-between mb-3">
+                <button
+                  onClick={() => setPickerYear((y) => y - 1)}
+                  className="p-1 text-gray-500 hover:text-gray-800 font-bold text-lg"
+                >
+                  ‹
+                </button>
+                <span className="text-sm font-bold text-gray-900">{pickerYear}</span>
+                <button
+                  onClick={() => setPickerYear((y) => y + 1)}
+                  className="p-1 text-gray-500 hover:text-gray-800 font-bold text-lg"
+                >
+                  ›
+                </button>
+              </div>
+              {/* Month grid */}
+              <div className="grid grid-cols-3 gap-2">
+                {Array.from({ length: 12 }, (_, i) => {
+                  const currentMonth = new Date(selectedDate + 'T00:00:00').getMonth()
+                  const currentYear = new Date(selectedDate + 'T00:00:00').getFullYear()
+                  const isSelected = pickerYear === currentYear && i === currentMonth
+                  const isToday = pickerYear === new Date().getFullYear() && i === new Date().getMonth()
+                  const monthLabel = new Date(pickerYear, i, 1).toLocaleDateString(
+                    i18n.language === 'vi' ? 'vi-VN' : 'en-US',
+                    { month: 'short' }
+                  )
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        const newDate = `${pickerYear}-${String(i + 1).padStart(2, '0')}-01`
+                        setSelectedDate(newDate)
+                        setShowMonthPicker(false)
+                      }}
+                      className={`py-2 px-1 rounded-lg text-xs font-semibold transition-all ${
+                        isSelected
+                          ? 'bg-violet-600 text-white'
+                          : isToday
+                            ? 'bg-violet-50 text-violet-700 ring-1 ring-violet-200'
+                            : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {monthLabel}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Tabs: Total / Gross / Net */}

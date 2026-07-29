@@ -1,16 +1,16 @@
-# Graph Report - Nail Manange  (2026-07-30)
+# Graph Report - Nail Manange  (2026-07-29)
 
 ## Corpus Check
-- 68 files · ~44,925 words
+- 68 files · ~44,874 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 350 nodes · 496 edges · 25 communities (20 shown, 5 thin omitted)
+- 350 nodes · 497 edges · 25 communities (20 shown, 5 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e509067c`
+- Built from commit: `2fb372a3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -40,7 +40,7 @@
 - extraction-spec.md
 
 ## God Nodes (most connected - your core abstractions)
-1. `useAuthStore` - 24 edges
+1. `useAuthStore` - 25 edges
 2. `supabase` - 23 edges
 3. `compilerOptions` - 19 edges
 4. `MCC Nail & Spa — Tổng quan Module` - 15 edges
@@ -52,6 +52,8 @@
 10. `LanguageSwitch()` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Dashboard()` --calls--> `useAuthStore`  [EXTRACTED]
+  src/pages/owner/Dashboard.tsx → src/store/authStore.ts
 - `Header()` --calls--> `useAuthStore`  [EXTRACTED]
   src/components/Header.tsx → src/store/authStore.ts
 - `QuickEntry()` --calls--> `useAuthStore`  [EXTRACTED]
@@ -60,8 +62,6 @@
   src/pages/kiosk/KioskPersonal.tsx → src/store/authStore.ts
 - `Settings()` --calls--> `useAuthStore`  [EXTRACTED]
   src/pages/owner/Settings.tsx → src/store/authStore.ts
-- `App()` --calls--> `useSyncStore`  [EXTRACTED]
-  src/App.tsx → src/store/syncStore.ts
 
 ## Import Cycles
 - None detected.
@@ -114,7 +114,7 @@ Nodes (13): Header(), OfflineSyncBanner(), getChibiEmoji(), KioskPersonal(), Pro
 
 ### Community 11 - "Dashboard.tsx"
 Cohesion: 0.25
-Nodes (7): DailyData, EmployeeOption, getMonthShort(), LineChart(), PerfTab, RecentItem, Stats
+Nodes (8): DailyData, Dashboard(), EmployeeOption, getMonthShort(), LineChart(), PerfTab, RecentItem, Stats
 
 ### Community 12 - "graphify reference: extra exports and benchmark"
 Cohesion: 0.22
@@ -141,7 +141,7 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ## Knowledge Gaps
-- **174 isolated node(s):** `Thêm mới`, `Chỉnh sửa`, `Tích hợp`, `Stats`, `RecentItem` (+169 more)
+- **174 isolated node(s):** `Usage`, `What graphify is for`, `Step 0 - GitHub repos and multi-path merge (only if a URL or several paths)`, `Step 1 - Ensure graphify is installed`, `Step 2 - Detect files` (+169 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -151,8 +151,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `supabase` connect `supabase.ts` to `useAuthStore`, `QuickEntry.tsx`, `Dashboard.tsx`, `Settings.tsx`?**
   _High betweenness centrality (0.042) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `useAuthStore` to `Dashboard.tsx`, `App.tsx`, `QuickEntry.tsx`, `Settings.tsx`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **What connects `Thêm mới`, `Chỉnh sửa`, `Tích hợp` to the rest of the system?**
+  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+- **What connects `Usage`, `What graphify is for`, `Step 0 - GitHub repos and multi-path merge (only if a URL or several paths)` to the rest of the system?**
   _174 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `supabase.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.05779220779220779 - nodes in this community are weakly interconnected._
