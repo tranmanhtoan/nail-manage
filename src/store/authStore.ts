@@ -20,21 +20,14 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   login: async (email, password) => {
     if (UAT_MODE) {
-      // In UAT mode, skip Supabase Auth — lookup profile
-      // If email is 'owner', use RPC to find owner profile (bypasses RLS)
-      let profile
-      if (email === 'owner') {
-        const { data } = await supabase.rpc('get_owner_profile')
-        profile = data
-      } else {
-        const authEmail = toAuthEmail(email)
-        const { data } = await supabase
-          .from('profiles')
-          .select('id, role, full_name, email')
-          .eq('email', authEmail)
-          .single()
-        profile = data
-      }
+      // In UAT mode, skip Supabase Auth — lookup profile by email
+      // Email is passed directly (e.g. bd.nail@gmail.com) or as username (converted via toAuthEmail)
+      const lookupEmail = email.includes('@') ? email : toAuthEmail(email)
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('id, role, full_name, email')
+        .eq('email', lookupEmail)
+        .single()
 
       if (!profile) return 'Account not found'
 
