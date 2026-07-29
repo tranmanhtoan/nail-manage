@@ -39,7 +39,7 @@ export function Login() {
       .single()
 
     if (fetchError || !data) {
-      setError('Không tìm thấy tài khoản Owner')
+      setError(`Không tìm thấy Owner: ${fetchError?.message || 'no data'}`)
       setLoading(false)
       return
     }
