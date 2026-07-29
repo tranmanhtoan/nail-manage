@@ -22,3 +22,10 @@
 - Chỉnh sửa `src/index.css` — Thêm accessibility: focus-visible ring, skip-link, touch-target, prefers-reduced-motion, high-contrast text
 - Chỉnh sửa `src/components/PinGate.tsx` — Thêm keyboard event handler cho phép nhập PIN bằng bàn phím vật lý
 - Chỉnh sửa `src/components/BottomNav.tsx` — Thêm role="navigation" và aria-label cho nav element
+- Chỉnh sửa `index.html` — Thêm skip-to-content link cho keyboard/screen reader users
+- Chỉnh sửa `.gitignore` — Thêm `graphify-out/cost.json`
+- Chỉnh sửa `package.json` — Cài thêm dependency `zod@3.23.8`
+
+### Tích hợp
+- Cài Graphify knowledge graph (`graphify kiro install --project`) — 288 nodes, 445 edges, 17 communities
+- Tạo `.kiro/skills/graphify/SKILL.md` và `.kiro/steering/graphify.md` cho always-on graph query
