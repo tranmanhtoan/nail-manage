@@ -6,6 +6,7 @@ import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { ChevronLeft, Loader2, Monitor, Crown, Fingerprint, Delete } from 'lucide-react'
 
 const OWNER_PIN = import.meta.env.VITE_OWNER_PIN || '1234'
+const OWNER_EMAIL = import.meta.env.VITE_OWNER_EMAIL || 'owner@nail.local'
 const PIN_LENGTH = 4
 
 export function Login() {
