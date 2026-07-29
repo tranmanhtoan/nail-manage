@@ -21,6 +21,21 @@ export function PinGate({ children }: PinGateProps) {
   const [logging, setLogging] = useState(false)
   const [loginError, setLoginError] = useState('')
 
+  // Keyboard support: allow typing PIN digits via physical keyboard
+  useEffect(() => {
+    if (unlocked || checking) return
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key >= '0' && e.key <= '9') {
+        handleDigit(e.key)
+      } else if (e.key === 'Backspace' || e.key === 'Delete') {
+        handleDelete()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  })
+
   useEffect(() => {
     async function init() {
       // Check if already logged in

@@ -19,3 +19,4 @@
 - Chỉnh sửa `src/store/syncStore.ts` — Thêm idempotency key để tránh duplicate khi submit offline nhiều lần
 - Chỉnh sửa `src/lib/supabase.ts` — Thêm initAuthListener() xử lý token refresh và session expiry gracefully
 - Chỉnh sửa `src/App.tsx` — Import initAuthListener để kích hoạt auth session monitoring
+- Chỉnh sửa `src/index.css` — Thêm accessibility: focus-visible ring, skip-link, touch-target, prefers-reduced-motion, high-contrast text
