@@ -88,13 +88,13 @@ export const useAuthStore = create<AuthState>((set) => ({
       name: p.full_name ?? '',
     }
     set({ user })
-    sessionStorage.setItem('uat_user', JSON.stringify(user))
+    localStorage.setItem('uat_user', JSON.stringify(user))
     return null
   },
 
   logout: async () => {
     if (UAT_MODE) {
-      sessionStorage.removeItem('uat_user')
+      localStorage.removeItem('uat_user')
       set({ user: null })
       return
     }
@@ -104,7 +104,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   checkSession: async () => {
     if (UAT_MODE) {
-      const stored = sessionStorage.getItem('uat_user')
+      const stored = localStorage.getItem('uat_user')
       if (stored) {
         set({ user: JSON.parse(stored), loading: false })
       } else {
