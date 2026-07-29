@@ -21,15 +21,10 @@ export const useAuthStore = create<AuthState>((set) => ({
   login: async (email, password) => {
     if (UAT_MODE) {
       // In UAT mode, skip Supabase Auth — lookup profile
-      // If email is 'owner', find by role instead of email
+      // If email is 'owner', use RPC to find owner profile (bypasses RLS)
       let profile
       if (email === 'owner') {
-        const { data } = await supabase
-          .from('profiles')
-          .select('id, role, full_name, email')
-          .eq('role', 'owner')
-          .limit(1)
-          .single()
+        const { data } = await supabase.rpc('get_owner_profile')
         profile = data
       } else {
         const authEmail = toAuthEmail(email)
