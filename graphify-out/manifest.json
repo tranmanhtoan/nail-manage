@@ -258,5 +258,55 @@
     "mtime": 1784866390.552813,
     "ast_hash": "aa601cd91a28d79156cffb08f272212e",
     "semantic_hash": "aa601cd91a28d79156cffb08f272212e"
+  },
+  "src/components/ErrorBoundary.tsx": {
+    "mtime": 1785340436.454749,
+    "ast_hash": "5aad9fe6e73b64664038441c4eb4af15",
+    "semantic_hash": ""
+  },
+  "INTRODUCTION.md": {
+    "mtime": 1784878927.0,
+    "ast_hash": "de5b66fa47029f7f77ff273e8aad0a14",
+    "semantic_hash": ""
+  },
+  "docs/CHANGELOG.md": {
+    "mtime": 1785339938.1728384,
+    "ast_hash": "5e0ce40cfd0e8a780fc0b48ae13841a2",
+    "semantic_hash": ""
+  },
+  "docs/PROJECT_OVERVIEW.md": {
+    "mtime": 1785339925.3696883,
+    "ast_hash": "b711f3cfe4ab7ccf7e4922df85420aa8",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1785255758.7971675,
+    "ast_hash": "abb815e5c98396a57a94c6fd8fe6e967",
+    "semantic_hash": ""
+  },
+  "public/apple-touch-icon.png": {
+    "mtime": 1784824699.5072699,
+    "ast_hash": "994609645ceabbb41ef9705b1596b4de",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1784869496.296764,
+    "ast_hash": "5a2e75a22b4e21022f0902e8bd0075e8",
+    "semantic_hash": ""
+  },
+  "public/icon-192.png": {
+    "mtime": 1784824699.4506934,
+    "ast_hash": "09b0fc81380580ebcf7519055634228d",
+    "semantic_hash": ""
+  },
+  "public/icon-512.png": {
+    "mtime": 1784824699.3940876,
+    "ast_hash": "6459b6ee50918aaf3af5ab21ef0bcea9",
+    "semantic_hash": ""
+  },
+  "public/icons.svg": {
+    "mtime": 1784798275.0,
+    "ast_hash": "3b4fcfcf393eca4d264dca4a4663bc37",
+    "semantic_hash": ""
   }
 }
