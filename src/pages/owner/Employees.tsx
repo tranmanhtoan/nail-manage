@@ -344,7 +344,7 @@ function BulkCredsModal({ creds, onClose }: { creds: { login: string; password: 
 
 function EmployeeForm({ employee, onSave, onClose }: {
   employee: Employee | null
-  onSave: (form: Partial<Employee> & { create_username?: string; create_email?: string }) => void
+  onSave: (form: Partial<Employee> & { create_username?: string; create_email?: string; set_pin?: string }) => void
   onClose: () => void
 }) {
   const { t } = useTranslation()
@@ -352,6 +352,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
   const [phone, setPhone] = useState(employee?.phone ?? '')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState(employee?.email ?? '')
+  const [pinCode, setPinCode] = useState('')
   const [payType, setPayType] = useState<PayType>(employee?.pay_type ?? 'commission')
   const [commissionRate, setCommissionRate] = useState(employee?.commission_rate ?? 60)
   const [fixedSalary, setFixedSalary] = useState(employee?.fixed_salary ?? 0)
