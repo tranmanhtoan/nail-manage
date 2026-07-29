@@ -1,5 +1,5 @@
 {
-  "0": "App.tsx",
+  "0": "QuickEntry.tsx",
   "1": "Settings.tsx",
   "2": "supabase.ts",
   "3": "dependencies",
@@ -12,6 +12,6 @@
   "10": "vercel.json",
   "11": "vite.config.ts",
   "12": "MCC Nail & Spa — Tổng quan Module",
-  "13": "ErrorBoundary",
+  "13": "App.tsx",
   "14": "[2026-07-29]"
 }

@@ -2,8 +2,25 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { supabase } from '@/lib/supabase'
 
+/**
+ * Generate a stable idempotency key from action type + payload.
+ * Prevents duplicate submissions when user taps submit multiple times offline.
+ */
+function generateIdempotencyKey(type: string, payload: any): string {
+  const raw = JSON.stringify({ type, ...payload })
+  // Simple hash — stable for same input
+  let hash = 0
+  for (let i = 0; i < raw.length; i++) {
+    const char = raw.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash |= 0 // Convert to 32-bit int
+  }
+  return `${type}_${Math.abs(hash).toString(36)}`
+}
+
 export interface SyncAction {
   id: string
+  idempotencyKey: string
   type: 'quick_entry_submit' | 'insert_appointment' | 'create_customer'
   payload: any
   timestamp: number
