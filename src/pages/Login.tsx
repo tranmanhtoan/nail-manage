@@ -71,7 +71,7 @@ export function Login() {
 
     if (!ownerProfile.pin) {
       setShaking(true)
-      setError('Chưa đặt PIN. Hãy cài PIN trong database.')
+      setError('Chưa đặt PIN cho owner trong database')
       setTimeout(() => {
         setPin('')
         setShaking(false)
@@ -83,13 +83,13 @@ export function Login() {
       setLoading(true)
       const err = await loginByProfile(ownerProfile.id)
       if (err) {
-        setError(err)
+        setError(`Login failed: ${err}`)
         setPin('')
         setLoading(false)
       }
     } else {
       setShaking(true)
-      setError('PIN không đúng')
+      setError(`PIN không đúng (expected ${ownerProfile.pin.length} digits)`)
       setTimeout(() => {
         setPin('')
         setShaking(false)
