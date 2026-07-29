@@ -71,19 +71,19 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   loginByProfile: async (profileId: string) => {
-    // UAT shortcut: login directly by profile ID (no password needed)
+    // Login directly by profile ID — use login_profiles view (accessible by anon)
     const { data: profile } = await supabase
-      .from('profiles')
-      .select('id, email, role, full_name')
+      .from('login_profiles')
+      .select('id, full_name, role')
       .eq('id', profileId)
       .single()
 
     if (!profile) return 'Account not found'
 
-    const p = profile as { id: string; email: string; role: UserRole; full_name: string }
+    const p = profile as { id: string; full_name: string; role: UserRole }
     const user = {
       id: p.id,
-      email: p.email ?? '',
+      email: '',
       role: p.role ?? 'employee',
       name: p.full_name ?? '',
     }
