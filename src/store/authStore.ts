@@ -39,7 +39,7 @@ export const useAuthStore = create<AuthState>((set) => ({
           name: p.full_name ?? '',
         },
       })
-      sessionStorage.setItem('uat_user', JSON.stringify({
+      localStorage.setItem('uat_user', JSON.stringify({
         id: p.id,
         email: p.email,
         role: p.role ?? 'employee',
