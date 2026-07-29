@@ -100,8 +100,8 @@
     "semantic_hash": "dcf0f66aa196d34ce04fd231c7915f2f"
   },
   "src/lib/supabase.ts": {
-    "mtime": 1785340922.8440068,
-    "ast_hash": "2db83df56964daf6d5b2d80eb535d9d2",
+    "mtime": 1785341241.2244904,
+    "ast_hash": "7f52974be3bce3f83ffc253cb9393b33",
     "semantic_hash": ""
   },
   "src/main.tsx": {

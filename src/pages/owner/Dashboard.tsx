@@ -38,7 +38,9 @@ type PerfTab = 'total' | 'gross' | 'net'
 export function Dashboard() {
   const { t, i18n } = useTranslation()
   const user = useAuthStore((s) => s.user)
-  const [selectedDate] = useState<string>(new Date().toISOString().slice(0, 10))
+  const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().slice(0, 10))
+  const [showMonthPicker, setShowMonthPicker] = useState(false)
+  const [pickerYear, setPickerYear] = useState(new Date().getFullYear())
   const [stats, setStats] = useState<Stats>({
     totalRevenue: 0,
     cashRevenue: 0,

@@ -25,6 +25,7 @@
 - Chỉnh sửa `index.html` — Thêm skip-to-content link cho keyboard/screen reader users
 - Chỉnh sửa `.gitignore` — Thêm `graphify-out/cost.json`
 - Chỉnh sửa `package.json` — Cài thêm dependency `zod@3.23.8`
+- Chỉnh sửa `src/lib/supabase.ts` — Skip initAuthListener trong UAT mode (tránh logout sai khi không có session thật)
 
 ### Tích hợp
 - Cài Graphify knowledge graph (`graphify kiro install --project`) — 288 nodes, 445 edges, 17 communities
