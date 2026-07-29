@@ -436,6 +436,27 @@ function EmployeeForm({ employee, onSave, onClose }: {
           </div>
 
           <div>
+            <label className="text-sm font-medium text-gray-700">
+              PIN đăng nhập <span className="text-gray-400 font-normal">(4 số)</span>
+            </label>
+            <input
+              value={pinCode}
+              onChange={(e) => {
+                const val = e.target.value.replace(/[^0-9]/g, '').slice(0, 4)
+                setPinCode(val)
+              }}
+              type="text"
+              inputMode="numeric"
+              maxLength={4}
+              placeholder={employee ? 'Để trống nếu không đổi' : 'VD: 1234'}
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none tracking-[0.5em] text-center text-lg font-mono"
+            />
+            {pinCode && pinCode.length < 4 && (
+              <p className="text-xs text-amber-600 mt-1">PIN phải đủ 4 số</p>
+            )}
+          </div>
+
+          <div>
             <label className="text-sm font-medium text-gray-700">{t('employee.payType')}</label>
             <select value={payType} onChange={(e) => setPayType(e.target.value as PayType)}
               className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none">
