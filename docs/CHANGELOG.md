@@ -12,6 +12,7 @@
 - Tạo hook tự động ghi log khi có file được lưu/tạo/xóa trong `src/`
 - Tạo mới `src/components/ErrorBoundary.tsx` — React Error Boundary component để bắt lỗi runtime và hiển thị fallback UI
 - Tạo mới `src/lib/validations.ts` — Zod validation schemas cho tất cả forms (QuickEntry, Appointment, Customer, Employee, Service, Booking, Login)
+- Tạo mới `src/store/dataStore.ts` — Zustand data cache store với stale-while-revalidate pattern cho employees, services, customers
 
 ### Chỉnh sửa
 - Chỉnh sửa `src/App.tsx` — Thêm React.lazy() code splitting theo role + Suspense + ErrorBoundary bọc routes
