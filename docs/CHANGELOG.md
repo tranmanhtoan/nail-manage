@@ -30,3 +30,8 @@
 ### Tích hợp
 - Cài Graphify knowledge graph (`graphify kiro install --project`) — 288 nodes, 445 edges, 17 communities
 - Tạo `.kiro/skills/graphify/SKILL.md` và `.kiro/steering/graphify.md` cho always-on graph query
+
+## [2026-07-30]
+
+### Chỉnh sửa
+- [10:30] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm month picker popup (chọn tháng/năm) cho Performance card, nút Calendar giờ hoạt động

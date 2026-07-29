@@ -1,7 +1,7 @@
 # Graph Report - Nail Manange  (2026-07-30)
 
 ## Corpus Check
-- 68 files · ~44,925 words
+- 68 files · ~45,121 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e509067c`
+- Built from commit: `f56e2866`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -141,7 +141,7 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ## Knowledge Gaps
-- **174 isolated node(s):** `Thêm mới`, `Chỉnh sửa`, `Tích hợp`, `Stats`, `RecentItem` (+169 more)
+- **174 isolated node(s):** `Stats`, `RecentItem`, `EmployeeOption`, `DailyData`, `PerfTab` (+169 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -152,7 +152,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.042) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `useAuthStore` to `Dashboard.tsx`, `App.tsx`, `QuickEntry.tsx`, `Settings.tsx`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **What connects `Thêm mới`, `Chỉnh sửa`, `Tích hợp` to the rest of the system?**
+- **What connects `Stats`, `RecentItem`, `EmployeeOption` to the rest of the system?**
   _174 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `supabase.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.05779220779220779 - nodes in this community are weakly interconnected._
