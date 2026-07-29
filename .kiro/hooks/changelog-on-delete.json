@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Ghi log CHANGELOG khi xóa file trong src/",
+      "trigger": "PostFileDelete",
+      "matcher": "\\bsrc/",
+      "action": {
+        "type": "agent",
+        "prompt": "A file in src/ was just deleted. Please append a changelog entry to docs/CHANGELOG.md documenting the deletion. Use format: `- [HH:MM] Xóa \\`<relative_path>\\` — <reason if inferable, otherwise \"removed\">`. Group under today's date heading if it already exists, otherwise create a new date heading `## [YYYY-MM-DD]` with a `### Xóa` subsection. Keep the entry concise (1 line)."
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Ghi log CHANGELOG khi tạo file mới trong src/",
+      "trigger": "PostFileCreate",
+      "matcher": "\\bsrc/",
+      "action": {
+        "type": "agent",
+        "prompt": "A new file was just created in src/. Please append a changelog entry to docs/CHANGELOG.md describing the new file. Use format: `- [HH:MM] Tạo mới \\`<relative_path>\\` — <short description of purpose>`. Group under today's date heading if it already exists, otherwise create a new date heading `## [YYYY-MM-DD]` with a `### Thêm mới` subsection. Keep the entry concise (1 line)."
+      }
+    }
+  ]
+}

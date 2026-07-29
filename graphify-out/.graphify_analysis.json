@@ -1,0 +1,373 @@
+{
+  "communities": {
+    "0": [
+      "src_app",
+      "src_app_app",
+      "src_components_bottomnav",
+      "src_components_bottomnav_bottomnav",
+      "src_components_employeelayout",
+      "src_components_employeelayout_employeelayout",
+      "src_components_floatingbackhome",
+      "src_components_floatingbackhome_floatingbackhome",
+      "src_components_header",
+      "src_components_header_header",
+      "src_components_offlinesyncbanner",
+      "src_components_offlinesyncbanner_offlinesyncbanner",
+      "src_hooks_useinactivitytimeout",
+      "src_hooks_useinactivitytimeout_useinactivitytimeout",
+      "src_i18n",
+      "src_i18n_index",
+      "src_main",
+      "src_pages_employee_checkin",
+      "src_pages_employee_checkin_checkin",
+      "src_pages_employee_myschedule",
+      "src_pages_employee_myschedule_myschedule",
+      "src_pages_employee_myschedule_scheduleitem",
+      "src_pages_kiosk_kiosklayout",
+      "src_pages_kiosk_kiosklayout_kiosklayout",
+      "src_pages_kiosk_kioskpersonal",
+      "src_pages_kiosk_kioskpersonal_getchibiemoji",
+      "src_pages_kiosk_kioskpersonal_kioskpersonal",
+      "src_pages_kiosk_kioskpersonal_profileoption",
+      "src_pages_login_login",
+      "src_pages_owner_dashboard_dashboard",
+      "src_pages_owner_settings_settings",
+      "src_pages_quickentry",
+      "src_pages_quickentry_employee",
+      "src_pages_quickentry_quickentry",
+      "src_pages_quickentry_service",
+      "src_pages_quickentry_step",
+      "src_store_authstore_useauthstore",
+      "src_store_syncstore",
+      "src_store_syncstore_failedaction",
+      "src_store_syncstore_syncaction",
+      "src_store_syncstore_syncstate",
+      "src_store_syncstore_usesyncstore",
+      "src_store_themestore",
+      "src_store_themestore_themestate",
+      "src_store_themestore_usethemestore"
+    ],
+    "1": [
+      "src_components_languageswitch",
+      "src_components_languageswitch_languageswitch",
+      "src_lib_database_types_service",
+      "src_lib_supabase",
+      "src_lib_supabase_supabase",
+      "src_lib_supabase_supabaseanonkey",
+      "src_lib_supabase_supabaseurl",
+      "src_pages_booking_bookingpage",
+      "src_pages_booking_bookingpage_bookingpage",
+      "src_pages_login",
+      "src_pages_login_ownerprofile",
+      "src_pages_owner_admin",
+      "src_pages_owner_admin_admin",
+      "src_pages_owner_admin_admindashboard",
+      "src_pages_owner_admin_admindashboard_admindashboard",
+      "src_pages_owner_admin_admindashboard_adminstats",
+      "src_pages_owner_admin_adminservices",
+      "src_pages_owner_admin_adminservices_adminservices",
+      "src_pages_owner_admin_adminservices_categories",
+      "src_pages_owner_admin_adminservices_serviceform",
+      "src_pages_owner_admin_adminsettings",
+      "src_pages_owner_admin_adminsettings_adminsettings",
+      "src_pages_owner_admin_adminsettings_default_toggles",
+      "src_pages_owner_admin_adminsettings_featuretoggles",
+      "src_pages_owner_admin_adminsettings_togglerow",
+      "src_pages_owner_admin_tab",
+      "src_pages_owner_services",
+      "src_pages_owner_services_categories",
+      "src_pages_owner_services_serviceform",
+      "src_pages_owner_services_services",
+      "src_pages_owner_settings",
+      "src_pages_owner_settings_default_toggles",
+      "src_pages_owner_settings_featuretoggles",
+      "src_pages_owner_settings_tab",
+      "src_pages_owner_settings_togglerow"
+    ],
+    "2": [
+      "src_components_pingate",
+      "src_components_pingate_pingate",
+      "src_components_pingate_pingateprops",
+      "src_lib_auth_helpers",
+      "src_lib_auth_helpers_fromauthemail",
+      "src_lib_auth_helpers_toauthemail",
+      "src_lib_database_types",
+      "src_lib_database_types_appointment",
+      "src_lib_database_types_customer",
+      "src_lib_database_types_employee",
+      "src_lib_database_types_paytype",
+      "src_lib_database_types_userrole",
+      "src_lib_supabase_supabaseadmin",
+      "src_pages_employee_myearnings",
+      "src_pages_employee_myearnings_appointmentrow",
+      "src_pages_employee_myearnings_calcearnings",
+      "src_pages_employee_myearnings_earningdata",
+      "src_pages_employee_myearnings_myearnings",
+      "src_pages_employee_myearnings_myemployee",
+      "src_pages_owner_admin_adminemployees",
+      "src_pages_owner_admin_adminemployees_adminemployees",
+      "src_pages_owner_admin_adminemployees_employeeform",
+      "src_pages_owner_admin_adminemployees_generatetemppassword",
+      "src_pages_owner_admin_adminemployees_passwordresult",
+      "src_pages_owner_customers",
+      "src_pages_owner_customers_customerform",
+      "src_pages_owner_customers_customers",
+      "src_pages_owner_employees",
+      "src_pages_owner_employees_bulkcredsmodal",
+      "src_pages_owner_employees_credsmodal",
+      "src_pages_owner_employees_employeeform",
+      "src_pages_owner_employees_employees",
+      "src_pages_owner_employees_generatetemppassword",
+      "src_store_authstore",
+      "src_store_authstore_authstate"
+    ],
+    "3": [
+      "i18next",
+      "lucide_react",
+      "package",
+      "package_dependencies",
+      "package_dependencies_i18next",
+      "package_dependencies_lucide_react",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_react_i18next",
+      "package_dependencies_react_router_dom",
+      "package_dependencies_supabase_supabase_js",
+      "package_dependencies_zustand",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_preview",
+      "package_type",
+      "package_version",
+      "react",
+      "react_dom",
+      "react_i18next",
+      "react_router_dom",
+      "supabase_supabase_js",
+      "zustand"
+    ],
+    "4": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_es2023",
+      "ref_src",
+      "ref_vite_client",
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowarbitraryextensions",
+      "tsconfig_compileroptions_allowimportingtsextensions",
+      "tsconfig_compileroptions_erasablesyntaxonly",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduledetection",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_nofallthroughcasesinswitch",
+      "tsconfig_compileroptions_nounusedlocals",
+      "tsconfig_compileroptions_nounusedparameters",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_compileroptions_types",
+      "tsconfig_compileroptions_verbatimmodulesyntax",
+      "tsconfig_include"
+    ],
+    "5": [
+      "package_devdependencies",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_vite",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_typescript",
+      "package_devdependencies_vite",
+      "package_devdependencies_vite_plugin_pwa",
+      "package_devdependencies_vitejs_plugin_react",
+      "tailwindcss",
+      "tailwindcss_vite",
+      "types_react",
+      "types_react_dom",
+      "typescript",
+      "vite",
+      "vite_plugin_pwa",
+      "vitejs_plugin_react"
+    ],
+    "6": [
+      "src_lib_database_types_appointmentstatus",
+      "src_pages_owner_appointments",
+      "src_pages_owner_appointments_appointmentcard",
+      "src_pages_owner_appointments_appointmentrow",
+      "src_pages_owner_appointments_appointments",
+      "src_pages_owner_appointments_employee",
+      "src_pages_owner_appointments_getchibiemoji",
+      "src_pages_owner_appointments_newappointmentform",
+      "src_pages_owner_appointments_rotationemployee",
+      "src_pages_owner_appointments_rotationstatus",
+      "src_pages_owner_appointments_service",
+      "src_store_supermodestore",
+      "src_store_supermodestore_supermodestate",
+      "src_store_supermodestore_usesupermodestore"
+    ],
+    "7": [
+      "src_pages_owner_dashboard",
+      "src_pages_owner_dashboard_dailydata",
+      "src_pages_owner_dashboard_employeeoption",
+      "src_pages_owner_dashboard_getmonthshort",
+      "src_pages_owner_dashboard_linechart",
+      "src_pages_owner_dashboard_perftab",
+      "src_pages_owner_dashboard_recentitem",
+      "src_pages_owner_dashboard_stats"
+    ],
+    "8": [
+      "src_pages_owner_reports",
+      "src_pages_owner_reports_employeeappointment",
+      "src_pages_owner_reports_employeesummary",
+      "src_pages_owner_reports_period",
+      "src_pages_owner_reports_reports",
+      "src_pages_owner_reports_servicerevenue"
+    ],
+    "9": [
+      "src_vite_env_d",
+      "src_vite_env_d_importmeta",
+      "src_vite_env_d_importmetaenv"
+    ],
+    "10": [
+      "vercel",
+      "vercel_rewrites"
+    ],
+    "11": [
+      "vite_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.10101010101010101,
+    "1": 0.0957983193277311,
+    "2": 0.08403361344537816,
+    "3": 0.07692307692307693,
+    "4": 0.07692307692307693,
+    "5": 0.11764705882352941,
+    "6": 0.18681318681318682,
+    "7": 0.2857142857142857,
+    "8": 0.3333333333333333,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_store_authstore_useauthstore",
+      "label": "useAuthStore",
+      "degree": 27
+    },
+    {
+      "id": "src_lib_supabase_supabase",
+      "label": "supabase",
+      "degree": 22
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 19
+    },
+    {
+      "id": "src_store_syncstore_usesyncstore",
+      "label": "useSyncStore",
+      "degree": 9
+    },
+    {
+      "id": "src_components_languageswitch_languageswitch",
+      "label": "LanguageSwitch()",
+      "degree": 6
+    },
+    {
+      "id": "src_pages_owner_settings_settings",
+      "label": "Settings()",
+      "degree": 6
+    },
+    {
+      "id": "src_components_bottomnav_bottomnav",
+      "label": "BottomNav()",
+      "degree": 5
+    },
+    {
+      "id": "src_components_header_header",
+      "label": "Header()",
+      "degree": 5
+    },
+    {
+      "id": "src_lib_auth_helpers_toauthemail",
+      "label": "toAuthEmail()",
+      "degree": 5
+    },
+    {
+      "id": "src_lib_database_types_service",
+      "label": "Service",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "BottomNav()",
+      "target": "Settings()",
+      "source_files": [
+        "src/components/BottomNav.tsx",
+        "src/pages/owner/Settings.tsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "indirect_call",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "MyEarnings()",
+      "target": "useAuthStore",
+      "source_files": [
+        "src/pages/employee/MyEarnings.tsx",
+        "src/store/authStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "Settings()",
+      "target": "useSuperModeStore",
+      "source_files": [
+        "src/pages/owner/Settings.tsx",
+        "src/store/superModeStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "AdminSettings()",
+      "target": "useAuthStore",
+      "source_files": [
+        "src/pages/owner/admin/AdminSettings.tsx",
+        "src/store/authStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "App()",
+      "target": "useAuthStore",
+      "source_files": [
+        "src/App.tsx",
+        "src/store/authStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
