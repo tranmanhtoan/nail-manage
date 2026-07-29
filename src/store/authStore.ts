@@ -22,30 +22,13 @@ export const useAuthStore = create<AuthState>((set) => ({
     if (UAT_MODE) {
       // In UAT mode, skip Supabase Auth — lookup profile by email
       const lookupEmail = email.includes('@') ? email : toAuthEmail(email)
-
-      // Try direct query first, then loginByProfile view workaround
-      const { data: profile, error: profileError } = await supabase
+      const { data: profile } = await supabase
         .from('profiles')
         .select('id, role, full_name, email')
         .eq('email', lookupEmail)
         .single()
 
-      if (profileError || !profile) {
-        // Fallback: if RLS blocks, try via login_profiles view (employees only)
-        // For owner, we create the session directly from env config
-        if (lookupEmail === (import.meta.env.VITE_OWNER_EMAIL || '')) {
-          const ownerUser = {
-            id: 'owner-uat',
-            email: lookupEmail,
-            role: 'owner' as UserRole,
-            name: 'Owner',
-          }
-          set({ user: ownerUser })
-          sessionStorage.setItem('uat_user', JSON.stringify(ownerUser))
-          return null
-        }
-        return 'Account not found'
-      }
+      if (!profile) return 'Account not found'
 
       const p = profile as { id: string; role: UserRole; full_name: string; email: string }
       set({
