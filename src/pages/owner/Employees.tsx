@@ -92,6 +92,7 @@ export function Employees() {
 
     if (userId && hasIdentities) {
       await supabase.from('employees').insert({ ...empData, profile_id: userId })
+      await updatePin(userId)
       setCreatedCreds({ login: create_email || loginId, password: tempPassword })
     } else {
       // User might already exist — create employee without linking
