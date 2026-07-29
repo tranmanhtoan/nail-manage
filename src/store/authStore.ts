@@ -72,13 +72,13 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   loginByProfile: async (profileId: string) => {
     // Login directly by profile ID — use login_profiles view (accessible by anon)
-    const { data: profile } = await supabase
+    const { data: profile, error: fetchErr } = await supabase
       .from('login_profiles')
       .select('id, full_name, role')
       .eq('id', profileId)
       .single()
 
-    if (!profile) return 'Account not found'
+    if (fetchErr || !profile) return `Account not found: ${fetchErr?.message || 'no data'}`
 
     const p = profile as { id: string; full_name: string; role: UserRole }
     const user = {
