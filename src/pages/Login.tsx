@@ -110,7 +110,7 @@ export function Login() {
 
       // Biometric passed — login as owner
       setLoading(true)
-      const err = await login('owner', '')
+      const err = await login(OWNER_EMAIL, '')
       if (err) setError(err)
     } catch {
       setError('Lỗi xác thực sinh trắc học')
