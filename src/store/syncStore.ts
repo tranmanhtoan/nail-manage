@@ -81,8 +81,18 @@ export const useSyncStore = create<SyncState>()(
       },
 
       enqueueAction: (type, payload) => {
+        const idempotencyKey = generateIdempotencyKey(type, payload)
+
+        // Check for duplicate — skip if same action already in queue
+        const existing = get().syncQueue.find((a) => a.idempotencyKey === idempotencyKey)
+        if (existing) {
+          console.warn('Duplicate sync action skipped:', idempotencyKey)
+          return
+        }
+
         const newAction: SyncAction = {
           id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2),
+          idempotencyKey,
           type,
           payload,
           timestamp: Date.now(),

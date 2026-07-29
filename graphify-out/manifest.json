@@ -220,9 +220,9 @@
     "semantic_hash": "82b6605e9e086650a4cd20e07f6a959e"
   },
   "src/store/syncStore.ts": {
-    "mtime": 1785257122.9902437,
-    "ast_hash": "c3bd4ce25f3bbdf8e9a90fca2b562cfd",
-    "semantic_hash": "c3bd4ce25f3bbdf8e9a90fca2b562cfd"
+    "mtime": 1785340536.950389,
+    "ast_hash": "a089aa3ca0fcfd806d1fe15ebe46be82",
+    "semantic_hash": ""
   },
   "src/store/themeStore.ts": {
     "mtime": 1785255465.6904328,
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785340476.2968163,
-    "ast_hash": "e3741c2f66dea63982d3f77be0019259",
+    "mtime": 1785340520.9889634,
+    "ast_hash": "bcffde2cc8c4e12fe87a02e4a69a8566",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
