@@ -173,6 +173,17 @@ $$ language sql security definer;
 
 grant execute on function public.get_login_email(uuid) to anon, authenticated;
 
+-- RPC function to get owner profile (bypasses RLS for login)
+create or replace function public.get_owner_profile()
+returns table(id uuid, email text, role text, full_name text) as $$
+  select p.id, p.email, p.role, p.full_name
+  from public.profiles p
+  where p.role = 'owner'
+  limit 1;
+$$ language sql security definer;
+
+grant execute on function public.get_owner_profile() to anon, authenticated;
+
 -- RPC function for quick entry submit (bypasses RLS for all roles)
 create or replace function public.quick_entry_submit(
   p_employee_id uuid default null,
