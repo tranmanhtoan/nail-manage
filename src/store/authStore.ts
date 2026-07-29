@@ -20,21 +20,34 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   login: async (email, password) => {
     if (UAT_MODE) {
-      // In UAT mode, skip Supabase Auth — lookup profile by email
-      const authEmail = toAuthEmail(email)
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('id, role, full_name')
-        .eq('email', authEmail)
-        .single()
+      // In UAT mode, skip Supabase Auth — lookup profile
+      // If email is 'owner', find by role instead of email
+      let profile
+      if (email === 'owner') {
+        const { data } = await supabase
+          .from('profiles')
+          .select('id, role, full_name, email')
+          .eq('role', 'owner')
+          .limit(1)
+          .single()
+        profile = data
+      } else {
+        const authEmail = toAuthEmail(email)
+        const { data } = await supabase
+          .from('profiles')
+          .select('id, role, full_name, email')
+          .eq('email', authEmail)
+          .single()
+        profile = data
+      }
 
       if (!profile) return 'Account not found'
 
-      const p = profile as { id: string; role: UserRole; full_name: string }
+      const p = profile as { id: string; role: UserRole; full_name: string; email: string }
       set({
         user: {
           id: p.id,
-          email: authEmail,
+          email: p.email,
           role: p.role ?? 'employee',
           name: p.full_name ?? '',
         },
@@ -42,7 +55,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       // Persist to sessionStorage for checkSession
       sessionStorage.setItem('uat_user', JSON.stringify({
         id: p.id,
-        email: authEmail,
+        email: p.email,
         role: p.role ?? 'employee',
         name: p.full_name ?? '',
       }))
