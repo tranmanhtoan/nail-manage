@@ -17,3 +17,4 @@
 ### Chỉnh sửa
 - Chỉnh sửa `src/App.tsx` — Thêm React.lazy() code splitting theo role + Suspense + ErrorBoundary bọc routes
 - Chỉnh sửa `src/store/syncStore.ts` — Thêm idempotency key để tránh duplicate khi submit offline nhiều lần
+- Chỉnh sửa `src/lib/supabase.ts` — Thêm initAuthListener() xử lý token refresh và session expiry gracefully
