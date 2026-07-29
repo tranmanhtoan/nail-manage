@@ -236,19 +236,19 @@
     "8": [
       "docs_project_overview",
       "docs_project_overview_10_src_hooks_custom_hooks",
-      "docs_project_overview_11_src_i18n_\u0111a_ng\u00f4n_ng\u1eef_i18next",
-      "docs_project_overview_12_h\u1ea1_t\u1ea7ng_c\u1ea5u_h\u00ecnh",
-      "docs_project_overview_1_src_pages_owner_module_ch\u1ee7_ti\u1ec7m_owner",
-      "docs_project_overview_2_src_pages_employee_module_nh\u00e2n_vi\u00ean_employee",
-      "docs_project_overview_3_src_pages_kiosk_module_kiosk_tablet_d\u00f9ng_chung",
-      "docs_project_overview_4_src_pages_booking_module_\u0111\u1eb7t_l\u1ecbch_online_public",
-      "docs_project_overview_5_src_pages_quickentry_tsx_nh\u1eadp_nhanh_shared",
-      "docs_project_overview_6_src_pages_login_tsx_\u0111\u0103ng_nh\u1eadp",
+      "docs_project_overview_11_src_i18n_đa_ngôn_ngữ_i18next",
+      "docs_project_overview_12_hạ_tầng_cấu_hình",
+      "docs_project_overview_1_src_pages_owner_module_chủ_tiệm_owner",
+      "docs_project_overview_2_src_pages_employee_module_nhân_viên_employee",
+      "docs_project_overview_3_src_pages_kiosk_module_kiosk_tablet_dùng_chung",
+      "docs_project_overview_4_src_pages_booking_module_đặt_lịch_online_public",
+      "docs_project_overview_5_src_pages_quickentry_tsx_nhập_nhanh_shared",
+      "docs_project_overview_6_src_pages_login_tsx_đăng_nhập",
       "docs_project_overview_7_src_store_state_management_zustand",
-      "docs_project_overview_8_src_components_components_d\u00f9ng_chung",
-      "docs_project_overview_9_src_lib_th\u01b0_vi\u1ec7n_utilities",
-      "docs_project_overview_ki\u1ebfn_tr\u00fac_t\u1ed5ng_th\u1ec3",
-      "docs_project_overview_mcc_nail_spa_t\u1ed5ng_quan_module",
+      "docs_project_overview_8_src_components_components_dùng_chung",
+      "docs_project_overview_9_src_lib_thư_viện_utilities",
+      "docs_project_overview_kiến_trúc_tổng_thể",
+      "docs_project_overview_mcc_nail_spa_tổng_quan_module",
       "docs_project_overview_tech_stack"
     ],
     "9": [
@@ -306,9 +306,9 @@
     "13": [
       "docs_changelog",
       "docs_changelog_2026_07_29",
-      "docs_changelog_ch\u1ec9nh_s\u1eeda",
+      "docs_changelog_chỉnh_sửa",
       "docs_changelog_mcc_nail_spa_changelog",
-      "docs_changelog_th\u00eam_m\u1edbi"
+      "docs_changelog_thêm_mới"
     ],
     "14": [
       "src_vite_env_d",
@@ -359,8 +359,8 @@
       "degree": 19
     },
     {
-      "id": "docs_project_overview_mcc_nail_spa_t\u1ed5ng_quan_module",
-      "label": "MCC Nail & Spa \u2014 T\u1ed5ng quan Module",
+      "id": "docs_project_overview_mcc_nail_spa_tổng_quan_module",
+      "label": "MCC Nail & Spa — Tổng quan Module",
       "degree": 15
     },
     {
@@ -451,8 +451,41 @@
       "why": "bridges separate communities"
     }
   ],
-  "tokens": {
-    "input": 0,
-    "output": 0
-  }
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `supabase` connect `supabase.ts` to `useAuthStore`, `Employees.tsx`, `Settings.tsx`, `QuickEntry.tsx`, `Dashboard.tsx`, `Reports.tsx`?",
+      "why": "High betweenness centrality (0.062) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `useAuthStore` connect `useAuthStore` to `supabase.ts`, `App.tsx`, `Employees.tsx`, `Settings.tsx`, `QuickEntry.tsx`, `Dashboard.tsx`?",
+      "why": "High betweenness centrality (0.041) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Thêm mới`, `Chỉnh sửa`, `1. `src/pages/owner/` — Module chủ tiệm (Owner)` to the rest of the system?",
+      "why": "132 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `supabase.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07665505226480836 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `useAuthStore` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `App.tsx` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07977207977207977 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `devDependencies` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected."
+    }
+  ]
 }

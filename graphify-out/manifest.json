@@ -260,9 +260,9 @@
     "semantic_hash": "aa601cd91a28d79156cffb08f272212e"
   },
   "src/components/ErrorBoundary.tsx": {
-    "mtime": 1785340436.454749,
-    "ast_hash": "5aad9fe6e73b64664038441c4eb4af15",
-    "semantic_hash": "5aad9fe6e73b64664038441c4eb4af15"
+    "mtime": 1785340914.3247025,
+    "ast_hash": "11ceee7cfe54d80daf933f233d7435c1",
+    "semantic_hash": ""
   },
   "INTRODUCTION.md": {
     "mtime": 1784878927.0,
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785340757.550675,
-    "ast_hash": "fb89ad3d6a02d792949cda9c42fbc728",
+    "mtime": 1785340899.814454,
+    "ast_hash": "4d691ac98d087fe747be559d4591310b",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -280,8 +280,8 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1785255758.7971675,
-    "ast_hash": "abb815e5c98396a57a94c6fd8fe6e967",
+    "mtime": 1785340780.4904652,
+    "ast_hash": "763a22876671526dd504d28c1890ee91",
     "semantic_hash": ""
   },
   "public/apple-touch-icon.png": {
@@ -318,5 +318,55 @@
     "mtime": 1785340602.646155,
     "ast_hash": "d25daa95301dd331902f71f6a3757d07",
     "semantic_hash": "d25daa95301dd331902f71f6a3757d07"
+  },
+  ".kiro/skills/graphify/SKILL.md": {
+    "mtime": 1785340848.9044209,
+    "ast_hash": "dfb0a6554c4af62df6effc61c6c7d245",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/add-watch.md": {
+    "mtime": 1785340242.047868,
+    "ast_hash": "d59d027fe449f06aa03905a01184e779",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/exports.md": {
+    "mtime": 1785340242.0480058,
+    "ast_hash": "9da2a2152e60a22f07f05fed5158f287",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/extraction-spec.md": {
+    "mtime": 1785340242.049333,
+    "ast_hash": "bf895ec4d4e40f5f66f7d31c2a9bd4a7",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/github-and-merge.md": {
+    "mtime": 1785340242.0494454,
+    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/hooks.md": {
+    "mtime": 1785340242.0496087,
+    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/query.md": {
+    "mtime": 1785340242.0498135,
+    "ast_hash": "3c46f8ad006874260614ed8657d02307",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/transcribe.md": {
+    "mtime": 1785340242.049898,
+    "ast_hash": "67b6a5fa6c0974e18f60db9f8932fbd8",
+    "semantic_hash": ""
+  },
+  ".kiro/skills/graphify/references/update.md": {
+    "mtime": 1785340242.0500398,
+    "ast_hash": "9378bd03d56baaf78bd738ab3848f142",
+    "semantic_hash": ""
+  },
+  ".kiro/steering/graphify.md": {
+    "mtime": 1785340848.9053123,
+    "ast_hash": "35d9fdc12ba2c629adaaa0d71f51bd22",
+    "semantic_hash": ""
   }
 }

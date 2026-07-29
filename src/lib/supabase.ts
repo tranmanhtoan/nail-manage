@@ -26,7 +26,7 @@ export function initAuthListener(onSessionExpired: () => void) {
   if (authListenerInitialized) return
   authListenerInitialized = true
 
-  supabase.auth.onAuthStateChange((event, session) => {
+  supabase.auth.onAuthStateChange((event, _session) => {
     if (event === 'TOKEN_REFRESHED') {
       // Token refreshed successfully — no action needed
       console.debug('[auth] Token refreshed')
