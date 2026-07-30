@@ -1,16 +1,16 @@
 # Graph Report - Nail Manange  (2026-07-30)
 
 ## Corpus Check
-- 68 files · ~44,947 words
+- 68 files · ~44,977 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 350 nodes · 493 edges · 25 communities (20 shown, 5 thin omitted)
+- 350 nodes · 492 edges · 25 communities (20 shown, 5 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `539938cc`
+- Built from commit: `795072b7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -110,7 +110,7 @@ Nodes (14): AppointmentInput, appointmentSchema, BookingInput, bookingSchema, Cu
 
 ### Community 10 - "useAuthStore"
 Cohesion: 0.12
-Nodes (20): BottomNav(), EmployeeLayout(), FloatingBackHome(), Header(), LanguageSwitch(), useInactivityTimeout(), UserRole, CheckIn() (+12 more)
+Nodes (19): BottomNav(), FloatingBackHome(), Header(), LanguageSwitch(), useInactivityTimeout(), UserRole, CheckIn(), AppointmentRow (+11 more)
 
 ### Community 11 - "QuickEntry.tsx"
 Cohesion: 0.16

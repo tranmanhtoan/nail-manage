@@ -35,9 +35,9 @@
     "semantic_hash": "0b42a3a815e212015d349d8d3d045f77"
   },
   "src/components/EmployeeLayout.tsx": {
-    "mtime": 1785255792.388411,
-    "ast_hash": "fc885c9e446a0c0bc47bbed7f730035e",
-    "semantic_hash": "fc885c9e446a0c0bc47bbed7f730035e"
+    "mtime": 1785370502.8399746,
+    "ast_hash": "63210b6aec6a31d16a65c8c0a21e87d5",
+    "semantic_hash": ""
   },
   "src/components/FloatingBackHome.tsx": {
     "mtime": 1784884641.1761074,
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785369256.682878,
-    "ast_hash": "566c3365ef7fedc9f5f2f55757399ba7",
+    "mtime": 1785370482.4593642,
+    "ast_hash": "8fb2dc49cc94c0ecf2d4e41737bd63d8",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
