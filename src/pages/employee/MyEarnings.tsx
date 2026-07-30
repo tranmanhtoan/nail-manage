@@ -32,7 +32,7 @@ interface AppointmentRow {
 }
 
 export function MyEarnings() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const [period, setPeriod] = useState<'today' | 'week' | 'month'>('week')
   const [data, setData] = useState<EarningData>({ totalServices: 0, totalRevenue: 0, totalTips: 0, myEarnings: 0 })
@@ -94,7 +94,7 @@ export function MyEarnings() {
 
       const totalRevenue = rows.reduce((s, a) => s + a.apt_price, 0)
       const totalTips = rows.reduce((s, a) => s + a.apt_tip, 0)
-      const myEarnings = calcEarnings(empData, totalRevenue, totalTips)
+      const myEarnings = calcEarnings(empData, totalRevenue, totalTips, period)
 
       const payloadData = {
         totalServices: rows.length,
@@ -158,9 +158,9 @@ export function MyEarnings() {
         <p className="text-4xl font-bold text-[#864e5a] mt-1">${data.myEarnings.toFixed(0)}</p>
         {employee && (
           <p className="text-xs text-gray-400 mt-2">
-            {employee.pay_type === 'commission' && `${employee.commission_rate}% commission`}
-            {employee.pay_type === 'fixed' && `Fixed $${employee.fixed_salary ?? 0} + Tips`}
-            {employee.pay_type === 'split' && `${employee.split_rate}/${100 - (employee.split_rate ?? 0)} split`}
+            {employee.pay_type === 'commission' && `${employee.commission_rate}% ${t('employee.commission').toLowerCase()}`}
+            {employee.pay_type === 'fixed' && `${t('employee.payTypes.fixed')}`}
+            {employee.pay_type === 'split' && `${employee.split_rate}/${100 - (employee.split_rate ?? 0)} ${t('employee.payTypes.split').toLowerCase()}`}
           </p>
         )}
       </div>
@@ -172,46 +172,46 @@ export function MyEarnings() {
           style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
         >
           <p className="text-2xl font-bold text-gray-900">{data.totalServices}</p>
-          <p className="text-xs text-gray-500 mt-1">Services</p>
+          <p className="text-xs text-gray-500 mt-1">{t('nav.services')}</p>
         </div>
         <div
           className="rounded-[1rem] p-4 text-center border border-[rgba(134,78,90,0.1)]"
           style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
         >
           <p className="text-2xl font-bold text-gray-900">${data.totalRevenue}</p>
-          <p className="text-xs text-gray-500 mt-1">Revenue</p>
+          <p className="text-xs text-gray-500 mt-1">{t('dashboard.revenue')}</p>
         </div>
         <div
           className="rounded-[1rem] p-4 text-center border border-[rgba(134,78,90,0.1)]"
           style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
         >
           <p className="text-2xl font-bold text-gray-900">${data.totalTips}</p>
-          <p className="text-xs text-gray-500 mt-1">Tips</p>
+          <p className="text-xs text-gray-500 mt-1">{t('employee.tips')}</p>
         </div>
       </div>
 
       {/* Appointment detail list */}
       <section className="space-y-3">
-        <h3 className="text-lg font-bold text-gray-900">Chi tiết</h3>
+        <h3 className="text-lg font-bold text-gray-900">{t('common.details')}</h3>
 
         {appointments.length === 0 ? (
-          <p className="text-sm text-gray-400 text-center py-6">Chưa có dữ liệu</p>
+          <p className="text-sm text-gray-400 text-center py-6">{t('common.noData')}</p>
         ) : (
           <div className="overflow-x-auto rounded-[1rem] border border-[rgba(134,78,90,0.1)]" style={{ background: 'rgba(255, 248, 248, 0.6)' }}>
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-xs text-gray-500 border-b border-gray-200">
-                  <th className="text-left py-3 px-3 font-medium">Ngày</th>
-                  <th className="text-left py-3 px-3 font-medium">Dịch vụ</th>
-                  <th className="text-right py-3 px-3 font-medium">Giá</th>
-                  <th className="text-right py-3 px-3 font-medium">Tip</th>
+                  <th className="text-left py-3 px-3 font-medium">{t('common.date')}</th>
+                  <th className="text-left py-3 px-3 font-medium">{t('common.service')}</th>
+                  <th className="text-right py-3 px-3 font-medium">{t('common.price')}</th>
+                  <th className="text-right py-3 px-3 font-medium">{t('common.tip')}</th>
                 </tr>
               </thead>
               <tbody>
                 {appointments.map((apt) => (
                   <tr key={apt.apt_id} className="border-b border-gray-50">
                     <td className="py-2.5 px-3 text-gray-700 whitespace-nowrap">
-                      {new Date(apt.apt_date + 'T00:00:00').toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' })}
+                      {new Date(apt.apt_date + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US', { day: '2-digit', month: '2-digit' })}
                       <span className="text-gray-400 ml-1 text-xs">{formatTime(apt.apt_time)}</span>
                     </td>
                     <td className="py-2.5 px-3 text-gray-700 truncate max-w-[120px]">{apt.service_name ?? '-'}</td>
@@ -222,12 +222,12 @@ export function MyEarnings() {
               </tbody>
               <tfoot>
                 <tr className="border-t-2 border-gray-200 font-bold">
-                  <td colSpan={2} className="py-3 px-3">Tổng</td>
+                  <td colSpan={2} className="py-3 px-3">{t('common.total')}</td>
                   <td className="py-3 px-3 text-right">${data.totalRevenue}</td>
                   <td className="py-3 px-3 text-right text-emerald-600">${data.totalTips}</td>
                 </tr>
                 <tr className="bg-[#864e5a]/5">
-                  <td colSpan={2} className="py-3 px-3 font-bold text-[#864e5a]">Tôi nhận</td>
+                  <td colSpan={2} className="py-3 px-3 font-bold text-[#864e5a]">{t('reports.myEarningsLabel')}</td>
                   <td colSpan={2} className="py-3 px-3 text-right font-bold text-[#864e5a] text-lg">${data.myEarnings.toFixed(0)}</td>
                 </tr>
               </tfoot>
@@ -239,13 +239,20 @@ export function MyEarnings() {
   )
 }
 
-function calcEarnings(emp: MyEmployee, revenue: number, tips: number): number {
+function calcEarnings(emp: MyEmployee, revenue: number, tips: number, period: 'today' | 'week' | 'month'): number {
   const payType = emp.pay_type as PayType
   switch (payType) {
     case 'commission':
       return revenue * ((emp.commission_rate ?? 0) / 100) + tips
-    case 'fixed':
-      return (emp.fixed_salary ?? 0) + tips
+    case 'fixed': {
+      const weeklySalary = emp.fixed_salary ?? 0
+      if (period === 'today') {
+        return (weeklySalary / 7) + tips
+      } else if (period === 'month') {
+        return (weeklySalary * 30 / 7) + tips
+      }
+      return weeklySalary + tips
+    }
     case 'split':
       return (revenue + tips) * ((emp.split_rate ?? 0) / 100)
     default:

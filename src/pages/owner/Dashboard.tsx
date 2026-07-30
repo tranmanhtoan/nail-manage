@@ -95,50 +95,41 @@ export function Dashboard() {
     lastMonday.setDate(monday.getDate() - 7)
     const lastSunday = new Date(monday)
     lastSunday.setDate(monday.getDate() - 1)
-    const [dayCompletedRes, dayAllRes, dayWaitingRes, weekRes, lastWeekRes, recentRes] = await Promise.all([
-      // Completed appointments for selected day (revenue, avg)
+
+    const [dayCompletedRes, dayWaitingRes, rangeRes] = await Promise.all([
+      // Completed appointments for selected day (with price, tip, and joins for recent activity)
       supabase
         .from('appointments')
-        .select('price, tip, customer_id, payment_method')
+        .select('id, price, tip, date, time, customer_id, payment_method, service_id, employee_id, services(name), employees(name)')
         .eq('date', dateStr)
-        .eq('status', 'completed'),
-      // All completed appointments for selected day (customer count)
-      supabase
-        .from('appointments')
-        .select('id')
-        .eq('date', dateStr)
-        .eq('status', 'completed'),
+        .eq('status', 'completed')
+        .order('time', { ascending: false }),
       // Waiting/booked appointments for selected day
       supabase
         .from('appointments')
         .select('id')
         .eq('date', dateStr)
         .in('status', ['booked', 'in_progress']),
-      // Weekly data for chart
+      // Completed appointments from last week\'s Monday to this week\'s Sunday
       supabase
         .from('appointments')
         .select('price, tip, date')
-        .gte('date', mondayStr)
+        .gte('date', lastMonday.toISOString().slice(0, 10))
         .lte('date', sundayStr)
         .eq('status', 'completed'),
-      // Last week for growth comparison
-      supabase
-        .from('appointments')
-        .select('price, tip')
-        .gte('date', lastMonday.toISOString().slice(0, 10))
-        .lte('date', lastSunday.toISOString().slice(0, 10))
-        .eq('status', 'completed'),
-      // Recent activity for selected day
-      supabase
-        .from('appointments')
-        .select('id, price, tip, time, date, service_id, employee_id, services(name), employees(name)')
-        .eq('date', dateStr)
-        .eq('status', 'completed')
-        .order('time', { ascending: false }),
     ])
+
     const dayCompletedData = dayCompletedRes.data ?? []
-    const weekData = weekRes.data ?? []
-    const lastWeekData = lastWeekRes.data ?? []
+    const rangeData = rangeRes.data ?? []
+
+    // Filter weekData and lastWeekData locally
+    const weekData = rangeData.filter((r) => r.date >= mondayStr && r.date <= sundayStr)
+    const lastWeekData = rangeData.filter(
+      (r) =>
+        r.date >= lastMonday.toISOString().slice(0, 10) &&
+        r.date <= lastSunday.toISOString().slice(0, 10)
+    )
+
     // Day revenue
     const totalRevenue = dayCompletedData.reduce((sum, r) => sum + r.price + r.tip, 0)
     const lastWeekRevenue = lastWeekData.reduce((sum, r) => sum + r.price + r.tip, 0)
@@ -165,7 +156,7 @@ export function Dashboard() {
       weeklyBreakdown[idx] += row.price + row.tip
     }
     // Recent activity
-    const recent: RecentItem[] = (recentRes.data ?? []).map((r) => {
+    const recent: RecentItem[] = dayCompletedData.map((r) => {
       const svc = r.services as unknown as { name: string } | null
       const emp = r.employees as unknown as { name: string } | null
       return {
@@ -180,7 +171,7 @@ export function Dashboard() {
       totalRevenue,
       cashRevenue,
       cardRevenue,
-      dayAppointments: dayAllRes.data?.length ?? 0,
+      dayAppointments: dayCompletedData.length,
       waitingAppointments: dayWaitingRes.data?.length ?? 0,
       avgValue,
       weeklyData: weeklyBreakdown,

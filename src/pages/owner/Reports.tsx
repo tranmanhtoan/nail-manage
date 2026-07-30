@@ -29,7 +29,7 @@ interface EmployeeAppointment {
 }
 
 export function Reports() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [period, setPeriod] = useState<Period>('week')
   const [serviceRevenue, setServiceRevenue] = useState<ServiceRevenue[]>([])
   const [employeeSummaries, setEmployeeSummaries] = useState<EmployeeSummary[]>([])
@@ -111,7 +111,10 @@ export function Reports() {
         existing.commission += ((row.price + row.tip) * rate / 100)
       } else {
         // fixed salary + tips
-        existing.commission = fixedSalary + rows.filter((r) => (r.employee_id ?? 'unknown') === key).reduce((s, r) => s + r.tip, 0)
+        // Scale the weekly fixed salary based on the active report period
+        const tips = rows.filter((r) => (r.employee_id ?? 'unknown') === key).reduce((s, r) => s + r.tip, 0)
+        const scaledSalary = period === 'day' ? (fixedSalary / 7) : period === 'month' ? (fixedSalary * 30 / 7) : fixedSalary
+        existing.commission = scaledSalary + tips
       }
 
       empMap.set(key, existing)
@@ -291,7 +294,7 @@ export function Reports() {
                 {/* Revenue */}
                 <div className="text-right">
                   <p className="text-sm font-bold text-[#864e5a]">{formatCurrency(emp.revenue)}</p>
-                  <p className="text-[10px] text-gray-400">doanh thu</p>
+                  <p className="text-[10px] text-gray-400">{t('reports.revenueLabel')}</p>
                 </div>
               </div>
             ))}
@@ -369,25 +372,25 @@ export function Reports() {
                   <div className="grid grid-cols-3 gap-3">
                     <div className="bg-gray-50 rounded-xl p-3 text-center">
                       <p className="text-lg font-bold text-gray-900">{selectedEmployee.count}</p>
-                      <p className="text-[10px] text-gray-500 uppercase">Lượt</p>
+                      <p className="text-[10px] text-gray-500 uppercase">{t('appointments.turns')}</p>
                     </div>
                     <div className="bg-gray-50 rounded-xl p-3 text-center">
                       <p className="text-lg font-bold text-[#864e5a]">{formatCurrency(selectedEmployee.revenue)}</p>
-                      <p className="text-[10px] text-gray-500 uppercase">Doanh thu</p>
+                      <p className="text-[10px] text-gray-500 uppercase">{t('dashboard.revenue')}</p>
                     </div>
                     <div className="bg-emerald-50 rounded-xl p-3 text-center">
                       <p className="text-lg font-bold text-emerald-600">{formatCurrency(selectedEmployee.commission)}</p>
-                      <p className="text-[10px] text-gray-500 uppercase">NV nhận</p>
+                      <p className="text-[10px] text-gray-500 uppercase">{t('reports.employeeEarningsLabel')}</p>
                     </div>
                   </div>
 
                   {/* Pay type info */}
                   <div className="bg-amber-50 rounded-xl p-3 flex items-center justify-between">
-                    <span className="text-xs text-amber-800 font-medium">Hình thức chia:</span>
+                    <span className="text-xs text-amber-800 font-medium">{t('reports.splitMethod')}</span>
                     <span className="text-xs font-bold text-amber-900">
-                      {selectedEmployee.payType === 'commission' && `Hoa hồng ${selectedEmployee.payRate}% giá + 100% tip`}
-                      {selectedEmployee.payType === 'split' && `Chia ${selectedEmployee.payRate}% tổng (giá + tip)`}
-                      {selectedEmployee.payType === 'fixed' && `Lương cố định $${selectedEmployee.payRate ?? 0} + tip`}
+                      {selectedEmployee.payType === 'commission' && t('reports.commissionPayDesc', { rate: selectedEmployee.payRate })}
+                      {selectedEmployee.payType === 'split' && t('reports.splitPayDesc', { rate: selectedEmployee.payRate })}
+                      {selectedEmployee.payType === 'fixed' && t('reports.fixedPayDesc', { rate: selectedEmployee.payRate ?? 0 })}
                     </span>
                   </div>
 
@@ -396,17 +399,17 @@ export function Reports() {
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="text-xs text-gray-500 border-b border-gray-200">
-                          <th className="text-left py-2 font-medium">Ngày</th>
-                          <th className="text-left py-2 font-medium">Dịch vụ</th>
-                          <th className="text-right py-2 font-medium">Giá</th>
-                          <th className="text-right py-2 font-medium">Tip</th>
+                          <th className="text-left py-2 font-medium">{t('common.date')}</th>
+                          <th className="text-left py-2 font-medium">{t('common.service')}</th>
+                          <th className="text-right py-2 font-medium">{t('common.price')}</th>
+                          <th className="text-right py-2 font-medium">{t('common.tip')}</th>
                         </tr>
                       </thead>
                       <tbody>
                         {employeeAppointments.map((apt, i) => (
                           <tr key={i} className="border-b border-gray-50">
                             <td className="py-2 text-gray-700 whitespace-nowrap">
-                              {new Date(apt.date + 'T00:00:00').toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' })}
+                              {new Date(apt.date + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US', { day: '2-digit', month: '2-digit' })}
                               <span className="text-gray-400 ml-1 text-xs">{apt.time.slice(0, 5)}</span>
                             </td>
                             <td className="py-2 text-gray-700 truncate max-w-[100px]">{apt.service}</td>
@@ -417,7 +420,7 @@ export function Reports() {
                       </tbody>
                       <tfoot>
                         <tr className="border-t-2 border-gray-200 font-bold">
-                          <td colSpan={2} className="py-2">Tổng</td>
+                          <td colSpan={2} className="py-2">{t('common.total')}</td>
                           <td className="py-2 text-right">{formatCurrency(employeeAppointments.reduce((s, a) => s + a.price, 0))}</td>
                           <td className="py-2 text-right text-emerald-600">{formatCurrency(employeeAppointments.reduce((s, a) => s + a.tip, 0))}</td>
                         </tr>
@@ -432,21 +435,21 @@ export function Reports() {
             <div className="hidden">
               <div ref={printRef}>
                 <h2>Pay Statement — {selectedEmployee.name}</h2>
-                <h3>{new Date(periodStart).toLocaleDateString('vi-VN')} — {new Date(periodEnd).toLocaleDateString('vi-VN')}</h3>
+                <h3>{new Date(periodStart).toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US')} — {new Date(periodEnd).toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US')}</h3>
                 <table>
                   <thead>
                     <tr>
-                      <th>Ngày</th>
-                      <th>Giờ</th>
-                      <th>Dịch vụ</th>
-                      <th className="right">Giá</th>
-                      <th className="right">Tip</th>
+                      <th>{t('common.date')}</th>
+                      <th>{t('appointments.time')}</th>
+                      <th>{t('common.service')}</th>
+                      <th className="right">{t('common.price')}</th>
+                      <th className="right">{t('common.tip')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {employeeAppointments.map((apt, i) => (
                       <tr key={i}>
-                        <td>{new Date(apt.date + 'T00:00:00').toLocaleDateString('vi-VN')}</td>
+                        <td>{new Date(apt.date + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US')}</td>
                         <td>{apt.time.slice(0, 5)}</td>
                         <td>{apt.service}</td>
                         <td className="right">${apt.price}</td>
@@ -456,18 +459,18 @@ export function Reports() {
                   </tbody>
                   <tfoot>
                     <tr className="total-row">
-                      <td colSpan={3}>Tổng cộng</td>
+                      <td colSpan={3}>{t('common.totalAmount')}</td>
                       <td className="right">${employeeAppointments.reduce((s, a) => s + a.price, 0)}</td>
                       <td className="right">${employeeAppointments.reduce((s, a) => s + a.tip, 0)}</td>
                     </tr>
                     <tr>
                       <td colSpan={5}>
-                        Hình thức: {selectedEmployee.payType === 'commission' ? `Hoa hồng ${selectedEmployee.payRate}% giá + 100% tip` :
-                          selectedEmployee.payType === 'split' ? `Chia ${selectedEmployee.payRate}% tổng` : 'Lương cố định + tip'}
+                        {t('reports.splitMethod')} {selectedEmployee.payType === 'commission' ? t('reports.commissionPayDesc', { rate: selectedEmployee.payRate }) :
+                          selectedEmployee.payType === 'split' ? t('reports.splitPayDesc', { rate: selectedEmployee.payRate }) : t('reports.fixedPayDesc', { rate: selectedEmployee.payRate ?? 0 })}
                       </td>
                     </tr>
                     <tr className="total-row">
-                      <td colSpan={3}>NV nhận</td>
+                      <td colSpan={3}>{t('reports.employeeEarningsLabel')}</td>
                       <td colSpan={2} className="right">${selectedEmployee.commission.toFixed(0)}</td>
                     </tr>
                   </tfoot>

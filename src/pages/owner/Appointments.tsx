@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Plus, Calendar, User, X } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useSuperModeStore } from '@/store/superModeStore'
+import { useDataStore } from '@/store/dataStore'
 import type { AppointmentStatus } from '@/lib/database.types'
 
 interface AppointmentRow {
@@ -55,7 +56,7 @@ function getChibiEmoji(name: string) {
 }
 
 export function Appointments() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const superMode = useSuperModeStore((s) => s.superMode)
   const [appointments, setAppointments] = useState<AppointmentRow[]>([])
   const [weekCounts, setWeekCounts] = useState<Record<string, number>>({})
@@ -82,12 +83,12 @@ export function Appointments() {
   }, [dateStr])
 
   async function loadFormData() {
-    const [empsRes, svcsRes] = await Promise.all([
-      supabase.from('employees').select('id, name, is_active, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
-      supabase.from('services').select('id, name, price').eq('is_active', true).order('name'),
+    const [emps, svcs] = await Promise.all([
+      useDataStore.getState().fetchEmployees(),
+      useDataStore.getState().fetchServices(),
     ])
-    setEmployees((empsRes.data ?? []) as Employee[])
-    setServices((svcsRes.data ?? []) as Service[])
+    setEmployees(emps)
+    setServices(svcs)
   }
 
   async function load() {
@@ -95,13 +96,13 @@ export function Appointments() {
     const weekStart = weekDays[0].toISOString().slice(0, 10)
     const weekEnd = weekDays[6].toISOString().slice(0, 10)
 
-    const [aptsRes, empsRes, weekRes] = await Promise.all([
+    const [aptsRes, empList, weekRes] = await Promise.all([
       supabase
         .from('appointments')
         .select('*, customer:customers(name, phone), employee:employees(name), service:services(name)')
         .eq('date', dateStr)
         .order('time'),
-      supabase.from('employees').select('id, name, is_active, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
+      useDataStore.getState().fetchEmployees(),
       supabase.from('appointments').select('date').gte('date', weekStart).lte('date', weekEnd),
     ])
 
@@ -114,7 +115,6 @@ export function Appointments() {
     }
     setWeekCounts(counts)
 
-    const empList = (empsRes.data ?? []) as Employee[]
     setEmployees(empList)
 
     const turnCounts = new Map<string, number>()
@@ -304,8 +304,13 @@ export function Appointments() {
 
   async function saveRotationOrder(list?: RotationEmployee[]) {
     const toSave = list ?? rotation
-    for (let i = 0; i < toSave.length; i++) {
-      await supabase.from('employees').update({ rotation_order: i }).eq('id', toSave[i].id)
+    const updates = toSave.map((emp, i) => ({
+      id: emp.id,
+      rotation_order: i,
+    }))
+    const { error } = await supabase.from('employees').upsert(updates)
+    if (error) {
+      console.error('Failed to save rotation order:', error)
     }
     const updated = toSave.map((emp) => ({
       ...emp,
@@ -326,9 +331,17 @@ export function Appointments() {
   }
 
   const weekDays = getWeekDays()
-  const dayLabels = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
+  const dayLabels = [
+    t('days.sun'),
+    t('days.mon'),
+    t('days.tue'),
+    t('days.wed'),
+    t('days.thu'),
+    t('days.fri'),
+    t('days.sat')
+  ]
 
-  const formattedDate = selectedDate.toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'long' })
+  const formattedDate = selectedDate.toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long' })
 
   return (
     <div className="max-w-lg mx-auto px-5 py-6 pb-24 space-y-10">
@@ -447,7 +460,7 @@ export function Appointments() {
             ))}
             {unassignedCount > 0 && (
               <span className="text-sm bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5 text-gray-500 backdrop-blur-sm">
-                Unassigned: <strong className="text-gray-700">{unassignedCount}</strong> {t('appointments.turns')}
+                {t('common.unassigned')}: <strong className="text-gray-700">{unassignedCount}</strong> {t('appointments.turns')}
               </span>
             )}
           </div>

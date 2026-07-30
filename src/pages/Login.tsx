@@ -33,13 +33,13 @@ export function Login() {
     // Fetch owner profile from DB
     const { data, error: fetchError } = await supabase
       .from('login_profiles')
-      .select('id, full_name, role, pin')
+      .select('id, full_name, role')
       .eq('role', 'owner')
       .limit(1)
       .single()
 
     if (fetchError || !data) {
-      setError(`Không tìm thấy Owner: ${fetchError?.message || 'no data'}`)
+      setError(t('auth.ownerNotFound', { error: fetchError?.message || 'no data' }))
       setLoading(false)
       return
     }
@@ -69,31 +69,19 @@ export function Login() {
   async function verifyPin(enteredPin: string) {
     if (!ownerProfile) return
 
-    if (!ownerProfile.pin) {
+    setLoading(true)
+    const err = await loginByProfile(ownerProfile.id, enteredPin)
+    if (err) {
       setShaking(true)
-      setError('Chưa đặt PIN cho owner trong database')
+      setError(err === 'PIN không đúng' ? t('pin.incorrect') : `Login failed: ${err}`)
+      setPin('')
+      setLoading(false)
       setTimeout(() => {
-        setPin('')
         setShaking(false)
       }, 500)
-      return
-    }
-
-    if (enteredPin === ownerProfile.pin) {
-      setLoading(true)
-      const err = await loginByProfile(ownerProfile.id)
-      if (err) {
-        setError(`Login failed: ${err}`)
-        setPin('')
-        setLoading(false)
-      }
     } else {
-      setShaking(true)
-      setError(`PIN không đúng (expected ${ownerProfile.pin.length} digits)`)
-      setTimeout(() => {
-        setPin('')
-        setShaking(false)
-      }, 500)
+      // Save PIN locally to support future Biometric logins
+      localStorage.setItem(`bio_pin_${ownerProfile.id}`, enteredPin)
     }
   }
 
@@ -103,14 +91,14 @@ export function Login() {
     setLoading(true)
     try {
       if (!window.PublicKeyCredential) {
-        setError('Thiết bị không hỗ trợ sinh trắc học')
+        setError(t('auth.biometricNotSupported'))
         setLoading(false)
         return
       }
 
       const available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
       if (!available) {
-        setError('Face ID / Touch ID không khả dụng')
+        setError(t('auth.biometricNotAvailable'))
         setLoading(false)
         return
       }
@@ -145,17 +133,18 @@ export function Login() {
         }).catch(() => null)
 
         if (!created) {
-          setError('Xác thực bị hủy')
+          setError(t('auth.biometricCancelled'))
           setLoading(false)
           return
         }
       }
 
-      // Biometric passed — login
-      const err = await loginByProfile(ownerProfile.id)
-      if (err) setError(err)
+      // Biometric passed — login with saved PIN
+      const savedPin = localStorage.getItem(`bio_pin_${ownerProfile.id}`) || ''
+      const err = await loginByProfile(ownerProfile.id, savedPin)
+      if (err) setError(err === 'PIN không đúng' ? t('auth.biometricActivatePrompt') : err)
     } catch {
-      setError('Lỗi xác thực sinh trắc học')
+      setError(t('auth.biometricFailed'))
     }
     setLoading(false)
   }
@@ -196,7 +185,7 @@ export function Login() {
                 {loading ? <Loader2 className="animate-spin text-[#864e5a]" size={28} /> : <Crown size={32} className="text-[#864e5a]" />}
               </div>
               <p className="font-semibold text-base text-gray-900">Owner</p>
-              <p className="text-xs mt-0.5 text-gray-500">Quản lý tiệm</p>
+              <p className="text-xs mt-0.5 text-gray-500">{t('auth.ownerDesc')}</p>
             </button>
 
             {/* Kiosk card */}
@@ -215,7 +204,7 @@ export function Login() {
                 <Monitor size={32} className="text-gray-600" />
               </div>
               <p className="font-semibold text-base text-gray-900">Kiosk</p>
-              <p className="text-xs mt-0.5 text-gray-500">Chế độ tablet</p>
+              <p className="text-xs mt-0.5 text-gray-500">{t('auth.kioskDesc')}</p>
             </button>
 
             {error && <p className="col-span-2 text-red-500 text-sm text-center mt-2">{error}</p>}
@@ -236,7 +225,7 @@ export function Login() {
                 <Crown size={28} className="text-[#864e5a]" />
               </div>
               <p className="font-bold text-lg text-gray-900">{ownerProfile?.full_name}</p>
-              <p className="text-sm text-gray-500">Nhập PIN hoặc dùng Face ID</p>
+              <p className="text-sm text-gray-500">{t('auth.enterPinOrFaceId')}</p>
             </div>
 
             {/* PIN dots */}
@@ -285,7 +274,7 @@ export function Login() {
                 <button
                   onClick={handleDelete}
                   className="w-16 h-16 rounded-full bg-gray-50 border border-gray-200 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all flex items-center justify-center mx-auto"
-                  title="Xóa"
+                  title={t('auth.deleteChar')}
                 >
                   <Delete size={22} className="text-gray-600" />
                 </button>

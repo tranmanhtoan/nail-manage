@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Users, Scissors, CalendarDays, UserCheck } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { Users, Scissors, CalendarDays, UserCheck, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 interface AdminStats {
@@ -14,16 +15,30 @@ interface AdminStats {
 }
 
 export function AdminDashboard() {
+  const { t } = useTranslation()
   const [stats, setStats] = useState<AdminStats>({
-    totalProfiles: 0, totalEmployees: 0, activeEmployees: 0,
-    totalServices: 0, activeServices: 0,
-    totalAppointments: 0, todayAppointments: 0, totalCustomers: 0,
+    totalProfiles: 0,
+    totalEmployees: 0,
+    activeEmployees: 0,
+    totalServices: 0,
+    activeServices: 0,
+    totalAppointments: 0,
+    todayAppointments: 0,
+    totalCustomers: 0,
   })
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => { load() }, [])
+  useEffect(() => {
+    load()
+  }, [])
 
   async function load() {
+    try {
+      await supabase.rpc('sync_orphaned_employees')
+    } catch (e) {
+      console.warn('sync_orphaned_employees failed:', e)
+    }
+
     const today = new Date().toISOString().slice(0, 10)
 
     const [profiles, employees, services, appointments, todayApts, customers] = await Promise.all([
@@ -52,23 +67,57 @@ export function AdminDashboard() {
   }
 
   if (loading) {
-    return <div className="flex items-center justify-center p-12">
-      <div className="animate-pulse text-[#864e5a] font-bold">Loading...</div>
-    </div>
+    return (
+      <div className="flex items-center justify-center p-12">
+        <Loader2 className="animate-spin text-[#864e5a]" size={32} />
+      </div>
+    )
   }
 
   const cards = [
-    { label: 'Tài khoản (Users)', value: stats.totalProfiles, icon: UserCheck, color: 'bg-violet-100 text-violet-700' },
-    { label: 'Nhân viên', value: `${stats.activeEmployees}/${stats.totalEmployees}`, sub: 'active/total', icon: Users, color: 'bg-emerald-100 text-emerald-700' },
-    { label: 'Dịch vụ', value: `${stats.activeServices}/${stats.totalServices}`, sub: 'active/total', icon: Scissors, color: 'bg-amber-100 text-amber-700' },
-    { label: 'Lịch hẹn hôm nay', value: stats.todayAppointments, icon: CalendarDays, color: 'bg-sky-100 text-sky-700' },
-    { label: 'Tổng lịch hẹn', value: stats.totalAppointments, icon: CalendarDays, color: 'bg-rose-100 text-rose-700' },
-    { label: 'Khách hàng', value: stats.totalCustomers, icon: UserCheck, color: 'bg-teal-100 text-teal-700' },
+    {
+      label: t('settings.userAccounts'),
+      value: stats.totalProfiles,
+      icon: UserCheck,
+      color: 'bg-violet-100 text-violet-700',
+    },
+    {
+      label: t('nav.employees'),
+      value: `${stats.activeEmployees}/${stats.totalEmployees}`,
+      sub: t('settings.activeTotal'),
+      icon: Users,
+      color: 'bg-emerald-100 text-emerald-700',
+    },
+    {
+      label: t('nav.services'),
+      value: `${stats.activeServices}/${stats.totalServices}`,
+      sub: t('settings.activeTotal'),
+      icon: Scissors,
+      color: 'bg-amber-100 text-amber-700',
+    },
+    {
+      label: t('appointments.todayTitle'),
+      value: stats.todayAppointments,
+      icon: CalendarDays,
+      color: 'bg-sky-100 text-sky-700',
+    },
+    {
+      label: t('dashboard.totalAppointments'),
+      value: stats.totalAppointments,
+      icon: CalendarDays,
+      color: 'bg-rose-100 text-rose-700',
+    },
+    {
+      label: t('customer.title'),
+      value: stats.totalCustomers,
+      icon: UserCheck,
+      color: 'bg-teal-100 text-teal-700',
+    },
   ]
 
   return (
     <div className="px-5 py-6 pb-24 space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900">Tổng quan hệ thống</h2>
+      <h2 className="text-2xl font-bold text-gray-900">{t('settings.systemOverview')}</h2>
 
       <div className="grid grid-cols-2 gap-3">
         {cards.map((card) => (

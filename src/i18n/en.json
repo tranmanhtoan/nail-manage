@@ -36,10 +36,22 @@
     "confirm": "Confirm",
     "back": "Back",
     "saving": "Saving",
-    "all": "All"
+    "all": "All",
+    "close": "Close",
+    "copied": "Copied!",
+    "copyAll": "Copy All",
+    "noData": "No data",
+    "unassigned": "Unassigned",
+    "details": "Details",
+    "date": "Date",
+    "service": "Service",
+    "price": "Price",
+    "tip": "Tip",
+    "totalAmount": "Total",
+    "done": "Done"
   },
   "dashboard": {
-    "greeting": "Bonjour",
+    "greeting": "Hello",
     "subtitle": "Here is your salon's performance today.",
     "totalRevenue": "Total Revenue",
     "fromLastWeek": "from last week",
@@ -77,7 +89,28 @@
       "split": "Split (e.g. 60/40)"
     },
     "splitRate": "Split Rate",
-    "performance": "Performance"
+    "performance": "Performance",
+    "accountCreatedSuccess": "Account Created Successfully!",
+    "provideCredentialsHint": "Provide these credentials to the employee to log in:",
+    "copyCredentials": "Copy Credentials",
+    "changePasswordReminder": "Remind the employee to change password after first login",
+    "createBulkAccountsConfirm": "Create login accounts for {{count}} employees without them?",
+    "noAccountLabel": "No login account",
+    "pinLengthWarning": "PIN must be exactly 4 digits",
+    "pinLeaveBlankHint": "Leave blank if no change",
+    "usernameExplain": "Employee logs in with: {{username}} + temp password",
+    "usernameExplainLabel": "(login)",
+    "optionalLabel": "(optional)",
+    "bulkAccountsCreated": "Successfully created {{count}} accounts!",
+    "saveCredentialsNote": "Save the login credentials for employees:",
+    "pinCodeLabel": "PIN Code",
+    "pinCodeExplain": "(4 digits)",
+    "salaryUnitLabel": "($/week)",
+    "splitRateExplain": "(% for Employee)",
+    "missingAccountAlert": "⚠️ {{count}} employees missing login accounts. Click to create all.",
+    "deleteConfirm": "Are you sure you want to delete employee {{name}}? This will also permanently delete their login profile and account.",
+    "accountExistsError": "Account \"{{loginId}}\" already exists",
+    "accountExistsLinked": "Account \"{{loginId}}\" already exists. Employee created but not linked."
   },
   "service": {
     "title": "Services",
@@ -168,7 +201,18 @@
     "username": "Username",
     "email": "Email",
     "password": "Password",
-    "forgotPassword": "Forgot password?"
+    "forgotPassword": "Forgot password?",
+    "biometricNotSupported": "Device does not support biometrics",
+    "biometricNotAvailable": "Face ID / Touch ID not available",
+    "biometricCancelled": "Authentication cancelled",
+    "biometricFailed": "Biometric authentication failed",
+    "biometricActivatePrompt": "Please enter PIN manually once to activate biometrics",
+    "ownerDesc": "Manage Salon",
+    "kioskDesc": "Tablet Mode",
+    "ownerNotFound": "Owner account not found: {{error}}",
+    "enterPinOrFaceId": "Enter PIN or use Face ID",
+    "pinNotSetDatabase": "Owner PIN not set in database",
+    "deleteChar": "Delete"
   },
   "settings": {
     "title": "Settings",
@@ -185,7 +229,12 @@
     "featureReports": "Reports",
     "featureReportsDesc": "Show revenue reports and analytics",
     "kioskPin": "Kiosk PIN",
-    "kioskPinDesc": "PIN code for kiosk/tablet mode (min 4 digits)"
+    "kioskPinDesc": "PIN code for kiosk/tablet mode (min 4 digits)",
+    "darkMode": "Dark Mode",
+    "darkModeDesc": "Toggle dark/light theme for the application",
+    "systemOverview": "System Overview",
+    "activeTotal": "active/total",
+    "userAccounts": "User Accounts"
   },
   "reports": {
     "title": "Analytics",
@@ -206,7 +255,14 @@
     "paymentBreakdown": "Payment Breakdown",
     "topEmployees": "Top Employees",
     "topServices": "Top Services",
-    "noData": "No data yet"
+    "noData": "No data yet",
+    "revenueLabel": "revenue",
+    "splitMethod": "Split Method:",
+    "commissionPayDesc": "Commission {{rate}}% of price + 100% tip",
+    "splitPayDesc": "Split {{rate}}% of total (price + tip)",
+    "fixedPayDesc": "Fixed salary ${{rate}} + tip",
+    "myEarningsLabel": "My Earnings",
+    "employeeEarningsLabel": "Employee gets"
   },
   "pin": {
     "title": "Enter PIN",
@@ -242,5 +298,20 @@
     "retry": "Retry",
     "success": "{{count}} entry synced successfully!",
     "success_plural": "{{count}} entries synced successfully!"
+  },
+  "kiosk": {
+    "personal": "Personal",
+    "personalSubtitle": "Select name to log in to personal page",
+    "noAccountEmployees": "No employees with accounts yet",
+    "pinNotSetContactOwner": "PIN not set. Contact Owner to configure."
+  },
+  "days": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
   }
 }

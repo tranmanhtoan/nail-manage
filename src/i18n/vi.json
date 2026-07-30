@@ -36,7 +36,19 @@
     "confirm": "Xác nhận",
     "back": "Quay lại",
     "saving": "Đang lưu",
-    "all": "Tất cả"
+    "all": "Tất cả",
+    "close": "Đóng",
+    "copied": "Đã sao chép!",
+    "copyAll": "Sao chép tất cả",
+    "noData": "Không có dữ liệu",
+    "unassigned": "Chưa giao việc",
+    "details": "Chi tiết",
+    "date": "Ngày",
+    "service": "Dịch vụ",
+    "price": "Giá",
+    "tip": "Tip",
+    "totalAmount": "Tổng cộng",
+    "done": "Xong"
   },
   "dashboard": {
     "greeting": "Xin chào",
@@ -77,7 +89,28 @@
       "split": "Chia (vd: 60/40)"
     },
     "splitRate": "Tỷ lệ chia",
-    "performance": "Hiệu suất"
+    "performance": "Hiệu suất",
+    "accountCreatedSuccess": "Tạo tài khoản thành công!",
+    "provideCredentialsHint": "Đưa thông tin này cho nhân viên để đăng nhập:",
+    "copyCredentials": "Sao chép thông tin",
+    "changePasswordReminder": "Nhắc nhân viên đổi password sau khi đăng nhập lần đầu",
+    "createBulkAccountsConfirm": "Tạo tài khoản đăng nhập cho {{count}} nhân viên chưa có?",
+    "noAccountLabel": "Chưa có tài khoản",
+    "pinLengthWarning": "PIN phải đủ 4 số",
+    "pinLeaveBlankHint": "Để trống nếu không đổi",
+    "usernameExplain": "NV đăng nhập bằng: {{username}} + password tạm",
+    "usernameExplainLabel": "(đăng nhập)",
+    "optionalLabel": "(tự chọn)",
+    "bulkAccountsCreated": "Tạo {{count}} tài khoản thành công!",
+    "saveCredentialsNote": "Lưu lại thông tin đăng nhập cho nhân viên:",
+    "pinCodeLabel": "PIN đăng nhập",
+    "pinCodeExplain": "(4 số)",
+    "salaryUnitLabel": "($/tuần)",
+    "splitRateExplain": "(% cho NV)",
+    "missingAccountAlert": "⚠️ {{count}} nhân viên chưa có tài khoản đăng nhập. Bấm để tạo tất cả.",
+    "deleteConfirm": "Bạn có chắc chắn muốn xóa nhân viên {{name}}? Hành động này cũng sẽ xóa vĩnh viễn tài khoản đăng nhập của họ.",
+    "accountExistsError": "Tài khoản \"{{loginId}}\" đã tồn tại",
+    "accountExistsLinked": "Tài khoản \"{{loginId}}\" đã tồn tại. Nhân viên được tạo nhưng chưa được liên kết."
   },
   "service": {
     "title": "Dịch vụ",
@@ -168,7 +201,18 @@
     "username": "Tên đăng nhập",
     "email": "Email",
     "password": "Mật khẩu",
-    "forgotPassword": "Quên mật khẩu?"
+    "forgotPassword": "Quên mật khẩu?",
+    "biometricNotSupported": "Thiết bị không hỗ trợ sinh trắc học",
+    "biometricNotAvailable": "Face ID / Touch ID không khả dụng",
+    "biometricCancelled": "Xác thực bị hủy",
+    "biometricFailed": "Lỗi xác thực sinh trắc học",
+    "biometricActivatePrompt": "Vui lòng nhập PIN bằng tay lần đầu để kích hoạt sinh trắc học",
+    "ownerDesc": "Quản lý tiệm",
+    "kioskDesc": "Chế độ tablet",
+    "ownerNotFound": "Không tìm thấy Owner: {{error}}",
+    "enterPinOrFaceId": "Nhập PIN hoặc dùng Face ID",
+    "pinNotSetDatabase": "Chưa đặt PIN cho owner trong database",
+    "deleteChar": "Xóa"
   },
   "settings": {
     "title": "Cài đặt",
@@ -185,7 +229,12 @@
     "featureReports": "Báo cáo",
     "featureReportsDesc": "Hiển thị báo cáo doanh thu và phân tích",
     "kioskPin": "Mã PIN Kiosk",
-    "kioskPinDesc": "Mã PIN cho chế độ tablet/kiosk (tối thiểu 4 số)"
+    "kioskPinDesc": "Mã PIN cho chế độ tablet/kiosk (tối thiểu 4 số)",
+    "darkMode": "Chế độ tối",
+    "darkModeDesc": "Bật/Tắt giao diện tối cho ứng dụng",
+    "systemOverview": "Tổng quan hệ thống",
+    "activeTotal": "hoạt động/tổng",
+    "userAccounts": "Tài khoản (Users)"
   },
   "reports": {
     "title": "Phân tích",
@@ -206,7 +255,14 @@
     "paymentBreakdown": "Phân loại thanh toán",
     "topEmployees": "Nhân viên nổi bật",
     "topServices": "Dịch vụ nổi bật",
-    "noData": "Chưa có dữ liệu"
+    "noData": "Chưa có dữ liệu",
+    "revenueLabel": "doanh thu",
+    "splitMethod": "Hình thức chia:",
+    "commissionPayDesc": "Hoa hồng {{rate}}% giá + 100% tip",
+    "splitPayDesc": "Chia {{rate}}% tổng (giá + tip)",
+    "fixedPayDesc": "Lương cố định ${{rate}} + tip",
+    "myEarningsLabel": "Tôi nhận",
+    "employeeEarningsLabel": "NV nhận"
   },
   "pin": {
     "title": "Nhập mã PIN",
@@ -242,5 +298,20 @@
     "retry": "Thử lại",
     "success": "Đã đồng bộ {{count}} mục thành công!",
     "success_plural": "Đã đồng bộ {{count}} mục thành công!"
+  },
+  "kiosk": {
+    "personal": "Cá nhân",
+    "personalSubtitle": "Chọn tên để đăng nhập vào trang cá nhân",
+    "noAccountEmployees": "Chưa có nhân viên nào có tài khoản",
+    "pinNotSetContactOwner": "Chưa đặt PIN. Liên hệ Owner để cài đặt."
+  },
+  "days": {
+    "mon": "T2",
+    "tue": "T3",
+    "wed": "T4",
+    "thu": "T5",
+    "fri": "T6",
+    "sat": "T7",
+    "sun": "CN"
   }
 }

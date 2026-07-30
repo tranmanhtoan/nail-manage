@@ -42,7 +42,7 @@ export function KioskPersonal() {
     setLoadingProfiles(true)
     const { data } = await supabase
       .from('login_profiles')
-      .select('id, full_name, role, pin')
+      .select('id, full_name, role')
       .eq('role', 'employee')
       .order('full_name')
     setProfiles((data as ProfileOption[]) ?? [])
@@ -69,32 +69,19 @@ export function KioskPersonal() {
   async function verifyPin(enteredPin: string) {
     if (!selectedProfile) return
 
-    // Check against the profile's own PIN
-    if (!selectedProfile.pin) {
+    setLoading(true)
+    const err = await loginByProfile(selectedProfile.id, enteredPin)
+    if (err) {
       setShaking(true)
-      setError('Chưa đặt PIN. Liên hệ Owner để cài đặt.')
+      setError(err === 'PIN không đúng' ? t('pin.incorrect') : err)
+      setPin('')
+      setLoading(false)
       setTimeout(() => {
-        setPin('')
         setShaking(false)
       }, 500)
-      return
-    }
-
-    if (enteredPin === selectedProfile.pin) {
-      setLoading(true)
-      const err = await loginByProfile(selectedProfile.id)
-      if (err) {
-        setError(err)
-        setPin('')
-        setLoading(false)
-      }
     } else {
-      setShaking(true)
-      setError('PIN không đúng')
-      setTimeout(() => {
-        setPin('')
-        setShaking(false)
-      }, 500)
+      // Save PIN locally to support future Biometric logins
+      localStorage.setItem(`bio_pin_${selectedProfile.id}`, enteredPin)
     }
   }
 
@@ -104,14 +91,14 @@ export function KioskPersonal() {
     setLoading(true)
     try {
       if (!window.PublicKeyCredential) {
-        setError('Thiết bị không hỗ trợ sinh trắc học')
+        setError(t('auth.biometricNotSupported'))
         setLoading(false)
         return
       }
 
       const available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
       if (!available) {
-        setError('Face ID / Touch ID không khả dụng')
+        setError(t('auth.biometricNotAvailable'))
         setLoading(false)
         return
       }
@@ -146,18 +133,19 @@ export function KioskPersonal() {
         }).catch(() => null)
 
         if (!created) {
-          setError('Xác thực bị hủy')
+          setError(t('auth.biometricCancelled'))
           setLoading(false)
           return
         }
       }
 
-      const err = await loginByProfile(selectedProfile.id)
+      const savedPin = localStorage.getItem(`bio_pin_${selectedProfile.id}`) || ''
+      const err = await loginByProfile(selectedProfile.id, savedPin)
       if (err) {
-        setError(err)
+        setError(err === 'PIN không đúng' ? t('auth.biometricActivatePrompt') : err)
       }
     } catch {
-      setError('Lỗi xác thực sinh trắc học')
+      setError(t('auth.biometricFailed'))
     }
     setLoading(false)
   }
@@ -178,8 +166,8 @@ export function KioskPersonal() {
 
   return (
     <div className="max-w-lg mx-auto px-5 py-6">
-      <h1 className="text-2xl font-bold text-gray-900">Cá nhân</h1>
-      <p className="text-sm text-gray-500 mt-1">Chọn tên để đăng nhập vào trang cá nhân</p>
+      <h1 className="text-2xl font-bold text-gray-900">{t('kiosk.personal')}</h1>
+      <p className="text-sm text-gray-500 mt-1">{t('kiosk.personalSubtitle')}</p>
 
       {!selectedProfile ? (
         /* Profile grid */
@@ -205,7 +193,7 @@ export function KioskPersonal() {
 
           {profiles.length === 0 && (
             <p className="col-span-2 text-center text-gray-400 py-8 text-sm">
-              Chưa có nhân viên nào có tài khoản
+              {t('kiosk.noAccountEmployees')}
             </p>
           )}
         </div>
@@ -226,7 +214,7 @@ export function KioskPersonal() {
               {getChibiEmoji(selectedProfile.full_name)}
             </div>
             <p className="font-bold text-lg text-gray-900">{selectedProfile.full_name}</p>
-            <p className="text-sm text-gray-500">Nhập PIN hoặc dùng Face ID</p>
+            <p className="text-sm text-gray-500">{t('auth.enterPinOrFaceId')}</p>
           </div>
 
           {/* PIN dots */}
@@ -275,7 +263,7 @@ export function KioskPersonal() {
               <button
                 onClick={handleDelete}
                 className="w-16 h-16 rounded-full bg-gray-50 border border-gray-200 hover:bg-gray-100 active:bg-gray-200 active:scale-95 transition-all flex items-center justify-center mx-auto"
-                title="Xóa"
+                title={t('auth.deleteChar')}
               >
                 <Delete size={22} className="text-gray-600" />
               </button>

@@ -155,15 +155,56 @@ create policy "Users read own profile" on public.profiles for select
 create policy "Owner read all profiles" on public.profiles for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'owner'));
 
--- Secure view for login screen (exposes id, full_name, role, pin)
+-- Secure view for login screen (exposes id, full_name, role)
 -- All roles except kiosk can login from this screen
 create view public.login_profiles as
-  select id, full_name, role, pin
+  select id, full_name, role
   from public.profiles
   where role in ('owner', 'employee');
 
 -- Grant anonymous and authenticated access to the view
 grant select on public.login_profiles to anon, authenticated;
+
+-- RPC function to verify a profile PIN securely on the server
+create or replace function public.verify_profile_pin(p_id uuid, p_pin text)
+returns boolean as $$
+  select exists (
+    select 1 from public.profiles 
+    where id = p_id and pin = p_pin
+  );
+$$ language sql security definer;
+
+grant execute on function public.verify_profile_pin(uuid, text) to anon, authenticated;
+
+-- RPC function to update employee PIN and set their Supabase Auth password (only accessible by owners)
+create or replace function public.update_employee_pin(p_profile_id uuid, p_new_pin text)
+returns void as $$
+begin
+  -- Auth check: only owners can update PINs
+  if not exists (
+    select 1 from public.profiles 
+    where id = auth.uid() and role = 'owner'
+  ) then
+    raise exception 'Not authorized';
+  end if;
+
+  if length(p_new_pin) != 4 then
+    raise exception 'PIN must be exactly 4 digits';
+  end if;
+
+  -- Update profiles table
+  update public.profiles
+  set pin = p_new_pin
+  where id = p_profile_id;
+
+  -- Update auth.users password
+  update auth.users
+  set encrypted_password = crypt(p_new_pin, gen_salt('bf'))
+  where id = p_profile_id;
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.update_employee_pin(uuid, text) to authenticated;
 
 -- RPC function to get email by profile ID (used internally during login)
 create or replace function public.get_login_email(profile_id uuid)
@@ -332,3 +373,55 @@ insert into public.shop_settings (key, value) values
   ('appointments_enabled', 'true'),
   ('reports_enabled', 'true'),
   ('kiosk_pin', '1234');
+
+-- Sync orphaned employee profiles to employees table (bypasses RLS)
+create or replace function public.sync_orphaned_employees()
+returns void as $$
+begin
+  insert into public.employees (profile_id, name, phone, email, pay_type, commission_rate, is_active, rotation_order)
+  select 
+    p.id, 
+    coalesce(nullif(p.full_name, ''), split_part(p.email, '@', 1)), 
+    p.phone, 
+    p.email, 
+    'commission', 
+    60, 
+    true, 
+    0
+  from public.profiles p
+  where p.role = 'employee'
+    and not exists (
+      select 1 
+      from public.employees e 
+      where e.profile_id = p.id
+    );
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.sync_orphaned_employees() to anon, authenticated;
+
+-- Delete employee record and associated Auth profile (bypasses RLS)
+create or replace function public.delete_employee(p_employee_id uuid)
+returns void as $$
+declare
+  v_profile_id uuid;
+begin
+  -- Get the profile_id linked to the employee
+  select profile_id into v_profile_id from public.employees where id = p_employee_id;
+
+  -- Update appointments to dissociate this employee (preserves financial/appointment logs as unassigned)
+  update public.appointments set employee_id = null where employee_id = p_employee_id;
+
+  -- Delete from employees table
+  delete from public.employees where id = p_employee_id;
+
+  -- Delete from auth.users (which cascades to public.profiles) only if no other employee is using this profile
+  if v_profile_id is not null then
+    if not exists (select 1 from public.employees where profile_id = v_profile_id) then
+      delete from auth.users where id = v_profile_id;
+    end if;
+  end if;
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.delete_employee(uuid) to anon, authenticated;

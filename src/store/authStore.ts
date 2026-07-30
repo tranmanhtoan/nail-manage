@@ -9,7 +9,7 @@ interface AuthState {
   user: { id: string; email: string; role: UserRole; name: string } | null
   loading: boolean
   login: (email: string, password: string) => Promise<string | null>
-  loginByProfile: (profileId: string) => Promise<string | null>
+  loginByProfile: (profileId: string, pin: string) => Promise<string | null>
   logout: () => Promise<void>
   checkSession: () => Promise<void>
 }
@@ -31,20 +31,14 @@ export const useAuthStore = create<AuthState>((set) => ({
       if (!profile) return 'Account not found'
 
       const p = profile as { id: string; role: UserRole; full_name: string; email: string }
-      set({
-        user: {
-          id: p.id,
-          email: p.email,
-          role: p.role ?? 'employee',
-          name: p.full_name ?? '',
-        },
-      })
-      localStorage.setItem('uat_user', JSON.stringify({
+      const user = {
         id: p.id,
         email: p.email,
         role: p.role ?? 'employee',
         name: p.full_name ?? '',
-      }))
+      }
+      set({ user })
+      localStorage.setItem('uat_user', JSON.stringify(user))
       return null
     }
 
@@ -70,25 +64,63 @@ export const useAuthStore = create<AuthState>((set) => ({
     return null
   },
 
-  loginByProfile: async (profileId: string) => {
-    // Login directly by profile ID — use login_profiles view (accessible by anon)
-    const { data: profile, error: fetchErr } = await supabase
-      .from('login_profiles')
-      .select('id, full_name, role')
-      .eq('id', profileId)
+  loginByProfile: async (profileId: string, pin: string) => {
+    // 1. Verify PIN via RPC
+    const { data: isValid, error: verifyErr } = await supabase.rpc('verify_profile_pin', {
+      p_id: profileId,
+      p_pin: pin,
+    })
+
+    if (verifyErr) return `Verification error: ${verifyErr.message}`
+    if (!isValid) return 'PIN không đúng'
+
+    if (UAT_MODE) {
+      // In UAT mode, bypass Supabase Auth — fetch profile details and set user state
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('id, role, full_name, email')
+        .eq('id', profileId)
+        .single()
+
+      if (!profile) return 'Account not found'
+      const p = profile as { id: string; role: UserRole; full_name: string; email: string }
+      const user = {
+        id: p.id,
+        email: p.email,
+        role: p.role ?? 'employee',
+        name: p.full_name ?? '',
+      }
+      set({ user })
+      localStorage.setItem('uat_user', JSON.stringify(user))
+      return null
+    }
+
+    // 2. Production: get email and sign in
+    const { data: email, error: emailErr } = await supabase.rpc('get_login_email', { profile_id: profileId })
+    if (emailErr || !email) return `Cannot find email for login: ${emailErr?.message || 'no email'}`
+
+    const { data, error: authErr } = await supabase.auth.signInWithPassword({
+      email,
+      password: pin,
+    })
+
+    if (authErr) return authErr.message
+
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role, full_name')
+      .eq('id', data.user.id)
       .single()
 
-    if (fetchErr || !profile) return `Account not found: ${fetchErr?.message || 'no data'}`
-
-    const p = profile as { id: string; full_name: string; role: UserRole }
+    const p = profile as { role: UserRole; full_name: string } | null
     const user = {
-      id: p.id,
-      email: '',
-      role: p.role ?? 'employee',
-      name: p.full_name ?? '',
+      id: data.user.id,
+      email: data.user.email!,
+      role: p?.role ?? 'employee',
+      name: p?.full_name ?? '',
     }
+
     set({ user })
-    localStorage.setItem('uat_user', JSON.stringify(user))
     return null
   },
 

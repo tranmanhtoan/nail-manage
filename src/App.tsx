@@ -15,7 +15,6 @@ const Appointments = lazy(() => import('@/pages/owner/Appointments').then(m => (
 const Customers = lazy(() => import('@/pages/owner/Customers').then(m => ({ default: m.Customers })))
 const Settings = lazy(() => import('@/pages/owner/Settings').then(m => ({ default: m.Settings })))
 const Reports = lazy(() => import('@/pages/owner/Reports').then(m => ({ default: m.Reports })))
-const Admin = lazy(() => import('@/pages/owner/Admin').then(m => ({ default: m.Admin })))
 const QuickEntry = lazy(() => import('@/pages/QuickEntry').then(m => ({ default: m.QuickEntry })))
 const BookingPage = lazy(() => import('@/pages/booking/BookingPage').then(m => ({ default: m.BookingPage })))
 const KioskLayout = lazy(() => import('@/pages/kiosk/KioskLayout').then(m => ({ default: m.KioskLayout })))
@@ -101,7 +100,6 @@ export default function App() {
               <Route path="/customers" element={<Customers />} />
               <Route path="/quick-entry" element={<QuickEntry />} />
               <Route path="/reports" element={<Reports />} />
-              <Route path="/admin" element={<Admin />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Route>

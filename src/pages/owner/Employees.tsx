@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Plus, X, Mail, Copy, Check, User, ToggleLeft, ToggleRight } from 'lucide-react'
+import { Plus, X, Mail, Copy, Check, User, ToggleLeft, ToggleRight, Trash2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { supabaseAdmin } from '@/lib/supabase'
 import { toAuthEmail } from '@/lib/auth-helpers'
@@ -17,6 +17,12 @@ export function Employees() {
   useEffect(() => { load() }, [])
 
   async function load() {
+    try {
+      await supabase.rpc('sync_orphaned_employees')
+    } catch (e) {
+      console.warn('sync_orphaned_employees failed:', e)
+    }
+
     const { data } = await supabase.from('employees').select('*').order('name')
     setEmployees((data as Employee[]) ?? [])
   }
@@ -24,10 +30,14 @@ export function Employees() {
   async function save(form: Partial<Employee> & { create_username?: string; create_email?: string; set_pin?: string }) {
     const { create_username, create_email, set_pin, ...empData } = form
 
-    // Update PIN in profiles table if provided
-    async function updatePin(profileId: string) {
-      if (set_pin && set_pin.length === 4) {
-        await supabase.from('profiles').update({ pin: set_pin }).eq('id', profileId)
+    // Update PIN in profiles table and auth.users via RPC
+    async function updatePin(profileId: string, pinToSet: string) {
+      const { error: pinErr } = await supabase.rpc('update_employee_pin', {
+        p_profile_id: profileId,
+        p_new_pin: pinToSet
+      })
+      if (pinErr) {
+        alert(`Lỗi cập nhật PIN: ${pinErr.message}`)
       }
     }
 
@@ -35,12 +45,12 @@ export function Employees() {
       // If editing an employee without a profile, create one now
       if (!editing.profile_id) {
         const loginId = empData.name?.toLowerCase().replace(/[^a-z0-9]/g, '') || editing.name.toLowerCase().replace(/[^a-z0-9]/g, '')
-        const tempPassword = generateTempPassword()
+        const initialPin = set_pin || generateTempPassword()
         const authEmail = toAuthEmail(loginId)
 
         const { data: signUpData, error: signUpError } = await supabaseAdmin.auth.signUp({
           email: authEmail,
-          password: tempPassword,
+          password: initialPin,
           options: {
             data: { full_name: empData.name || editing.name, role: 'employee' },
           },
@@ -51,8 +61,8 @@ export function Employees() {
 
         if (!signUpError && userId && hasIdentities) {
           await supabase.from('employees').update({ ...empData, profile_id: userId }).eq('id', editing.id)
-          await updatePin(userId)
-          setCreatedCreds({ login: loginId, password: tempPassword })
+          await updatePin(userId, initialPin)
+          setCreatedCreds({ login: loginId, password: initialPin })
         } else {
           await supabase.from('employees').update(empData).eq('id', editing.id)
           if (signUpError) alert(`Lỗi tạo tài khoản: ${signUpError.message}`)
@@ -60,7 +70,9 @@ export function Employees() {
         }
       } else {
         await supabase.from('employees').update(empData).eq('id', editing.id)
-        await updatePin(editing.profile_id)
+        if (set_pin && set_pin.length === 4) {
+          await updatePin(editing.profile_id, set_pin)
+        }
       }
 
       setShowForm(false)
@@ -70,13 +82,13 @@ export function Employees() {
     }
 
     // Creating new employee — always create login account
+    const initialPin = set_pin || generateTempPassword()
     const loginId = create_username || empData.name?.toLowerCase().replace(/[^a-z0-9]/g, '') || 'employee'
-    const tempPassword = generateTempPassword()
     const authEmail = create_email ? create_email : toAuthEmail(loginId)
 
     const { data: signUpData, error: signUpError } = await supabaseAdmin.auth.signUp({
       email: authEmail,
-      password: tempPassword,
+      password: initialPin,
       options: {
         data: { full_name: empData.name, role: 'employee' },
       },
@@ -92,8 +104,8 @@ export function Employees() {
 
     if (userId && hasIdentities) {
       await supabase.from('employees').insert({ ...empData, profile_id: userId })
-      await updatePin(userId)
-      setCreatedCreds({ login: create_email || loginId, password: tempPassword })
+      await updatePin(userId, initialPin)
+      setCreatedCreds({ login: create_email || loginId, password: initialPin })
     } else {
       // User might already exist — create employee without linking
       await supabase.from('employees').insert(empData)
@@ -115,6 +127,19 @@ export function Employees() {
     }
     await supabase.from('employees').update(updates).eq('id', emp.id)
     load()
+  }
+
+  async function handleDelete(emp: Employee, e: React.MouseEvent) {
+    e.stopPropagation()
+    if (!window.confirm(t('employee.deleteConfirm', { name: emp.name }) || `Xác nhận xóa nhân viên "${emp.name}"?` )) return
+
+    try {
+      const { error } = await supabase.rpc('delete_employee', { p_employee_id: emp.id })
+      if (error) throw error
+      load()
+    } catch (err: any) {
+      alert(`Lỗi khi xóa nhân viên: ${err.message || err}`)
+    }
   }
 
   async function createMissingAccounts() {
@@ -147,6 +172,7 @@ export function Employees() {
 
       if (userId && hasIdentities) {
         await supabase.from('employees').update({ profile_id: userId }).eq('id', emp.id)
+        await supabase.rpc('update_employee_pin', { p_profile_id: userId, p_new_pin: tempPassword })
         results.push({ login: loginId, password: tempPassword, name: emp.name })
       } else if (userId && !hasIdentities) {
         // User already exists — try to find existing profile and link
@@ -184,7 +210,7 @@ export function Employees() {
           onClick={createMissingAccounts}
           className="w-full p-3 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-800 font-medium text-left"
         >
-          ⚠️ {missingProfiles.length} nhân viên chưa có tài khoản đăng nhập. Bấm để tạo tất cả.
+          {t('employee.missingAccountAlert', { count: missingProfiles.length })}
         </button>
       )}
 
@@ -208,7 +234,7 @@ export function Employees() {
               <p className={`font-semibold ${emp.is_active ? 'text-gray-900' : 'text-gray-400'}`}>{emp.name}</p>
               <p className="text-xs text-gray-500 mt-0.5">
                 {emp.phone}
-                {!emp.profile_id && emp.is_active && <span className="ml-2 text-amber-600">• Chưa có tài khoản</span>}
+                {!emp.profile_id && emp.is_active && <span className="ml-2 text-amber-600">• {t('employee.noAccountLabel')}</span>}
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -224,6 +250,13 @@ export function Employees() {
                 className={`shrink-0 transition-colors ${emp.is_active ? 'text-[#864e5a]' : 'text-gray-300'}`}
               >
                 {emp.is_active ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
+              </button>
+              <button
+                onClick={(e) => handleDelete(emp, e)}
+                className="shrink-0 p-1 text-gray-400 hover:text-red-500 transition-colors"
+                title="Delete"
+              >
+                <Trash2 size={18} />
               </button>
             </div>
           </div>
@@ -250,6 +283,7 @@ export function Employees() {
 }
 
 function CredsModal({ creds, onClose }: { creds: { login: string; password: string }; onClose: () => void }) {
+  const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
 
   const copyAll = () => {
@@ -261,9 +295,9 @@ function CredsModal({ creds, onClose }: { creds: { login: string; password: stri
   return (
     <div className="fixed inset-0 bg-black/40 z-[60] flex items-center justify-center p-4">
       <div className="bg-white w-full max-w-sm rounded-2xl p-6 space-y-4">
-        <h3 className="text-lg font-bold text-center text-gray-900">Tạo thành công!</h3>
+        <h3 className="text-lg font-bold text-center text-gray-900">{t('employee.accountCreatedSuccess')}</h3>
         <p className="text-sm text-gray-600 text-center">
-          Đưa thông tin này cho nhân viên để đăng nhập:
+          {t('employee.provideCredentialsHint')}
         </p>
 
         <div
@@ -284,15 +318,15 @@ function CredsModal({ creds, onClose }: { creds: { login: string; password: stri
           onClick={copyAll}
           className="w-full py-3 bg-gray-100 rounded-xl text-sm font-medium flex items-center justify-center gap-2"
         >
-          {copied ? <><Check size={16} className="text-[#864e5a]" /> Copied!</> : <><Copy size={16} /> Copy thông tin</>}
+          {copied ? <><Check size={16} className="text-[#864e5a]" /> {t('common.copied')}</> : <><Copy size={16} /> {t('employee.copyCredentials')}</>}
         </button>
 
         <p className="text-xs text-[#864e5a] text-center font-medium">
-          Nhắc nhân viên đổi password sau khi đăng nhập lần đầu
+          {t('employee.changePasswordReminder')}
         </p>
 
         <button onClick={onClose} className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl">
-          Đóng
+          {t('common.close')}
         </button>
       </div>
     </div>
@@ -300,6 +334,7 @@ function CredsModal({ creds, onClose }: { creds: { login: string; password: stri
 }
 
 function BulkCredsModal({ creds, onClose }: { creds: { login: string; password: string; name: string }[]; onClose: () => void }) {
+  const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
 
   const copyAll = () => {
@@ -312,11 +347,10 @@ function BulkCredsModal({ creds, onClose }: { creds: { login: string; password: 
   return (
     <div className="fixed inset-0 bg-black/40 z-[60] flex items-center justify-center p-4">
       <div className="bg-white w-full max-w-sm rounded-2xl p-6 space-y-4 max-h-[85vh] overflow-y-auto">
-        <h3 className="text-lg font-bold text-center text-gray-900">Tạo {creds.length} tài khoản thành công!</h3>
+        <h3 className="text-lg font-bold text-center text-gray-900">{t('employee.bulkAccountsCreated', { count: creds.length })}</h3>
         <p className="text-sm text-gray-600 text-center">
-          Lưu lại thông tin đăng nhập cho nhân viên:
+          {t('employee.saveCredentialsNote')}
         </p>
-
         <div className="space-y-2">
           {creds.map((c, i) => (
             <div
@@ -341,11 +375,11 @@ function BulkCredsModal({ creds, onClose }: { creds: { login: string; password: 
           onClick={copyAll}
           className="w-full py-3 bg-gray-100 rounded-xl text-sm font-medium flex items-center justify-center gap-2"
         >
-          {copied ? <><Check size={16} className="text-[#864e5a]" /> Copied!</> : <><Copy size={16} /> Copy tất cả</>}
+          {copied ? <><Check size={16} className="text-[#864e5a]" /> {t('common.copied')}</> : <><Copy size={16} /> {t('common.copyAll')}</>}
         </button>
 
         <button onClick={onClose} className="w-full py-3 bg-[#864e5a] text-white font-semibold rounded-xl">
-          Đóng
+          {t('common.close')}
         </button>
       </div>
     </div>
@@ -408,7 +442,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
           {!employee && (
             <div>
               <label className="text-sm font-medium text-gray-700">
-                {t('auth.username')} <span className="text-gray-400 font-normal">(đăng nhập)</span>
+                {t('auth.username')} <span className="text-gray-400 font-normal">{t('employee.usernameExplainLabel')}</span>
               </label>
               <div className="relative">
                 <User size={18} className="absolute left-3 top-3.5 text-gray-400" />
@@ -423,7 +457,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
               </div>
               {username && (
                 <p className="text-xs text-[#864e5a] mt-1 font-medium">
-                  NV đăng nhập bằng: <strong>{username}</strong> + password tạm
+                  {t('employee.usernameExplain', { username })}
                 </p>
               )}
             </div>
@@ -431,7 +465,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
 
           <div>
             <label className="text-sm font-medium text-gray-700">
-              {t('common.email')} <span className="text-gray-400 font-normal">(optional)</span>
+              {t('common.email')} <span className="text-gray-400 font-normal">{t('employee.optionalLabel')}</span>
             </label>
             <div className="relative">
               <Mail size={18} className="absolute left-3 top-3.5 text-gray-400" />
@@ -447,7 +481,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
 
           <div>
             <label className="text-sm font-medium text-gray-700">
-              PIN đăng nhập <span className="text-gray-400 font-normal">(4 số)</span>
+              {t('employee.pinCodeLabel')} <span className="text-gray-400 font-normal">{t('employee.pinCodeExplain')}</span>
             </label>
             <input
               value={pinCode}
@@ -458,11 +492,11 @@ function EmployeeForm({ employee, onSave, onClose }: {
               type="text"
               inputMode="numeric"
               maxLength={4}
-              placeholder={employee ? 'Để trống nếu không đổi' : 'VD: 1234'}
+              placeholder={employee ? t('employee.pinLeaveBlankHint') : 'VD: 1234'}
               className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none tracking-[0.5em] text-center text-lg font-mono"
             />
             {pinCode && pinCode.length < 4 && (
-              <p className="text-xs text-amber-600 mt-1">PIN phải đủ 4 số</p>
+              <p className="text-xs text-amber-600 mt-1">{t('employee.pinLengthWarning')}</p>
             )}
           </div>
 
@@ -487,7 +521,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
 
           {payType === 'fixed' && (
             <div>
-              <label className="text-sm font-medium text-gray-700">{t('employee.salary')} ($/week)</label>
+              <label className="text-sm font-medium text-gray-700">{t('employee.salary')} {t('employee.salaryUnitLabel')}</label>
               <input type="number" value={fixedSalary ?? 0} onChange={(e) => setFixedSalary(+e.target.value)}
                 className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
             </div>
@@ -495,7 +529,7 @@ function EmployeeForm({ employee, onSave, onClose }: {
 
           {payType === 'split' && (
             <div>
-              <label className="text-sm font-medium text-gray-700">{t('employee.splitRate')} (% cho NV)</label>
+              <label className="text-sm font-medium text-gray-700">{t('employee.splitRate')} {t('employee.splitRateExplain')}</label>
               <input type="number" value={splitRate ?? 0} onChange={(e) => setSplitRate(+e.target.value)}
                 min={0} max={100}
                 className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none" />
@@ -517,10 +551,6 @@ function EmployeeForm({ employee, onSave, onClose }: {
 }
 
 function generateTempPassword(): string {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-  let pass = ''
-  for (let i = 0; i < 6; i++) {
-    pass += chars[Math.floor(Math.random() * chars.length)]
-  }
-  return pass
+  // Return a 4-digit numeric PIN
+  return Math.floor(1000 + Math.random() * 9000).toString()
 }

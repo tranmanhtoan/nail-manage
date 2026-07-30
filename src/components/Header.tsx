@@ -1,7 +1,7 @@
 import { useAuthStore } from '@/store/authStore'
 import { useSyncStore } from '@/store/syncStore'
 import { LanguageSwitch } from './LanguageSwitch'
-import { LogOut, Settings, UserCircle, Shield, WifiOff, RefreshCw } from 'lucide-react'
+import { LogOut, Settings, UserCircle, WifiOff, RefreshCw } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -41,11 +41,6 @@ export function Header() {
       </div>
       <div className="flex items-center gap-2">
         <LanguageSwitch />
-        {user.role === 'owner' && (
-          <Link to="/admin" className="p-2 text-gray-500 hover:text-[#864e5a] dark:text-gray-400 dark:hover:text-[#c9949f]" aria-label="Admin">
-            <Shield size={20} />
-          </Link>
-        )}
         {user.role === 'owner' && (
           <Link to="/settings" className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
             <Settings size={20} />

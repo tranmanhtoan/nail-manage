@@ -1,16 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield, KeyRound } from 'lucide-react'
+import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield, KeyRound, LayoutDashboard } from 'lucide-react'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { useAuthStore } from '@/store/authStore'
 import { useThemeStore } from '@/store/themeStore'
 import { useSuperModeStore } from '@/store/superModeStore'
 import { Employees } from './Employees'
 import { Services } from './Services'
+import { AdminDashboard } from './AdminDashboard'
 import { supabase } from '@/lib/supabase'
-import { useEffect } from 'react'
 
-type Tab = 'general' | 'employees' | 'services'
+type Tab = 'dashboard' | 'general' | 'employees' | 'services'
 
 interface FeatureToggles {
   quick_entry_enabled: boolean
@@ -29,7 +29,7 @@ export function Settings() {
   const { logout } = useAuthStore()
   const { darkMode, toggleDarkMode } = useThemeStore()
   const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
-  const [tab, setTab] = useState<Tab>('general')
+  const [tab, setTab] = useState<Tab>('dashboard')
   const [toggles, setToggles] = useState<FeatureToggles>(DEFAULT_TOGGLES)
   const [saving, setSaving] = useState(false)
   const [kioskPin, setKioskPin] = useState('')
@@ -91,6 +91,7 @@ export function Settings() {
   }
 
   const tabs: { id: Tab; label: string; icon: typeof Settings2 }[] = [
+    { id: 'dashboard', label: t('settings.systemOverview'), icon: LayoutDashboard },
     { id: 'general', label: t('settings.general'), icon: Settings2 },
     { id: 'employees', label: t('nav.employees'), icon: Users },
     { id: 'services', label: t('nav.services'), icon: Scissors },
@@ -115,6 +116,9 @@ export function Settings() {
           </button>
         ))}
       </div>
+
+      {/* Dashboard tab */}
+      {tab === 'dashboard' && <AdminDashboard />}
 
       {/* General tab */}
       {tab === 'general' && (

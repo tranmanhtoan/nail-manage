@@ -16,6 +16,8 @@ export interface Employee {
   fixed_salary: number | null
   split_rate: number | null
   is_active: boolean
+  rotation_order: number
+  activated_at: string | null
   created_at: string
 }
 
