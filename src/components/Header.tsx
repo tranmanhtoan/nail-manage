@@ -1,13 +1,15 @@
 import { useAuthStore } from '@/store/authStore'
 import { useSyncStore } from '@/store/syncStore'
+import { useThemeStore } from '@/store/themeStore'
 import { LanguageSwitch } from './LanguageSwitch'
-import { LogOut, Settings, UserCircle, WifiOff, RefreshCw } from 'lucide-react'
+import { LogOut, Settings, UserCircle, WifiOff, RefreshCw, Sun, Moon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 export function Header() {
   const { user, logout } = useAuthStore()
   const { isOffline, syncQueue } = useSyncStore()
+  const { darkMode, toggleDarkMode } = useThemeStore()
   const { t } = useTranslation()
 
   if (!user) return null
@@ -41,6 +43,13 @@ export function Header() {
       </div>
       <div className="flex items-center gap-2">
         <LanguageSwitch />
+        <button
+          onClick={toggleDarkMode}
+          className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+          aria-label="Toggle Theme"
+        >
+          {darkMode ? <Sun size={20} className="text-amber-500" /> : <Moon size={20} />}
+        </button>
         {user.role === 'owner' && (
           <Link to="/settings" className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
             <Settings size={20} />
