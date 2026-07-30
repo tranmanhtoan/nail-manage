@@ -35,3 +35,4 @@
 
 ### Chỉnh sửa
 - [10:30] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm month picker popup (chọn tháng/năm) cho Performance card, nút Calendar giờ hoạt động
+- [10:35] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Revert về bản cũ (trước redesign): khôi phục date navigator, weekly bar chart, revenue card với cash/card breakdown, bỏ Performance line chart + month picker

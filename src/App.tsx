@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import { useAuthStore } from '@/store/authStore'
 import { useThemeStore } from '@/store/themeStore'
 import { useSyncStore } from '@/store/syncStore'
@@ -30,6 +30,21 @@ function PageLoader() {
   )
 }
 
+/** Layout wrapper for owner pages */
+function OwnerLayout() {
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300 md:pl-64">
+      <Header />
+      <main className="pb-20 md:pb-6">
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
+      </main>
+      <BottomNav />
+    </div>
+  )
+}
+
 export default function App() {
   const { user, loading, checkSession } = useAuthStore()
   const { initTheme } = useThemeStore()
@@ -40,7 +55,6 @@ export default function App() {
     initTheme()
     initSync()
     initAuthListener(() => {
-      // Session expired — force logout and let the app re-render to Login
       useAuthStore.getState().logout()
     })
   }, [checkSession, initTheme, initSync])
@@ -60,12 +74,10 @@ export default function App() {
           {/* Public pages */}
           <Route path="/book" element={<BookingPage />} />
 
-          {/* Kiosk: only accessible when not logged in or logged in as kiosk */}
+          {/* Kiosk routes */}
           {(!user || user.role === 'kiosk') && (
             <Route path="/kiosk/*" element={<PinGate><KioskLayout /></PinGate>} />
           )}
-
-          {/* If employee/owner hits /kiosk, redirect to their home */}
           {user && user.role === 'employee' && (
             <Route path="/kiosk/*" element={<Navigate to="/my-schedule" replace />} />
           )}
@@ -73,42 +85,29 @@ export default function App() {
             <Route path="/kiosk/*" element={<Navigate to="/dashboard" replace />} />
           )}
 
-          {/* Auth */}
+          {/* Not logged in */}
           {!user && <Route path="*" element={<Login />} />}
 
-          {/* Kiosk user logged in but navigated away — keep on kiosk */}
+          {/* Kiosk user logged in but navigated away */}
           {user?.role === 'kiosk' && (
             <Route path="*" element={<Navigate to="/kiosk/quick" replace />} />
           )}
 
-          {/* Owner routes */}
+          {/* Owner routes — flat structure with layout */}
           {user?.role === 'owner' && (
-            <Route
-              path="*"
-              element={
-                <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300 md:pl-64">
-                  <Header />
-                  <main className="pb-20 md:pb-6">
-                    <ErrorBoundary>
-                      <Routes>
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/appointments" element={<Appointments />} />
-                        <Route path="/customers" element={<Customers />} />
-                        <Route path="/quick-entry" element={<QuickEntry />} />
-                        <Route path="/reports" element={<Reports />} />
-                        <Route path="/admin" element={<Admin />} />
-                        <Route path="/settings" element={<Settings />} />
-                        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-                      </Routes>
-                    </ErrorBoundary>
-                  </main>
-                  <BottomNav />
-                </div>
-              }
-            />
+            <Route element={<OwnerLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/appointments" element={<Appointments />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/quick-entry" element={<QuickEntry />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Route>
           )}
 
-          {/* Employee routes — with inactivity timeout & floating back/home */}
+          {/* Employee routes */}
           {user?.role === 'employee' && (
             <Route path="*" element={<EmployeeLayout />} />
           )}
