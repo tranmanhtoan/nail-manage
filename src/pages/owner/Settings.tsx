@@ -92,9 +92,9 @@ export function Settings() {
 
   const tabs: { id: Tab; label: string; icon: typeof Settings2 }[] = [
     { id: 'dashboard', label: t('settings.systemOverview'), icon: LayoutDashboard },
-    { id: 'general', label: t('settings.general'), icon: Settings2 },
     { id: 'employees', label: t('nav.employees'), icon: Users },
     { id: 'services', label: t('nav.services'), icon: Scissors },
+    { id: 'general', label: t('settings.general'), icon: Settings2 },
   ]
 
   return (
