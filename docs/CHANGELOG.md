@@ -31,3 +31,4 @@
 - [00:00] Chỉnh sửa `src/pages/owner/Appointments.tsx` — Thêm stale check trong load() để bỏ qua response cũ khi date thay đổi nhanh
 - [00:00] Chỉnh sửa `src/pages/Login.tsx` — Fix handlePinInput gọi setState lồng nhau gây crash, chuyển sang useEffect trigger khi PIN đủ 4 số
 - [00:00] Chỉnh sửa `src/pages/Login.tsx` — Thêm useEffect vào import
+- [00:00] Chỉnh sửa `src/store/authStore.ts` — Wrap logout trong try-catch toàn bộ để không bị abort khi storage/signOut throw trên iOS
