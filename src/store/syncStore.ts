@@ -60,6 +60,10 @@ export const useSyncStore = create<SyncState>()(
       lastSyncedCount: 0,
 
       init: () => {
+        // Guard against duplicate initialization (React StrictMode double-mount)
+        if ((useSyncStore as any)._initialized) return
+        ;(useSyncStore as any)._initialized = true
+
         const updateOnlineStatus = () => {
           const online = navigator.onLine
           set({ isOffline: !online })
