@@ -44,6 +44,11 @@ export function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [employees, setEmployees] = useState<EmployeeOption[]>([])
   const [activityFilter, setActivityFilter] = useState<string>('all')
+
+  // Request counter to prevent stale responses from overwriting newer data
+  // when user changes dates quickly
+  const loadStatsRequestId = useRef(0)
+
   useEffect(() => {
     loadStats(selectedDate)
 
