@@ -21,6 +21,7 @@ export const supabaseAdmin = createClient(supabaseUrl, supabaseAnonKey, {
  * instead of silently failing API calls.
  */
 let authListenerInitialized = false
+let sessionCheckInterval: ReturnType<typeof setInterval> | null = null
 
 export function initAuthListener(onSessionExpired: () => void) {
   if (authListenerInitialized) return
@@ -32,12 +33,13 @@ export function initAuthListener(onSessionExpired: () => void) {
 
   supabase.auth.onAuthStateChange((event, _session) => {
     if (event === 'TOKEN_REFRESHED') {
-      // Token refreshed successfully — no action needed
       console.debug('[auth] Token refreshed')
     }
 
     if (event === 'SIGNED_OUT') {
       // User was signed out (could be manual or forced by expired refresh token)
+      // Clear the session check interval to prevent further checks after logout
+      stopAuthListener()
       onSessionExpired()
     }
   })
@@ -45,18 +47,33 @@ export function initAuthListener(onSessionExpired: () => void) {
   // Periodically check if session is still valid (handles edge case where
   // onAuthStateChange doesn't fire on network reconnect with expired token)
   const CHECK_INTERVAL = 60 * 1000 // every 60s
-  setInterval(async () => {
+  sessionCheckInterval = setInterval(async () => {
     if (!navigator.onLine) return
 
-    const { data: { session }, error } = await supabase.auth.getSession()
+    try {
+      const { data: { session }, error } = await supabase.auth.getSession()
 
-    if (error || !session) {
-      // Session is gone — could be expired refresh token
-      const stored = localStorage.getItem('uat_user')
-      if (!stored) {
-        // Only trigger for real Supabase auth (not UAT mode)
-        onSessionExpired()
+      if (error || !session) {
+        const stored = localStorage.getItem('uat_user')
+        if (!stored) {
+          stopAuthListener()
+          onSessionExpired()
+        }
       }
+    } catch {
+      // Network error — ignore, will retry next interval
     }
   }, CHECK_INTERVAL)
+}
+
+/**
+ * Stops the periodic session check interval.
+ * Called on sign-out to prevent memory leaks and ghost checks.
+ */
+export function stopAuthListener() {
+  if (sessionCheckInterval) {
+    clearInterval(sessionCheckInterval)
+    sessionCheckInterval = null
+  }
+  authListenerInitialized = false
 }
