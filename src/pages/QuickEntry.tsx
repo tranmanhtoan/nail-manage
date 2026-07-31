@@ -252,7 +252,7 @@ export function QuickEntry() {
       setSuccess(true)
       // Reload data so idle time resets
       loadData()
-      setTimeout(() => {
+      resetTimerRef.current = setTimeout(() => {
         resetForm()
       }, 1500)
     } else {
