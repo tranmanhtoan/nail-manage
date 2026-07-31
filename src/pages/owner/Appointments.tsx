@@ -70,24 +70,134 @@ export function Appointments() {
   const [statusFilter, setStatusFilter] = useState<'all' | AppointmentStatus>('all')
   const [unassignedCount, setUnassignedCount] = useState(0)
   const dateInputRef = useRef<HTMLInputElement>(null)
-
   const dateStr = selectedDate.toISOString().slice(0, 10)
 
-  useEffect(() => { load() }, [dateStr])
-  useEffect(() => { loadFormData() }, [])
-
-  // Auto-refresh every 30s so idle times stay current
+  // Local timer to update current time state every 30s.
+  // This recalculates idle times in the background without querying the database.
+  const [currentTime, setCurrentTime] = useState(new Date())
   useEffect(() => {
-    const interval = setInterval(() => { load() }, 30000)
+    const interval = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 30000)
     return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    load()
   }, [dateStr])
+
+  useEffect(() => {
+    loadFormData()
+  }, [])
+
+  // Listen to realtime updates on the appointments table
+  useEffect(() => {
+    const channel = supabase
+      .channel('appointments-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'appointments' },
+        () => {
+          load()
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [dateStr])
+
+  // Recalculate rotation list (turn counts, busy status, idle minutes)
+  // whenever appointments, employees, selected date, or the 30s timer updates.
+  useEffect(() => {
+    if (employees.length === 0) return
+
+    const turnCounts = new Map<string, number>()
+    const lastCompletedTime = new Map<string, string>()
+    const busyStartTime = new Map<string, string>()
+
+    for (const apt of appointments) {
+      if (apt.employee_id && apt.status !== 'cancelled') {
+        turnCounts.set(apt.employee_id, (turnCounts.get(apt.employee_id) ?? 0) + 1)
+      }
+      if (apt.status === 'completed' && apt.employee_id) {
+        const prev = lastCompletedTime.get(apt.employee_id)
+        if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
+      }
+      if (apt.status === 'in_progress' && apt.employee_id) {
+        const prev = busyStartTime.get(apt.employee_id)
+        if (!prev || apt.time < prev) busyStartTime.set(apt.employee_id, apt.time)
+      }
+    }
+
+    const busyEmployeeIds = new Set(
+      appointments.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!)
+    )
+
+    const now = currentTime
+    const todayStr = now.toISOString().slice(0, 10)
+    const nowMinutes = now.getHours() * 60 + now.getMinutes()
+    const shiftStartMinutes = 9 * 60 // shift starts at 9:00 AM
+
+    const rotationList: RotationEmployee[] = employees.map((emp) => {
+      const isBusy = busyEmployeeIds.has(emp.id)
+      let idleMinutes: number | null = null
+
+      if (!isBusy && dateStr === todayStr) {
+        const lastTime = lastCompletedTime.get(emp.id)
+        if (lastTime) {
+          const [h, m] = lastTime.split(':')
+          const completedMinutes = parseInt(h) * 60 + parseInt(m)
+          idleMinutes = Math.max(0, nowMinutes - completedMinutes)
+        } else {
+          let startMinutes = shiftStartMinutes
+          if (emp.activated_at) {
+            const activatedDate = new Date(emp.activated_at)
+            const activatedDateStr = activatedDate.toISOString().slice(0, 10)
+            if (activatedDateStr === todayStr) {
+              const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
+              startMinutes = Math.max(shiftStartMinutes, activatedMinutes)
+            }
+          }
+          idleMinutes = Math.max(0, nowMinutes - startMinutes)
+        }
+      }
+
+      return {
+        id: emp.id,
+        name: emp.name,
+        status: isBusy ? ('busy' as RotationStatus) : ('available' as RotationStatus),
+        turnCount: turnCounts.get(emp.id) ?? 0,
+        idleMinutes,
+      }
+    })
+
+    rotationList.sort((a, b) => {
+      if (a.status === 'busy' && b.status !== 'busy') return -1
+      if (a.status !== 'busy' && b.status === 'busy') return 1
+      if (a.status === 'busy' && b.status === 'busy') {
+        const aTime = busyStartTime.get(a.id) ?? '99:99'
+        const bTime = busyStartTime.get(b.id) ?? '99:99'
+        return aTime.localeCompare(bTime)
+      }
+      const aIdx = employees.findIndex((e) => e.id === a.id)
+      const bIdx = employees.findIndex((e) => e.id === b.id)
+      return aIdx - bIdx
+    })
+
+    const firstAvailable = rotationList.find((r) => r.status !== 'busy')
+    if (firstAvailable) firstAvailable.status = 'next'
+
+    setRotation(rotationList)
+  }, [appointments, employees, dateStr, currentTime])
 
   async function loadFormData() {
     const [emps, svcs] = await Promise.all([
       useDataStore.getState().fetchEmployees(),
       useDataStore.getState().fetchServices(),
     ])
-    setEmployees(emps)
+    setEmployees(emps as Employee[])
     setServices(svcs)
   }
 
@@ -102,12 +212,13 @@ export function Appointments() {
         .select('*, customer:customers(name, phone), employee:employees(name), service:services(name)')
         .eq('date', dateStr)
         .order('time'),
-      useDataStore.getState().fetchEmployees(),
-      supabase.from('appointments').select('date').gte('date', weekStart).lte('date', weekEnd),
+      useDataStore.getState().fetchEmployees(true), // force refresh from DB to get fresh rotation_orders
+      supabase.from('appointments').select('date').gte('date', weekStart).lte('date', weekEnd).not('status', 'eq', 'cancelled'),
     ])
 
     const apts = (aptsRes.data as unknown as AppointmentRow[]) ?? []
     setAppointments(apts)
+    setEmployees(empList as Employee[])
 
     const counts: Record<string, number> = {}
     for (const row of (weekRes.data ?? [])) {
@@ -115,106 +226,17 @@ export function Appointments() {
     }
     setWeekCounts(counts)
 
-    setEmployees(empList)
-
-    const turnCounts = new Map<string, number>()
-    const lastCompletedTime = new Map<string, string>() // employee_id -> latest completed time
-    const busyStartTime = new Map<string, string>() // employee_id -> time they started (in_progress)
     const unassigned = apts.filter((a) => !a.employee_id && a.status !== 'cancelled').length
     setUnassignedCount(unassigned)
-
-    for (const apt of apts) {
-      // Lượt = tất cả appointments được gán cho NV (completed + in_progress + booked), trừ cancelled
-      if (apt.employee_id && apt.status !== 'cancelled') {
-        turnCounts.set(apt.employee_id, (turnCounts.get(apt.employee_id) ?? 0) + 1)
-      }
-      // Track last completed time for idle calculation
-      if (apt.status === 'completed' && apt.employee_id) {
-        const prev = lastCompletedTime.get(apt.employee_id)
-        if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
-      }
-      // Track busy start time
-      if (apt.status === 'in_progress' && apt.employee_id) {
-        const prev = busyStartTime.get(apt.employee_id)
-        if (!prev || apt.time < prev) busyStartTime.set(apt.employee_id, apt.time)
-      }
-    }
-
-    const busyEmployeeIds = new Set(
-      apts.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!)
-    )
-
-    const now = new Date()
-    const todayStr = now.toISOString().slice(0, 10)
-    const nowMinutes = now.getHours() * 60 + now.getMinutes()
-    const shiftStartMinutes = 9 * 60 // Ca bắt đầu 9:00 AM
-
-    const rotationList: RotationEmployee[] = empList.map((emp) => {
-      const isBusy = busyEmployeeIds.has(emp.id)
-      let idleMinutes: number | null = null
-
-      // Calculate idle for today (only for non-busy employees)
-      if (!isBusy && dateStr === todayStr) {
-        const lastTime = lastCompletedTime.get(emp.id)
-        if (lastTime) {
-          // Idle since last completed
-          const [h, m] = lastTime.split(':')
-          const completedMinutes = parseInt(h) * 60 + parseInt(m)
-          idleMinutes = Math.max(0, nowMinutes - completedMinutes)
-        } else {
-          // No completed today — idle since activation or shift start (whichever is later)
-          let startMinutes = shiftStartMinutes
-          if (emp.activated_at) {
-            const activatedDate = new Date(emp.activated_at)
-            const activatedDateStr = activatedDate.toISOString().slice(0, 10)
-            if (activatedDateStr === todayStr) {
-              // Activated today — use activation time if after shift start
-              const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
-              startMinutes = Math.max(shiftStartMinutes, activatedMinutes)
-            }
-          }
-          idleMinutes = Math.max(0, nowMinutes - startMinutes)
-        }
-      }
-
-      return {
-        id: emp.id,
-        name: emp.name,
-        status: isBusy ? 'busy' as RotationStatus : 'available' as RotationStatus,
-        turnCount: turnCounts.get(emp.id) ?? 0,
-        idleMinutes,
-      }
-    })
-
-    // Sort: busy employees first (sorted by start time asc), then available by rotation_order
-    rotationList.sort((a, b) => {
-      if (a.status === 'busy' && b.status !== 'busy') return -1
-      if (a.status !== 'busy' && b.status === 'busy') return 1
-      if (a.status === 'busy' && b.status === 'busy') {
-        const aTime = busyStartTime.get(a.id) ?? '99:99'
-        const bTime = busyStartTime.get(b.id) ?? '99:99'
-        return aTime.localeCompare(bTime)
-      }
-      // Both available — keep rotation_order from empList
-      const aIdx = empList.findIndex((e) => e.id === a.id)
-      const bIdx = empList.findIndex((e) => e.id === b.id)
-      return aIdx - bIdx
-    })
-
-    // First available in list order = "next"
-    const firstAvailable = rotationList.find((r) => r.status !== 'busy')
-    if (firstAvailable) firstAvailable.status = 'next'
-    setRotation(rotationList)
   }
 
   async function updateStatus(id: string, status: AppointmentStatus) {
     const updateData: Record<string, unknown> = { status }
 
-    // Khi chuyển sang "in_progress": cập nhật time = thời điểm hiện tại
     if (status === 'in_progress') {
       const now = new Date()
-      const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:00`
-      updateData.time = currentTime
+      const currentTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:00`
+      updateData.time = currentTimeStr
     }
 
     await supabase.from('appointments').update(updateData).eq('id', id)
@@ -312,6 +334,16 @@ export function Appointments() {
     if (error) {
       console.error('Failed to save rotation order:', error)
     }
+
+    // Sync the employees list order with the new rotation order to prevent the useEffect from reverting it
+    const newEmployeesOrder = toSave
+      .map((rotEmp) => {
+        const original = employees.find((e) => e.id === rotEmp.id)
+        return original ? { ...original } : null
+      })
+      .filter(Boolean) as Employee[]
+    setEmployees(newEmployeesOrder)
+
     const updated = toSave.map((emp) => ({
       ...emp,
       status: (emp.status === 'busy' ? 'busy' : 'available') as RotationStatus,

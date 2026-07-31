@@ -46,6 +46,22 @@ export function Dashboard() {
   const [activityFilter, setActivityFilter] = useState<string>('all')
   useEffect(() => {
     loadStats(selectedDate)
+
+    // Listen to realtime updates on the appointments table
+    const channel = supabase
+      .channel('dashboard-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'appointments' },
+        () => {
+          loadStats(selectedDate)
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
   }, [selectedDate])
   useEffect(() => {
     loadEmployees()

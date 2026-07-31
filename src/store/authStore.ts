@@ -52,15 +52,15 @@ export const useAuthStore = create<AuthState>((set) => ({
       .single()
 
     const p = profile as { role: UserRole; full_name: string } | null
+    const user = {
+      id: data.user.id,
+      email: data.user.email!,
+      role: p?.role ?? 'employee',
+      name: p?.full_name ?? '',
+    }
 
-    set({
-      user: {
-        id: data.user.id,
-        email: data.user.email!,
-        role: p?.role ?? 'employee',
-        name: p?.full_name ?? '',
-      },
-    })
+    set({ user })
+    sessionStorage.setItem('sb_user_profile', JSON.stringify(user))
     return null
   },
 
@@ -121,6 +121,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
 
     set({ user })
+    sessionStorage.setItem('sb_user_profile', JSON.stringify(user))
     return null
   },
 
@@ -130,6 +131,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ user: null })
       return
     }
+    sessionStorage.removeItem('sb_user_profile')
     await supabase.auth.signOut()
     set({ user: null })
   },
@@ -145,28 +147,48 @@ export const useAuthStore = create<AuthState>((set) => ({
       return
     }
 
-    const { data: { session } } = await supabase.auth.getSession()
-    if (!session) {
-      set({ user: null, loading: false })
-      return
+    // Tối ưu hóa: tải ngay lập tức từ sessionStorage trước để tránh bị đơ màn hình loading
+    const cachedProfile = sessionStorage.getItem('sb_user_profile')
+    if (cachedProfile) {
+      try {
+        set({ user: JSON.parse(cachedProfile), loading: false })
+      } catch (e) {
+        console.error('Error parsing cached profile', e)
+      }
     }
 
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role, full_name')
-      .eq('id', session.user.id)
-      .single()
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        sessionStorage.removeItem('sb_user_profile')
+        set({ user: null, loading: false })
+        return
+      }
 
-    const p = profile as { role: UserRole; full_name: string } | null
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role, full_name')
+        .eq('id', session.user.id)
+        .single()
 
-    set({
-      user: {
+      const p = profile as { role: UserRole; full_name: string } | null
+      const user = {
         id: session.user.id,
         email: session.user.email!,
         role: p?.role ?? 'employee',
         name: p?.full_name ?? '',
-      },
-      loading: false,
-    })
+      }
+
+      sessionStorage.setItem('sb_user_profile', JSON.stringify(user))
+      set({ user, loading: false })
+    } catch (err) {
+      console.error('checkSession error:', err)
+      // Nếu có lỗi mạng và có cache cũ, tiếp tục giữ cache cũ để app hoạt động ngoại tuyến
+      if (!cachedProfile) {
+        set({ user: null, loading: false })
+      } else {
+        set({ loading: false })
+      }
+    }
   },
 }))
