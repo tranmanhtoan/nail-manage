@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import type { UserRole } from '@/lib/database.types'
-import { supabase } from '@/lib/supabase'
+import { supabase, stopAuthListener } from '@/lib/supabase'
 import { toAuthEmail } from '@/lib/auth-helpers'
 
 const UAT_MODE = import.meta.env.VITE_UAT_MODE === 'true'

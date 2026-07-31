@@ -48,15 +48,92 @@
       "norm_label": "chinh sua"
     },
     {
+      "label": "supabase.ts",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_supabase",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "supabase.ts"
+    },
+    {
+      "label": "supabaseUrl",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_lib_supabase_supabaseurl",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "supabaseurl"
+    },
+    {
+      "label": "supabaseAnonKey",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_lib_supabase_supabaseanonkey",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "supabaseanonkey"
+    },
+    {
+      "label": "supabase",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_lib_supabase_supabase",
+      "community": 10,
+      "community_name": "useAuthStore",
+      "norm_label": "supabase"
+    },
+    {
+      "label": "supabaseAdmin",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_lib_supabase_supabaseadmin",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "supabaseadmin"
+    },
+    {
+      "label": "initAuthListener()",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_lib_supabase_initauthlistener",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "initauthlistener()"
+    },
+    {
+      "label": "stopAuthListener()",
+      "file_type": "code",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "src_lib_supabase_stopauthlistener",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "stopauthlistener()"
+    },
+    {
       "label": "main.tsx",
       "file_type": "code",
       "source_file": "src/main.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_main",
       "community": 2,
       "community_name": "App.tsx",
-      "norm_label": "main.tsx"
+      "norm_label": "main.tsx",
+      "id": "src_main"
     },
     {
       "label": "registerSWUpdateHandler()",
@@ -64,10 +141,10 @@
       "source_file": "src/main.tsx",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "src_main_registerswupdatehandler",
       "community": 2,
       "community_name": "App.tsx",
-      "norm_label": "registerswupdatehandler()"
+      "norm_label": "registerswupdatehandler()",
+      "id": "src_main_registerswupdatehandler"
     },
     {
       "label": "App.tsx",
@@ -240,8 +317,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "supermodestore.ts",
       "id": "src_store_supermodestore"
     },
@@ -251,8 +328,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "supermodestate",
       "id": "src_store_supermodestore_supermodestate"
     },
@@ -262,8 +339,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "getsupermode()",
       "id": "src_store_supermodestore_getsupermode"
     },
@@ -273,8 +350,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "usesupermodestore",
       "id": "src_store_supermodestore_usesupermodestore"
     },
@@ -416,8 +493,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "dashboard.tsx",
       "id": "src_pages_owner_dashboard"
     },
@@ -427,8 +504,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "stats",
       "id": "src_pages_owner_dashboard_stats"
     },
@@ -438,8 +515,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "recentitem",
       "id": "src_pages_owner_dashboard_recentitem"
     },
@@ -449,8 +526,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "employeeoption",
       "id": "src_pages_owner_dashboard_employeeoption"
     },
@@ -460,8 +537,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "days",
       "id": "src_pages_owner_dashboard_days"
     },
@@ -471,8 +548,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "dashboard()",
       "id": "src_pages_owner_dashboard_dashboard"
     },
@@ -482,8 +559,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "authstore.ts",
       "id": "src_store_authstore"
     },
@@ -493,8 +570,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "authstate",
       "id": "src_store_authstore_authstate"
     },
@@ -603,8 +680,8 @@
       "source_file": "src/components/Header.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 10,
-      "community_name": "useAuthStore",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "header()",
       "id": "src_components_header_header"
     },
@@ -669,8 +746,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Appointments.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "service",
       "id": "src_lib_database_types_service"
     },
@@ -702,8 +779,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "login.tsx",
       "id": "src_pages_login"
     },
@@ -713,8 +790,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "ownerprofile",
       "id": "src_pages_login_ownerprofile"
     },
@@ -724,8 +801,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 10,
+      "community_name": "useAuthStore",
       "norm_label": "login()",
       "id": "src_pages_login_login"
     },
@@ -2000,9 +2077,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch.tsx",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch"
     },
     {
@@ -2011,9 +2088,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch()",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch_languageswitch"
     },
     {
@@ -2077,9 +2154,9 @@
       "source_file": "src/lib/auth-helpers.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 10,
       "norm_label": "auth-helpers.ts",
-      "community_name": "supabase.ts",
+      "community_name": "useAuthStore",
       "id": "src_lib_auth_helpers"
     },
     {
@@ -2088,9 +2165,9 @@
       "source_file": "src/lib/auth-helpers.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 6,
+      "community": 10,
       "norm_label": "toauthemail()",
-      "community_name": "supabase.ts",
+      "community_name": "useAuthStore",
       "id": "src_lib_auth_helpers_toauthemail"
     },
     {
@@ -2099,9 +2176,9 @@
       "source_file": "src/lib/auth-helpers.ts",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 6,
+      "community": 10,
       "norm_label": "fromauthemail()",
-      "community_name": "supabase.ts",
+      "community_name": "useAuthStore",
       "id": "src_lib_auth_helpers_fromauthemail"
     },
     {
@@ -2154,9 +2231,9 @@
       "source_file": "src/pages/QuickEntry.tsx",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 10,
+      "community": 0,
       "norm_label": "quickentry()",
-      "community_name": "useAuthStore",
+      "community_name": "QuickEntry.tsx",
       "id": "src_pages_quickentry_quickentry"
     },
     {
@@ -2165,9 +2242,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "bookingpage.tsx",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage"
     },
     {
@@ -2176,9 +2253,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "bookingpage()",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage_bookingpage"
     },
     {
@@ -2242,9 +2319,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 10,
+      "community": 0,
       "norm_label": "kiosklayout.tsx",
-      "community_name": "useAuthStore",
+      "community_name": "QuickEntry.tsx",
       "id": "src_pages_kiosk_kiosklayout"
     },
     {
@@ -2253,9 +2330,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 10,
+      "community": 0,
       "norm_label": "kiosklayout()",
-      "community_name": "useAuthStore",
+      "community_name": "QuickEntry.tsx",
       "id": "src_pages_kiosk_kiosklayout_kiosklayout"
     },
     {
@@ -2297,9 +2374,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "services.tsx",
-      "community_name": "Appointments.tsx",
+      "community_name": "supabase.ts",
       "id": "src_pages_owner_services"
     },
     {
@@ -2308,9 +2385,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "categories",
-      "community_name": "Appointments.tsx",
+      "community_name": "supabase.ts",
       "id": "src_pages_owner_services_categories"
     },
     {
@@ -2319,9 +2396,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "services()",
-      "community_name": "Appointments.tsx",
+      "community_name": "supabase.ts",
       "id": "src_pages_owner_services_services"
     },
     {
@@ -2330,9 +2407,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L110",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "serviceform()",
-      "community_name": "Appointments.tsx",
+      "community_name": "supabase.ts",
       "id": "src_pages_owner_services_serviceform"
     },
     {
@@ -3232,9 +3309,9 @@
       "source_file": "src/components/PinGate.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 10,
       "norm_label": "pingate.tsx",
-      "community_name": "supabase.ts",
+      "community_name": "useAuthStore",
       "id": "src_components_pingate"
     },
     {
@@ -3243,9 +3320,9 @@
       "source_file": "src/components/PinGate.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 6,
+      "community": 10,
       "norm_label": "pingateprops",
-      "community_name": "supabase.ts",
+      "community_name": "useAuthStore",
       "id": "src_components_pingate_pingateprops"
     },
     {
@@ -3254,76 +3331,10 @@
       "source_file": "src/components/PinGate.tsx",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 6,
+      "community": 10,
       "norm_label": "pingate()",
-      "community_name": "supabase.ts",
+      "community_name": "useAuthStore",
       "id": "src_components_pingate_pingate"
-    },
-    {
-      "label": "supabase.ts",
-      "file_type": "code",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "supabase.ts",
-      "community_name": "supabase.ts",
-      "id": "src_lib_supabase"
-    },
-    {
-      "label": "supabaseUrl",
-      "file_type": "code",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L3",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "supabaseurl",
-      "community_name": "supabase.ts",
-      "id": "src_lib_supabase_supabaseurl"
-    },
-    {
-      "label": "supabaseAnonKey",
-      "file_type": "code",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L4",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "supabaseanonkey",
-      "community_name": "supabase.ts",
-      "id": "src_lib_supabase_supabaseanonkey"
-    },
-    {
-      "label": "supabase",
-      "file_type": "code",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L8",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "supabase",
-      "community_name": "supabase.ts",
-      "id": "src_lib_supabase_supabase"
-    },
-    {
-      "label": "supabaseAdmin",
-      "file_type": "code",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L11",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "supabaseadmin",
-      "community_name": "supabase.ts",
-      "id": "src_lib_supabase_supabaseadmin"
-    },
-    {
-      "label": "initAuthListener()",
-      "file_type": "code",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L25",
-      "_origin": "ast",
-      "community": 6,
-      "norm_label": "initauthlistener()",
-      "community_name": "supabase.ts",
-      "id": "src_lib_supabase_initauthlistener"
     },
     {
       "label": "validations.ts",
@@ -3694,13 +3705,583 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/PinGate.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_components_pingate",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_supabase",
+      "target": "src_lib_supabase_initauthlistener",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_supabase",
+      "target": "src_lib_supabase_stopauthlistener",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_supabase",
+      "target": "src_lib_supabase_supabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_supabase",
+      "target": "src_lib_supabase_supabaseadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_supabase",
+      "target": "src_lib_supabase_supabaseanonkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_supabase",
+      "target": "src_lib_supabase_supabaseurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/booking/BookingPage.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_booking_bookingpage",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/employee/CheckIn.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_employee_checkin",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/employee/MyEarnings.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_employee_myearnings",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/employee/MySchedule.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_employee_myschedule",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/kiosk/KioskPersonal.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_kiosk_kioskpersonal",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Login.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_login",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/AdminDashboard.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_admindashboard",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Appointments.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_appointments",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Customers.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_customers",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Dashboard.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_dashboard",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Employees.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_employees",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Reports.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_reports",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Services.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_services",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_settings",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_quickentry",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/authStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_authstore",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/syncStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_syncstore",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/PinGate.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_components_pingate",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/booking/BookingPage.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_booking_bookingpage",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/employee/CheckIn.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_employee_checkin",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/employee/MyEarnings.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_employee_myearnings",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/employee/MySchedule.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_employee_myschedule",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/kiosk/KioskPersonal.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_kiosk_kioskpersonal",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/Login.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_login",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/AdminDashboard.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_admindashboard",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Appointments.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_appointments",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Customers.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_customers",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Dashboard.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_dashboard",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Employees.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_employees",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Reports.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_reports",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Services.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_services",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_settings",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_quickentry",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/authStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_authstore",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/syncStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_syncstore",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Employees.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_employees",
+      "target": "src_lib_supabase_supabaseadmin"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "src_lib_supabase_initauthlistener"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/supabase.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_supabase_initauthlistener",
+      "target": "src_lib_supabase_stopauthlistener",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/main.tsx",
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_main",
-      "target": "src_app",
-      "confidence_score": 1.0
+      "target": "src_app"
     },
     {
       "relation": "imports_from",
@@ -3710,9 +4291,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_main",
-      "target": "src_i18n",
-      "confidence_score": 1.0
+      "target": "src_i18n"
     },
     {
       "relation": "indirect_call",
@@ -3722,9 +4303,9 @@
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
+      "confidence_score": 0.5,
       "source": "src_main",
-      "target": "src_main_registerswupdatehandler",
-      "confidence_score": 0.5
+      "target": "src_main_registerswupdatehandler"
     },
     {
       "relation": "contains",
@@ -3957,30 +4538,6 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/App.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_app",
-      "target": "src_lib_supabase_initauthlistener"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.tsx",
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
@@ -4201,30 +4758,6 @@
       "target": "src_lib_database_types_appointmentstatus"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_appointments",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_appointments",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/owner/Appointments.tsx",
@@ -4358,30 +4891,6 @@
       "confidence_score": 1.0,
       "source": "src_pages_owner_appointments_appointments",
       "target": "src_pages_owner_appointments_getchibiemoji"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Dashboard.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_dashboard",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Dashboard.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_dashboard",
-      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -4643,30 +5152,6 @@
       "target": "src_lib_database_types_userrole"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/authStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_store_authstore",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/authStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_store_authstore",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/store/authStore.ts",
@@ -4915,30 +5400,6 @@
       "confidence_score": 1.0,
       "source": "src_pages_owner_settings",
       "target": "src_components_languageswitch_languageswitch"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "imports_from",
@@ -5504,30 +5965,6 @@
       "target": "src_components_languageswitch_languageswitch"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Login.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_login",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/Login.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_login",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/Login.tsx",
@@ -5560,30 +5997,6 @@
       "confidence_score": 1.0,
       "source": "src_components_employeelayout",
       "target": "src_pages_employee_myearnings"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/employee/MyEarnings.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_employee_myearnings",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/employee/MyEarnings.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_employee_myearnings",
-      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -5665,30 +6078,6 @@
       "target": "src_pages_kiosk_kioskpersonal"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/kiosk/KioskPersonal.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_kiosk_kioskpersonal",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/kiosk/KioskPersonal.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_kiosk_kioskpersonal",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
@@ -5746,30 +6135,6 @@
       "target": "src_pages_kiosk_kioskpersonal_kioskpersonal"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/AdminDashboard.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_admindashboard",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/AdminDashboard.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_admindashboard",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/owner/AdminDashboard.tsx",
@@ -5814,42 +6179,6 @@
       "confidence_score": 1.0,
       "source": "src_pages_owner_employees",
       "target": "src_lib_auth_helpers_toauthemail"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Employees.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_employees",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Employees.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_employees",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Employees.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_employees",
-      "target": "src_lib_supabase_supabaseadmin"
     },
     {
       "relation": "contains",
@@ -5905,30 +6234,6 @@
       "confidence_score": 1.0,
       "source": "src_pages_owner_employees",
       "target": "src_pages_owner_employees_generatetemppassword"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Reports.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_reports",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Reports.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_reports",
-      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -7141,30 +7446,6 @@
       "target": "src_pages_quickentry"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/QuickEntry.tsx",
@@ -7245,30 +7526,6 @@
       "target": "src_pages_quickentry_quickentry"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/booking/BookingPage.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_booking_bookingpage",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/booking/BookingPage.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_booking_bookingpage",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/booking/BookingPage.tsx",
@@ -7278,30 +7535,6 @@
       "confidence_score": 1.0,
       "source": "src_pages_booking_bookingpage",
       "target": "src_pages_booking_bookingpage_bookingpage"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/employee/CheckIn.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_employee_checkin",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/employee/CheckIn.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_employee_checkin",
-      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -7339,30 +7572,6 @@
       "target": "src_store_syncstore_usesyncstore"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/employee/MySchedule.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_employee_myschedule",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/employee/MySchedule.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_employee_myschedule",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/employee/MySchedule.tsx",
@@ -7396,30 +7605,6 @@
       "target": "src_pages_kiosk_kiosklayout_kiosklayout"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Customers.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_customers",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Customers.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_customers",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/owner/Customers.tsx",
@@ -7440,30 +7625,6 @@
       "confidence_score": 1.0,
       "source": "src_pages_owner_customers",
       "target": "src_pages_owner_customers_customers"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Services.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_services",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Services.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_services",
-      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -8368,133 +8529,6 @@
       "target": "src_components_pingate_pingateprops"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/PinGate.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_components_pingate",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/PinGate.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_components_pingate",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L25",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_lib_supabase",
-      "target": "src_lib_supabase_initauthlistener"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_lib_supabase",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_lib_supabase",
-      "target": "src_lib_supabase_supabaseadmin"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_lib_supabase",
-      "target": "src_lib_supabase_supabaseanonkey"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/supabase.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_lib_supabase",
-      "target": "src_lib_supabase_supabaseurl"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_store_datastore",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/syncStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_store_syncstore",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_store_datastore",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/syncStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_store_syncstore",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/validations.ts",
@@ -8805,5 +8839,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "22d0fd28a41db4f4f3d74c4f0319161dd12be83e"
+  "built_at_commit": "746812e643dbcb32fde08edaf5cd9a464ab4bb16"
 }
