@@ -201,6 +201,8 @@ export function Dashboard() {
       recentActivity: recent,
       lastWeekRevenue,
     })
+    // Only update state if this is still the latest request
+    if (requestId !== loadStatsRequestId.current) return
     setLoading(false)
   }
   async function loadEmployees() {
