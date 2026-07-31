@@ -126,6 +126,9 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: async () => {
+    // Stop session check interval to prevent memory leak
+    stopAuthListener()
+
     if (UAT_MODE) {
       localStorage.removeItem('uat_user')
       set({ user: null })
