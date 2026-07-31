@@ -190,6 +190,9 @@ export function Dashboard() {
         time: formatTime(r.date, r.time),
       }
     })
+    // Only update state if this is still the latest request (prevents stale data overwrite)
+    if (requestId !== loadStatsRequestId.current) return
+
     setStats({
       totalRevenue,
       cashRevenue,
@@ -201,8 +204,6 @@ export function Dashboard() {
       recentActivity: recent,
       lastWeekRevenue,
     })
-    // Only update state if this is still the latest request
-    if (requestId !== loadStatsRequestId.current) return
     setLoading(false)
   }
   async function loadEmployees() {
