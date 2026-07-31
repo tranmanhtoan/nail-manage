@@ -17,7 +17,7 @@ import { Login } from '@/pages/Login'
  */
 function lazyRetry(importFn: () => Promise<any>, retries = 2): ReturnType<typeof lazy> {
   return lazy(() =>
-    importFn().catch((err: unknown) => {
+    importFn().catch((_err: unknown) => {
       if (retries <= 0) {
         // All retries exhausted — likely stale SW cache; force reload
         window.location.reload()

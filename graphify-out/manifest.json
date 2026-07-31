@@ -105,9 +105,9 @@
     "semantic_hash": ""
   },
   "src/main.tsx": {
-    "mtime": 1784798799.0,
-    "ast_hash": "6f3e3ffc5f4dce1704ae37d7ec48efa5",
-    "semantic_hash": "6f3e3ffc5f4dce1704ae37d7ec48efa5"
+    "mtime": 1785517561.8122733,
+    "ast_hash": "156f7d37bc5648c15d5c215b2e456b64",
+    "semantic_hash": ""
   },
   "src/pages/Login.tsx": {
     "mtime": 1785418654.2793975,
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785517489.6546469,
-    "ast_hash": "e9b63b1cf4fb22dc04785818cffd43ac",
+    "mtime": 1785517534.880818,
+    "ast_hash": "984e3cc077daaa67e499eed851f567d5",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
