@@ -138,17 +138,25 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   checkSession: async () => {
     if (UAT_MODE) {
-      const stored = localStorage.getItem('uat_user')
-      if (stored) {
-        set({ user: JSON.parse(stored), loading: false })
-      } else {
+      try {
+        const stored = localStorage.getItem('uat_user')
+        if (stored) {
+          set({ user: JSON.parse(stored), loading: false })
+        } else {
+          set({ user: null, loading: false })
+        }
+      } catch {
         set({ user: null, loading: false })
       }
       return
     }
 
     // Tối ưu hóa: tải ngay lập tức từ sessionStorage trước để tránh bị đơ màn hình loading
-    const cachedProfile = sessionStorage.getItem('sb_user_profile')
+    let cachedProfile: string | null = null
+    try {
+      cachedProfile = sessionStorage.getItem('sb_user_profile')
+    } catch { /* storage unavailable */ }
+
     if (cachedProfile) {
       try {
         set({ user: JSON.parse(cachedProfile), loading: false })
@@ -157,10 +165,23 @@ export const useAuthStore = create<AuthState>((set) => ({
       }
     }
 
+    // Timeout: nếu Supabase quá chậm (3G/4G yếu), bỏ loading sau 5s
+    const SESSION_TIMEOUT = 5000
+    const timeoutId = setTimeout(() => {
+      // Only force loading=false if still loading (no cache resolved it)
+      if (!cachedProfile) {
+        set({ user: null, loading: false })
+      } else {
+        set({ loading: false })
+      }
+    }, SESSION_TIMEOUT)
+
     try {
       const { data: { session } } = await supabase.auth.getSession()
+      clearTimeout(timeoutId)
+
       if (!session) {
-        sessionStorage.removeItem('sb_user_profile')
+        try { sessionStorage.removeItem('sb_user_profile') } catch { /* ignore */ }
         set({ user: null, loading: false })
         return
       }
@@ -179,9 +200,10 @@ export const useAuthStore = create<AuthState>((set) => ({
         name: p?.full_name ?? '',
       }
 
-      sessionStorage.setItem('sb_user_profile', JSON.stringify(user))
+      try { sessionStorage.setItem('sb_user_profile', JSON.stringify(user)) } catch { /* ignore */ }
       set({ user, loading: false })
     } catch (err) {
+      clearTimeout(timeoutId)
       console.error('checkSession error:', err)
       // Nếu có lỗi mạng và có cache cũ, tiếp tục giữ cache cũ để app hoạt động ngoại tuyến
       if (!cachedProfile) {
