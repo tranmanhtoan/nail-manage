@@ -43,6 +43,19 @@ export function QuickEntry() {
   // Rotation data
   const [idleMinutes, setIdleMinutes] = useState<Record<string, number | null>>({})
 
+  // Ref to track timeout for cleanup on unmount
+  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Cleanup timeout on unmount to prevent setState on unmounted component
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        clearTimeout(resetTimerRef.current)
+        resetTimerRef.current = null
+      }
+    }
+  }, [])
+
   // Derived
   const selectedEmployee = employees.find((e) => e.id === employeeId)
   const selectedService = services.find((s) => s.id === serviceId)
