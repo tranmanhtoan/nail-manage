@@ -237,7 +237,7 @@ export function QuickEntry() {
       
       setSubmitting(false)
       setSuccess(true)
-      setTimeout(() => {
+      resetTimerRef.current = setTimeout(() => {
         resetForm()
       }, 1500)
       return
