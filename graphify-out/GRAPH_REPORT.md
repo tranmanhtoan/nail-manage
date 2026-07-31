@@ -1,7 +1,7 @@
 # Graph Report - Nail Manange  (2026-08-01)
 
 ## Corpus Check
-- 65 files · ~44,819 words
+- 65 files · ~44,964 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f2d69821`
+- Built from commit: `1def55e9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -136,7 +136,7 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ## Knowledge Gaps
-- **167 isolated node(s):** `Chỉnh sửa`, `Stats`, `RecentItem`, `EmployeeOption`, `DAYS` (+162 more)
+- **167 isolated node(s):** `Chỉnh sửa`, `AppointmentRow`, `Employee`, `Service`, `RotationStatus` (+162 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -147,7 +147,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `useAuthStore` to `QuickEntry.tsx`, `App.tsx`, `supabase.ts`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **What connects `Chỉnh sửa`, `Stats`, `RecentItem` to the rest of the system?**
+- **What connects `Chỉnh sửa`, `AppointmentRow`, `Employee` to the rest of the system?**
   _167 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Appointments.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.07226890756302522 - nodes in this community are weakly interconnected._

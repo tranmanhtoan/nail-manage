@@ -205,6 +205,8 @@ export function Appointments() {
   }
 
   async function load() {
+    const requestId = ++loadRequestId.current
+
     const weekDays = getWeekDays()
     const weekStart = weekDays[0].toISOString().slice(0, 10)
     const weekEnd = weekDays[6].toISOString().slice(0, 10)
@@ -218,6 +220,9 @@ export function Appointments() {
       useDataStore.getState().fetchEmployees(true), // force refresh from DB to get fresh rotation_orders
       supabase.from('appointments').select('date').gte('date', weekStart).lte('date', weekEnd).not('status', 'eq', 'cancelled'),
     ])
+
+    // Discard stale response if a newer request was initiated
+    if (requestId !== loadRequestId.current) return
 
     const apts = (aptsRes.data as unknown as AppointmentRow[]) ?? []
     setAppointments(apts)
