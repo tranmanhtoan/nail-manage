@@ -50,16 +50,19 @@ export function Login() {
   }
 
   const handlePinInput = useCallback((digit: string) => {
+    setError('')
     setPin((prev) => {
       if (prev.length >= PIN_LENGTH) return prev
-      const newPin = prev + digit
-      setError('')
-      if (newPin.length === PIN_LENGTH) {
-        setTimeout(() => verifyPin(newPin), 50)
-      }
-      return newPin
+      return prev + digit
     })
-  }, [ownerProfile])
+  }, [])
+
+  // Trigger verification when PIN reaches full length
+  useEffect(() => {
+    if (pin.length === PIN_LENGTH && ownerProfile && !loading) {
+      verifyPin(pin)
+    }
+  }, [pin])
 
   const handleDelete = useCallback(() => {
     setPin((prev) => prev.slice(0, -1))
