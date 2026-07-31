@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Check, ChevronLeft, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
