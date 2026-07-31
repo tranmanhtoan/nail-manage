@@ -1,20 +1,21 @@
 # Graph Report - Nail Manange  (2026-08-01)
 
 ## Corpus Check
-- 65 files · ~43,948 words
+- 65 files · ~43,963 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 326 nodes · 445 edges · 24 communities (18 shown, 6 thin omitted)
+- 327 nodes · 446 edges · 25 communities (19 shown, 6 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ac16a535`
+- Built from commit: `6fd34c82`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
+- Settings.tsx
 - Appointments.tsx
 - App.tsx
 - devDependencies
@@ -25,7 +26,7 @@
 - MCC Nail & Spa — Tổng quan Module
 - validations.ts
 - useAuthStore
-- QuickEntry.tsx
+- Reports.tsx
 - graphify reference: extra exports and benchmark
 - CHANGELOG.md
 - vite-env.d.ts
@@ -55,25 +56,29 @@
   src/pages/owner/Dashboard.tsx → src/store/authStore.ts
 - `App()` --calls--> `useAuthStore`  [EXTRACTED]
   src/App.tsx → src/store/authStore.ts
-- `KioskPersonal()` --calls--> `useAuthStore`  [EXTRACTED]
-  src/pages/kiosk/KioskPersonal.tsx → src/store/authStore.ts
-- `Login()` --calls--> `useAuthStore`  [EXTRACTED]
-  src/pages/Login.tsx → src/store/authStore.ts
-- `QuickEntry()` --calls--> `useAuthStore`  [EXTRACTED]
-  src/pages/QuickEntry.tsx → src/store/authStore.ts
+- `useInactivityTimeout()` --calls--> `useAuthStore`  [EXTRACTED]
+  src/hooks/useInactivityTimeout.ts → src/store/authStore.ts
+- `CheckIn()` --calls--> `useAuthStore`  [EXTRACTED]
+  src/pages/employee/CheckIn.tsx → src/store/authStore.ts
+- `MyEarnings()` --calls--> `useAuthStore`  [EXTRACTED]
+  src/pages/employee/MyEarnings.tsx → src/store/authStore.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (24 total, 6 thin omitted)
+## Communities (25 total, 6 thin omitted)
+
+### Community 0 - "Settings.tsx"
+Cohesion: 0.15
+Nodes (9): AdminDashboard(), AdminStats, CATEGORIES, Services(), DEFAULT_TOGGLES, FeatureToggles, Tab, SuperModeState (+1 more)
 
 ### Community 1 - "Appointments.tsx"
 Cohesion: 0.09
-Nodes (17): Appointment, AppointmentStatus, Customer, Employee, UserRole, AppointmentRow, Appointments(), Employee (+9 more)
+Nodes (16): Appointment, AppointmentStatus, Customer, Employee, Service, UserRole, AppointmentRow, Appointments() (+8 more)
 
 ### Community 2 - "App.tsx"
-Cohesion: 0.08
-Nodes (17): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+9 more)
+Cohesion: 0.07
+Nodes (18): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+10 more)
 
 ### Community 3 - "devDependencies"
 Cohesion: 0.08
@@ -88,8 +93,8 @@ Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
 ### Community 6 - "supabase.ts"
-Cohesion: 0.08
-Nodes (20): LanguageSwitch(), Service, supabase, supabaseAdmin, supabaseAnonKey, supabaseUrl, Login(), OwnerProfile (+12 more)
+Cohesion: 0.10
+Nodes (17): OfflineSyncBanner(), PinGateProps, toAuthEmail(), supabase, supabaseAdmin, supabaseAnonKey, supabaseUrl, OwnerProfile (+9 more)
 
 ### Community 7 - "dependencies"
 Cohesion: 0.11
@@ -105,11 +110,11 @@ Nodes (14): AppointmentInput, appointmentSchema, BookingInput, bookingSchema, Cu
 
 ### Community 10 - "useAuthStore"
 Cohesion: 0.09
-Nodes (21): App(), BottomNav(), FloatingBackHome(), PinGateProps, useInactivityTimeout(), toAuthEmail(), PayType, CheckIn() (+13 more)
+Nodes (23): App(), BottomNav(), FloatingBackHome(), useInactivityTimeout(), PayType, CheckIn(), AppointmentRow, EarningData (+15 more)
 
-### Community 11 - "QuickEntry.tsx"
-Cohesion: 0.16
-Nodes (12): OfflineSyncBanner(), getChibiEmoji(), KioskPersonal(), ProfileOption, Employee, QuickEntry(), Service, Step (+4 more)
+### Community 11 - "Reports.tsx"
+Cohesion: 0.33
+Nodes (4): EmployeeAppointment, EmployeeSummary, Period, ServiceRevenue
 
 ### Community 12 - "graphify reference: extra exports and benchmark"
 Cohesion: 0.22
@@ -139,17 +144,17 @@ Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphif
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `Appointments.tsx`, `useAuthStore`, `QuickEntry.tsx`?**
+- **Why does `supabase` connect `supabase.ts` to `Settings.tsx`, `Appointments.tsx`, `useAuthStore`, `Reports.tsx`?**
   _High betweenness centrality (0.033) - this node is a cross-community bridge._
-- **Why does `useAuthStore` connect `useAuthStore` to `App.tsx`, `QuickEntry.tsx`, `supabase.ts`?**
+- **Why does `useAuthStore` connect `useAuthStore` to `Settings.tsx`, `App.tsx`, `supabase.ts`?**
   _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `devDependencies`?**
   _High betweenness centrality (0.012) - this node is a cross-community bridge._
 - **What connects `MCC Nail & Spa — Changelog`, `AppointmentRow`, `Employee` to the rest of the system?**
   _167 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Appointments.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08505747126436781 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08735632183908046 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07526881720430108 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06951871657754011 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._

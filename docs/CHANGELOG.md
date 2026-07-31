@@ -3,3 +3,9 @@
 > Log ghi lại mỗi lần update/chỉnh sửa trong dự án.
 
 ---
+
+## [2026-07-31]
+
+### Chỉnh sửa
+- [00:00] Chỉnh sửa `src/i18n/index.ts` — Wrap localStorage.getItem trong try-catch để tránh crash trên iOS Safari Private Browsing
+- [00:00] Chỉnh sửa `src/store/superModeStore.ts` — Wrap localStorage access trong try-catch để tránh crash trên iOS Safari Private Browsing

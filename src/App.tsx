@@ -9,17 +9,38 @@ import { Header } from '@/components/Header'
 import { BottomNav } from '@/components/BottomNav'
 import { Login } from '@/pages/Login'
 
+/**
+ * Retry wrapper for lazy-loaded chunks.
+ * On iOS, transient network drops during page load can fail dynamic imports.
+ * This retries up to 2 times with a short delay, then forces a page reload
+ * (clears stale SW cache) if all retries fail.
+ */
+function lazyRetry(importFn: () => Promise<any>, retries = 2): ReturnType<typeof lazy> {
+  return lazy(() =>
+    importFn().catch((err: unknown) => {
+      if (retries <= 0) {
+        // All retries exhausted — likely stale SW cache; force reload
+        window.location.reload()
+        return new Promise(() => {}) // never resolves, page will reload
+      }
+      return new Promise<any>((resolve) => {
+        setTimeout(() => resolve(lazyRetry(importFn, retries - 1)), 1500)
+      }).then((mod: any) => mod)
+    })
+  )
+}
+
 // Lazy-loaded pages — split by role so employee doesn't load owner code
-const Dashboard = lazy(() => import('@/pages/owner/Dashboard').then(m => ({ default: m.Dashboard })))
-const Appointments = lazy(() => import('@/pages/owner/Appointments').then(m => ({ default: m.Appointments })))
-const Customers = lazy(() => import('@/pages/owner/Customers').then(m => ({ default: m.Customers })))
-const Settings = lazy(() => import('@/pages/owner/Settings').then(m => ({ default: m.Settings })))
-const Reports = lazy(() => import('@/pages/owner/Reports').then(m => ({ default: m.Reports })))
-const QuickEntry = lazy(() => import('@/pages/QuickEntry').then(m => ({ default: m.QuickEntry })))
-const BookingPage = lazy(() => import('@/pages/booking/BookingPage').then(m => ({ default: m.BookingPage })))
-const KioskLayout = lazy(() => import('@/pages/kiosk/KioskLayout').then(m => ({ default: m.KioskLayout })))
-const EmployeeLayout = lazy(() => import('@/components/EmployeeLayout').then(m => ({ default: m.EmployeeLayout })))
-const PinGate = lazy(() => import('@/components/PinGate').then(m => ({ default: m.PinGate })))
+const Dashboard = lazyRetry(() => import('@/pages/owner/Dashboard').then(m => ({ default: m.Dashboard })))
+const Appointments = lazyRetry(() => import('@/pages/owner/Appointments').then(m => ({ default: m.Appointments })))
+const Customers = lazyRetry(() => import('@/pages/owner/Customers').then(m => ({ default: m.Customers })))
+const Settings = lazyRetry(() => import('@/pages/owner/Settings').then(m => ({ default: m.Settings })))
+const Reports = lazyRetry(() => import('@/pages/owner/Reports').then(m => ({ default: m.Reports })))
+const QuickEntry = lazyRetry(() => import('@/pages/QuickEntry').then(m => ({ default: m.QuickEntry })))
+const BookingPage = lazyRetry(() => import('@/pages/booking/BookingPage').then(m => ({ default: m.BookingPage })))
+const KioskLayout = lazyRetry(() => import('@/pages/kiosk/KioskLayout').then(m => ({ default: m.KioskLayout })))
+const EmployeeLayout = lazyRetry(() => import('@/components/EmployeeLayout').then(m => ({ default: m.EmployeeLayout })))
+const PinGate = lazyRetry(() => import('@/components/PinGate').then(m => ({ default: m.PinGate })))
 
 function PageLoader() {
   return (
