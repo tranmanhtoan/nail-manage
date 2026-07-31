@@ -26,3 +26,4 @@
 - [00:00] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm loadStatsRequestId ref vào component state
 - [00:00] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Increment requestId ở đầu loadStats để track request mới nhất
 - [00:00] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm stale check trước setStats/setLoading, bỏ qua response cũ khi user đổi ngày nhanh
+- [00:00] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Đặt stale check đúng vị trí: trước setStats thay vì sau

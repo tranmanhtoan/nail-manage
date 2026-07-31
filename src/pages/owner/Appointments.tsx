@@ -72,6 +72,9 @@ export function Appointments() {
   const dateInputRef = useRef<HTMLInputElement>(null)
   const dateStr = selectedDate.toISOString().slice(0, 10)
 
+  // Request counter to discard stale responses when date changes quickly
+  const loadRequestId = useRef(0)
+
   // Local timer to update current time state every 30s.
   // This recalculates idle times in the background without querying the database.
   const [currentTime, setCurrentTime] = useState(new Date())

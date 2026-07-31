@@ -160,8 +160,8 @@
     "semantic_hash": "7627c4804e72f308fe49218b3559d4df"
   },
   "src/pages/owner/Dashboard.tsx": {
-    "mtime": 1785518959.7004738,
-    "ast_hash": "ce85a28f2cf1b6337152e5abacf5b949",
+    "mtime": 1785518976.307722,
+    "ast_hash": "de72eebe6a13be712343681264471e9b",
     "semantic_hash": ""
   },
   "src/pages/owner/Employees.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785518951.6499836,
-    "ast_hash": "e8636e8fab65a738198bcf41792b0ac0",
+    "mtime": 1785518968.8693075,
+    "ast_hash": "775f0a8ae81de14afeb3ec2536e6bbcb",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
