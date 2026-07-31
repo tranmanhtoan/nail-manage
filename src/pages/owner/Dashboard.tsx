@@ -101,6 +101,8 @@ export function Dashboard() {
     return `${day}/${month}`
   }
   async function loadStats(dateStr: string) {
+    const requestId = ++loadStatsRequestId.current
+
     const target = new Date(dateStr + 'T00:00:00')
     // Get start of the week containing the selected date (Monday)
     const dayOfWeek = target.getDay()
