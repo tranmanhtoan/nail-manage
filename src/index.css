@@ -27,16 +27,22 @@ body {
 html {
   height: 100%;
   overflow: hidden;
+  /* Prevent rubber-banding on iOS that causes white flash */
+  overscroll-behavior: none;
 }
 
 body {
   height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  /* Ensure content doesn't go behind notch/home indicator */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
 #root {
   min-height: 100%;
+  /* Account for bottom safe area in main content area */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Modal bottom-sheet: respect safe areas on iPhone */
