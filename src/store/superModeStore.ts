@@ -5,12 +5,20 @@ interface SuperModeState {
   toggle: () => void
 }
 
+function getSuperMode(): boolean {
+  try {
+    return localStorage.getItem('superMode') === 'true'
+  } catch {
+    return false
+  }
+}
+
 export const useSuperModeStore = create<SuperModeState>((set) => ({
-  superMode: localStorage.getItem('superMode') === 'true',
+  superMode: getSuperMode(),
   toggle: () =>
     set((state) => {
       const next = !state.superMode
-      localStorage.setItem('superMode', String(next))
+      try { localStorage.setItem('superMode', String(next)) } catch { /* storage unavailable */ }
       return { superMode: next }
     }),
 }))

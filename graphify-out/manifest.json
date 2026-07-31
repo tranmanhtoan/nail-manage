@@ -80,9 +80,9 @@
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {
-    "mtime": 1784798808.0,
-    "ast_hash": "77c3175a6824a3559aea5548449eef06",
-    "semantic_hash": "77c3175a6824a3559aea5548449eef06"
+    "mtime": 1785517402.8727477,
+    "ast_hash": "0d5ddcadd314be9b660d892ce10600b7",
+    "semantic_hash": ""
   },
   "src/i18n/vi.json": {
     "mtime": 1785420679.8628514,

@@ -1,18 +1,17 @@
 {
-  "0": "Employees.tsx",
   "1": "Appointments.tsx",
   "2": "App.tsx",
   "3": "devDependencies",
   "4": "compilerOptions",
   "5": "What You Must Do When Invoked",
-  "6": "Settings.tsx",
+  "6": "supabase.ts",
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
   "10": "useAuthStore",
-  "11": "supabase.ts",
+  "11": "QuickEntry.tsx",
   "12": "graphify reference: extra exports and benchmark",
-  "13": "[2026-07-29]",
+  "13": "CHANGELOG.md",
   "14": "vite-env.d.ts",
   "15": "vercel.json",
   "16": "vite.config.ts",
@@ -23,6 +22,5 @@
   "21": "graphify reference: GitHub clone and cross-repo merge",
   "22": "graphify reference: transcribe video and audio",
   "23": "extraction-spec.md",
-  "24": "graphify.md",
-  "25": "ErrorBoundary"
+  "24": "graphify.md"
 }
