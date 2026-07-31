@@ -28,3 +28,4 @@
 - [00:00] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm stale check trước setStats/setLoading, bỏ qua response cũ khi user đổi ngày nhanh
 - [00:00] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Đặt stale check đúng vị trí: trước setStats thay vì sau
 - [00:00] Chỉnh sửa `src/pages/owner/Appointments.tsx` — Thêm loadRequestId ref để chống stale response race condition khi đổi ngày nhanh
+- [00:00] Chỉnh sửa `src/pages/owner/Appointments.tsx` — Thêm stale check trong load() để bỏ qua response cũ khi date thay đổi nhanh
