@@ -127,15 +127,15 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: async () => {
     // Stop session check interval to prevent memory leak
-    stopAuthListener()
+    try { stopAuthListener() } catch { /* ignore */ }
 
     if (UAT_MODE) {
-      localStorage.removeItem('uat_user')
+      try { localStorage.removeItem('uat_user') } catch { /* ignore */ }
       set({ user: null })
       return
     }
-    sessionStorage.removeItem('sb_user_profile')
-    await supabase.auth.signOut()
+    try { sessionStorage.removeItem('sb_user_profile') } catch { /* ignore */ }
+    try { await supabase.auth.signOut() } catch { /* ignore network errors */ }
     set({ user: null })
   },
 
