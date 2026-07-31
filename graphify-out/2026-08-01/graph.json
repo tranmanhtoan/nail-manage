@@ -139,7 +139,7 @@
       "label": "AppointmentCard()",
       "file_type": "code",
       "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L656",
+      "source_location": "L661",
       "_origin": "ast",
       "id": "src_pages_owner_appointments_appointmentcard",
       "community": 1,
@@ -150,7 +150,7 @@
       "label": "NewAppointmentForm()",
       "file_type": "code",
       "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L944",
+      "source_location": "L949",
       "_origin": "ast",
       "id": "src_pages_owner_appointments_newappointmentform",
       "community": 1,
@@ -3753,7 +3753,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L656",
+      "source_location": "L661",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_pages_owner_appointments",
@@ -3808,7 +3808,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L944",
+      "source_location": "L949",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_pages_owner_appointments",
@@ -3901,7 +3901,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L433",
+      "source_location": "L438",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_pages_owner_appointments_appointments",
@@ -8827,5 +8827,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1def55e96b0a050412d8294610d665a38f951353"
+  "built_at_commit": "d99e8a3675cd1019504dc39975bb4e7f1f013037"
 }
