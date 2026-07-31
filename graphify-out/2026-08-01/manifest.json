@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "src/pages/owner/Appointments.tsx": {
-    "mtime": 1785430825.494248,
-    "ast_hash": "031390c2e42c8cf1716ed877de9f46f5",
+    "mtime": 1785418704.1296446,
+    "ast_hash": "4080ca1f8f9cf94e477ed3fb806045b3",
     "semantic_hash": ""
   },
   "src/pages/owner/Customers.tsx": {
@@ -160,8 +160,8 @@
     "semantic_hash": "7627c4804e72f308fe49218b3559d4df"
   },
   "src/pages/owner/Dashboard.tsx": {
-    "mtime": 1785430813.7431438,
-    "ast_hash": "2a54aa7b337055535c17689e787cf24e",
+    "mtime": 1785418111.3398805,
+    "ast_hash": "8b274c17422e7723814bb2d65bed08a9",
     "semantic_hash": ""
   },
   "src/pages/owner/Employees.tsx": {
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/store/authStore.ts": {
-    "mtime": 1785430766.215617,
-    "ast_hash": "37473312ca68ce001e2d8065343f3325",
+    "mtime": 1785417582.3648593,
+    "ast_hash": "fc1290076f2910876ce9fb9527c101e8",
     "semantic_hash": ""
   },
   "src/store/superModeStore.ts": {
@@ -230,9 +230,9 @@
     "semantic_hash": "6411d2fbb5f0e00aaff0ca0ded84e0b6"
   },
   "vite.config.ts": {
-    "mtime": 1785517384.9368236,
-    "ast_hash": "c3a7d8c55961db9a72d87bb0ab415812",
-    "semantic_hash": ""
+    "mtime": 1784866390.552813,
+    "ast_hash": "aa601cd91a28d79156cffb08f272212e",
+    "semantic_hash": "aa601cd91a28d79156cffb08f272212e"
   },
   "src/components/ErrorBoundary.tsx": {
     "mtime": 1785340914.3247025,
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785430810.900219,
-    "ast_hash": "8eb4ab7c6218701c0595491464642707",
+    "mtime": 1785370529.8118622,
+    "ast_hash": "f589e5eb2a27708ba11beadc7a3aa314",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -347,11 +347,6 @@
   "src/pages/owner/AdminDashboard.tsx": {
     "mtime": 1785420355.6095634,
     "ast_hash": "da81cf8ddb1e9bd14a25304d90999265",
-    "semantic_hash": ""
-  },
-  "supabase/opt_rls_functions.sql": {
-    "mtime": 1785430748.702949,
-    "ast_hash": "fa775901c1be36c7babb8fb589fe455e",
     "semantic_hash": ""
   }
 }
