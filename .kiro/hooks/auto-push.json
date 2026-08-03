@@ -4,11 +4,11 @@
     {
       "name": "Auto commit and push on file save",
       "trigger": "PostFileSave",
-      "description": "Automatically commits and pushes changes whenever a code file is saved, triggering Vercel auto-deploy.",
+      "description": "Automatically commits and pushes changes whenever a code file is saved, but only if TypeScript compiles successfully.",
       "matcher": "\\.(tsx?|json|css|html)$",
       "action": {
         "type": "command",
-        "command": "cd \"/Users/trantoan/Library/CloudStorage/OneDrive-Personal/___VibeCode/Kiro/Nail Manange\" && git add -A && git diff --cached --quiet || (git commit -m \"auto: update $(date +%H:%M)\" && git push)"
+        "command": "cd \"/Users/trantoan/Library/CloudStorage/OneDrive-Personal/___VibeCode/Kiro/Nail Manange\" && npx tsc --noEmit 2>/dev/null && git add -A && git diff --cached --quiet || (git commit -m \"auto: update $(date +%H:%M)\" && git push)"
       }
     }
   ]
