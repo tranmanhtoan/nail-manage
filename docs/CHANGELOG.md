@@ -11,6 +11,7 @@
 - [15:54] Chỉnh sửa `src/store/dataStore.ts` — Thay select('*') bằng explicit column list trong fetchEmployees để giảm payload từ Supabase
 - [15:54] Chỉnh sửa `src/store/dataStore.ts` — Thay select('*') bằng explicit column list trong fetchServices để giảm payload
 - [15:54] Chỉnh sửa `src/store/dataStore.ts` — Thay select('*') bằng explicit column list trong fetchCustomers để giảm payload
+- [15:55] Chỉnh sửa `src/i18n/index.ts` — Fix TS error: đổi return type loadTranslation sang Record<string, unknown> cho nested JSON
 
 ---
 

@@ -58,15 +58,23 @@ export default defineConfig({
     target: ['es2020', 'safari14'],
     rollupOptions: {
       output: {
-        manualChunks: {
+        manualChunks(id: string) {
           // React core — changes rarely, cached long-term
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/') || id.includes('node_modules/react-router')) {
+            return 'vendor-react'
+          }
           // Supabase client — large lib, separate chunk
-          'vendor-supabase': ['@supabase/supabase-js'],
+          if (id.includes('node_modules/@supabase')) {
+            return 'vendor-supabase'
+          }
           // State management
-          'vendor-zustand': ['zustand'],
+          if (id.includes('node_modules/zustand')) {
+            return 'vendor-zustand'
+          }
           // i18n framework (translations loaded dynamically)
-          'vendor-i18n': ['i18next', 'react-i18next'],
+          if (id.includes('node_modules/i18next') || id.includes('node_modules/react-i18next')) {
+            return 'vendor-i18n'
+          }
         },
       },
     },
