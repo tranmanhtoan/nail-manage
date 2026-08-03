@@ -1,5 +1,5 @@
 {
-  "0": "QuickEntry.tsx",
+  "0": "Settings.tsx",
   "1": "Appointments.tsx",
   "2": "App.tsx",
   "3": "devDependencies",
@@ -10,6 +10,7 @@
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
   "10": "useAuthStore",
+  "11": "index.ts",
   "12": "graphify reference: extra exports and benchmark",
   "13": "[2026-07-31]",
   "14": "vite-env.d.ts",
