@@ -3,7 +3,7 @@ import { useSyncStore } from '@/store/syncStore'
 import { useThemeStore } from '@/store/themeStore'
 import { LanguageSwitch } from './LanguageSwitch'
 import { LogOut, Settings, UserCircle, WifiOff, RefreshCw, Sun, Moon } from 'lucide-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 export function Header() {
@@ -11,13 +11,12 @@ export function Header() {
   const { isOffline, syncQueue } = useSyncStore()
   const { darkMode, toggleDarkMode } = useThemeStore()
   const { t } = useTranslation()
-  const navigate = useNavigate()
 
   if (!user) return null
 
   async function handleLogout() {
     await logout()
-    navigate('/', { replace: true })
+    window.location.href = '/'
   }
 
   return (
