@@ -11,6 +11,7 @@
 - [00:00] Chỉnh sửa `src/lib/supabase.ts` — Lưu subscription từ onAuthStateChange và unsubscribe trong stopAuthListener() để tránh listener zombie gọi logout lặp lại
 - [00:00] Chỉnh sửa `src/lib/supabase.ts` — Thêm unsubscribe authSubscription vào stopAuthListener() để cleanup hoàn toàn khi logout
 - [00:00] Chỉnh sửa `src/components/Header.tsx` — Thêm useNavigate và navigate('/') sau logout để đảm bảo chuyển về trang login
+- [00:00] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm useNavigate và handleLogout với navigate('/') cho nút logout trong Settings
 
 ---
 

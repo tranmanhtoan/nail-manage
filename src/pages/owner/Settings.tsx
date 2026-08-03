@@ -27,6 +27,7 @@ const DEFAULT_TOGGLES: FeatureToggles = {
 
 export function Settings() {
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
   const { logout } = useAuthStore()
   const { darkMode, toggleDarkMode } = useThemeStore()
   const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
