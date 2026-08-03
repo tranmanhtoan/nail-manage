@@ -13,6 +13,7 @@
 - [00:00] Chỉnh sửa `src/components/Header.tsx` — Thêm useNavigate và navigate('/') sau logout để đảm bảo chuyển về trang login
 - [00:00] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm useNavigate và handleLogout với navigate('/') cho nút logout trong Settings
 - [00:00] Chỉnh sửa `src/components/Header.tsx` — Đổi sang window.location.href='/' thay vì React Router navigate để đảm bảo logout luôn reload trang
+- [00:00] Chỉnh sửa `src/pages/owner/Settings.tsx` — Đổi sang window.location.href='/' cho nút logout, bỏ useNavigate import không cần thiết
 
 ---
 
