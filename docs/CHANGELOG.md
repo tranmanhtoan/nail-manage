@@ -4,6 +4,13 @@
 
 ---
 
+## [2026-08-03]
+
+### Chỉnh sửa
+- [15:53] Chỉnh sửa `src/i18n/index.ts` — Chuyển sang lazy-load translations theo ngôn ngữ đang dùng (dynamic import) thay vì bundle cả en+vi upfront, giảm initial bundle size
+
+---
+
 ## [2026-07-31]
 
 ### Chỉnh sửa

@@ -88,7 +88,7 @@ export const useDataStore = create<DataState>((set, get) => ({
     try {
       const { data, error } = await supabase
         .from('employees')
-        .select('*')
+        .select('id, profile_id, name, phone, email, pay_type, commission_rate, fixed_salary, split_rate, rotation_order, is_active, created_at')
         .eq('is_active', true)
         .order('rotation_order')
 
