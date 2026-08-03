@@ -20,9 +20,9 @@
     "semantic_hash": "481f100e0627bc7ffa49c2d54c9517ce"
   },
   "package.json": {
-    "mtime": 1785340490.8583694,
-    "ast_hash": "166d427c046314e582d15cf597b63bee",
-    "semantic_hash": "166d427c046314e582d15cf597b63bee"
+    "mtime": 1785772960.2339523,
+    "ast_hash": "2462e302c88f53a3aaae5b0d3386944a",
+    "semantic_hash": ""
   },
   "src/App.tsx": {
     "mtime": 1785517589.4920435,
