@@ -1,7 +1,7 @@
 # Graph Report - Nail Manange  (2026-08-04)
 
 ## Corpus Check
-- 65 files · ~45,626 words
+- 65 files · ~45,622 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `962cc3dd`
+- Built from commit: `1c2bd741`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -137,7 +137,7 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ## Knowledge Gaps
-- **171 isolated node(s):** `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa`, `Tab`, `FeatureToggles` (+166 more)
+- **171 isolated node(s):** `Tab`, `FeatureToggles`, `DEFAULT_TOGGLES`, `Chỉnh sửa`, `Chỉnh sửa` (+166 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -150,7 +150,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `devDependencies`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **What connects `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa` to the rest of the system?**
+- **What connects `Tab`, `FeatureToggles`, `DEFAULT_TOGGLES` to the rest of the system?**
   _171 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Appointments.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.08064516129032258 - nodes in this community are weakly interconnected._

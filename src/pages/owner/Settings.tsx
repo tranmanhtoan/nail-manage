@@ -248,7 +248,7 @@ export function Settings() {
 
           {/* Logout */}
           <button
-            onClick={async () => { await logout(); navigate('/', { replace: true }) }}
+            onClick={async () => { await logout(); window.location.href = '/' }}
             className="w-full py-3 bg-red-50 text-red-600 font-semibold rounded-xl"
           >
             {t('auth.logout')}

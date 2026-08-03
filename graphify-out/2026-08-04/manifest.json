@@ -180,8 +180,8 @@
     "semantic_hash": "c840b246b5bfea7baf1b738ae4b5195f"
   },
   "src/pages/owner/Settings.tsx": {
-    "mtime": 1785778860.9524808,
-    "ast_hash": "ff16d9c705c90d43dbefea918c7432e2",
+    "mtime": 1785779327.3014054,
+    "ast_hash": "737ec5e1f93f4e36fa93cbd1155d1f31",
     "semantic_hash": ""
   },
   "src/store/authStore.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785778845.271459,
-    "ast_hash": "b434c555d111fca21cff8ca65a4b19b1",
+    "mtime": 1785779318.5142477,
+    "ast_hash": "dc7c85e02751e9edeac6dec968aa331b",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
