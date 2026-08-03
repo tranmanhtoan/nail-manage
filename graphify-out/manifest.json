@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/store/authStore.ts": {
-    "mtime": 1785518787.9804971,
-    "ast_hash": "eabbf464d66e785a079b38a5c380d521",
+    "mtime": 1785520926.371959,
+    "ast_hash": "78387afd687a9aee11ac0bfea7fda6a0",
     "semantic_hash": ""
   },
   "src/store/superModeStore.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785520073.142495,
-    "ast_hash": "c6a9867b473bcdbbbd1b0dbcc7528f81",
+    "mtime": 1785520936.3125186,
+    "ast_hash": "1b5052efaa226dd655931407b9b04ac2",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {

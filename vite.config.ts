@@ -2,11 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { compression } from 'vite-plugin-compression2'
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    // Pre-compress assets (gzip + brotli) for free hosts that don't compress on-the-fly
+    compression({ algorithm: 'gzip', exclude: [/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i] }),
+    compression({ algorithm: 'brotliCompress', exclude: [/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i] }),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'],
@@ -37,10 +41,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-        // Skip waiting ensures new SW activates immediately on iOS
         skipWaiting: true,
         clientsClaim: true,
-        // Limit precache to avoid exceeding iOS Safari cache quota
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
         runtimeCaching: [
           {
@@ -57,8 +59,21 @@ export default defineConfig({
     }),
   ],
   build: {
-    // Target Safari 14+ / iOS 14+ to ensure compatibility with older iPhones
     target: ['es2020', 'safari14'],
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React core — changes rarely, cached long-term
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          // Supabase client — large lib, separate chunk
+          'vendor-supabase': ['@supabase/supabase-js'],
+          // State management
+          'vendor-zustand': ['zustand'],
+          // i18n framework (translations loaded dynamically)
+          'vendor-i18n': ['i18next', 'react-i18next'],
+        },
+      },
+    },
   },
   resolve: {
     alias: { '@': '/src' },
