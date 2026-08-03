@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "src/lib/supabase.ts": {
-    "mtime": 1785778745.2591221,
-    "ast_hash": "8ce688e2cc854d1ea325c2b22882cd55",
+    "mtime": 1785778761.756333,
+    "ast_hash": "ed117f3095a2cec50885655eb8d46a30",
     "semantic_hash": ""
   },
   "src/main.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785778733.1915834,
-    "ast_hash": "ccad36386853fc633037d5c2f4122ce4",
+    "mtime": 1785778755.739222,
+    "ast_hash": "f53307ea7a23856fa710cf66ca2fe7e5",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {

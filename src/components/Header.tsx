@@ -3,7 +3,7 @@ import { useSyncStore } from '@/store/syncStore'
 import { useThemeStore } from '@/store/themeStore'
 import { LanguageSwitch } from './LanguageSwitch'
 import { LogOut, Settings, UserCircle, WifiOff, RefreshCw, Sun, Moon } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 export function Header() {
@@ -11,8 +11,14 @@ export function Header() {
   const { isOffline, syncQueue } = useSyncStore()
   const { darkMode, toggleDarkMode } = useThemeStore()
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   if (!user) return null
+
+  async function handleLogout() {
+    await logout()
+    navigate('/', { replace: true })
+  }
 
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 py-3 flex items-center justify-between safe-top transition-colors duration-300">
