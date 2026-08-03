@@ -8,6 +8,7 @@
 
 ### Chỉnh sửa
 - [00:00] Chỉnh sửa `src/store/authStore.ts` — Fix logout không hoạt động: set user=null TRƯỚC khi gọi signOut() để UI phản hồi ngay lập tức, tránh race condition với onAuthStateChange
+- [00:00] Chỉnh sửa `src/lib/supabase.ts` — Lưu subscription từ onAuthStateChange và unsubscribe trong stopAuthListener() để tránh listener zombie gọi logout lặp lại
 
 ---
 

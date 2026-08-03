@@ -77,5 +77,9 @@ export function stopAuthListener() {
     clearInterval(sessionCheckInterval)
     sessionCheckInterval = null
   }
+  if (authSubscription) {
+    authSubscription.unsubscribe()
+    authSubscription = null
+  }
   authListenerInitialized = false
 }
