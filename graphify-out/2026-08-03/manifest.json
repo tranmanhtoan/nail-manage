@@ -20,9 +20,9 @@
     "semantic_hash": "481f100e0627bc7ffa49c2d54c9517ce"
   },
   "package.json": {
-    "mtime": 1785340490.8583694,
-    "ast_hash": "166d427c046314e582d15cf597b63bee",
-    "semantic_hash": "166d427c046314e582d15cf597b63bee"
+    "mtime": 1785772960.2339523,
+    "ast_hash": "2462e302c88f53a3aaae5b0d3386944a",
+    "semantic_hash": ""
   },
   "src/App.tsx": {
     "mtime": 1785517589.4920435,
@@ -230,8 +230,8 @@
     "semantic_hash": "6411d2fbb5f0e00aaff0ca0ded84e0b6"
   },
   "vite.config.ts": {
-    "mtime": 1785772584.9223855,
-    "ast_hash": "5ac045fc0e1cc2a9dee29f76f9396e31",
+    "mtime": 1785772948.4724865,
+    "ast_hash": "7743ba28d4b7bfa5d54403fbdadf8f4a",
     "semantic_hash": ""
   },
   "src/components/ErrorBoundary.tsx": {

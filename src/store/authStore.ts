@@ -126,17 +126,18 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: async () => {
+    // Set user null FIRST so UI reacts immediately (no waiting on network)
+    set({ user: null })
+
     // Stop session check interval to prevent memory leak
     try { stopAuthListener() } catch { /* ignore */ }
 
     if (UAT_MODE) {
       try { localStorage.removeItem('uat_user') } catch { /* ignore */ }
-      set({ user: null })
       return
     }
     try { sessionStorage.removeItem('sb_user_profile') } catch { /* ignore */ }
     try { await supabase.auth.signOut() } catch { /* ignore network errors */ }
-    set({ user: null })
   },
 
   checkSession: async () => {
