@@ -230,8 +230,8 @@
     "semantic_hash": "6411d2fbb5f0e00aaff0ca0ded84e0b6"
   },
   "vite.config.ts": {
-    "mtime": 1785772417.8316202,
-    "ast_hash": "335e437390136ae9e78a02e46ebef2ae",
+    "mtime": 1785772584.9223855,
+    "ast_hash": "5ac045fc0e1cc2a9dee29f76f9396e31",
     "semantic_hash": ""
   },
   "src/components/ErrorBoundary.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785772504.6401951,
-    "ast_hash": "9493c6466a5d0325620bc3867a9f78a6",
+    "mtime": 1785772566.6089294,
+    "ast_hash": "5e4c7de705d85799bff99359105c4d27",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {

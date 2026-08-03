@@ -58,7 +58,7 @@ export default defineConfig({
     target: ['es2020', 'safari14'],
     rollupOptions: {
       output: {
-        manualChunks(id: string) {
+        manualChunks: (id) => {
           // React core — changes rarely, cached long-term
           if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/') || id.includes('node_modules/react-router')) {
             return 'vendor-react'

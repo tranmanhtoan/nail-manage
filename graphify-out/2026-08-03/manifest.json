@@ -80,8 +80,8 @@
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {
-    "mtime": 1785772442.8804693,
-    "ast_hash": "75c210e38f4c5a8fc04e3d4ca194a4b7",
+    "mtime": 1785772557.0645397,
+    "ast_hash": "0ddc6a723675429d0b8857e0387d26e1",
     "semantic_hash": ""
   },
   "src/i18n/vi.json": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785772490.1304476,
-    "ast_hash": "349179d5d10e591eee8012d258e8581d",
+    "mtime": 1785772504.6401951,
+    "ast_hash": "9493c6466a5d0325620bc3867a9f78a6",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1785340780.4904652,
-    "ast_hash": "763a22876671526dd504d28c1890ee91",
+    "mtime": 1785772534.8824577,
+    "ast_hash": "ccafd91161d4047267726afd26519bef",
     "semantic_hash": ""
   },
   "public/apple-touch-icon.png": {
