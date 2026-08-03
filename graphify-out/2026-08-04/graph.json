@@ -4,15 +4,81 @@
   "graph": {},
   "nodes": [
     {
+      "label": "Settings.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_owner_settings",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "settings.tsx"
+    },
+    {
+      "label": "Tab",
+      "file_type": "code",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_pages_owner_settings_tab",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "tab"
+    },
+    {
+      "label": "FeatureToggles",
+      "file_type": "code",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_pages_owner_settings_featuretoggles",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "featuretoggles"
+    },
+    {
+      "label": "DEFAULT_TOGGLES",
+      "file_type": "code",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_pages_owner_settings_default_toggles",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "default_toggles"
+    },
+    {
+      "label": "Settings()",
+      "file_type": "code",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "src_pages_owner_settings_settings",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "settings()"
+    },
+    {
+      "label": "ToggleRow()",
+      "file_type": "code",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L269",
+      "_origin": "ast",
+      "id": "src_pages_owner_settings_togglerow",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "togglerow()"
+    },
+    {
       "label": "CHANGELOG.md",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "docs_changelog",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "changelog.md"
+      "norm_label": "changelog.md",
+      "id": "docs_changelog"
     },
     {
       "label": "MCC Nail & Spa \u2014 Changelog",
@@ -20,10 +86,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "docs_changelog_mcc_nail_spa_changelog",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "mcc nail & spa \u2014 changelog"
+      "norm_label": "mcc nail & spa \u2014 changelog",
+      "id": "docs_changelog_mcc_nail_spa_changelog"
     },
     {
       "label": "[2026-08-04]",
@@ -31,10 +97,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "docs_changelog_2026_08_04",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-04]"
+      "norm_label": "[2026-08-04]",
+      "id": "docs_changelog_2026_08_04"
     },
     {
       "label": "Ch\u1ec9nh s\u1eeda",
@@ -42,10 +108,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda"
     },
     {
       "label": "[2026-08-03]",
@@ -53,10 +119,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "docs_changelog_2026_08_03",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-03]"
+      "norm_label": "[2026-08-03]",
+      "id": "docs_changelog_2026_08_03"
     },
     {
       "label": "Ch\u1ec9nh s\u1eeda",
@@ -64,10 +130,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_19",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_19"
     },
     {
       "label": "[2026-07-31]",
@@ -75,10 +141,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L28",
       "_origin": "ast",
-      "id": "docs_changelog_2026_07_31",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-07-31]"
+      "norm_label": "[2026-07-31]",
+      "id": "docs_changelog_2026_07_31"
     },
     {
       "label": "Ch\u1ec9nh s\u1eeda",
@@ -86,10 +152,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_30",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_30"
     },
     {
       "label": "Header.tsx",
@@ -97,10 +163,10 @@
       "source_file": "src/components/Header.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_components_header",
       "community": 2,
       "community_name": "App.tsx",
-      "norm_label": "header.tsx"
+      "norm_label": "header.tsx",
+      "id": "src_components_header"
     },
     {
       "label": "Header()",
@@ -108,10 +174,10 @@
       "source_file": "src/components/Header.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "src_components_header_header",
       "community": 2,
       "community_name": "App.tsx",
-      "norm_label": "header()"
+      "norm_label": "header()",
+      "id": "src_components_header_header"
     },
     {
       "label": "supabase.ts",
@@ -1377,72 +1443,6 @@
       "community_name": "supabase.ts",
       "norm_label": "usesupermodestore",
       "id": "src_store_supermodestore_usesupermodestore"
-    },
-    {
-      "label": "Settings.tsx",
-      "file_type": "code",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
-      "norm_label": "settings.tsx",
-      "id": "src_pages_owner_settings"
-    },
-    {
-      "label": "Tab",
-      "file_type": "code",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L13",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
-      "norm_label": "tab",
-      "id": "src_pages_owner_settings_tab"
-    },
-    {
-      "label": "FeatureToggles",
-      "file_type": "code",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
-      "norm_label": "featuretoggles",
-      "id": "src_pages_owner_settings_featuretoggles"
-    },
-    {
-      "label": "DEFAULT_TOGGLES",
-      "file_type": "code",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L21",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
-      "norm_label": "default_toggles",
-      "id": "src_pages_owner_settings_default_toggles"
-    },
-    {
-      "label": "Settings()",
-      "file_type": "code",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L27",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
-      "norm_label": "settings()",
-      "id": "src_pages_owner_settings_settings"
-    },
-    {
-      "label": "ToggleRow()",
-      "file_type": "code",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L268",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
-      "norm_label": "togglerow()",
-      "id": "src_pages_owner_settings_togglerow"
     },
     {
       "label": "database.types.ts",
@@ -3757,15 +3757,262 @@
   ],
   "links": [
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_components_languageswitch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_components_languageswitch_languageswitch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_lib_supabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_lib_supabase_supabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_admindashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_admindashboard_admindashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_employees",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_employees_employees",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_services",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_services_services",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_settings_default_toggles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_settings_featuretoggles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_settings_settings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_settings_tab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L269",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_pages_owner_settings_togglerow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_store_authstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_store_authstore_useauthstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_store_supermodestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_store_supermodestore_usesupermodestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_store_themestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Settings.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_owner_settings",
+      "target": "src_store_themestore_usethemestore",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "docs_changelog",
-      "target": "docs_changelog_mcc_nail_spa_changelog",
-      "confidence_score": 1.0
+      "target": "docs_changelog_mcc_nail_spa_changelog"
     },
     {
       "relation": "contains",
@@ -3774,9 +4021,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_07_31",
-      "confidence_score": 1.0
+      "target": "docs_changelog_2026_07_31"
     },
     {
       "relation": "contains",
@@ -3785,9 +4032,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_03",
-      "confidence_score": 1.0
+      "target": "docs_changelog_2026_08_03"
     },
     {
       "relation": "contains",
@@ -3796,9 +4043,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_04",
-      "confidence_score": 1.0
+      "target": "docs_changelog_2026_08_04"
     },
     {
       "relation": "contains",
@@ -3807,9 +4054,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda",
-      "confidence_score": 1.0
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda"
     },
     {
       "relation": "contains",
@@ -3818,9 +4065,9 @@
       "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_19",
-      "confidence_score": 1.0
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_19"
     },
     {
       "relation": "contains",
@@ -3829,9 +4076,9 @@
       "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_30",
-      "confidence_score": 1.0
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_30"
     },
     {
       "relation": "imports_from",
@@ -3864,9 +4111,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_components_header_header",
-      "confidence_score": 1.0
+      "target": "src_components_header_header"
     },
     {
       "relation": "imports_from",
@@ -3876,9 +4123,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_components_languageswitch",
-      "confidence_score": 1.0
+      "target": "src_components_languageswitch"
     },
     {
       "relation": "imports",
@@ -3888,9 +4135,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_components_languageswitch_languageswitch",
-      "confidence_score": 1.0
+      "target": "src_components_languageswitch_languageswitch"
     },
     {
       "relation": "imports_from",
@@ -3900,9 +4147,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_store_authstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore"
     },
     {
       "relation": "imports",
@@ -3912,9 +4159,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_store_authstore_useauthstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore_useauthstore"
     },
     {
       "relation": "imports_from",
@@ -3924,9 +4171,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_store_syncstore",
-      "confidence_score": 1.0
+      "target": "src_store_syncstore"
     },
     {
       "relation": "imports",
@@ -3936,9 +4183,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_store_syncstore_usesyncstore",
-      "confidence_score": 1.0
+      "target": "src_store_syncstore_usesyncstore"
     },
     {
       "relation": "imports_from",
@@ -3948,9 +4195,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_store_themestore",
-      "confidence_score": 1.0
+      "target": "src_store_themestore"
     },
     {
       "relation": "imports",
@@ -3960,9 +4207,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_header",
-      "target": "src_store_themestore_usethemestore",
-      "confidence_score": 1.0
+      "target": "src_store_themestore_usethemestore"
     },
     {
       "relation": "imports",
@@ -4238,18 +4485,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/pages/QuickEntry.tsx",
       "source_location": "L4",
       "weight": 1.0,
@@ -4460,18 +4695,6 @@
       "_origin": "ast",
       "confidence_score": 1.0,
       "source": "src_pages_owner_services",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
       "target": "src_lib_supabase_supabase"
     },
     {
@@ -5871,18 +6094,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_store_authstore"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/store/authStore.ts",
       "source_location": "L4",
       "weight": 1.0,
@@ -6091,18 +6302,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_pages_kiosk_kioskpersonal_kioskpersonal",
-      "target": "src_store_authstore_useauthstore"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
       "target": "src_store_authstore_useauthstore"
     },
     {
@@ -6392,18 +6591,6 @@
       "target": "src_store_themestore_usethemestore"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_store_supermodestore"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/store/superModeStore.ts",
@@ -6435,193 +6622,6 @@
       "confidence_score": 1.0,
       "source": "src_store_supermodestore",
       "target": "src_store_supermodestore_usesupermodestore"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_store_supermodestore_usesupermodestore"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_components_languageswitch"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_components_languageswitch_languageswitch"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_admindashboard"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_admindashboard_admindashboard"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_employees"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_employees_employees"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_services"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_services_services"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L21",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_settings_default_toggles"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_settings_featuretoggles"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L27",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_settings_settings"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_settings_tab"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L268",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_pages_owner_settings_togglerow"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_store_themestore"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Settings.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_settings",
-      "target": "src_store_themestore_usethemestore"
     },
     {
       "relation": "contains",
@@ -8991,5 +8991,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "01145f120f79fe1ae5517f9bdc1e862592af2d2f"
+  "built_at_commit": "238093d758c38974a413e03620713586da6ef276"
 }
