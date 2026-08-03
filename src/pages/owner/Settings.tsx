@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield, KeyRound, LayoutDashboard } from 'lucide-react'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { useAuthStore } from '@/store/authStore'

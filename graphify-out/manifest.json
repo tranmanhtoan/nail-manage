@@ -45,8 +45,8 @@
     "semantic_hash": "91159e8e91376a6d63c3b99513a3a282"
   },
   "src/components/Header.tsx": {
-    "mtime": 1785778814.3333757,
-    "ast_hash": "a559b94df107c1ae0a9c767c8faa0fe9",
+    "mtime": 1785779309.0559275,
+    "ast_hash": "5498cafac9ab158e0f711be4a5a6e6d1",
     "semantic_hash": ""
   },
   "src/components/LanguageSwitch.tsx": {
