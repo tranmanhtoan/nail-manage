@@ -45,8 +45,8 @@
     "semantic_hash": "91159e8e91376a6d63c3b99513a3a282"
   },
   "src/components/Header.tsx": {
-    "mtime": 1785778814.3333757,
-    "ast_hash": "a559b94df107c1ae0a9c767c8faa0fe9",
+    "mtime": 1785779309.0559275,
+    "ast_hash": "5498cafac9ab158e0f711be4a5a6e6d1",
     "semantic_hash": ""
   },
   "src/components/LanguageSwitch.tsx": {
@@ -180,8 +180,8 @@
     "semantic_hash": "c840b246b5bfea7baf1b738ae4b5195f"
   },
   "src/pages/owner/Settings.tsx": {
-    "mtime": 1785778836.0141962,
-    "ast_hash": "77ad01c0d248438e29de63560d7581bd",
+    "mtime": 1785778860.9524808,
+    "ast_hash": "ff16d9c705c90d43dbefea918c7432e2",
     "semantic_hash": ""
   },
   "src/store/authStore.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785778808.4707925,
-    "ast_hash": "66548c9bb6ed37129ba40db1dbef77ac",
+    "mtime": 1785778845.271459,
+    "ast_hash": "b434c555d111fca21cff8ca65a4b19b1",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
