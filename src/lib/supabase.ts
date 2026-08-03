@@ -22,6 +22,7 @@ export const supabaseAdmin = createClient(supabaseUrl, supabaseAnonKey, {
  */
 let authListenerInitialized = false
 let sessionCheckInterval: ReturnType<typeof setInterval> | null = null
+let authSubscription: { unsubscribe: () => void } | null = null
 
 export function initAuthListener(onSessionExpired: () => void) {
   if (authListenerInitialized) return
@@ -31,7 +32,7 @@ export function initAuthListener(onSessionExpired: () => void) {
   const isUAT = import.meta.env.VITE_UAT_MODE === 'true'
   if (isUAT) return
 
-  supabase.auth.onAuthStateChange((event, _session) => {
+  const { data } = supabase.auth.onAuthStateChange((event, _session) => {
     if (event === 'TOKEN_REFRESHED') {
       console.debug('[auth] Token refreshed')
     }
@@ -43,6 +44,7 @@ export function initAuthListener(onSessionExpired: () => void) {
       onSessionExpired()
     }
   })
+  authSubscription = data.subscription
 
   // Periodically check if session is still valid (handles edge case where
   // onAuthStateChange doesn't fire on network reconnect with expired token)

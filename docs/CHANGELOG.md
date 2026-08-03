@@ -4,6 +4,13 @@
 
 ---
 
+## [2026-08-04]
+
+### Chỉnh sửa
+- [00:00] Chỉnh sửa `src/store/authStore.ts` — Fix logout không hoạt động: set user=null TRƯỚC khi gọi signOut() để UI phản hồi ngay lập tức, tránh race condition với onAuthStateChange
+
+---
+
 ## [2026-08-03]
 
 ### Chỉnh sửa
