@@ -45,8 +45,8 @@
     "semantic_hash": "91159e8e91376a6d63c3b99513a3a282"
   },
   "src/components/Header.tsx": {
-    "mtime": 1785424647.5645368,
-    "ast_hash": "43fe2f157601580e36909a13d43726ac",
+    "mtime": 1785778799.0781846,
+    "ast_hash": "c7dc9d385f627027abc298fc2a2511e0",
     "semantic_hash": ""
   },
   "src/components/LanguageSwitch.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785778755.739222,
-    "ast_hash": "f53307ea7a23856fa710cf66ca2fe7e5",
+    "mtime": 1785778782.8491814,
+    "ast_hash": "d96e9b1402c19db123437b6b43939253",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
