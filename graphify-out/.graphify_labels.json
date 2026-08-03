@@ -9,8 +9,8 @@
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
-  "10": "supabase",
-  "11": "Reports.tsx",
+  "10": "authStore.ts",
+  "11": "QuickEntry.tsx",
   "12": "graphify reference: extra exports and benchmark",
   "13": "MCC Nail & Spa — Changelog",
   "14": "vite-env.d.ts",
@@ -23,5 +23,6 @@
   "21": "graphify reference: GitHub clone and cross-repo merge",
   "22": "graphify reference: transcribe video and audio",
   "23": "extraction-spec.md",
-  "24": "graphify.md"
+  "24": "graphify.md",
+  "25": "Dashboard.tsx"
 }

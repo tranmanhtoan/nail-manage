@@ -230,8 +230,8 @@
     "semantic_hash": "6411d2fbb5f0e00aaff0ca0ded84e0b6"
   },
   "vite.config.ts": {
-    "mtime": 1785772584.9223855,
-    "ast_hash": "5ac045fc0e1cc2a9dee29f76f9396e31",
+    "mtime": 1785772948.4724865,
+    "ast_hash": "7743ba28d4b7bfa5d54403fbdadf8f4a",
     "semantic_hash": ""
   },
   "src/components/ErrorBoundary.tsx": {
