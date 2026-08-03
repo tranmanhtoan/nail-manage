@@ -176,7 +176,7 @@ export const useDataStore = create<DataState>((set, get) => ({
     try {
       const { data, error } = await supabase
         .from('customers')
-        .select('*')
+        .select('id, name, phone, email, notes')
         .order('name')
 
       if (error) throw error
