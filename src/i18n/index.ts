@@ -13,7 +13,7 @@ function getSavedLang(): string {
  * Dynamically load translation JSON for a given language.
  * Only the active language is fetched — the other stays unloaded until switched.
  */
-async function loadTranslation(lng: string): Promise<Record<string, string>> {
+async function loadTranslation(lng: string): Promise<Record<string, unknown>> {
   switch (lng) {
     case 'vi':
       return (await import('./vi.json')).default
