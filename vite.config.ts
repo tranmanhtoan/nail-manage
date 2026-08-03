@@ -2,15 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import { compression } from 'vite-plugin-compression2'
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    // Pre-compress assets (gzip + brotli) for free hosts that don't compress on-the-fly
-    compression({ algorithm: 'gzip', exclude: [/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i] }),
-    compression({ algorithm: 'brotliCompress', exclude: [/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i] }),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'],
