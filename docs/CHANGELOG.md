@@ -10,6 +10,7 @@
 - [15:53] Chỉnh sửa `src/i18n/index.ts` — Chuyển sang lazy-load translations theo ngôn ngữ đang dùng (dynamic import) thay vì bundle cả en+vi upfront, giảm initial bundle size
 - [15:54] Chỉnh sửa `src/store/dataStore.ts` — Thay select('*') bằng explicit column list trong fetchEmployees để giảm payload từ Supabase
 - [15:54] Chỉnh sửa `src/store/dataStore.ts` — Thay select('*') bằng explicit column list trong fetchServices để giảm payload
+- [15:54] Chỉnh sửa `src/store/dataStore.ts` — Thay select('*') bằng explicit column list trong fetchCustomers để giảm payload
 
 ---
 
