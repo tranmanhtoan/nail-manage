@@ -4,818 +4,15 @@
   "graph": {},
   "nodes": [
     {
-      "label": "code-review.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "code-review.md"
-    },
-    {
-      "label": "Review Code",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_review_code",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "review code"
-    },
-    {
-      "label": "Quy tr\u00ecnh",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_quy_tr\u00ecnh",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "quy trinh"
-    },
-    {
-      "label": "1. Ghim \u0111i\u1ec3m c\u1ed1 \u0111\u1ecbnh",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_1_ghim_\u0111i\u1ec3m_c\u1ed1_\u0111\u1ecbnh",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "1. ghim \u0111iem co \u0111inh"
-    },
-    {
-      "label": "2. X\u00e1c \u0111\u1ecbnh ngu\u1ed3n spec",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L19",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_2_x\u00e1c_\u0111\u1ecbnh_ngu\u1ed3n_spec",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "2. xac \u0111inh nguon spec"
-    },
-    {
-      "label": "3. X\u00e1c \u0111\u1ecbnh ngu\u1ed3n standards",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L27",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_3_x\u00e1c_\u0111\u1ecbnh_ngu\u1ed3n_standards",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "3. xac \u0111inh nguon standards"
-    },
-    {
-      "label": "4. Ch\u1ea1y c\u1ea3 hai tr\u1ee5c",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_4_ch\u1ea1y_c\u1ea3_hai_tr\u1ee5c",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "4. chay ca hai truc"
-    },
-    {
-      "label": "5. T\u1ed5ng h\u1ee3p",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L52",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_5_t\u1ed5ng_h\u1ee3p",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "5. tong hop"
-    },
-    {
-      "label": "T\u1ea1i sao hai tr\u1ee5c",
-      "file_type": "document",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L56",
-      "_origin": "ast",
-      "id": "kiro_skills_code_review_t\u1ea1i_sao_hai_tr\u1ee5c",
-      "community": 27,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "tai sao hai truc"
-    },
-    {
-      "label": "codebase-design.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_codebase_design",
-      "community": 28,
-      "community_name": "Thi\u1ebft k\u1ebf Codebase",
-      "norm_label": "codebase-design.md"
-    },
-    {
-      "label": "Thi\u1ebft k\u1ebf Codebase",
-      "file_type": "document",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_codebase",
-      "community": 28,
-      "community_name": "Thi\u1ebft k\u1ebf Codebase",
-      "norm_label": "thiet ke codebase"
-    },
-    {
-      "label": "T\u1eeb v\u1ef1ng",
-      "file_type": "document",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "kiro_skills_codebase_design_t\u1eeb_v\u1ef1ng",
-      "community": 28,
-      "community_name": "Thi\u1ebft k\u1ebf Codebase",
-      "norm_label": "tu vung"
-    },
-    {
-      "label": "S\u00e2u vs n\u00f4ng",
-      "file_type": "document",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "kiro_skills_codebase_design_s\u00e2u_vs_n\u00f4ng",
-      "community": 28,
-      "community_name": "Thi\u1ebft k\u1ebf Codebase",
-      "norm_label": "sau vs nong"
-    },
-    {
-      "label": "Nguy\u00ean t\u1eafc",
-      "file_type": "document",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L40",
-      "_origin": "ast",
-      "id": "kiro_skills_codebase_design_nguy\u00ean_t\u1eafc",
-      "community": 28,
-      "community_name": "Thi\u1ebft k\u1ebf Codebase",
-      "norm_label": "nguyen tac"
-    },
-    {
-      "label": "Thi\u1ebft k\u1ebf cho testability",
-      "file_type": "document",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L47",
-      "_origin": "ast",
-      "id": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_cho_testability",
-      "community": 28,
-      "community_name": "Thi\u1ebft k\u1ebf Codebase",
-      "norm_label": "thiet ke cho testability"
-    },
-    {
-      "label": "diagnosing-bugs.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "diagnosing-bugs.md"
-    },
-    {
-      "label": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "chan \u0111oan bug"
-    },
-    {
-      "label": "Phase 1 \u2014 X\u00e2y d\u1ef1ng v\u00f2ng ph\u1ea3n h\u1ed3i",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_phase_1_x\u00e2y_d\u1ef1ng_v\u00f2ng_ph\u1ea3n_h\u1ed3i",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "phase 1 \u2014 xay dung vong phan hoi"
-    },
-    {
-      "label": "C\u00e1ch x\u00e2y d\u1ef1ng \u2014 th\u1eed theo th\u1ee9 t\u1ef1 n\u00e0y",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L16",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_c\u00e1ch_x\u00e2y_d\u1ef1ng_th\u1eed_theo_th\u1ee9_t\u1ef1_n\u00e0y",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "cach xay dung \u2014 thu theo thu tu nay"
-    },
-    {
-      "label": "Si\u1ebft ch\u1eb7t v\u00f2ng l\u1eb7p",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_si\u1ebft_ch\u1eb7t_v\u00f2ng_l\u1eb7p",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "siet chat vong lap"
-    },
-    {
-      "label": "Ti\u00eau ch\u00ed ho\u00e0n th\u00e0nh",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L33",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_ti\u00eau_ch\u00ed_ho\u00e0n_th\u00e0nh",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "tieu chi hoan thanh"
-    },
-    {
-      "label": "Phase 2 \u2014 T\u00e1i hi\u1ec7n + t\u1ed1i gi\u1ea3n",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L43",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_phase_2_t\u00e1i_hi\u1ec7n_t\u1ed1i_gi\u1ea3n",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "phase 2 \u2014 tai hien + toi gian"
-    },
-    {
-      "label": "Phase 3 \u2014 \u0110\u1eb7t gi\u1ea3 thuy\u1ebft",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L49",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_phase_3_\u0111\u1eb7t_gi\u1ea3_thuy\u1ebft",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "phase 3 \u2014 \u0111at gia thuyet"
-    },
-    {
-      "label": "Phase 4 \u2014 \u0110o \u0111\u1ea1c",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_phase_4_\u0111o_\u0111\u1ea1c",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "phase 4 \u2014 \u0111o \u0111ac"
-    },
-    {
-      "label": "Phase 5 \u2014 S\u1eeda + regression test",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_phase_5_s\u1eeda_regression_test",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "phase 5 \u2014 sua + regression test"
-    },
-    {
-      "label": "Phase 6 \u2014 D\u1ecdn d\u1eb9p + h\u1eadu ki\u1ec3m",
-      "file_type": "document",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L76",
-      "_origin": "ast",
-      "id": "kiro_skills_diagnosing_bugs_phase_6_d\u1ecdn_d\u1eb9p_h\u1eadu_ki\u1ec3m",
-      "community": 25,
-      "community_name": "Ch\u1ea9n \u0111o\u00e1n Bug",
-      "norm_label": "phase 6 \u2014 don dep + hau kiem"
-    },
-    {
-      "label": "domain-modeling.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "domain-modeling.md"
-    },
-    {
-      "label": "M\u00f4 h\u00ecnh h\u00f3a Domain",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_m\u00f4_h\u00ecnh_h\u00f3a_domain",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "mo hinh hoa domain"
-    },
-    {
-      "label": "C\u1ea5u tr\u00fac file",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_c\u1ea5u_tr\u00fac_file",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "cau truc file"
-    },
-    {
-      "label": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "trong phien lam viec"
-    },
-    {
-      "label": "Th\u00e1ch th\u1ee9c v\u1edbi glossary",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L24",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_th\u00e1ch_th\u1ee9c_v\u1edbi_glossary",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "thach thuc voi glossary"
-    },
-    {
-      "label": "M\u00e0i s\u1eafc ng\u00f4n ng\u1eef m\u01a1 h\u1ed3",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L28",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_m\u00e0i_s\u1eafc_ng\u00f4n_ng\u1eef_m\u01a1_h\u1ed3",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "mai sac ngon ngu mo ho"
-    },
-    {
-      "label": "Th\u1ea3o lu\u1eadn k\u1ecbch b\u1ea3n c\u1ee5 th\u1ec3",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L32",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_th\u1ea3o_lu\u1eadn_k\u1ecbch_b\u1ea3n_c\u1ee5_th\u1ec3",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "thao luan kich ban cu the"
-    },
-    {
-      "label": "\u0110\u1ed1i chi\u1ebfu v\u1edbi code",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L36",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_\u0111\u1ed1i_chi\u1ebfu_v\u1edbi_code",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "\u0111oi chieu voi code"
-    },
-    {
-      "label": "C\u1eadp nh\u1eadt CONTEXT.md inline",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L40",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_c\u1eadp_nh\u1eadt_context_md_inline",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "cap nhat context.md inline"
-    },
-    {
-      "label": "\u0110\u1ec1 xu\u1ea5t ADR ti\u1ebft ki\u1ec7m",
-      "file_type": "document",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "kiro_skills_domain_modeling_\u0111\u1ec1_xu\u1ea5t_adr_ti\u1ebft_ki\u1ec7m",
-      "community": 26,
-      "community_name": "Trong phi\u00ean l\u00e0m vi\u1ec7c",
-      "norm_label": "\u0111e xuat adr tiet kiem"
-    },
-    {
-      "label": "grill-me.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/grill-me.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_grill_me",
-      "community": 35,
-      "community_name": "grill-me.md",
-      "norm_label": "grill-me.md"
-    },
-    {
-      "label": "grill-with-docs.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/grill-with-docs.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_grill_with_docs",
-      "community": 36,
-      "community_name": "grill-with-docs.md",
-      "norm_label": "grill-with-docs.md"
-    },
-    {
-      "label": "grilling.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/grilling.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_grilling",
-      "community": 37,
-      "community_name": "grilling.md",
-      "norm_label": "grilling.md"
-    },
-    {
-      "label": "handoff.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/handoff.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_handoff",
-      "community": 32,
-      "community_name": "B\u00e0n giao",
-      "norm_label": "handoff.md"
-    },
-    {
-      "label": "B\u00e0n giao",
-      "file_type": "document",
-      "source_file": ".kiro/skills/handoff.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_handoff_b\u00e0n_giao",
-      "community": 32,
-      "community_name": "B\u00e0n giao",
-      "norm_label": "ban giao"
-    },
-    {
-      "label": "Quy t\u1eafc",
-      "file_type": "document",
-      "source_file": ".kiro/skills/handoff.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "kiro_skills_handoff_quy_t\u1eafc",
-      "community": 32,
-      "community_name": "B\u00e0n giao",
-      "norm_label": "quy tac"
-    },
-    {
-      "label": "implement.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/implement.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_implement",
-      "community": 34,
-      "community_name": "implement.md",
-      "norm_label": "implement.md"
-    },
-    {
-      "label": "Tri\u1ec3n khai",
-      "file_type": "document",
-      "source_file": ".kiro/skills/implement.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_implement_tri\u1ec3n_khai",
-      "community": 34,
-      "community_name": "implement.md",
-      "norm_label": "trien khai"
-    },
-    {
-      "label": "improve-codebase-architecture.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_improve_codebase_architecture",
-      "community": 29,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "improve-codebase-architecture.md"
-    },
-    {
-      "label": "C\u1ea3i thi\u1ec7n Ki\u1ebfn tr\u00fac Codebase",
-      "file_type": "document",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_improve_codebase_architecture_c\u1ea3i_thi\u1ec7n_ki\u1ebfn_tr\u00fac_codebase",
-      "community": 29,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "cai thien kien truc codebase"
-    },
-    {
-      "label": "Quy tr\u00ecnh",
-      "file_type": "document",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "kiro_skills_improve_codebase_architecture_quy_tr\u00ecnh",
-      "community": 29,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "quy trinh"
-    },
-    {
-      "label": "1. Kh\u00e1m ph\u00e1",
-      "file_type": "document",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "kiro_skills_improve_codebase_architecture_1_kh\u00e1m_ph\u00e1",
-      "community": 29,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "1. kham pha"
-    },
-    {
-      "label": "2. Tr\u00ecnh b\u00e0y \u1ee9ng vi\u00ean d\u01b0\u1edbi d\u1ea1ng b\u00e1o c\u00e1o HTML",
-      "file_type": "document",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L31",
-      "_origin": "ast",
-      "id": "kiro_skills_improve_codebase_architecture_2_tr\u00ecnh_b\u00e0y_\u1ee9ng_vi\u00ean_d\u01b0\u1edbi_d\u1ea1ng_b\u00e1o_c\u00e1o_html",
-      "community": 29,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "2. trinh bay ung vien duoi dang bao cao html"
-    },
-    {
-      "label": "3. V\u00f2ng grilling",
-      "file_type": "document",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "kiro_skills_improve_codebase_architecture_3_v\u00f2ng_grilling",
-      "community": 29,
-      "community_name": "Quy tr\u00ecnh",
-      "norm_label": "3. vong grilling"
-    },
-    {
-      "label": "prototype.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/prototype.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_prototype",
-      "community": 31,
-      "community_name": "Prototype",
-      "norm_label": "prototype.md"
-    },
-    {
-      "label": "Prototype",
-      "file_type": "document",
-      "source_file": ".kiro/skills/prototype.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_prototype_prototype",
-      "community": 31,
-      "community_name": "Prototype",
-      "norm_label": "prototype"
-    },
-    {
-      "label": "Ch\u1ecdn nh\u00e1nh",
-      "file_type": "document",
-      "source_file": ".kiro/skills/prototype.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "kiro_skills_prototype_ch\u1ecdn_nh\u00e1nh",
-      "community": 31,
-      "community_name": "Prototype",
-      "norm_label": "chon nhanh"
-    },
-    {
-      "label": "Quy t\u1eafc cho c\u1ea3 hai",
-      "file_type": "document",
-      "source_file": ".kiro/skills/prototype.md",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "kiro_skills_prototype_quy_t\u1eafc_cho_c\u1ea3_hai",
-      "community": 31,
-      "community_name": "Prototype",
-      "norm_label": "quy tac cho ca hai"
-    },
-    {
-      "label": "research.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/research.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_research",
-      "community": 33,
-      "community_name": "Nghi\u00ean c\u1ee9u",
-      "norm_label": "research.md"
-    },
-    {
-      "label": "Nghi\u00ean c\u1ee9u",
-      "file_type": "document",
-      "source_file": ".kiro/skills/research.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_research_nghi\u00ean_c\u1ee9u",
-      "community": 33,
-      "community_name": "Nghi\u00ean c\u1ee9u",
-      "norm_label": "nghien cuu"
-    },
-    {
-      "label": "Quy tr\u00ecnh",
-      "file_type": "document",
-      "source_file": ".kiro/skills/research.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "kiro_skills_research_quy_tr\u00ecnh",
-      "community": 33,
-      "community_name": "Nghi\u00ean c\u1ee9u",
-      "norm_label": "quy trinh"
-    },
-    {
-      "label": "tdd.md",
-      "file_type": "document",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "kiro_skills_tdd",
-      "community": 30,
-      "community_name": "Ph\u00e1t tri\u1ec3n h\u01b0\u1edbng ki\u1ec3m th\u1eed (TDD)",
-      "norm_label": "tdd.md"
-    },
-    {
-      "label": "Ph\u00e1t tri\u1ec3n h\u01b0\u1edbng ki\u1ec3m th\u1eed (TDD)",
-      "file_type": "document",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "kiro_skills_tdd_ph\u00e1t_tri\u1ec3n_h\u01b0\u1edbng_ki\u1ec3m_th\u1eed_tdd",
-      "community": 30,
-      "community_name": "Ph\u00e1t tri\u1ec3n h\u01b0\u1edbng ki\u1ec3m th\u1eed (TDD)",
-      "norm_label": "phat trien huong kiem thu (tdd)"
-    },
-    {
-      "label": "Test t\u1ed1t l\u00e0 g\u00ec",
-      "file_type": "document",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "kiro_skills_tdd_test_t\u1ed1t_l\u00e0_g\u00ec",
-      "community": 30,
-      "community_name": "Ph\u00e1t tri\u1ec3n h\u01b0\u1edbng ki\u1ec3m th\u1eed (TDD)",
-      "norm_label": "test tot la gi"
-    },
-    {
-      "label": "Seam \u2014 test \u0111\u1eb7t \u1edf \u0111\u00e2u",
-      "file_type": "document",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L16",
-      "_origin": "ast",
-      "id": "kiro_skills_tdd_seam_test_\u0111\u1eb7t_\u1edf_\u0111\u00e2u",
-      "community": 30,
-      "community_name": "Ph\u00e1t tri\u1ec3n h\u01b0\u1edbng ki\u1ec3m th\u1eed (TDD)",
-      "norm_label": "seam \u2014 test \u0111at o \u0111au"
-    },
-    {
-      "label": "Anti-pattern",
-      "file_type": "document",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L24",
-      "_origin": "ast",
-      "id": "kiro_skills_tdd_anti_pattern",
-      "community": 30,
-      "community_name": "Ph\u00e1t tri\u1ec3n h\u01b0\u1edbng ki\u1ec3m th\u1eed (TDD)",
-      "norm_label": "anti-pattern"
-    },
-    {
-      "label": "Quy t\u1eafc v\u00f2ng l\u1eb7p",
-      "file_type": "document",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "kiro_skills_tdd_quy_t\u1eafc_v\u00f2ng_l\u1eb7p",
-      "community": 30,
-      "community_name": "Ph\u00e1t tri\u1ec3n h\u01b0\u1edbng ki\u1ec3m th\u1eed (TDD)",
-      "norm_label": "quy tac vong lap"
-    },
-    {
-      "label": "dataStore.ts",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_store_datastore",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "datastore.ts"
-    },
-    {
-      "label": "CacheEntry",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "src_store_datastore_cacheentry",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "cacheentry"
-    },
-    {
-      "label": "DataState",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L21",
-      "_origin": "ast",
-      "id": "src_store_datastore_datastate",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "datastate"
-    },
-    {
-      "label": "isStale()",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L33",
-      "_origin": "ast",
-      "id": "src_store_datastore_isstale",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "isstale()"
-    },
-    {
-      "label": "getCached()",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "src_store_datastore_getcached",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "getcached()"
-    },
-    {
-      "label": "setCache()",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "src_store_datastore_setcache",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "setcache()"
-    },
-    {
-      "label": "emptyCache()",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "src_store_datastore_emptycache",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "emptycache()"
-    },
-    {
-      "label": "inflightRequests",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L64",
-      "_origin": "ast",
-      "id": "src_store_datastore_inflightrequests",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "inflightrequests"
-    },
-    {
-      "label": "deduplicatedFetch()",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L66",
-      "_origin": "ast",
-      "id": "src_store_datastore_deduplicatedfetch",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "deduplicatedfetch()"
-    },
-    {
-      "label": "useDataStore",
-      "file_type": "code",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L77",
-      "_origin": "ast",
-      "id": "src_store_datastore_usedatastore",
-      "community": 1,
-      "community_name": "Appointments.tsx",
-      "norm_label": "usedatastore"
-    },
-    {
       "label": "CHANGELOG.md",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "docs_changelog",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "changelog.md",
-      "id": "docs_changelog"
+      "norm_label": "changelog.md"
     },
     {
       "label": "MCC Nail & Spa \u2014 Changelog",
@@ -823,10 +20,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "docs_changelog_mcc_nail_spa_changelog",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "mcc nail & spa \u2014 changelog",
-      "id": "docs_changelog_mcc_nail_spa_changelog"
+      "norm_label": "mcc nail & spa \u2014 changelog"
     },
     {
       "label": "[2026-08-04]",
@@ -834,10 +31,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L7",
       "_origin": "ast",
+      "id": "docs_changelog_2026_08_04",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-04]",
-      "id": "docs_changelog_2026_08_04"
+      "norm_label": "[2026-08-04]"
     },
     {
       "label": "Ch\u1ec9nh s\u1eeda",
@@ -845,10 +42,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L9",
       "_origin": "ast",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda"
+      "norm_label": "chinh sua"
     },
     {
       "label": "[2026-08-03]",
@@ -856,10 +53,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L20",
       "_origin": "ast",
+      "id": "docs_changelog_2026_08_03",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-03]",
-      "id": "docs_changelog_2026_08_03"
+      "norm_label": "[2026-08-03]"
     },
     {
       "label": "Ch\u1ec9nh s\u1eeda",
@@ -867,10 +64,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L22",
       "_origin": "ast",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_22",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_22"
+      "norm_label": "chinh sua"
     },
     {
       "label": "[2026-07-31]",
@@ -878,10 +75,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L31",
       "_origin": "ast",
+      "id": "docs_changelog_2026_07_31",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-07-31]",
-      "id": "docs_changelog_2026_07_31"
+      "norm_label": "[2026-07-31]"
     },
     {
       "label": "Ch\u1ec9nh s\u1eeda",
@@ -889,10 +86,10 @@
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L33",
       "_origin": "ast",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_33",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_33"
+      "norm_label": "chinh sua"
     },
     {
       "label": "Settings.tsx",
@@ -1588,6 +785,94 @@
       "id": "vite_config"
     },
     {
+      "label": "dataStore.ts",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "datastore.ts",
+      "id": "src_store_datastore"
+    },
+    {
+      "label": "CacheEntry",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L15",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "cacheentry",
+      "id": "src_store_datastore_cacheentry"
+    },
+    {
+      "label": "DataState",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L21",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "datastate",
+      "id": "src_store_datastore_datastate"
+    },
+    {
+      "label": "isStale()",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L33",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "isstale()",
+      "id": "src_store_datastore_isstale"
+    },
+    {
+      "label": "getCached()",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L37",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "getcached()",
+      "id": "src_store_datastore_getcached"
+    },
+    {
+      "label": "setCache()",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L46",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "setcache()",
+      "id": "src_store_datastore_setcache"
+    },
+    {
+      "label": "emptyCache()",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L54",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "emptycache()",
+      "id": "src_store_datastore_emptycache"
+    },
+    {
+      "label": "useDataStore",
+      "file_type": "code",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L56",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Appointments.tsx",
+      "norm_label": "usedatastore",
+      "id": "src_store_datastore_usedatastore"
+    },
+    {
       "label": "index.ts",
       "file_type": "code",
       "source_file": "src/i18n/index.ts",
@@ -1890,8 +1175,8 @@
       "source_file": "src/pages/QuickEntry.tsx",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "quickentry()",
       "id": "src_pages_quickentry_quickentry"
     },
@@ -1901,8 +1186,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "authstore.ts",
       "id": "src_store_authstore"
     },
@@ -1912,8 +1197,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "authstate",
       "id": "src_store_authstore_authstate"
     },
@@ -1924,7 +1209,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "useauthstore",
       "id": "src_store_authstore_useauthstore"
     },
@@ -2121,8 +1406,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Appointments.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "supermodestore.ts",
       "id": "src_store_supermodestore"
     },
@@ -2132,8 +1417,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Appointments.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "supermodestate",
       "id": "src_store_supermodestore_supermodestate"
     },
@@ -2143,8 +1428,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Appointments.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "getsupermode()",
       "id": "src_store_supermodestore_getsupermode"
     },
@@ -2154,8 +1439,8 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Appointments.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "usesupermodestore",
       "id": "src_store_supermodestore_usesupermodestore"
     },
@@ -2177,7 +1462,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "paytype",
       "id": "src_lib_database_types_paytype"
     },
@@ -2209,8 +1494,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "employee",
       "id": "src_lib_database_types_employee"
     },
@@ -2254,7 +1539,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "myearnings.tsx",
       "id": "src_pages_employee_myearnings"
     },
@@ -2265,7 +1550,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "earningdata",
       "id": "src_pages_employee_myearnings_earningdata"
     },
@@ -2276,7 +1561,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "myemployee",
       "id": "src_pages_employee_myearnings_myemployee"
     },
@@ -2287,7 +1572,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "appointmentrow",
       "id": "src_pages_employee_myearnings_appointmentrow"
     },
@@ -2298,7 +1583,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "myearnings()",
       "id": "src_pages_employee_myearnings_myearnings"
     },
@@ -2309,7 +1594,7 @@
       "source_location": "L242",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "calcearnings()",
       "id": "src_pages_employee_myearnings_calcearnings"
     },
@@ -2319,8 +1604,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "kioskpersonal.tsx",
       "id": "src_pages_kiosk_kioskpersonal"
     },
@@ -2330,8 +1615,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "profileoption",
       "id": "src_pages_kiosk_kioskpersonal_profileoption"
     },
@@ -2341,8 +1626,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "getchibiemoji()",
       "id": "src_pages_kiosk_kioskpersonal_getchibiemoji"
     },
@@ -2352,8 +1637,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "kioskpersonal()",
       "id": "src_pages_kiosk_kioskpersonal_kioskpersonal"
     },
@@ -2529,7 +1814,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "employeelayout.tsx",
       "id": "src_components_employeelayout"
     },
@@ -2540,7 +1825,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "community": 10,
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "norm_label": "employeelayout()",
       "id": "src_components_employeelayout_employeelayout"
     },
@@ -3498,7 +2783,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "floatingbackhome.tsx",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_components_floatingbackhome"
     },
     {
@@ -3509,7 +2794,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "floatingbackhome()",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_components_floatingbackhome_floatingbackhome"
     },
     {
@@ -3564,7 +2849,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "useinactivitytimeout.ts",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_hooks_useinactivitytimeout"
     },
     {
@@ -3575,7 +2860,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "useinactivitytimeout()",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_hooks_useinactivitytimeout_useinactivitytimeout"
     },
     {
@@ -3628,9 +2913,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 2,
       "norm_label": "bookingpage.tsx",
-      "community_name": "Appointments.tsx",
+      "community_name": "App.tsx",
       "id": "src_pages_booking_bookingpage"
     },
     {
@@ -3639,9 +2924,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 1,
+      "community": 2,
       "norm_label": "bookingpage()",
-      "community_name": "Appointments.tsx",
+      "community_name": "App.tsx",
       "id": "src_pages_booking_bookingpage_bookingpage"
     },
     {
@@ -3652,7 +2937,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "checkin.tsx",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_pages_employee_checkin"
     },
     {
@@ -3663,7 +2948,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "checkin()",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_pages_employee_checkin_checkin"
     },
     {
@@ -3674,7 +2959,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "myschedule.tsx",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_pages_employee_myschedule"
     },
     {
@@ -3685,7 +2970,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "scheduleitem",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_pages_employee_myschedule_scheduleitem"
     },
     {
@@ -3696,7 +2981,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "myschedule()",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_pages_employee_myschedule_myschedule"
     },
     {
@@ -3705,9 +2990,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
+      "community": 10,
       "norm_label": "kiosklayout.tsx",
-      "community_name": "QuickEntry.tsx",
+      "community_name": "authStore.ts",
       "id": "src_pages_kiosk_kiosklayout"
     },
     {
@@ -3716,9 +3001,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 11,
+      "community": 10,
       "norm_label": "kiosklayout()",
-      "community_name": "QuickEntry.tsx",
+      "community_name": "authStore.ts",
       "id": "src_pages_kiosk_kiosklayout_kiosklayout"
     },
     {
@@ -3760,9 +3045,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 1,
       "norm_label": "services.tsx",
-      "community_name": "supabase.ts",
+      "community_name": "Appointments.tsx",
       "id": "src_pages_owner_services"
     },
     {
@@ -3771,9 +3056,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 6,
+      "community": 1,
       "norm_label": "categories",
-      "community_name": "supabase.ts",
+      "community_name": "Appointments.tsx",
       "id": "src_pages_owner_services_categories"
     },
     {
@@ -3782,9 +3067,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 6,
+      "community": 1,
       "norm_label": "services()",
-      "community_name": "supabase.ts",
+      "community_name": "Appointments.tsx",
       "id": "src_pages_owner_services_services"
     },
     {
@@ -3793,9 +3078,9 @@
       "source_file": "src/pages/owner/Services.tsx",
       "source_location": "L110",
       "_origin": "ast",
-      "community": 6,
+      "community": 1,
       "norm_label": "serviceform()",
-      "community_name": "supabase.ts",
+      "community_name": "Appointments.tsx",
       "id": "src_pages_owner_services_serviceform"
     },
     {
@@ -4180,7 +3465,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "bottomnav.tsx",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_components_bottomnav"
     },
     {
@@ -4191,7 +3476,7 @@
       "_origin": "ast",
       "community": 10,
       "norm_label": "bottomnav()",
-      "community_name": "useAuthStore",
+      "community_name": "authStore.ts",
       "id": "src_components_bottomnav_bottomnav"
     },
     {
@@ -4474,758 +3759,13 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review",
-      "target": "kiro_skills_code_review_review_code",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L13",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review_review_code",
-      "target": "kiro_skills_code_review_quy_tr\u00ecnh",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L56",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review_review_code",
-      "target": "kiro_skills_code_review_t\u1ea1i_sao_hai_tr\u1ee5c",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review_quy_tr\u00ecnh",
-      "target": "kiro_skills_code_review_1_ghim_\u0111i\u1ec3m_c\u1ed1_\u0111\u1ecbnh",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L19",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review_quy_tr\u00ecnh",
-      "target": "kiro_skills_code_review_2_x\u00e1c_\u0111\u1ecbnh_ngu\u1ed3n_spec",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L27",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review_quy_tr\u00ecnh",
-      "target": "kiro_skills_code_review_3_x\u00e1c_\u0111\u1ecbnh_ngu\u1ed3n_standards",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L46",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review_quy_tr\u00ecnh",
-      "target": "kiro_skills_code_review_4_ch\u1ea1y_c\u1ea3_hai_tr\u1ee5c",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/code-review.md",
-      "source_location": "L52",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_code_review_quy_tr\u00ecnh",
-      "target": "kiro_skills_code_review_5_t\u1ed5ng_h\u1ee3p",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_codebase_design",
-      "target": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_codebase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L40",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_codebase",
-      "target": "kiro_skills_codebase_design_nguy\u00ean_t\u1eafc",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L30",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_codebase",
-      "target": "kiro_skills_codebase_design_s\u00e2u_vs_n\u00f4ng",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L47",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_codebase",
-      "target": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_cho_testability",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/codebase-design.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_codebase_design_thi\u1ebft_k\u1ebf_codebase",
-      "target": "kiro_skills_codebase_design_t\u1eeb_v\u1ef1ng",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs",
-      "target": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L12",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "target": "kiro_skills_diagnosing_bugs_phase_1_x\u00e2y_d\u1ef1ng_v\u00f2ng_ph\u1ea3n_h\u1ed3i",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L43",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "target": "kiro_skills_diagnosing_bugs_phase_2_t\u00e1i_hi\u1ec7n_t\u1ed1i_gi\u1ea3n",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L49",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "target": "kiro_skills_diagnosing_bugs_phase_3_\u0111\u1eb7t_gi\u1ea3_thuy\u1ebft",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L57",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "target": "kiro_skills_diagnosing_bugs_phase_4_\u0111o_\u0111\u1ea1c",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L68",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "target": "kiro_skills_diagnosing_bugs_phase_5_s\u1eeda_regression_test",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L76",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_ch\u1ea9n_\u0111o\u00e1n_bug",
-      "target": "kiro_skills_diagnosing_bugs_phase_6_d\u1ecdn_d\u1eb9p_h\u1eadu_ki\u1ec3m",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_phase_1_x\u00e2y_d\u1ef1ng_v\u00f2ng_ph\u1ea3n_h\u1ed3i",
-      "target": "kiro_skills_diagnosing_bugs_c\u00e1ch_x\u00e2y_d\u1ef1ng_th\u1eed_theo_th\u1ee9_t\u1ef1_n\u00e0y",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L29",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_phase_1_x\u00e2y_d\u1ef1ng_v\u00f2ng_ph\u1ea3n_h\u1ed3i",
-      "target": "kiro_skills_diagnosing_bugs_si\u1ebft_ch\u1eb7t_v\u00f2ng_l\u1eb7p",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/diagnosing-bugs.md",
-      "source_location": "L33",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_diagnosing_bugs_phase_1_x\u00e2y_d\u1ef1ng_v\u00f2ng_ph\u1ea3n_h\u1ed3i",
-      "target": "kiro_skills_diagnosing_bugs_ti\u00eau_ch\u00ed_ho\u00e0n_th\u00e0nh",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling",
-      "target": "kiro_skills_domain_modeling_m\u00f4_h\u00ecnh_h\u00f3a_domain",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_m\u00f4_h\u00ecnh_h\u00f3a_domain",
-      "target": "kiro_skills_domain_modeling_c\u1ea5u_tr\u00fac_file",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L22",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_m\u00f4_h\u00ecnh_h\u00f3a_domain",
-      "target": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L40",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "target": "kiro_skills_domain_modeling_c\u1eadp_nh\u1eadt_context_md_inline",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L28",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "target": "kiro_skills_domain_modeling_m\u00e0i_s\u1eafc_ng\u00f4n_ng\u1eef_m\u01a1_h\u1ed3",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L24",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "target": "kiro_skills_domain_modeling_th\u00e1ch_th\u1ee9c_v\u1edbi_glossary",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L32",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "target": "kiro_skills_domain_modeling_th\u1ea3o_lu\u1eadn_k\u1ecbch_b\u1ea3n_c\u1ee5_th\u1ec3",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L46",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "target": "kiro_skills_domain_modeling_\u0111\u1ec1_xu\u1ea5t_adr_ti\u1ebft_ki\u1ec7m",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/domain-modeling.md",
-      "source_location": "L36",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_domain_modeling_trong_phi\u00ean_l\u00e0m_vi\u1ec7c",
-      "target": "kiro_skills_domain_modeling_\u0111\u1ed1i_chi\u1ebfu_v\u1edbi_code",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/handoff.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_handoff",
-      "target": "kiro_skills_handoff_b\u00e0n_giao",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/handoff.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_handoff_b\u00e0n_giao",
-      "target": "kiro_skills_handoff_quy_t\u1eafc",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/implement.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_implement",
-      "target": "kiro_skills_implement_tri\u1ec3n_khai",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_improve_codebase_architecture",
-      "target": "kiro_skills_improve_codebase_architecture_c\u1ea3i_thi\u1ec7n_ki\u1ebfn_tr\u00fac_codebase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L12",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_improve_codebase_architecture_c\u1ea3i_thi\u1ec7n_ki\u1ebfn_tr\u00fac_codebase",
-      "target": "kiro_skills_improve_codebase_architecture_quy_tr\u00ecnh",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L14",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_improve_codebase_architecture_quy_tr\u00ecnh",
-      "target": "kiro_skills_improve_codebase_architecture_1_kh\u00e1m_ph\u00e1",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L31",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_improve_codebase_architecture_quy_tr\u00ecnh",
-      "target": "kiro_skills_improve_codebase_architecture_2_tr\u00ecnh_b\u00e0y_\u1ee9ng_vi\u00ean_d\u01b0\u1edbi_d\u1ea1ng_b\u00e1o_c\u00e1o_html",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/improve-codebase-architecture.md",
-      "source_location": "L46",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_improve_codebase_architecture_quy_tr\u00ecnh",
-      "target": "kiro_skills_improve_codebase_architecture_3_v\u00f2ng_grilling",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/prototype.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_prototype",
-      "target": "kiro_skills_prototype_prototype",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/prototype.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_prototype_prototype",
-      "target": "kiro_skills_prototype_ch\u1ecdn_nh\u00e1nh",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/prototype.md",
-      "source_location": "L17",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_prototype_prototype",
-      "target": "kiro_skills_prototype_quy_t\u1eafc_cho_c\u1ea3_hai",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/research.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_research",
-      "target": "kiro_skills_research_nghi\u00ean_c\u1ee9u",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/research.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_research_nghi\u00ean_c\u1ee9u",
-      "target": "kiro_skills_research_quy_tr\u00ecnh",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_tdd",
-      "target": "kiro_skills_tdd_ph\u00e1t_tri\u1ec3n_h\u01b0\u1edbng_ki\u1ec3m_th\u1eed_tdd",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L24",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_tdd_ph\u00e1t_tri\u1ec3n_h\u01b0\u1edbng_ki\u1ec3m_th\u1eed_tdd",
-      "target": "kiro_skills_tdd_anti_pattern",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L30",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_tdd_ph\u00e1t_tri\u1ec3n_h\u01b0\u1edbng_ki\u1ec3m_th\u1eed_tdd",
-      "target": "kiro_skills_tdd_quy_t\u1eafc_v\u00f2ng_l\u1eb7p",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_tdd_ph\u00e1t_tri\u1ec3n_h\u01b0\u1edbng_ki\u1ec3m_th\u1eed_tdd",
-      "target": "kiro_skills_tdd_seam_test_\u0111\u1eb7t_\u1edf_\u0111\u00e2u",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".kiro/skills/tdd.md",
-      "source_location": "L12",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "kiro_skills_tdd_ph\u00e1t_tri\u1ec3n_h\u01b0\u1edbng_ki\u1ec3m_th\u1eed_tdd",
-      "target": "kiro_skills_tdd_test_t\u1ed1t_l\u00e0_g\u00ec",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_appointments",
-      "target": "src_store_datastore"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_lib_database_types",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_lib_database_types_customer",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_lib_database_types_employee",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_lib_database_types_service",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_lib_supabase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_lib_supabase_supabase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_cacheentry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L21",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_datastate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L66",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_deduplicatedfetch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L57",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_emptycache",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L37",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_getcached",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L64",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_inflightrequests",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L33",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_isstale",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L46",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_setcache",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/store/dataStore.ts",
-      "source_location": "L77",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_store_datastore",
-      "target": "src_store_datastore_usedatastore",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/owner/Appointments.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_owner_appointments",
-      "target": "src_store_datastore_usedatastore"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "docs_changelog",
-      "target": "docs_changelog_mcc_nail_spa_changelog"
+      "target": "docs_changelog_mcc_nail_spa_changelog",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5234,9 +3774,9 @@
       "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_07_31"
+      "target": "docs_changelog_2026_07_31",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5245,9 +3785,9 @@
       "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_03"
+      "target": "docs_changelog_2026_08_03",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5256,9 +3796,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_04"
+      "target": "docs_changelog_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5267,9 +3807,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda"
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5278,9 +3818,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_22"
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_22",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5289,9 +3829,9 @@
       "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_33"
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_33",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -5969,6 +4509,18 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_lib_supabase"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/store/syncStore.ts",
       "source_location": "L3",
       "weight": 1.0,
@@ -6167,6 +4719,18 @@
       "_origin": "ast",
       "confidence_score": 1.0,
       "source": "src_store_authstore",
+      "target": "src_lib_supabase_supabase"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
       "target": "src_lib_supabase_supabase"
     },
     {
@@ -6751,6 +5315,155 @@
       "confidence_score": 1.0,
       "source": "package_overrides",
       "target": "package_overrides_rolldown"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Appointments.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_appointments",
+      "target": "src_store_datastore"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_lib_database_types"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_lib_database_types_customer"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_lib_database_types_employee"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_lib_database_types_service"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_store_datastore_cacheentry"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_store_datastore_datastate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_store_datastore_emptycache"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_store_datastore_getcached"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_store_datastore_isstale"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_store_datastore_setcache"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/dataStore.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_store_datastore",
+      "target": "src_store_datastore_usedatastore"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/owner/Appointments.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_owner_appointments",
+      "target": "src_store_datastore_usedatastore"
     },
     {
       "relation": "re_exports",
@@ -10278,5 +8991,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "af8288ff8e2baeca5ba8121673c0d6c59ae9b703"
+  "built_at_commit": "bf308a55b45a3b65059320c7664a82ab4b547b37"
 }

@@ -290,8 +290,8 @@
     "semantic_hash": "22d17d9e58d80a5565fd8eb79caa526a"
   },
   "src/store/dataStore.ts": {
-    "mtime": 1785883335.5673547,
-    "ast_hash": "fb78b4227476b2b4606da63f97df3c1f",
+    "mtime": 1785772496.7118196,
+    "ast_hash": "4696513317bd6eb89b6ecd476aa128b2",
     "semantic_hash": ""
   },
   ".kiro/skills/graphify/SKILL.md": {
@@ -352,71 +352,6 @@
   "supabase/opt_rls_functions.sql": {
     "mtime": 1785430748.702949,
     "ast_hash": "fa775901c1be36c7babb8fb589fe455e",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/code-review.md": {
-    "mtime": 1785845090.0,
-    "ast_hash": "bbb0b00857ae9214cfc257e125aa3255",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/codebase-design.md": {
-    "mtime": 1785845111.0,
-    "ast_hash": "3773f3eb52f54b34c1a2675a7fbb1bf5",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/diagnosing-bugs.md": {
-    "mtime": 1785845070.0,
-    "ast_hash": "e2ec7c5fcbeca90203677c28946837b1",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/domain-modeling.md": {
-    "mtime": 1785845126.0,
-    "ast_hash": "ce4f340bb1284cda0e1728a849781366",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/grill-me.md": {
-    "mtime": 1785845008.0,
-    "ast_hash": "12d6f2cccd392cbb0c34ed75f82b78ea",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/grill-with-docs.md": {
-    "mtime": 1785845015.0,
-    "ast_hash": "fb897dce4cf4fa51d8f42b4c96434694",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/grilling.md": {
-    "mtime": 1785845006.0,
-    "ast_hash": "62b1b641c4461eeafcda0d3933578f4e",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/handoff.md": {
-    "mtime": 1785845183.0,
-    "ast_hash": "0ab45e53361bec786519f8c7d100236f",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/implement.md": {
-    "mtime": 1785845130.0,
-    "ast_hash": "ecc6b0150e13648b0b5a2a382c31756c",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/improve-codebase-architecture.md": {
-    "mtime": 1785845164.0,
-    "ast_hash": "92dafbc77080b89210e40004ebca3ebf",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/prototype.md": {
-    "mtime": 1785845144.0,
-    "ast_hash": "956d51c0b0bc734dc212b240f41fe1b8",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/research.md": {
-    "mtime": 1785845177.0,
-    "ast_hash": "db34774a928ae4ca7c0ebf9255cbd78d",
-    "semantic_hash": ""
-  },
-  ".kiro/skills/tdd.md": {
-    "mtime": 1785845036.0,
-    "ast_hash": "ca56691c5936ea311adc9544229deda8",
     "semantic_hash": ""
   }
 }

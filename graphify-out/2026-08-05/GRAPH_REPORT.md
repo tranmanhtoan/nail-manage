@@ -1,16 +1,16 @@
-# Graph Report - Nail Manange  (2026-08-05)
+# Graph Report - Nail Manange  (2026-08-04)
 
 ## Corpus Check
-- 78 files · ~49,058 words
+- 65 files · ~45,638 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 406 nodes · 510 edges · 38 communities (29 shown, 9 thin omitted)
+- 341 nodes · 458 edges · 25 communities (19 shown, 6 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `af8288ff`
+- Built from commit: `bf308a55`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,7 +25,7 @@
 - dependencies
 - MCC Nail & Spa — Tổng quan Module
 - validations.ts
-- useAuthStore
+- authStore.ts
 - QuickEntry.tsx
 - graphify reference: extra exports and benchmark
 - MCC Nail & Spa — Changelog
@@ -38,16 +38,6 @@
 - graphify reference: GitHub clone and cross-repo merge
 - graphify reference: transcribe video and audio
 - extraction-spec.md
-- Chẩn đoán Bug
-- Trong phiên làm việc
-- Quy trình
-- Thiết kế Codebase
-- Quy trình
-- Phát triển hướng kiểm thử (TDD)
-- Prototype
-- Bàn giao
-- Nghiên cứu
-- implement.md
 
 ## God Nodes (most connected - your core abstractions)
 1. `supabase` - 20 edges
@@ -57,13 +47,11 @@
 5. `What You Must Do When Invoked` - 12 edges
 6. `/graphify` - 10 edges
 7. `graphify reference: extra exports and benchmark` - 8 edges
-8. `Chẩn đoán Bug` - 7 edges
-9. `Trong phiên làm việc` - 7 edges
-10. `useSyncStore` - 7 edges
+8. `useSyncStore` - 7 edges
+9. `ErrorBoundary` - 6 edges
+10. `Service` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `KioskPersonal()` --calls--> `useAuthStore`  [EXTRACTED]
-  src/pages/kiosk/KioskPersonal.tsx → src/store/authStore.ts
 - `useInactivityTimeout()` --calls--> `useAuthStore`  [EXTRACTED]
   src/hooks/useInactivityTimeout.ts → src/store/authStore.ts
 - `CheckIn()` --calls--> `useAuthStore`  [EXTRACTED]
@@ -72,15 +60,17 @@
   src/pages/employee/MyEarnings.tsx → src/store/authStore.ts
 - `MySchedule()` --calls--> `useAuthStore`  [EXTRACTED]
   src/pages/employee/MySchedule.tsx → src/store/authStore.ts
+- `KioskPersonal()` --calls--> `useAuthStore`  [EXTRACTED]
+  src/pages/kiosk/KioskPersonal.tsx → src/store/authStore.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (38 total, 9 thin omitted)
+## Communities (25 total, 6 thin omitted)
 
 ### Community 1 - "Appointments.tsx"
-Cohesion: 0.07
-Nodes (18): Appointment, AppointmentStatus, Customer, Service, UserRole, AppointmentRow, Appointments(), Employee (+10 more)
+Cohesion: 0.08
+Nodes (18): Appointment, AppointmentStatus, Customer, Employee, Service, UserRole, AppointmentRow, Appointments() (+10 more)
 
 ### Community 2 - "App.tsx"
 Cohesion: 0.07
@@ -100,7 +90,7 @@ Nodes (24): For /graphify add and --watch, For /graphify query, For the commit h
 
 ### Community 6 - "supabase.ts"
 Cohesion: 0.06
-Nodes (26): PinGateProps, toAuthEmail(), Employee, initAuthListener(), stopAuthListener(), supabase, supabaseAdmin, supabaseAnonKey (+18 more)
+Nodes (24): PinGateProps, toAuthEmail(), initAuthListener(), stopAuthListener(), supabase, supabaseAdmin, supabaseAnonKey, supabaseUrl (+16 more)
 
 ### Community 7 - "dependencies"
 Cohesion: 0.11
@@ -114,13 +104,13 @@ Nodes (15): 10. `src/hooks/` — Custom Hooks, 11. `src/i18n/` — Đa ngôn ng�
 Cohesion: 0.12
 Nodes (14): AppointmentInput, appointmentSchema, BookingInput, bookingSchema, CustomerInput, customerSchema, EmployeeInput, employeeSchema (+6 more)
 
-### Community 10 - "useAuthStore"
-Cohesion: 0.16
-Nodes (12): BottomNav(), FloatingBackHome(), useInactivityTimeout(), PayType, CheckIn(), AppointmentRow, EarningData, MyEarnings() (+4 more)
+### Community 10 - "authStore.ts"
+Cohesion: 0.12
+Nodes (17): BottomNav(), FloatingBackHome(), useInactivityTimeout(), PayType, CheckIn(), AppointmentRow, EarningData, MyEarnings() (+9 more)
 
 ### Community 11 - "QuickEntry.tsx"
-Cohesion: 0.16
-Nodes (12): OfflineSyncBanner(), getChibiEmoji(), KioskPersonal(), ProfileOption, Employee, QuickEntry(), Service, Step (+4 more)
+Cohesion: 0.26
+Nodes (8): OfflineSyncBanner(), Employee, Service, Step, FailedAction, SyncAction, SyncState, useSyncStore
 
 ### Community 12 - "graphify reference: extra exports and benchmark"
 Cohesion: 0.22
@@ -146,53 +136,25 @@ Nodes (3): For git commit hook, For native CLAUDE.md integration, graphify refer
 Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
-### Community 25 - "Chẩn đoán Bug"
-Cohesion: 0.18
-Nodes (10): Chẩn đoán Bug, Cách xây dựng — thử theo thứ tự này, Phase 1 — Xây dựng vòng phản hồi, Phase 2 — Tái hiện + tối giản, Phase 3 — Đặt giả thuyết, Phase 4 — Đo đạc, Phase 5 — Sửa + regression test, Phase 6 — Dọn dẹp + hậu kiểm (+2 more)
-
-### Community 26 - "Trong phiên làm việc"
-Cohesion: 0.20
-Nodes (9): Cấu trúc file, Cập nhật CONTEXT.md inline, Mài sắc ngôn ngữ mơ hồ, Mô hình hóa Domain, Thách thức với glossary, Thảo luận kịch bản cụ thể, Trong phiên làm việc, Đề xuất ADR tiết kiệm (+1 more)
-
-### Community 27 - "Quy trình"
-Cohesion: 0.22
-Nodes (8): 1. Ghim điểm cố định, 2. Xác định nguồn spec, 3. Xác định nguồn standards, 4. Chạy cả hai trục, 5. Tổng hợp, Quy trình, Review Code, Tại sao hai trục
-
-### Community 28 - "Thiết kế Codebase"
-Cohesion: 0.33
-Nodes (5): Nguyên tắc, Sâu vs nông, Thiết kế cho testability, Thiết kế Codebase, Từ vựng
-
-### Community 29 - "Quy trình"
-Cohesion: 0.33
-Nodes (5): 1. Khám phá, 2. Trình bày ứng viên dưới dạng báo cáo HTML, 3. Vòng grilling, Cải thiện Kiến trúc Codebase, Quy trình
-
-### Community 30 - "Phát triển hướng kiểm thử (TDD)"
-Cohesion: 0.33
-Nodes (5): Anti-pattern, Phát triển hướng kiểm thử (TDD), Quy tắc vòng lặp, Seam — test đặt ở đâu, Test tốt là gì
-
-### Community 31 - "Prototype"
-Cohesion: 0.50
-Nodes (3): Chọn nhánh, Prototype, Quy tắc cho cả hai
-
 ## Knowledge Gaps
-- **209 isolated node(s):** `1. Ghim điểm cố định`, `2. Xác định nguồn spec`, `3. Xác định nguồn standards`, `4. Chạy cả hai trục`, `5. Tổng hợp` (+204 more)
+- **171 isolated node(s):** `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa`, `Tab`, `FeatureToggles` (+166 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `App.tsx`, `Appointments.tsx`, `useAuthStore`, `QuickEntry.tsx`?**
-  _High betweenness centrality (0.023) - this node is a cross-community bridge._
-- **Why does `useAuthStore` connect `useAuthStore` to `App.tsx`, `QuickEntry.tsx`, `supabase.ts`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+- **Why does `supabase` connect `supabase.ts` to `QuickEntry.tsx`, `Appointments.tsx`, `App.tsx`, `authStore.ts`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `useAuthStore` connect `authStore.ts` to `App.tsx`, `QuickEntry.tsx`, `supabase.ts`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `devDependencies`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **What connects `1. Ghim điểm cố định`, `2. Xác định nguồn spec`, `3. Xác định nguồn standards` to the rest of the system?**
-  _209 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+- **What connects `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa` to the rest of the system?**
+  _171 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Appointments.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07226890756302522 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08064516129032258 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.0748663101604278 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._

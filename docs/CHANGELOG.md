@@ -4,6 +4,13 @@
 
 ---
 
+## [2026-08-05]
+
+### Chỉnh sửa
+- [10:00] Chỉnh sửa `src/store/dataStore.ts` — Thêm request deduplication (inflightRequests map) để tránh duplicate fetch khi nhiều component mount đồng thời; đồng bộ localStorage cache keys giữa dataStore và QuickEntry/CheckIn; thêm activated_at vào select employees
+
+---
+
 ## [2026-08-04]
 
 ### Chỉnh sửa
