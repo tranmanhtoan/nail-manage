@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785779355.3226073,
-    "ast_hash": "35e0d3f7e689e1cdb31b072ffb41d10b",
+    "mtime": 1785883363.9665458,
+    "ast_hash": "66ca6acbe39b89eae4cbd3e241002607",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -417,6 +417,11 @@
   ".kiro/skills/tdd.md": {
     "mtime": 1785845036.0,
     "ast_hash": "ca56691c5936ea311adc9544229deda8",
+    "semantic_hash": ""
+  },
+  "src/hooks/useStoreData.ts": {
+    "mtime": 1785883378.8243432,
+    "ast_hash": "096b944b7526d944e708ae3d21bc3f47",
     "semantic_hash": ""
   }
 }

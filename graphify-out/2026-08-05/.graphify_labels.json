@@ -1,6 +1,6 @@
 {
   "0": "index.ts",
-  "1": "Appointments.tsx",
+  "1": "database.types.ts",
   "2": "App.tsx",
   "3": "devDependencies",
   "4": "compilerOptions",
@@ -9,7 +9,7 @@
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
-  "10": "useAuthStore",
+  "10": "authStore.ts",
   "11": "QuickEntry.tsx",
   "12": "graphify reference: extra exports and benchmark",
   "13": "MCC Nail & Spa — Changelog",

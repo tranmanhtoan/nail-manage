@@ -1,6 +1,6 @@
 {
   "0": "index.ts",
-  "1": "database.types.ts",
+  "1": "Appointments.tsx",
   "2": "App.tsx",
   "3": "devDependencies",
   "4": "compilerOptions",

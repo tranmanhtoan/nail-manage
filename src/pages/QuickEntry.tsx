@@ -4,6 +4,7 @@ import { Check, ChevronLeft, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
 import { useSyncStore } from '@/store/syncStore'
+import { useDataStore } from '@/store/dataStore'
 import { OfflineSyncBanner } from '@/components/OfflineSyncBanner'
 
 interface Employee {
@@ -68,11 +69,13 @@ export function QuickEntry() {
     setLoading(true)
     const isOffline = !navigator.onLine
 
+    // Use centralized dataStore for employees and services (benefits from dedup + SWR cache)
+    const fetchEmployees = useDataStore.getState().fetchEmployees
+    const fetchServices = useDataStore.getState().fetchServices
+
     if (isOffline) {
-      const cachedEmps = localStorage.getItem('cached_employees')
-      const cachedSvcs = localStorage.getItem('cached_services')
-      const empList = cachedEmps ? JSON.parse(cachedEmps) : []
-      const svcList = cachedSvcs ? JSON.parse(cachedSvcs) : []
+      const empList = (await fetchEmployees()) as Employee[]
+      const svcList = (await fetchServices()) as Service[]
 
       setEmployees(empList)
       setServices(svcList)
@@ -104,42 +107,32 @@ export function QuickEntry() {
     }
 
     try {
-      const [empRes, svcRes, aptsRes] = await Promise.all([
-        supabase.from('employees').select('id, name, rotation_order, activated_at').eq('is_active', true).order('rotation_order'),
-        supabase.from('services').select('id, name, price').eq('is_active', true).order('name'),
+      // Fetch employees and services from centralized store (deduplicated),
+      // only appointments need a direct query (date-specific, not cacheable globally)
+      const [empList, svcList, aptsRes] = await Promise.all([
+        fetchEmployees(true) as Promise<Employee[]>,
+        fetchServices(true) as Promise<Service[]>,
         supabase.from('appointments').select('employee_id, status, time').eq('date', new Date().toISOString().split('T')[0]),
       ])
-      const empList = (empRes.data ?? []) as Employee[]
-      const svcList = (svcRes.data ?? []) as Service[]
 
       setEmployees(empList)
       setServices(svcList)
 
-      // Cache data
-      if (empRes.data) localStorage.setItem('cached_employees', JSON.stringify(empRes.data))
-      if (svcRes.data) localStorage.setItem('cached_services', JSON.stringify(svcRes.data))
-
       // If logged in as employee, find their employee_id and auto-select
       if (user?.role === 'employee') {
-        const { data: myEmp } = await supabase
-          .from('employees')
-          .select('id')
-          .eq('profile_id', user.id)
-          .single()
+        const myEmp = empList.find((e) => e.id === localStorage.getItem(`my_employee_id_${user.id}`))
         if (myEmp) {
-          const me = myEmp as { id: string }
-          setMyEmployeeId(me.id)
-          setEmployeeId(me.id)
-          localStorage.setItem(`my_employee_id_${user.id}`, me.id)
+          setMyEmployeeId(myEmp.id)
+          setEmployeeId(myEmp.id)
         } else {
-          // Fallback: match by name
-          const { data: myEmpByName } = await supabase
+          // Look up by profile_id
+          const { data: empByProfile } = await supabase
             .from('employees')
             .select('id')
-            .eq('name', user.name)
+            .eq('profile_id', user.id)
             .single()
-          if (myEmpByName) {
-            const me = myEmpByName as { id: string }
+          if (empByProfile) {
+            const me = empByProfile as { id: string }
             setMyEmployeeId(me.id)
             setEmployeeId(me.id)
             localStorage.setItem(`my_employee_id_${user.id}`, me.id)
