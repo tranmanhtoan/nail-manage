@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Plus, Search, X } from 'lucide-react'
+import { Plus, Search, X, ChevronDown } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import type { Customer } from '@/lib/database.types'
+
+const PAGE_SIZE = 30
 
 export function Customers() {
   const { t } = useTranslation()
@@ -10,13 +12,52 @@ export function Customers() {
   const [search, setSearch] = useState('')
   const [showForm, setShowForm] = useState(false)
   const [editing, setEditing] = useState<Customer | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
+  const [totalCount, setTotalCount] = useState(0)
+  const searchTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  useEffect(() => { load() }, [])
+  useEffect(() => { load(true) }, [])
 
-  async function load() {
-    const { data } = await supabase.from('customers').select('*').order('name')
-    setCustomers((data as Customer[]) ?? [])
-  }
+  // Debounced server-side search
+  useEffect(() => {
+    if (searchTimeout.current) clearTimeout(searchTimeout.current)
+    searchTimeout.current = setTimeout(() => {
+      load(true)
+    }, 300)
+    return () => {
+      if (searchTimeout.current) clearTimeout(searchTimeout.current)
+    }
+  }, [search])
+
+  const load = useCallback(async (reset = false) => {
+    setLoading(true)
+    const offset = reset ? 0 : customers.length
+
+    let query = supabase
+      .from('customers')
+      .select('id, name, phone, email, notes', { count: 'exact' })
+      .order('name')
+      .range(offset, offset + PAGE_SIZE - 1)
+
+    // Server-side search filtering (uses Supabase ilike for indexed search)
+    if (search.trim()) {
+      const term = `%${search.trim()}%`
+      query = query.or(`name.ilike.${term},phone.ilike.${term}`)
+    }
+
+    const { data, count } = await query
+    const rows = (data as Customer[]) ?? []
+
+    if (reset) {
+      setCustomers(rows)
+    } else {
+      setCustomers((prev) => [...prev, ...rows])
+    }
+    setTotalCount(count ?? 0)
+    setHasMore(rows.length === PAGE_SIZE)
+    setLoading(false)
+  }, [search, customers.length])
 
   async function save(form: Partial<Customer>) {
     if (editing) {
@@ -26,18 +67,16 @@ export function Customers() {
     }
     setShowForm(false)
     setEditing(null)
-    load()
+    load(true)
   }
-
-  const filtered = customers.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.phone?.includes(search)
-  )
 
   return (
     <div className="max-w-lg mx-auto px-5 py-6 pb-24 space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">{t('customer.title')}</h2>
+        <h2 className="text-2xl font-bold text-gray-900">
+          {t('customer.title')}
+          {totalCount > 0 && <span className="text-sm font-normal text-gray-400 ml-2">({totalCount})</span>}
+        </h2>
         <button
           onClick={() => { setEditing(null); setShowForm(true) }}
           className="flex items-center gap-1 bg-[#864e5a] text-white px-3 py-2 rounded-xl text-sm font-semibold"
@@ -59,7 +98,7 @@ export function Customers() {
 
       {/* Customer List */}
       <div className="space-y-3 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
-        {filtered.map((cust) => (
+        {customers.map((cust) => (
           <div
             key={cust.id}
             onClick={() => { setEditing(cust); setShowForm(true) }}
@@ -77,8 +116,23 @@ export function Customers() {
             {cust.notes && <p className="text-xs text-gray-400 mt-1">{cust.notes}</p>}
           </div>
         ))}
-        {filtered.length === 0 && (
-          <p className="text-center text-gray-400 py-8">{t('common.search')}...</p>
+
+        {/* Load more button */}
+        {hasMore && !loading && customers.length > 0 && (
+          <button
+            onClick={() => load(false)}
+            className="w-full py-3 text-sm text-[#864e5a] font-medium flex items-center justify-center gap-1"
+          >
+            <ChevronDown size={16} /> {t('common.loadMore') || 'Load more'}
+          </button>
+        )}
+
+        {loading && (
+          <p className="text-center text-gray-400 py-4 text-sm animate-pulse">Loading...</p>
+        )}
+
+        {!loading && customers.length === 0 && (
+          <p className="text-center text-gray-400 py-8">{t('common.noData') || 'No results'}</p>
         )}
       </div>
 
