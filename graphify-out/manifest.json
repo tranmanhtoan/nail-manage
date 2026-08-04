@@ -1,8 +1,8 @@
 {
   ".kiro/hooks/auto-push.json": {
-    "mtime": 1784862443.2613537,
-    "ast_hash": "6fb3ed35c1d42c3d1d064a6595dca844",
-    "semantic_hash": "6fb3ed35c1d42c3d1d064a6595dca844"
+    "mtime": 1785779978.7070992,
+    "ast_hash": "7414ffd54631930b64df6276cfb08924",
+    "semantic_hash": ""
   },
   ".kiro/hooks/changelog-on-create.json": {
     "mtime": 1785339960.0983138,
