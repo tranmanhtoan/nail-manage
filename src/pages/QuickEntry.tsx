@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
 import { useSyncStore } from '@/store/syncStore'
 import { useDataStore } from '@/store/dataStore'
+import { calculateIdleMinutes } from '@/lib/idle-minutes'
 import { OfflineSyncBanner } from '@/components/OfflineSyncBanner'
 
 interface Employee {
@@ -140,49 +141,9 @@ export function QuickEntry() {
         }
       }
 
-      // Calculate idle minutes
+      // Calculate idle minutes using shared utility
       const apts = aptsRes.data ?? []
-      const busyIds = new Set(apts.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!))
-      const lastCompletedTime = new Map<string, string>()
-      for (const apt of apts) {
-        if (apt.status === 'completed' && apt.employee_id) {
-          const prev = lastCompletedTime.get(apt.employee_id)
-          if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
-        }
-      }
-
-      const now = new Date()
-      const nowMinutes = now.getHours() * 60 + now.getMinutes()
-      const shiftStart = 9 * 60
-      const todayStr = now.toISOString().slice(0, 10)
-
-      const idleMap: Record<string, number | null> = {}
-
-      for (const emp of empList) {
-        if (busyIds.has(emp.id)) {
-          idleMap[emp.id] = null // busy
-        } else {
-          const lastTime = lastCompletedTime.get(emp.id)
-          if (lastTime) {
-            const [h, m] = lastTime.split(':')
-            idleMap[emp.id] = Math.max(0, nowMinutes - (parseInt(h) * 60 + parseInt(m)))
-          } else {
-            // No completed today — idle since activation or shift start (whichever is later)
-            let startMinutes = shiftStart
-            if (emp.activated_at) {
-              const activatedDate = new Date(emp.activated_at)
-              const activatedDateStr = activatedDate.toISOString().slice(0, 10)
-              if (activatedDateStr === todayStr) {
-                const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
-                startMinutes = Math.max(shiftStart, activatedMinutes)
-              }
-            }
-            idleMap[emp.id] = Math.max(0, nowMinutes - startMinutes)
-          }
-        }
-      }
-
-      setIdleMinutes(idleMap)
+      setIdleMinutes(calculateIdleMinutes(empList, apts))
     } catch (err) {
       console.error('Error fetching online data, loading cache', err)
       // Centralized store already handles offline fallback

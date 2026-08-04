@@ -9,7 +9,7 @@
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
-  "10": "authStore.ts",
+  "10": "EmployeeLayout.tsx",
   "11": "QuickEntry.tsx",
   "12": "graphify reference: extra exports and benchmark",
   "13": "MCC Nail & Spa — Changelog",
@@ -23,7 +23,7 @@
   "21": "graphify reference: GitHub clone and cross-repo merge",
   "22": "graphify reference: transcribe video and audio",
   "23": "extraction-spec.md",
-  "24": "graphify.md",
+  "24": "Graphify Knowledge Graph",
   "25": "Chẩn đoán Bug",
   "26": "Trong phiên làm việc",
   "27": "Quy trình",
@@ -36,6 +36,5 @@
   "34": "implement.md",
   "35": "grill-me.md",
   "36": "grill-with-docs.md",
-  "37": "grilling.md",
-  "38": "Appointments.tsx"
+  "37": "grilling.md"
 }

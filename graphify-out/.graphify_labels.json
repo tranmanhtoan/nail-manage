@@ -5,12 +5,12 @@
   "3": "devDependencies",
   "4": "compilerOptions",
   "5": "What You Must Do When Invoked",
-  "6": "supabase.ts",
+  "6": "Employees.tsx",
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
-  "10": "EmployeeLayout.tsx",
-  "11": "QuickEntry.tsx",
+  "10": "supabase.ts",
+  "11": "Appointments.tsx",
   "12": "graphify reference: extra exports and benchmark",
   "13": "MCC Nail & Spa — Changelog",
   "14": "vite-env.d.ts",
@@ -36,5 +36,8 @@
   "34": "implement.md",
   "35": "grill-me.md",
   "36": "grill-with-docs.md",
-  "37": "grilling.md"
+  "37": "grilling.md",
+  "38": "ErrorBoundary",
+  "39": "Reports.tsx",
+  "40": "idle-minutes.ts"
 }
