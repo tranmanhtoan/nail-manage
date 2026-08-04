@@ -115,8 +115,8 @@
     "semantic_hash": ""
   },
   "src/pages/QuickEntry.tsx": {
-    "mtime": 1785883489.8888342,
-    "ast_hash": "3178fe124f04e1afc0eb0b9455c7c442",
+    "mtime": 1785885535.971999,
+    "ast_hash": "e54b269a0c6a840a153b8d4fb346d906",
     "semantic_hash": ""
   },
   "src/pages/booking/BookingPage.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785883761.9791987,
-    "ast_hash": "8c63367e6635d3a3d64cdab25212d56f",
+    "mtime": 1785885526.3911793,
+    "ast_hash": "4e230488ec11782a5e9f9f91a5651dfd",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {

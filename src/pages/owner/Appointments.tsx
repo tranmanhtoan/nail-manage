@@ -4,6 +4,7 @@ import { Plus, Calendar, User, X } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useSuperModeStore } from '@/store/superModeStore'
 import { useDataStore } from '@/store/dataStore'
+import { calculateIdleMinutes } from '@/lib/idle-minutes'
 import type { AppointmentStatus } from '@/lib/database.types'
 
 interface AppointmentRow {
@@ -123,16 +124,11 @@ export function Appointments() {
     if (employees.length === 0) return
 
     const turnCounts = new Map<string, number>()
-    const lastCompletedTime = new Map<string, string>()
     const busyStartTime = new Map<string, string>()
 
     for (const apt of appointments) {
       if (apt.employee_id && apt.status !== 'cancelled') {
         turnCounts.set(apt.employee_id, (turnCounts.get(apt.employee_id) ?? 0) + 1)
-      }
-      if (apt.status === 'completed' && apt.employee_id) {
-        const prev = lastCompletedTime.get(apt.employee_id)
-        if (!prev || apt.time > prev) lastCompletedTime.set(apt.employee_id, apt.time)
       }
       if (apt.status === 'in_progress' && apt.employee_id) {
         const prev = busyStartTime.get(apt.employee_id)
@@ -140,45 +136,22 @@ export function Appointments() {
       }
     }
 
+    // Use shared idle calculation utility
+    const idleMap = calculateIdleMinutes(employees, appointments, currentTime, dateStr)
+
     const busyEmployeeIds = new Set(
       appointments.filter((a) => a.status === 'in_progress' && a.employee_id).map((a) => a.employee_id!)
     )
 
-    const now = currentTime
-    const todayStr = now.toISOString().slice(0, 10)
-    const nowMinutes = now.getHours() * 60 + now.getMinutes()
-    const shiftStartMinutes = 9 * 60 // shift starts at 9:00 AM
-
     const rotationList: RotationEmployee[] = employees.map((emp) => {
       const isBusy = busyEmployeeIds.has(emp.id)
-      let idleMinutes: number | null = null
-
-      if (!isBusy && dateStr === todayStr) {
-        const lastTime = lastCompletedTime.get(emp.id)
-        if (lastTime) {
-          const [h, m] = lastTime.split(':')
-          const completedMinutes = parseInt(h) * 60 + parseInt(m)
-          idleMinutes = Math.max(0, nowMinutes - completedMinutes)
-        } else {
-          let startMinutes = shiftStartMinutes
-          if (emp.activated_at) {
-            const activatedDate = new Date(emp.activated_at)
-            const activatedDateStr = activatedDate.toISOString().slice(0, 10)
-            if (activatedDateStr === todayStr) {
-              const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
-              startMinutes = Math.max(shiftStartMinutes, activatedMinutes)
-            }
-          }
-          idleMinutes = Math.max(0, nowMinutes - startMinutes)
-        }
-      }
 
       return {
         id: emp.id,
         name: emp.name,
         status: isBusy ? ('busy' as RotationStatus) : ('available' as RotationStatus),
         turnCount: turnCounts.get(emp.id) ?? 0,
-        idleMinutes,
+        idleMinutes: idleMap[emp.id] ?? null,
       }
     })
 

@@ -1,16 +1,16 @@
 # Graph Report - Nail Manange  (2026-08-05)
 
 ## Corpus Check
-- 80 files · ~50,482 words
+- 80 files · ~50,351 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 423 nodes · 534 edges · 41 communities (31 shown, 10 thin omitted)
+- 423 nodes · 536 edges · 40 communities (31 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `bd86073e`
+- Built from commit: `f43c3d4f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -21,7 +21,6 @@
 - devDependencies
 - compilerOptions
 - What You Must Do When Invoked
-- Employees.tsx
 - dependencies
 - MCC Nail & Spa — Tổng quan Module
 - validations.ts
@@ -51,7 +50,7 @@
 - implement.md
 - ErrorBoundary
 - Reports.tsx
-- idle-minutes.ts
+- QuickEntry.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `supabase` - 20 edges
@@ -80,7 +79,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (41 total, 10 thin omitted)
+## Communities (40 total, 9 thin omitted)
 
 ### Community 1 - "dataStore.ts"
 Cohesion: 0.08
@@ -102,10 +101,6 @@ Nodes (25): DOM, DOM.Iterable, ES2023, src, vite/client, compilerOptions, allowA
 Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
-### Community 6 - "Employees.tsx"
-Cohesion: 0.18
-Nodes (4): PinGateProps, toAuthEmail(), supabaseAdmin, Employees()
-
 ### Community 7 - "dependencies"
 Cohesion: 0.11
 Nodes (19): i18next, lucide-react, dependencies, i18next, lucide-react, react, react-dom, react-i18next (+11 more)
@@ -120,7 +115,7 @@ Nodes (14): AppointmentInput, appointmentSchema, BookingInput, bookingSchema, Cu
 
 ### Community 10 - "supabase.ts"
 Cohesion: 0.08
-Nodes (31): BottomNav(), FloatingBackHome(), OfflineSyncBanner(), useInactivityTimeout(), useServices(), PayType, initAuthListener(), stopAuthListener() (+23 more)
+Nodes (26): BottomNav(), FloatingBackHome(), PinGateProps, useInactivityTimeout(), useServices(), toAuthEmail(), PayType, initAuthListener() (+18 more)
 
 ### Community 11 - "Appointments.tsx"
 Cohesion: 0.15
@@ -190,20 +185,24 @@ Nodes (3): ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState
 Cohesion: 0.33
 Nodes (4): EmployeeAppointment, EmployeeSummary, Period, ServiceRevenue
 
+### Community 40 - "QuickEntry.tsx"
+Cohesion: 0.15
+Nodes (12): OfflineSyncBanner(), calculateIdleMinutes(), IdleCalcAppointment, IdleCalcEmployee, Employee, QuickEntry(), Service, Step (+4 more)
+
 ## Knowledge Gaps
 - **217 isolated node(s):** `Thêm mới`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa` (+212 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `dataStore.ts`, `App.tsx`, `Employees.tsx`, `Reports.tsx`, `Appointments.tsx`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `useAuthStore` connect `supabase.ts` to `dataStore.ts`, `App.tsx`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **Why does `supabase` connect `supabase.ts` to `dataStore.ts`, `App.tsx`, `Reports.tsx`, `QuickEntry.tsx`, `Appointments.tsx`?**
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `useAuthStore` connect `supabase.ts` to `QuickEntry.tsx`, `dataStore.ts`, `App.tsx`?**
+  _High betweenness centrality (0.013) - this node is a cross-community bridge._
 - **Why does `ErrorBoundary` connect `ErrorBoundary` to `App.tsx`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `Thêm mới`, `Chỉnh sửa`, `Chỉnh sửa` to the rest of the system?**
   _217 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dataStore.ts` be split into smaller, more focused modules?**

@@ -11,6 +11,8 @@
 - [10:13] Tạo mới `src/lib/idle-minutes.ts` — Shared utility calculateIdleMinutes() extract logic tính idle time cho employee, dùng chung giữa QuickEntry và Appointments
 
 ### Chỉnh sửa
+- [10:16] Chỉnh sửa `src/pages/owner/Appointments.tsx` — Thay thế inline idle calculation bằng calculateIdleMinutes() từ shared utility, giảm ~25 dòng duplicate
+- [10:15] Chỉnh sửa `src/pages/QuickEntry.tsx` — Thay thế 30+ dòng idle calculation inline bằng calculateIdleMinutes() từ shared utility
 - [10:14] Chỉnh sửa `src/pages/QuickEntry.tsx` — Import calculateIdleMinutes từ shared utility để thay thế logic duplicate
 - [10:12] Chỉnh sửa `src/pages/owner/Employees.tsx` — Fix TS error: wrap supabase.rpc() trong Promise.resolve() để có .catch() đúng chuẩn
 - [10:11] Chỉnh sửa `src/pages/owner/Employees.tsx` — Fix TS error: đổi .catch() thành .then().catch() cho supabase RPC call (PostgrestFilterBuilder không có .catch trực tiếp)
