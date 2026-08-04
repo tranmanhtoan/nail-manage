@@ -10,6 +10,7 @@
 - [10:01] Tạo mới `src/hooks/useStoreData.ts` — Centralized React hooks (useEmployees, useServices, useCustomers, useEmployeesAndServices) wrap dataStore với auto-fetch on mount và request deduplication
 
 ### Chỉnh sửa
+- [10:12] Chỉnh sửa `src/pages/owner/Employees.tsx` — Fix TS error: wrap supabase.rpc() trong Promise.resolve() để có .catch() đúng chuẩn
 - [10:11] Chỉnh sửa `src/pages/owner/Employees.tsx` — Fix TS error: đổi .catch() thành .then().catch() cho supabase RPC call (PostgrestFilterBuilder không có .catch trực tiếp)
 - [10:10] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm import useDataStore để hỗ trợ loadEmployees từ centralized cache
 - [10:10] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Refactor loadEmployees() dùng centralized dataStore thay vì query trực tiếp, tận dụng SWR cache
