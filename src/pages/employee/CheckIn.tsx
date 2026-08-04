@@ -1,41 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
-import type { Service } from '@/lib/database.types'
 import { useSyncStore } from '@/store/syncStore'
+import { useServices } from '@/hooks/useStoreData'
 
 export function CheckIn() {
   const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
-  const [services, setServices] = useState<Service[]>([])
+  const { data: services } = useServices()
   const [selectedService, setSelectedService] = useState('')
   const [customerName, setCustomerName] = useState('')
   const [customerPhone, setCustomerPhone] = useState('')
   const [tip, setTip] = useState(0)
   const [success, setSuccess] = useState(false)
-
-  useEffect(() => {
-    const loadServices = async () => {
-      if (!navigator.onLine) {
-        const cached = localStorage.getItem('cached_services')
-        if (cached) setServices(JSON.parse(cached))
-        return
-      }
-      try {
-        const { data } = await supabase.from('services').select('*').eq('is_active', true).order('name')
-        if (data) {
-          setServices((data as Service[]) ?? [])
-          localStorage.setItem('cached_services', JSON.stringify(data))
-        }
-      } catch (err) {
-        console.error('Failed to load services:', err)
-        const cached = localStorage.getItem('cached_services')
-        if (cached) setServices(JSON.parse(cached))
-      }
-    }
-    loadServices()
-  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()

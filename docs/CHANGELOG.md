@@ -6,6 +6,9 @@
 
 ## [2026-08-05]
 
+### Thêm mới
+- [10:01] Tạo mới `src/hooks/useStoreData.ts` — Centralized React hooks (useEmployees, useServices, useCustomers, useEmployeesAndServices) wrap dataStore với auto-fetch on mount và request deduplication
+
 ### Chỉnh sửa
 - [10:00] Chỉnh sửa `src/store/dataStore.ts` — Thêm request deduplication (inflightRequests map) để tránh duplicate fetch khi nhiều component mount đồng thời; đồng bộ localStorage cache keys giữa dataStore và QuickEntry/CheckIn; thêm activated_at vào select employees
 
