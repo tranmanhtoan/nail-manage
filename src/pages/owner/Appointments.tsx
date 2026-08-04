@@ -94,6 +94,8 @@ export function Appointments() {
   }, [])
 
   // Listen to realtime updates on the appointments table
+  // Debounced to prevent reload storms when multiple appointments are updated rapidly
+  const realtimeDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   useEffect(() => {
     const channel = supabase
       .channel('appointments-realtime')
@@ -101,12 +103,16 @@ export function Appointments() {
         'postgres_changes',
         { event: '*', schema: 'public', table: 'appointments' },
         () => {
-          load()
+          if (realtimeDebounceRef.current) clearTimeout(realtimeDebounceRef.current)
+          realtimeDebounceRef.current = setTimeout(() => {
+            load()
+          }, 800)
         }
       )
       .subscribe()
 
     return () => {
+      if (realtimeDebounceRef.current) clearTimeout(realtimeDebounceRef.current)
       supabase.removeChannel(channel)
     }
   }, [dateStr])

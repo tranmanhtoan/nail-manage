@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { CalendarDays, Star, TrendingUp, Wallet, Banknote, CreditCard, ChevronLeft, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
+import { useDataStore } from '@/store/dataStore'
 interface Stats {
   totalRevenue: number
   cashRevenue: number
@@ -48,23 +49,29 @@ export function Dashboard() {
   // Request counter to prevent stale responses from overwriting newer data
   // when user changes dates quickly
   const loadStatsRequestId = useRef(0)
+  const realtimeDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     loadStats(selectedDate)
 
     // Listen to realtime updates on the appointments table
+    // Debounced: multiple rapid changes (e.g. bulk status updates) only trigger one reload
     const channel = supabase
       .channel('dashboard-realtime')
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'appointments' },
         () => {
-          loadStats(selectedDate)
+          if (realtimeDebounceRef.current) clearTimeout(realtimeDebounceRef.current)
+          realtimeDebounceRef.current = setTimeout(() => {
+            loadStats(selectedDate)
+          }, 1000)
         }
       )
       .subscribe()
 
     return () => {
+      if (realtimeDebounceRef.current) clearTimeout(realtimeDebounceRef.current)
       supabase.removeChannel(channel)
     }
   }, [selectedDate])
@@ -207,12 +214,9 @@ export function Dashboard() {
     setLoading(false)
   }
   async function loadEmployees() {
-    const { data } = await supabase
-      .from('employees')
-      .select('id, name')
-      .eq('is_active', true)
-      .order('name')
-    setEmployees((data ?? []) as EmployeeOption[])
+    const { fetchEmployees } = useDataStore.getState()
+    const emps = await fetchEmployees()
+    setEmployees(emps.map((e) => ({ id: e.id, name: e.name })))
   }
   function formatTime(_date: string, time: string) {
     const [h, m] = time.split(':')

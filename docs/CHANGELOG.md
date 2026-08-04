@@ -10,6 +10,13 @@
 - [10:01] Tạo mới `src/hooks/useStoreData.ts` — Centralized React hooks (useEmployees, useServices, useCustomers, useEmployeesAndServices) wrap dataStore với auto-fetch on mount và request deduplication
 
 ### Chỉnh sửa
+- [10:11] Chỉnh sửa `src/pages/owner/Employees.tsx` — Fix TS error: đổi .catch() thành .then().catch() cho supabase RPC call (PostgrestFilterBuilder không có .catch trực tiếp)
+- [10:10] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm import useDataStore để hỗ trợ loadEmployees từ centralized cache
+- [10:10] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Refactor loadEmployees() dùng centralized dataStore thay vì query trực tiếp, tận dụng SWR cache
+- [10:09] Chỉnh sửa `src/pages/owner/Appointments.tsx` — Thêm debounce 800ms cho realtime subscription tránh reload storm khi nhiều appointments update liên tục
+- [10:08] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm debounce 1s cho realtime subscription để tránh reload storm khi nhiều appointments thay đổi cùng lúc
+- [10:07] Chỉnh sửa `src/pages/owner/Employees.tsx` — Thay select('*') bằng explicit columns; chuyển sync_orphaned_employees RPC sang non-blocking (không chờ trước khi load data)
+- [10:06] Chỉnh sửa `src/pages/owner/Customers.tsx` — Thêm server-side pagination (PAGE_SIZE=30), debounced search với ilike, select cột cụ thể thay vì SELECT *, hiển thị total count và nút Load More
 - [10:05] Chỉnh sửa `src/pages/QuickEntry.tsx` — Refactor error handler dùng dataStore cache thay vì parse localStorage thủ công
 - [10:04] Chỉnh sửa `src/pages/QuickEntry.tsx` — Refactor loadData() dùng centralized dataStore cho employees/services thay vì fetch trực tiếp, giảm duplicate queries và tận dụng SWR cache
 - [10:03] Chỉnh sửa `src/pages/QuickEntry.tsx` — Import useDataStore để chuẩn bị refactor dùng centralized cache thay vì fetch trực tiếp từ supabase

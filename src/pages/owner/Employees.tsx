@@ -17,13 +17,13 @@ export function Employees() {
   useEffect(() => { load() }, [])
 
   async function load() {
-    try {
-      await supabase.rpc('sync_orphaned_employees')
-    } catch (e) {
-      console.warn('sync_orphaned_employees failed:', e)
-    }
+    // Run sync in background (non-blocking) — don't wait for it before showing data
+    Promise.resolve(supabase.rpc('sync_orphaned_employees')).catch(() => {})
 
-    const { data } = await supabase.from('employees').select('*').order('name')
+    const { data } = await supabase
+      .from('employees')
+      .select('id, profile_id, name, phone, email, pay_type, commission_rate, fixed_salary, split_rate, rotation_order, is_active, activated_at, created_at')
+      .order('name')
     setEmployees((data as Employee[]) ?? [])
   }
 
