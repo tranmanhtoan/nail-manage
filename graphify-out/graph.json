@@ -62,7 +62,7 @@
       "label": "[2026-08-04]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L17",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_04",
       "community": 13,
@@ -73,9 +73,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_19",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_21",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -84,7 +84,7 @@
       "label": "[2026-08-03]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L30",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_03",
       "community": 13,
@@ -95,9 +95,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L32",
+      "source_location": "L34",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_32",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_34",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -106,7 +106,7 @@
       "label": "[2026-07-31]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L41",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "docs_changelog_2026_07_31",
       "community": 13,
@@ -117,12 +117,67 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L43",
+      "source_location": "L45",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_43",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_45",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
+    },
+    {
+      "label": "QuickEntry.tsx",
+      "file_type": "code",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_quickentry",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
+      "norm_label": "quickentry.tsx"
+    },
+    {
+      "label": "Employee",
+      "file_type": "code",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_pages_quickentry_employee",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
+      "norm_label": "employee"
+    },
+    {
+      "label": "Service",
+      "file_type": "code",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_pages_quickentry_service",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
+      "norm_label": "service"
+    },
+    {
+      "label": "Step",
+      "file_type": "code",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "src_pages_quickentry_step",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
+      "norm_label": "step"
+    },
+    {
+      "label": "QuickEntry()",
+      "file_type": "code",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "src_pages_quickentry_quickentry",
+      "community": 10,
+      "community_name": "authStore.ts",
+      "norm_label": "quickentry()"
     },
     {
       "label": "CheckIn.tsx",
@@ -130,10 +185,10 @@
       "source_file": "src/pages/employee/CheckIn.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_pages_employee_checkin",
       "community": 10,
       "community_name": "authStore.ts",
-      "norm_label": "checkin.tsx"
+      "norm_label": "checkin.tsx",
+      "id": "src_pages_employee_checkin"
     },
     {
       "label": "CheckIn()",
@@ -141,10 +196,10 @@
       "source_file": "src/pages/employee/CheckIn.tsx",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "src_pages_employee_checkin_checkin",
       "community": 10,
       "community_name": "authStore.ts",
-      "norm_label": "checkin()"
+      "norm_label": "checkin()",
+      "id": "src_pages_employee_checkin_checkin"
     },
     {
       "label": "useStoreData.ts",
@@ -153,7 +208,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "usestoredata.ts",
       "id": "src_hooks_usestoredata"
     },
@@ -164,7 +219,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "usedataresult",
       "id": "src_hooks_usestoredata_usedataresult"
     },
@@ -175,7 +230,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "useemployees()",
       "id": "src_hooks_usestoredata_useemployees"
     },
@@ -197,7 +252,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "usecustomers()",
       "id": "src_hooks_usestoredata_usecustomers"
     },
@@ -208,7 +263,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "useemployeesandservices()",
       "id": "src_hooks_usestoredata_useemployeesandservices"
     },
@@ -912,7 +967,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "datastore.ts",
       "id": "src_store_datastore"
     },
@@ -923,7 +978,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "cacheentry",
       "id": "src_store_datastore_cacheentry"
     },
@@ -934,7 +989,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "datastate",
       "id": "src_store_datastore_datastate"
     },
@@ -945,7 +1000,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "isstale()",
       "id": "src_store_datastore_isstale"
     },
@@ -956,7 +1011,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "getcached()",
       "id": "src_store_datastore_getcached"
     },
@@ -967,7 +1022,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "setcache()",
       "id": "src_store_datastore_setcache"
     },
@@ -978,7 +1033,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "emptycache()",
       "id": "src_store_datastore_emptycache"
     },
@@ -989,7 +1044,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "inflightrequests",
       "id": "src_store_datastore_inflightrequests"
     },
@@ -1000,7 +1055,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "deduplicatedfetch()",
       "id": "src_store_datastore_deduplicatedfetch"
     },
@@ -1010,8 +1065,8 @@
       "source_file": "src/store/dataStore.ts",
       "source_location": "L77",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Appointments.tsx",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
       "norm_label": "usedatastore",
       "id": "src_store_datastore_usedatastore"
     },
@@ -1791,7 +1846,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "appointments.tsx",
       "id": "src_pages_owner_appointments"
@@ -1802,7 +1857,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "appointmentrow",
       "id": "src_pages_owner_appointments_appointmentrow"
@@ -1813,7 +1868,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "employee",
       "id": "src_pages_owner_appointments_employee"
@@ -1824,7 +1879,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "service",
       "id": "src_pages_owner_appointments_service"
@@ -1835,7 +1890,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "rotationstatus",
       "id": "src_pages_owner_appointments_rotationstatus"
@@ -1846,7 +1901,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "rotationemployee",
       "id": "src_pages_owner_appointments_rotationemployee"
@@ -1857,7 +1912,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L49",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "getchibiemoji()",
       "id": "src_pages_owner_appointments_getchibiemoji"
@@ -1868,7 +1923,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L58",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "appointments()",
       "id": "src_pages_owner_appointments_appointments"
@@ -1879,7 +1934,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L661",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "appointmentcard()",
       "id": "src_pages_owner_appointments_appointmentcard"
@@ -1890,7 +1945,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L949",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "newappointmentform()",
       "id": "src_pages_owner_appointments_newappointmentform"
@@ -1960,61 +2015,6 @@
       "community_name": "authStore.ts",
       "norm_label": "dashboard()",
       "id": "src_pages_owner_dashboard_dashboard"
-    },
-    {
-      "label": "QuickEntry.tsx",
-      "file_type": "code",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
-      "norm_label": "quickentry.tsx",
-      "id": "src_pages_quickentry"
-    },
-    {
-      "label": "Employee",
-      "file_type": "code",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L9",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
-      "norm_label": "employee",
-      "id": "src_pages_quickentry_employee"
-    },
-    {
-      "label": "Service",
-      "file_type": "code",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L16",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
-      "norm_label": "service",
-      "id": "src_pages_quickentry_service"
-    },
-    {
-      "label": "Step",
-      "file_type": "code",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L22",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
-      "norm_label": "step",
-      "id": "src_pages_quickentry_step"
-    },
-    {
-      "label": "QuickEntry()",
-      "file_type": "code",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L24",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
-      "norm_label": "quickentry()",
-      "id": "src_pages_quickentry_quickentry"
     },
     {
       "label": "authStore.ts",
@@ -2242,7 +2242,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "supermodestore.ts",
       "id": "src_store_supermodestore"
@@ -2253,7 +2253,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "supermodestate",
       "id": "src_store_supermodestore_supermodestate"
@@ -2264,7 +2264,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "getsupermode()",
       "id": "src_store_supermodestore_getsupermode"
@@ -2275,7 +2275,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "usesupermodestore",
       "id": "src_store_supermodestore_usesupermodestore"
@@ -2287,7 +2287,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "database.types.ts",
       "id": "src_lib_database_types"
     },
@@ -2308,7 +2308,7 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 1,
+      "community": 38,
       "community_name": "Appointments.tsx",
       "norm_label": "appointmentstatus",
       "id": "src_lib_database_types_appointmentstatus"
@@ -2331,7 +2331,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "employee",
       "id": "src_lib_database_types_employee"
     },
@@ -2342,7 +2342,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "service",
       "id": "src_lib_database_types_service"
     },
@@ -2353,7 +2353,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "customer",
       "id": "src_lib_database_types_customer"
     },
@@ -2364,7 +2364,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "community": 1,
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "norm_label": "appointment",
       "id": "src_lib_database_types_appointment"
     },
@@ -2440,8 +2440,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "kioskpersonal.tsx",
       "id": "src_pages_kiosk_kioskpersonal"
     },
@@ -2451,8 +2451,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "profileoption",
       "id": "src_pages_kiosk_kioskpersonal_profileoption"
     },
@@ -2462,8 +2462,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "getchibiemoji()",
       "id": "src_pages_kiosk_kioskpersonal_getchibiemoji"
     },
@@ -2473,8 +2473,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 10,
+      "community_name": "authStore.ts",
       "norm_label": "kioskpersonal()",
       "id": "src_pages_kiosk_kioskpersonal_kioskpersonal"
     },
@@ -3751,7 +3751,7 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "bookingpage.tsx",
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "id": "src_pages_booking_bookingpage"
     },
     {
@@ -3762,7 +3762,7 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "bookingpage()",
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "id": "src_pages_booking_bookingpage_bookingpage"
     },
     {
@@ -3804,9 +3804,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
+      "community": 10,
       "norm_label": "kiosklayout.tsx",
-      "community_name": "QuickEntry.tsx",
+      "community_name": "authStore.ts",
       "id": "src_pages_kiosk_kiosklayout"
     },
     {
@@ -3815,9 +3815,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 11,
+      "community": 10,
       "norm_label": "kiosklayout()",
-      "community_name": "QuickEntry.tsx",
+      "community_name": "authStore.ts",
       "id": "src_pages_kiosk_kiosklayout_kiosklayout"
     },
     {
@@ -3828,7 +3828,7 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "customers.tsx",
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "id": "src_pages_owner_customers"
     },
     {
@@ -3839,7 +3839,7 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "customers()",
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "id": "src_pages_owner_customers_customers"
     },
     {
@@ -3850,7 +3850,7 @@
       "_origin": "ast",
       "community": 1,
       "norm_label": "customerform()",
-      "community_name": "Appointments.tsx",
+      "community_name": "dataStore.ts",
       "id": "src_pages_owner_customers_customerform"
     },
     {
@@ -4585,7 +4585,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L41",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4596,7 +4596,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L30",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4607,7 +4607,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L17",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4651,34 +4651,246 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L19",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_19",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_21",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L32",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_32",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_34",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L43",
+      "source_location": "L45",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_43",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_45",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/EmployeeLayout.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_components_employeelayout",
+      "target": "src_pages_quickentry"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/kiosk/KioskLayout.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_kiosk_kiosklayout",
+      "target": "src_pages_quickentry"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_components_offlinesyncbanner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_components_offlinesyncbanner_offlinesyncbanner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_lib_supabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_lib_supabase_supabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_pages_quickentry_employee",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_pages_quickentry_quickentry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_pages_quickentry_service",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_pages_quickentry_step",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_store_authstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_store_authstore_useauthstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_store_datastore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_store_datastore_usedatastore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_store_syncstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/QuickEntry.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_quickentry",
+      "target": "src_store_syncstore_usesyncstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/EmployeeLayout.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_components_employeelayout",
+      "target": "src_pages_quickentry_quickentry"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/kiosk/KioskLayout.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "src_pages_kiosk_kiosklayout",
+      "target": "src_pages_quickentry_quickentry"
     },
     {
       "relation": "imports_from",
@@ -4700,9 +4912,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_hooks_usestoredata",
-      "confidence_score": 1.0
+      "target": "src_hooks_usestoredata"
     },
     {
       "relation": "imports",
@@ -4712,9 +4924,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_hooks_usestoredata_useservices",
-      "confidence_score": 1.0
+      "target": "src_hooks_usestoredata_useservices"
     },
     {
       "relation": "imports_from",
@@ -4724,9 +4936,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_lib_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase"
     },
     {
       "relation": "imports",
@@ -4736,9 +4948,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_lib_supabase_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -4747,9 +4959,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_pages_employee_checkin_checkin",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_checkin_checkin"
     },
     {
       "relation": "imports_from",
@@ -4759,9 +4971,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_store_authstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore"
     },
     {
       "relation": "imports",
@@ -4771,9 +4983,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_store_authstore_useauthstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore_useauthstore"
     },
     {
       "relation": "imports_from",
@@ -4783,9 +4995,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_store_syncstore",
-      "confidence_score": 1.0
+      "target": "src_store_syncstore"
     },
     {
       "relation": "imports",
@@ -4795,9 +5007,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_checkin",
-      "target": "src_store_syncstore_usesyncstore",
-      "confidence_score": 1.0
+      "target": "src_store_syncstore_usesyncstore"
     },
     {
       "relation": "imports",
@@ -6323,18 +6535,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_lib_supabase"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "src/store/authStore.ts",
       "source_location": "L3",
       "weight": 1.0,
@@ -6509,18 +6709,6 @@
       "_origin": "ast",
       "confidence_score": 1.0,
       "source": "src_pages_owner_services",
-      "target": "src_lib_supabase_supabase"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
       "target": "src_lib_supabase_supabase"
     },
     {
@@ -7494,170 +7682,6 @@
       "confidence_score": 1.0,
       "source": "src_pages_owner_dashboard",
       "target": "src_store_authstore_useauthstore"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/EmployeeLayout.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_components_employeelayout",
-      "target": "src_pages_quickentry"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/kiosk/KioskLayout.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_kiosk_kiosklayout",
-      "target": "src_pages_quickentry"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_components_offlinesyncbanner"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_components_offlinesyncbanner_offlinesyncbanner"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_pages_quickentry_employee"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L24",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_pages_quickentry_quickentry"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_pages_quickentry_service"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L22",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_pages_quickentry_step"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_store_authstore"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_store_authstore_useauthstore"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_store_syncstore"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/QuickEntry.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_quickentry",
-      "target": "src_store_syncstore_usesyncstore"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/EmployeeLayout.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_components_employeelayout",
-      "target": "src_pages_quickentry_quickentry"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/kiosk/KioskLayout.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "src_pages_kiosk_kiosklayout",
-      "target": "src_pages_quickentry_quickentry"
     },
     {
       "relation": "imports_from",
@@ -10525,5 +10549,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c67427cc979280dfc3b8ebe98a0cdff336eb16a9"
+  "built_at_commit": "a0b6a11ae361d3317c58a7da6f27cedd18547fcc"
 }

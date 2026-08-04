@@ -1,22 +1,22 @@
 # Graph Report - Nail Manange  (2026-08-05)
 
 ## Corpus Check
-- 79 files · ~49,422 words
+- 79 files · ~49,459 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 415 nodes · 523 edges · 38 communities (29 shown, 9 thin omitted)
+- 415 nodes · 525 edges · 39 communities (30 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c67427cc`
+- Built from commit: `a0b6a11a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - index.ts
-- Appointments.tsx
+- dataStore.ts
 - App.tsx
 - devDependencies
 - compilerOptions
@@ -48,6 +48,7 @@
 - Bàn giao
 - Nghiên cứu
 - implement.md
+- Appointments.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `supabase` - 20 edges
@@ -62,25 +63,25 @@
 10. `useSyncStore` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `KioskPersonal()` --calls--> `useAuthStore`  [EXTRACTED]
-  src/pages/kiosk/KioskPersonal.tsx → src/store/authStore.ts
 - `useInactivityTimeout()` --calls--> `useAuthStore`  [EXTRACTED]
   src/hooks/useInactivityTimeout.ts → src/store/authStore.ts
 - `MyEarnings()` --calls--> `useAuthStore`  [EXTRACTED]
   src/pages/employee/MyEarnings.tsx → src/store/authStore.ts
 - `MySchedule()` --calls--> `useAuthStore`  [EXTRACTED]
   src/pages/employee/MySchedule.tsx → src/store/authStore.ts
+- `KioskPersonal()` --calls--> `useAuthStore`  [EXTRACTED]
+  src/pages/kiosk/KioskPersonal.tsx → src/store/authStore.ts
 - `OfflineSyncBanner()` --calls--> `useSyncStore`  [EXTRACTED]
   src/components/OfflineSyncBanner.tsx → src/store/syncStore.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (38 total, 9 thin omitted)
+## Communities (39 total, 9 thin omitted)
 
-### Community 1 - "Appointments.tsx"
-Cohesion: 0.07
-Nodes (19): UseDataResult, Appointment, AppointmentStatus, Customer, Employee, Service, AppointmentRow, Appointments() (+11 more)
+### Community 1 - "dataStore.ts"
+Cohesion: 0.12
+Nodes (8): UseDataResult, Appointment, Customer, Employee, Service, CacheEntry, DataState, inflightRequests
 
 ### Community 2 - "App.tsx"
 Cohesion: 0.08
@@ -115,12 +116,12 @@ Cohesion: 0.12
 Nodes (14): AppointmentInput, appointmentSchema, BookingInput, bookingSchema, CustomerInput, customerSchema, EmployeeInput, employeeSchema (+6 more)
 
 ### Community 10 - "authStore.ts"
-Cohesion: 0.10
-Nodes (20): BottomNav(), FloatingBackHome(), Header(), useInactivityTimeout(), useServices(), PayType, UserRole, CheckIn() (+12 more)
+Cohesion: 0.08
+Nodes (24): BottomNav(), FloatingBackHome(), Header(), useInactivityTimeout(), useServices(), PayType, UserRole, CheckIn() (+16 more)
 
 ### Community 11 - "QuickEntry.tsx"
-Cohesion: 0.16
-Nodes (12): OfflineSyncBanner(), getChibiEmoji(), KioskPersonal(), ProfileOption, Employee, QuickEntry(), Service, Step (+4 more)
+Cohesion: 0.23
+Nodes (9): OfflineSyncBanner(), Employee, Service, Step, useDataStore, FailedAction, SyncAction, SyncState (+1 more)
 
 ### Community 12 - "graphify reference: extra exports and benchmark"
 Cohesion: 0.22
@@ -174,6 +175,10 @@ Nodes (5): Anti-pattern, Phát triển hướng kiểm thử (TDD), Quy tắc v�
 Cohesion: 0.50
 Nodes (3): Chọn nhánh, Prototype, Quy tắc cho cả hai
 
+### Community 38 - "Appointments.tsx"
+Cohesion: 0.15
+Nodes (10): AppointmentStatus, AppointmentRow, Appointments(), Employee, getChibiEmoji(), RotationEmployee, RotationStatus, Service (+2 more)
+
 ## Knowledge Gaps
 - **212 isolated node(s):** `Thêm mới`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa` (+207 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -182,14 +187,14 @@ Nodes (3): Chọn nhánh, Prototype, Quy tắc cho cả hai
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `App.tsx`, `Appointments.tsx`, `authStore.ts`, `QuickEntry.tsx`?**
-  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+- **Why does `supabase` connect `supabase.ts` to `dataStore.ts`, `App.tsx`, `Appointments.tsx`, `authStore.ts`, `QuickEntry.tsx`?**
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `authStore.ts` to `App.tsx`, `QuickEntry.tsx`, `supabase.ts`?**
   _High betweenness centrality (0.013) - this node is a cross-community bridge._
 - **What connects `Thêm mới`, `Chỉnh sửa`, `Chỉnh sửa` to the rest of the system?**
   _212 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Appointments.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.06923076923076923 - nodes in this community are weakly interconnected._
+- **Should `dataStore.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.11594202898550725 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.07575757575757576 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**

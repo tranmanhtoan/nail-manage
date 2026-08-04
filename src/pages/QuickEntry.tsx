@@ -185,10 +185,11 @@ export function QuickEntry() {
       setIdleMinutes(idleMap)
     } catch (err) {
       console.error('Error fetching online data, loading cache', err)
-      const cachedEmps = localStorage.getItem('cached_employees')
-      const cachedSvcs = localStorage.getItem('cached_services')
-      setEmployees(cachedEmps ? JSON.parse(cachedEmps) : [])
-      setServices(cachedSvcs ? JSON.parse(cachedSvcs) : [])
+      // Centralized store already handles offline fallback
+      const empList = useDataStore.getState().employees.data
+      const svcList = useDataStore.getState().services.data
+      setEmployees(empList as Employee[])
+      setServices(svcList as Service[])
     } finally {
       setLoading(false)
     }

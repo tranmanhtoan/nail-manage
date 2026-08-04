@@ -1,22 +1,22 @@
 # Graph Report - Nail Manange  (2026-08-05)
 
 ## Corpus Check
-- 79 files · ~49,461 words
+- 79 files · ~49,422 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 414 nodes · 523 edges · 38 communities (29 shown, 9 thin omitted)
+- 415 nodes · 523 edges · 38 communities (29 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9fc76ae1`
+- Built from commit: `c67427cc`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - index.ts
-- database.types.ts
+- Appointments.tsx
 - App.tsx
 - devDependencies
 - compilerOptions
@@ -52,7 +52,7 @@
 ## God Nodes (most connected - your core abstractions)
 1. `supabase` - 20 edges
 2. `compilerOptions` - 19 edges
-3. `useAuthStore` - 18 edges
+3. `useAuthStore` - 17 edges
 4. `MCC Nail & Spa — Tổng quan Module` - 15 edges
 5. `What You Must Do When Invoked` - 12 edges
 6. `/graphify` - 10 edges
@@ -66,25 +66,25 @@
   src/pages/kiosk/KioskPersonal.tsx → src/store/authStore.ts
 - `useInactivityTimeout()` --calls--> `useAuthStore`  [EXTRACTED]
   src/hooks/useInactivityTimeout.ts → src/store/authStore.ts
-- `CheckIn()` --calls--> `useAuthStore`  [EXTRACTED]
-  src/pages/employee/CheckIn.tsx → src/store/authStore.ts
 - `MyEarnings()` --calls--> `useAuthStore`  [EXTRACTED]
   src/pages/employee/MyEarnings.tsx → src/store/authStore.ts
 - `MySchedule()` --calls--> `useAuthStore`  [EXTRACTED]
   src/pages/employee/MySchedule.tsx → src/store/authStore.ts
+- `OfflineSyncBanner()` --calls--> `useSyncStore`  [EXTRACTED]
+  src/components/OfflineSyncBanner.tsx → src/store/syncStore.ts
 
 ## Import Cycles
 - None detected.
 
 ## Communities (38 total, 9 thin omitted)
 
-### Community 1 - "database.types.ts"
+### Community 1 - "Appointments.tsx"
 Cohesion: 0.07
 Nodes (19): UseDataResult, Appointment, AppointmentStatus, Customer, Employee, Service, AppointmentRow, Appointments() (+11 more)
 
 ### Community 2 - "App.tsx"
-Cohesion: 0.07
-Nodes (19): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+11 more)
+Cohesion: 0.08
+Nodes (18): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+10 more)
 
 ### Community 3 - "devDependencies"
 Cohesion: 0.07
@@ -115,8 +115,8 @@ Cohesion: 0.12
 Nodes (14): AppointmentInput, appointmentSchema, BookingInput, bookingSchema, CustomerInput, customerSchema, EmployeeInput, employeeSchema (+6 more)
 
 ### Community 10 - "authStore.ts"
-Cohesion: 0.11
-Nodes (18): BottomNav(), FloatingBackHome(), useInactivityTimeout(), PayType, UserRole, CheckIn(), AppointmentRow, EarningData (+10 more)
+Cohesion: 0.10
+Nodes (20): BottomNav(), FloatingBackHome(), Header(), useInactivityTimeout(), useServices(), PayType, UserRole, CheckIn() (+12 more)
 
 ### Community 11 - "QuickEntry.tsx"
 Cohesion: 0.16
@@ -127,8 +127,8 @@ Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
 ### Community 13 - "MCC Nail & Spa — Changelog"
-Cohesion: 0.20
-Nodes (9): [2026-07-31], [2026-08-03], [2026-08-04], [2026-08-05], Chỉnh sửa, Chỉnh sửa, Chỉnh sửa, Chỉnh sửa (+1 more)
+Cohesion: 0.18
+Nodes (10): [2026-07-31], [2026-08-03], [2026-08-04], [2026-08-05], Chỉnh sửa, Chỉnh sửa, Chỉnh sửa, Chỉnh sửa (+2 more)
 
 ### Community 17 - "graphify reference: query, path, explain"
 Cohesion: 0.33
@@ -175,23 +175,23 @@ Cohesion: 0.50
 Nodes (3): Chọn nhánh, Prototype, Quy tắc cho cả hai
 
 ## Knowledge Gaps
-- **211 isolated node(s):** `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa`, `UseDataResult` (+206 more)
+- **212 isolated node(s):** `Thêm mới`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa` (+207 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `App.tsx`, `database.types.ts`, `authStore.ts`, `QuickEntry.tsx`?**
+- **Why does `supabase` connect `supabase.ts` to `App.tsx`, `Appointments.tsx`, `authStore.ts`, `QuickEntry.tsx`?**
   _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `authStore.ts` to `App.tsx`, `QuickEntry.tsx`, `supabase.ts`?**
   _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **What connects `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa` to the rest of the system?**
-  _211 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `database.types.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06707317073170732 - nodes in this community are weakly interconnected._
+- **What connects `Thêm mới`, `Chỉnh sửa`, `Chỉnh sửa` to the rest of the system?**
+  _212 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Appointments.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.06923076923076923 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.0748663101604278 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07575757575757576 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
