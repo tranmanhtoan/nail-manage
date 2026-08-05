@@ -5,7 +5,6 @@
   "3": "devDependencies",
   "4": "compilerOptions",
   "5": "What You Must Do When Invoked",
-  "6": "Employees.tsx",
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
@@ -39,5 +38,5 @@
   "37": "grilling.md",
   "38": "ErrorBoundary",
   "39": "Reports.tsx",
-  "40": "idle-minutes.ts"
+  "40": "QuickEntry.tsx"
 }

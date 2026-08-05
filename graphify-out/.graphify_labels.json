@@ -5,6 +5,7 @@
   "3": "devDependencies",
   "4": "compilerOptions",
   "5": "What You Must Do When Invoked",
+  "6": "Settings.tsx",
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
@@ -36,7 +37,5 @@
   "35": "grill-me.md",
   "36": "grill-with-docs.md",
   "37": "grilling.md",
-  "38": "ErrorBoundary",
-  "39": "Reports.tsx",
-  "40": "QuickEntry.tsx"
+  "39": "Reports.tsx"
 }
