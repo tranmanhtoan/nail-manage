@@ -4,10 +4,6 @@ import { Delete, Lock, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { toAuthEmail } from '@/lib/auth-helpers'
 
-const KIOSK_EMAIL = import.meta.env.VITE_KIOSK_EMAIL || ''
-const KIOSK_PASSWORD = import.meta.env.VITE_KIOSK_PASSWORD || ''
-const ENV_KIOSK_PIN = import.meta.env.VITE_KIOSK_PIN || ''
-
 interface PinGateProps {
   children: React.ReactNode
 }
@@ -17,6 +13,8 @@ export function PinGate({ children }: PinGateProps) {
   const [unlocked, setUnlocked] = useState(false)
   const [checking, setChecking] = useState(true)
   const [kioskPin, setKioskPin] = useState('')
+  const [kioskEmail, setKioskEmail] = useState('')
+  const [kioskPassword, setKioskPassword] = useState('')
   const [pin, setPin] = useState('')
   const [error, setError] = useState(false)
   const [logging, setLogging] = useState(false)
@@ -47,15 +45,18 @@ export function PinGate({ children }: PinGateProps) {
         return
       }
 
-      // Fetch PIN from shop_settings
+      // Fetch kiosk settings from shop_settings
       const { data } = await supabase
         .from('shop_settings')
-        .select('value')
-        .eq('key', 'kiosk_pin')
-        .maybeSingle()
+        .select('key, value')
+        .in('key', ['kiosk_pin', 'kiosk_email', 'kiosk_password'])
 
-      const row = data as { value: string } | null
-      setKioskPin(row?.value || ENV_KIOSK_PIN || '1234')
+      const settings = (data as { key: string; value: string }[] | null) || []
+      const map = Object.fromEntries(settings.map(r => [r.key, r.value]))
+
+      setKioskPin(map['kiosk_pin'] || '1234')
+      setKioskEmail(map['kiosk_email'] || '')
+      setKioskPassword(map['kiosk_password'] || '')
       setChecking(false)
     }
     init()
@@ -91,9 +92,16 @@ export function PinGate({ children }: PinGateProps) {
     setLogging(true)
     setLoginError('')
 
+    if (!kioskEmail || !kioskPassword) {
+      setLogging(false)
+      setLoginError('Kiosk credentials not configured in shop_settings')
+      setPin('')
+      return
+    }
+
     const { error: authError } = await supabase.auth.signInWithPassword({
-      email: toAuthEmail(KIOSK_EMAIL),
-      password: KIOSK_PASSWORD,
+      email: toAuthEmail(kioskEmail),
+      password: kioskPassword,
     })
 
     setLogging(false)
