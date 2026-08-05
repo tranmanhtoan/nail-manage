@@ -6,6 +6,7 @@ import { toAuthEmail } from '@/lib/auth-helpers'
 
 const KIOSK_EMAIL = import.meta.env.VITE_KIOSK_EMAIL || ''
 const KIOSK_PASSWORD = import.meta.env.VITE_KIOSK_PASSWORD || ''
+const ENV_KIOSK_PIN = import.meta.env.VITE_KIOSK_PIN || ''
 
 interface PinGateProps {
   children: React.ReactNode
@@ -54,7 +55,7 @@ export function PinGate({ children }: PinGateProps) {
         .maybeSingle()
 
       const row = data as { value: string } | null
-      setKioskPin(row?.value || '1234')
+      setKioskPin(row?.value || ENV_KIOSK_PIN || '1234')
       setChecking(false)
     }
     init()

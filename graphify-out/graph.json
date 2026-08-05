@@ -62,7 +62,7 @@
       "label": "[2026-08-04]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_04",
       "community": 13,
@@ -73,9 +73,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_35",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_36",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -84,7 +84,7 @@
       "label": "[2026-08-03]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L46",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_03",
       "community": 13,
@@ -95,9 +95,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_48",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_49",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -106,7 +106,7 @@
       "label": "[2026-07-31]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "docs_changelog_2026_07_31",
       "community": 13,
@@ -117,9 +117,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L59",
+      "source_location": "L60",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_59",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_60",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -130,10 +130,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "appointments.tsx"
+      "norm_label": "appointments.tsx",
+      "id": "src_pages_owner_appointments"
     },
     {
       "label": "AppointmentRow",
@@ -141,10 +141,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_appointmentrow",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "appointmentrow"
+      "norm_label": "appointmentrow",
+      "id": "src_pages_owner_appointments_appointmentrow"
     },
     {
       "label": "Employee",
@@ -152,10 +152,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L25",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_employee",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "employee"
+      "norm_label": "employee",
+      "id": "src_pages_owner_appointments_employee"
     },
     {
       "label": "Service",
@@ -163,10 +163,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L33",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_service",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "service"
+      "norm_label": "service",
+      "id": "src_pages_owner_appointments_service"
     },
     {
       "label": "RotationStatus",
@@ -174,10 +174,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_rotationstatus",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "rotationstatus"
+      "norm_label": "rotationstatus",
+      "id": "src_pages_owner_appointments_rotationstatus"
     },
     {
       "label": "RotationEmployee",
@@ -185,10 +185,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L41",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_rotationemployee",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "rotationemployee"
+      "norm_label": "rotationemployee",
+      "id": "src_pages_owner_appointments_rotationemployee"
     },
     {
       "label": "getChibiEmoji()",
@@ -196,10 +196,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L50",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_getchibiemoji",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "getchibiemoji()"
+      "norm_label": "getchibiemoji()",
+      "id": "src_pages_owner_appointments_getchibiemoji"
     },
     {
       "label": "Appointments()",
@@ -207,10 +207,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L59",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_appointments",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "appointments()"
+      "norm_label": "appointments()",
+      "id": "src_pages_owner_appointments_appointments"
     },
     {
       "label": "AppointmentCard()",
@@ -218,10 +218,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L640",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_appointmentcard",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "appointmentcard()"
+      "norm_label": "appointmentcard()",
+      "id": "src_pages_owner_appointments_appointmentcard"
     },
     {
       "label": "NewAppointmentForm()",
@@ -229,10 +229,10 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L928",
       "_origin": "ast",
-      "id": "src_pages_owner_appointments_newappointmentform",
       "community": 11,
       "community_name": "Appointments.tsx",
-      "norm_label": "newappointmentform()"
+      "norm_label": "newappointmentform()",
+      "id": "src_pages_owner_appointments_newappointmentform"
     },
     {
       "label": "QuickEntry.tsx",
@@ -4673,7 +4673,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4684,7 +4684,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L46",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4695,7 +4695,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4739,33 +4739,33 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_35",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_36",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_48",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_49",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L59",
+      "source_location": "L60",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_59",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_60",
       "confidence_score": 1.0
     },
     {
@@ -4776,9 +4776,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_lib_database_types",
-      "confidence_score": 1.0
+      "target": "src_lib_database_types"
     },
     {
       "relation": "imports",
@@ -4788,9 +4788,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_lib_database_types_appointmentstatus",
-      "confidence_score": 1.0
+      "target": "src_lib_database_types_appointmentstatus"
     },
     {
       "relation": "imports_from",
@@ -4800,9 +4800,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_lib_idle_minutes",
-      "confidence_score": 1.0
+      "target": "src_lib_idle_minutes"
     },
     {
       "relation": "imports",
@@ -4812,9 +4812,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_lib_idle_minutes_calculateidleminutes",
-      "confidence_score": 1.0
+      "target": "src_lib_idle_minutes_calculateidleminutes"
     },
     {
       "relation": "imports_from",
@@ -4824,9 +4824,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_lib_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase"
     },
     {
       "relation": "imports",
@@ -4836,9 +4836,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_lib_supabase_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -4847,9 +4847,9 @@
       "source_location": "L640",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_appointmentcard",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_appointmentcard"
     },
     {
       "relation": "contains",
@@ -4858,9 +4858,9 @@
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_appointmentrow",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_appointmentrow"
     },
     {
       "relation": "contains",
@@ -4869,9 +4869,9 @@
       "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_appointments",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_appointments"
     },
     {
       "relation": "contains",
@@ -4880,9 +4880,9 @@
       "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_employee",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_employee"
     },
     {
       "relation": "contains",
@@ -4891,9 +4891,9 @@
       "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_getchibiemoji",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_getchibiemoji"
     },
     {
       "relation": "contains",
@@ -4902,9 +4902,9 @@
       "source_location": "L928",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_newappointmentform",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_newappointmentform"
     },
     {
       "relation": "contains",
@@ -4913,9 +4913,9 @@
       "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_rotationemployee",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_rotationemployee"
     },
     {
       "relation": "contains",
@@ -4924,9 +4924,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_rotationstatus",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_rotationstatus"
     },
     {
       "relation": "contains",
@@ -4935,9 +4935,9 @@
       "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_pages_owner_appointments_service",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_service"
     },
     {
       "relation": "imports_from",
@@ -4947,9 +4947,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_store_datastore",
-      "confidence_score": 1.0
+      "target": "src_store_datastore"
     },
     {
       "relation": "imports",
@@ -4959,9 +4959,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_store_datastore_usedatastore",
-      "confidence_score": 1.0
+      "target": "src_store_datastore_usedatastore"
     },
     {
       "relation": "imports_from",
@@ -4971,9 +4971,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_store_supermodestore",
-      "confidence_score": 1.0
+      "target": "src_store_supermodestore"
     },
     {
       "relation": "imports",
@@ -4983,9 +4983,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments",
-      "target": "src_store_supermodestore_usesupermodestore",
-      "confidence_score": 1.0
+      "target": "src_store_supermodestore_usesupermodestore"
     },
     {
       "relation": "calls",
@@ -4995,9 +4995,9 @@
       "source_location": "L417",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_owner_appointments_appointments",
-      "target": "src_pages_owner_appointments_getchibiemoji",
-      "confidence_score": 1.0
+      "target": "src_pages_owner_appointments_getchibiemoji"
     },
     {
       "relation": "imports_from",
@@ -10786,5 +10786,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ecef6732e946e98ee5da20b2c423898ca8f8d9c7"
+  "built_at_commit": "308a652b345561763c1751450fcfd95233892362"
 }

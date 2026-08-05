@@ -28,6 +28,7 @@
 - [10:03] Chỉnh sửa `src/pages/QuickEntry.tsx` — Import useDataStore để chuẩn bị refactor dùng centralized cache thay vì fetch trực tiếp từ supabase
 - [10:02] Chỉnh sửa `src/pages/employee/CheckIn.tsx` — Refactor bỏ fetch services trực tiếp, dùng useServices hook từ useStoreData để tận dụng cache và deduplication
 - [10:00] Chỉnh sửa `src/store/dataStore.ts` — Thêm request deduplication (inflightRequests map) để tránh duplicate fetch khi nhiều component mount đồng thời; đồng bộ localStorage cache keys giữa dataStore và QuickEntry/CheckIn; thêm activated_at vào select employees
+- [10:20] Chỉnh sửa `src/index.css` — Thêm @custom-variant dark để Tailwind v4 dùng class-based dark mode thay vì prefers-color-scheme, light mode không còn phụ thuộc hệ thống
 
 ---
 
