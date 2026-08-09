@@ -26,7 +26,7 @@ const DEFAULT_TOGGLES: FeatureToggles = {
 
 export function Settings() {
   const { t, i18n } = useTranslation()
-  const { logout } = useAuthStore()
+  const { user, logout } = useAuthStore()
   const { darkMode, toggleDarkMode } = useThemeStore()
   const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
   const [tab, setTab] = useState<Tab>('dashboard')
@@ -34,10 +34,13 @@ export function Settings() {
   const [saving, setSaving] = useState(false)
   const [kioskPin, setKioskPin] = useState('')
   const [pinSaved, setPinSaved] = useState(false)
+  const [ownerPin, setOwnerPin] = useState('')
+  const [ownerPinSaved, setOwnerPinSaved] = useState(false)
 
   useEffect(() => {
     loadToggles()
     loadKioskPin()
+    loadOwnerPin()
   }, [])
 
   async function loadKioskPin() {
@@ -59,6 +62,29 @@ export function Settings() {
     setSaving(false)
     setPinSaved(true)
     setTimeout(() => setPinSaved(false), 2000)
+  }
+
+  async function loadOwnerPin() {
+    if (!user) return
+    const { data } = await supabase
+      .from('profiles')
+      .select('pin')
+      .eq('id', user.id)
+      .single()
+    const row = data as { pin: string | null } | null
+    setOwnerPin(row?.pin || '')
+  }
+
+  async function saveOwnerPin() {
+    if (!user || !ownerPin || ownerPin.length < 4) return
+    setSaving(true)
+    await supabase
+      .from('profiles')
+      .update({ pin: ownerPin })
+      .eq('id', user.id)
+    setSaving(false)
+    setOwnerPinSaved(true)
+    setTimeout(() => setOwnerPinSaved(false), 2000)
   }
 
   async function loadToggles() {
@@ -216,6 +242,36 @@ export function Settings() {
                 className="px-4 py-3 bg-[#864e5a] text-white font-semibold rounded-xl text-sm disabled:opacity-40 active:scale-[0.98] transition-transform"
               >
                 {pinSaved ? '✓' : t('common.save')}
+              </button>
+            </div>
+          </div>
+
+          {/* Owner PIN */}
+          <div
+            className="rounded-[1rem] p-5 space-y-3 border border-[rgba(134,78,90,0.1)]"
+            style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
+          >
+            <div className="flex items-center gap-2">
+              <KeyRound size={16} className="text-[#864e5a]" />
+              <h3 className="text-[13px] font-semibold text-[#864e5a] uppercase tracking-widest">{t('settings.ownerPin')}</h3>
+            </div>
+            <p className="text-xs text-gray-500">{t('settings.ownerPinDesc')}</p>
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                value={ownerPin}
+                onChange={(e) => setOwnerPin(e.target.value.replace(/\D/g, '').slice(0, 8))}
+                maxLength={8}
+                className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none text-center text-lg font-mono tracking-[0.3em]"
+              />
+              <button
+                onClick={saveOwnerPin}
+                disabled={!ownerPin || ownerPin.length < 4}
+                className="px-4 py-3 bg-[#864e5a] text-white font-semibold rounded-xl text-sm disabled:opacity-40 active:scale-[0.98] transition-transform"
+              >
+                {ownerPinSaved ? '✓' : t('common.save')}
               </button>
             </div>
           </div>

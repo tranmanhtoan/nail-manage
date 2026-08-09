@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "src/i18n/vi.json": {
-    "mtime": 1785420679.8628514,
-    "ast_hash": "4ef152acafb167303520baa26ffef5dd",
+    "mtime": 1786275043.779886,
+    "ast_hash": "9240af885a57a884c89a049b0d599747",
     "semantic_hash": ""
   },
   "src/lib/auth-helpers.ts": {
@@ -215,8 +215,8 @@
     "semantic_hash": "6bb6bf6ce1ea2a862310e5f99595a7bf"
   },
   "supabase/schema.sql": {
-    "mtime": 1785421125.1837544,
-    "ast_hash": "02c0f8229cd9b2d7bb2db288977470cf",
+    "mtime": 1786273909.012374,
+    "ast_hash": "cd8a1dff50df6bb70ecde8b992de35b4",
     "semantic_hash": ""
   },
   "tsconfig.json": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785946919.5138798,
-    "ast_hash": "dc15742ff257e785de0fd4f1d73715eb",
+    "mtime": 1785947091.304323,
+    "ast_hash": "8eb5f33c329bbee0e2f0af3ac33942a0",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
