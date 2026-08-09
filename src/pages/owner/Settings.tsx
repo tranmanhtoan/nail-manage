@@ -31,7 +31,7 @@ export function Settings() {
   const { user, logout } = useAuthStore()
   const { darkMode, toggleDarkMode } = useThemeStore()
   const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
-  const [tab, setTab] = useState<Tab>('general')
+  const [tab, setTab] = useState<Tab>('dashboard')
   const [toggles, setToggles] = useState<FeatureToggles>(DEFAULT_TOGGLES)
   const [saving, setSaving] = useState(false)
   const [kioskPin, setKioskPin] = useState('')
