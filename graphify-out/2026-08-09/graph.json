@@ -15,10 +15,21 @@
       "norm_label": "idle-minutes.test.ts"
     },
     {
+      "label": "installMemoryLocalStorage()",
+      "file_type": "code",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "src_lib_idle_minutes_test_installmemorylocalstorage",
+      "community": 39,
+      "community_name": "Appointments.tsx",
+      "norm_label": "installmemorylocalstorage()"
+    },
+    {
       "label": "NOW",
       "file_type": "code",
       "source_file": "src/lib/idle-minutes.test.ts",
-      "source_location": "L8",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "src_lib_idle_minutes_test_now",
       "community": 39,
@@ -29,7 +40,7 @@
       "label": "emps",
       "file_type": "code",
       "source_file": "src/lib/idle-minutes.test.ts",
-      "source_location": "L11",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "src_lib_idle_minutes_test_emps",
       "community": 39,
@@ -1164,8 +1175,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L48",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 0,
+      "community_name": "QuickEntry.tsx",
       "norm_label": "myearnings()",
       "id": "src_pages_employee_myearnings_myearnings"
     },
@@ -2814,8 +2825,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 41,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "index.ts",
       "id": "src_i18n_index"
     },
@@ -2825,8 +2836,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 41,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "getsavedlang()",
       "id": "src_i18n_index_getsavedlang"
     },
@@ -2836,8 +2847,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 41,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "loadtranslation()",
       "id": "src_i18n_index_loadtranslation"
     },
@@ -2847,8 +2858,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 41,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "initiallng",
       "id": "src_i18n_index_initiallng"
     },
@@ -2858,8 +2869,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "login.tsx",
       "id": "src_pages_login"
     },
@@ -2869,8 +2880,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "ownerprofile",
       "id": "src_pages_login_ownerprofile"
     },
@@ -2880,8 +2891,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "login()",
       "id": "src_pages_login_login"
     },
@@ -2924,8 +2935,8 @@
       "source_file": "src/main.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 41,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "main.tsx",
       "id": "src_main"
     },
@@ -2935,8 +2946,8 @@
       "source_file": "src/main.tsx",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 41,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "registerswupdatehandler()",
       "id": "src_main_registerswupdatehandler"
     },
@@ -4266,9 +4277,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch.tsx",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch"
     },
     {
@@ -4277,9 +4288,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch()",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch_languageswitch"
     },
     {
@@ -4332,9 +4343,9 @@
       "source_file": "src/i18n.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 41,
+      "community": 2,
       "norm_label": "i18n.ts",
-      "community_name": "index.ts",
+      "community_name": "App.tsx",
       "id": "src_i18n"
     },
     {
@@ -5128,7 +5139,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/idle-minutes.test.ts",
-      "source_location": "L11",
+      "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_idle_minutes_test",
@@ -5139,7 +5150,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/idle-minutes.test.ts",
-      "source_location": "L8",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_idle_minutes_test",
+      "target": "src_lib_idle_minutes_test_installmemorylocalstorage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_lib_idle_minutes_test",
@@ -11729,5 +11751,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "628a399faa053d5a6c7e5b5dd5bf4c0631211589"
+  "built_at_commit": "606f090dc9ec167c957992d8fab87c88b8398fd5"
 }

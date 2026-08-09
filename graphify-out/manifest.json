@@ -20,8 +20,8 @@
     "semantic_hash": "481f100e0627bc7ffa49c2d54c9517ce"
   },
   "package.json": {
-    "mtime": 1786291009.5942419,
-    "ast_hash": "54f371cf50cd49b79c85e4d8ba7c489b",
+    "mtime": 1786291900.976292,
+    "ast_hash": "ff71643ede778e9a08968fc7027b1824",
     "semantic_hash": ""
   },
   "src/App.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786289400.6657305,
-    "ast_hash": "b782a8fca127c1b345cbf92b3b1564d3",
+    "mtime": 1786291229.6983688,
+    "ast_hash": "03aa2c8541a6eee8489e711b29dc340f",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -457,6 +457,11 @@
   "src/lib/idle-minutes.test.ts": {
     "mtime": 1786291178.5096467,
     "ast_hash": "dd2a087164ac4ac6cbaea1ac8e9aaf5c",
+    "semantic_hash": ""
+  },
+  "eslint.config.js": {
+    "mtime": 1786291895.1466146,
+    "ast_hash": "c1fb781f765f156de6538d1c39577283",
     "semantic_hash": ""
   }
 }
