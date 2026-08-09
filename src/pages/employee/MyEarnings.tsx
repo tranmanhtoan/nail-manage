@@ -31,6 +31,20 @@ interface AppointmentRow {
   service_name: string | null
 }
 
+/** Map raw RPC row (may have apt_ prefix or not) to consistent AppointmentRow */
+function normalizeAptRow(r: any): AppointmentRow {
+  return {
+    apt_id: r.apt_id ?? r.id ?? '',
+    apt_date: r.apt_date ?? r.date ?? '',
+    apt_time: r.apt_time ?? r.time ?? '00:00',
+    apt_status: r.apt_status ?? r.status ?? '',
+    apt_price: Number(r.apt_price ?? r.price) || 0,
+    apt_tip: Number(r.apt_tip ?? r.tip) || 0,
+    customer_name: r.customer_name ?? null,
+    service_name: r.service_name ?? null,
+  }
+}
+
 export function MyEarnings() {
   const { t, i18n } = useTranslation()
   const user = useAuthStore((s) => s.user)
@@ -64,15 +78,27 @@ export function MyEarnings() {
     }
 
     try {
-      // Get my employee record via RPC (bypasses RLS)
-      const { data: empRows } = await supabase.rpc('get_my_employee')
-      const empArr = empRows as MyEmployee[] | null
-      if (!empArr || empArr.length === 0) {
+      // Get my employee record
+      // Try RPC first, fallback to direct query if RPC doesn't exist
+      let empData: MyEmployee | null = null
+      const { data: empRows, error: empErr } = await supabase.rpc('get_my_employee')
+      if (!empErr && empRows && (empRows as any[]).length > 0) {
+        empData = (empRows as any[])[0] as MyEmployee
+      } else {
+        // RPC not available or returned empty — try direct query
+        const { data: directEmp } = await supabase
+          .from('employees')
+          .select('id, name, pay_type, commission_rate, fixed_salary, split_rate')
+          .eq('profile_id', user!.id)
+          .single()
+        if (directEmp) empData = directEmp as MyEmployee
+      }
+
+      if (!empData) {
         setData({ totalServices: 0, totalRevenue: 0, totalTips: 0, myEarnings: 0 })
         setAppointments([])
         return
       }
-      const empData = empArr[0]
       setEmployee(empData)
       localStorage.setItem(empCacheKey, JSON.stringify(empData))
 
@@ -100,7 +126,7 @@ export function MyEarnings() {
           dates.map((d) => supabase.rpc('get_my_appointments', { p_date: d }))
         )
         for (const res of results) {
-          const rows = (res.data ?? []) as AppointmentRow[]
+          const rows = ((res.data ?? []) as any[]).map(normalizeAptRow)
           allRows.push(...rows)
         }
       } else {
@@ -110,7 +136,7 @@ export function MyEarnings() {
           p_date: today,
           p_date_from: dateFrom,
         })
-        allRows.push(...((aptData ?? []) as AppointmentRow[]))
+        allRows.push(...((aptData ?? []) as any[]).map(normalizeAptRow))
       }
 
       // Filter only completed appointments for earnings calculation

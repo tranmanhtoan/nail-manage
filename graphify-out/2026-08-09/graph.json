@@ -4,157 +4,14 @@
   "graph": {},
   "nodes": [
     {
-      "label": "CHANGELOG.md",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "docs_changelog",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "changelog.md"
-    },
-    {
-      "label": "MCC Nail & Spa \u2014 Changelog",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "docs_changelog_mcc_nail_spa_changelog",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "mcc nail & spa \u2014 changelog"
-    },
-    {
-      "label": "[2026-08-09]",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "docs_changelog_2026_08_09",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-09]"
-    },
-    {
-      "label": "Ch\u1ec9nh s\u1eeda",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
-    },
-    {
-      "label": "[2026-08-05]",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L52",
-      "_origin": "ast",
-      "id": "docs_changelog_2026_08_05",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-05]"
-    },
-    {
-      "label": "Th\u00eam m\u1edbi",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L54",
-      "_origin": "ast",
-      "id": "docs_changelog_th\u00eam_m\u1edbi",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "them moi"
-    },
-    {
-      "label": "Ch\u1ec9nh s\u1eeda",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L58",
-      "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_58",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
-    },
-    {
-      "label": "[2026-08-04]",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L82",
-      "_origin": "ast",
-      "id": "docs_changelog_2026_08_04",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-04]"
-    },
-    {
-      "label": "Ch\u1ec9nh s\u1eeda",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L84",
-      "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_84",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
-    },
-    {
-      "label": "[2026-08-03]",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L95",
-      "_origin": "ast",
-      "id": "docs_changelog_2026_08_03",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-08-03]"
-    },
-    {
-      "label": "Ch\u1ec9nh s\u1eeda",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L97",
-      "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_97",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
-    },
-    {
-      "label": "[2026-07-31]",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L106",
-      "_origin": "ast",
-      "id": "docs_changelog_2026_07_31",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "[2026-07-31]"
-    },
-    {
-      "label": "Ch\u1ec9nh s\u1eeda",
-      "file_type": "document",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L108",
-      "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_108",
-      "community": 13,
-      "community_name": "MCC Nail & Spa \u2014 Changelog",
-      "norm_label": "chinh sua"
-    },
-    {
       "label": "MyEarnings.tsx",
       "file_type": "code",
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_employee_myearnings",
-      "community": 10,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "myearnings.tsx"
     },
     {
@@ -164,8 +21,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_employee_myearnings_earningdata",
-      "community": 10,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "earningdata"
     },
     {
@@ -175,8 +32,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_employee_myearnings_myemployee",
-      "community": 10,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "myemployee"
     },
     {
@@ -186,8 +43,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_pages_employee_myearnings_appointmentrow",
-      "community": 10,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "appointmentrow"
     },
     {
@@ -197,20 +54,174 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_pages_employee_myearnings_myearnings",
-      "community": 10,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "myearnings()"
+    },
+    {
+      "label": "getDateRange()",
+      "file_type": "code",
+      "source_file": "src/pages/employee/MyEarnings.tsx",
+      "source_location": "L268",
+      "_origin": "ast",
+      "id": "src_pages_employee_myearnings_getdaterange",
+      "community": 6,
+      "community_name": "supabase.ts",
+      "norm_label": "getdaterange()"
     },
     {
       "label": "calcEarnings()",
       "file_type": "code",
       "source_file": "src/pages/employee/MyEarnings.tsx",
-      "source_location": "L288",
+      "source_location": "L280",
       "_origin": "ast",
       "id": "src_pages_employee_myearnings_calcearnings",
-      "community": 10,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "calcearnings()"
+    },
+    {
+      "label": "CHANGELOG.md",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "changelog.md",
+      "id": "docs_changelog"
+    },
+    {
+      "label": "MCC Nail & Spa \u2014 Changelog",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "mcc nail & spa \u2014 changelog",
+      "id": "docs_changelog_mcc_nail_spa_changelog"
+    },
+    {
+      "label": "[2026-08-09]",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "[2026-08-09]",
+      "id": "docs_changelog_2026_08_09"
+    },
+    {
+      "label": "Ch\u1ec9nh s\u1eeda",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda"
+    },
+    {
+      "label": "[2026-08-05]",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L53",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "[2026-08-05]",
+      "id": "docs_changelog_2026_08_05"
+    },
+    {
+      "label": "Th\u00eam m\u1edbi",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "them moi",
+      "id": "docs_changelog_th\u00eam_m\u1edbi"
+    },
+    {
+      "label": "Ch\u1ec9nh s\u1eeda",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L59",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_59"
+    },
+    {
+      "label": "[2026-08-04]",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "[2026-08-04]",
+      "id": "docs_changelog_2026_08_04"
+    },
+    {
+      "label": "Ch\u1ec9nh s\u1eeda",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_85"
+    },
+    {
+      "label": "[2026-08-03]",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "[2026-08-03]",
+      "id": "docs_changelog_2026_08_03"
+    },
+    {
+      "label": "Ch\u1ec9nh s\u1eeda",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L98",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_98"
+    },
+    {
+      "label": "[2026-07-31]",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L107",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "[2026-07-31]",
+      "id": "docs_changelog_2026_07_31"
+    },
+    {
+      "label": "Ch\u1ec9nh s\u1eeda",
+      "file_type": "document",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L109",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "MCC Nail & Spa \u2014 Changelog",
+      "norm_label": "chinh sua",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_109"
     },
     {
       "label": "BottomNav.tsx",
@@ -834,8 +845,8 @@
       "source_file": "src/pages/owner/Customers.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customers.tsx",
       "id": "src_pages_owner_customers"
     },
@@ -845,8 +856,8 @@
       "source_file": "src/pages/owner/Customers.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customers()",
       "id": "src_pages_owner_customers_customers"
     },
@@ -856,8 +867,8 @@
       "source_file": "src/pages/owner/Customers.tsx",
       "source_location": "L150",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customerform()",
       "id": "src_pages_owner_customers_customerform"
     },
@@ -2429,8 +2440,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "login.tsx",
       "id": "src_pages_login"
     },
@@ -2440,8 +2451,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "ownerprofile",
       "id": "src_pages_login_ownerprofile"
     },
@@ -2451,8 +2462,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "login()",
       "id": "src_pages_login_login"
     },
@@ -2726,8 +2737,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "database.types.ts",
       "id": "src_lib_database_types"
     },
@@ -2737,8 +2748,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 10,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "paytype",
       "id": "src_lib_database_types_paytype"
     },
@@ -2748,8 +2759,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 11,
+      "community_name": "Appointments.tsx",
       "norm_label": "appointmentstatus",
       "id": "src_lib_database_types_appointmentstatus"
     },
@@ -2759,8 +2770,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "userrole",
       "id": "src_lib_database_types_userrole"
     },
@@ -2781,8 +2792,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "service",
       "id": "src_lib_database_types_service"
     },
@@ -2792,8 +2803,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customer",
       "id": "src_lib_database_types_customer"
     },
@@ -2803,8 +2814,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "appointment",
       "id": "src_lib_database_types_appointment"
     },
@@ -3903,9 +3914,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch.tsx",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch"
     },
     {
@@ -3914,9 +3925,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch()",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch_languageswitch"
     },
     {
@@ -4013,9 +4024,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "bookingpage.tsx",
-      "community_name": "dataStore.ts",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage"
     },
     {
@@ -4024,9 +4035,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "bookingpage()",
-      "community_name": "dataStore.ts",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage_bookingpage"
     },
     {
@@ -4714,138 +4725,6 @@
   ],
   "links": [
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog",
-      "target": "docs_changelog_mcc_nail_spa_changelog",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L106",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_07_31",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L95",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_03",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L82",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_04",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L52",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_05",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_mcc_nail_spa_changelog",
-      "target": "docs_changelog_2026_08_09",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_2026_08_09",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L58",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_2026_08_05",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_58",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L54",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_2026_08_05",
-      "target": "docs_changelog_th\u00eam_m\u1edbi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L84",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_84",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L97",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_97",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "docs/CHANGELOG.md",
-      "source_location": "L108",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_108",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4920,7 +4799,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/employee/MyEarnings.tsx",
-      "source_location": "L288",
+      "source_location": "L280",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_pages_employee_myearnings",
@@ -4936,6 +4815,17 @@
       "_origin": "ast",
       "source": "src_pages_employee_myearnings",
       "target": "src_pages_employee_myearnings_earningdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/employee/MyEarnings.tsx",
+      "source_location": "L268",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_pages_employee_myearnings",
+      "target": "src_pages_employee_myearnings_getdaterange",
       "confidence_score": 1.0
     },
     {
@@ -4995,6 +4885,138 @@
       "confidence_score": 1.0,
       "source": "src_components_employeelayout",
       "target": "src_pages_employee_myearnings_myearnings"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog",
+      "target": "docs_changelog_mcc_nail_spa_changelog"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_mcc_nail_spa_changelog",
+      "target": "docs_changelog_2026_07_31"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_mcc_nail_spa_changelog",
+      "target": "docs_changelog_2026_08_03"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_mcc_nail_spa_changelog",
+      "target": "docs_changelog_2026_08_04"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_mcc_nail_spa_changelog",
+      "target": "docs_changelog_2026_08_05"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_mcc_nail_spa_changelog",
+      "target": "docs_changelog_2026_08_09"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_2026_08_09",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_2026_08_05",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_59"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_2026_08_05",
+      "target": "docs_changelog_th\u00eam_m\u1edbi"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_2026_08_04",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_85"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L98",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_2026_08_03",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_98"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/CHANGELOG.md",
+      "source_location": "L109",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "docs_changelog_2026_07_31",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_109"
     },
     {
       "relation": "imports_from",
@@ -10860,5 +10882,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6155e4e98c2fd3b64dbd1def7258b0945ee2b774"
+  "built_at_commit": "438c4b276ce0eb2fc1f0d47565bbf9c46c56fca6"
 }
