@@ -123,7 +123,7 @@ export function MyEarnings() {
   }
 
   function formatTime(time: string) {
-    const [h, m] = time.split(':')
+    const [h, m] = (time ?? '00:00').split(':')
     const hour = parseInt(h)
     const ampm = hour >= 12 ? 'PM' : 'AM'
     const h12 = hour % 12 || 12
