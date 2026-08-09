@@ -174,7 +174,7 @@ export function Settings() {
       </div>
 
       {/* Dashboard tab */}
-      {tab === 'dashboard' && <AdminDashboard />}
+      {tab === 'dashboard' && <AdminDashboard onSwitchTab={(t) => setTab(t as Tab)} />}
 
       {/* General tab */}
       {tab === 'general' && (
