@@ -1,16 +1,16 @@
 # Graph Report - Nail Manange  (2026-08-09)
 
 ## Corpus Check
-- 80 files · ~52,010 words
+- 80 files · ~52,265 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 426 nodes · 539 edges · 38 communities (29 shown, 9 thin omitted)
+- 427 nodes · 539 edges · 38 communities (29 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1fd3c59e`
+- Built from commit: `be4ff9d2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -76,12 +76,12 @@
 ## Communities (38 total, 9 thin omitted)
 
 ### Community 1 - "dataStore.ts"
-Cohesion: 0.08
-Nodes (16): UseDataResult, Appointment, AppointmentStatus, Customer, Employee, Service, UserRole, DAYS (+8 more)
+Cohesion: 0.07
+Nodes (18): UseDataResult, Appointment, AppointmentStatus, Customer, Employee, Service, UserRole, DAYS (+10 more)
 
 ### Community 2 - "App.tsx"
-Cohesion: 0.07
-Nodes (19): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+11 more)
+Cohesion: 0.08
+Nodes (17): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+9 more)
 
 ### Community 3 - "devDependencies"
 Cohesion: 0.07
@@ -97,7 +97,7 @@ Nodes (24): For /graphify add and --watch, For /graphify query, For the commit h
 
 ### Community 6 - "supabase.ts"
 Cohesion: 0.08
-Nodes (21): PinGateProps, toAuthEmail(), initAuthListener(), stopAuthListener(), supabase, supabaseAdmin, supabaseAnonKey, supabaseUrl (+13 more)
+Nodes (21): LanguageSwitch(), PinGateProps, toAuthEmail(), initAuthListener(), stopAuthListener(), supabase, supabaseAdmin, supabaseAnonKey (+13 more)
 
 ### Community 7 - "dependencies"
 Cohesion: 0.11
@@ -117,7 +117,7 @@ Nodes (25): BottomNav(), FloatingBackHome(), OfflineSyncBanner(), useInactivityT
 
 ### Community 11 - "Appointments.tsx"
 Cohesion: 0.13
-Nodes (12): calculateIdleMinutes(), IdleCalcAppointment, IdleCalcEmployee, AppointmentRow, Appointments(), Employee, getChibiEmoji(), RotationEmployee (+4 more)
+Nodes (13): calculateIdleMinutes(), getShiftStartMinutes(), IdleCalcAppointment, IdleCalcEmployee, AppointmentRow, Appointments(), Employee, getChibiEmoji() (+5 more)
 
 ### Community 12 - "graphify reference: extra exports and benchmark"
 Cohesion: 0.22
@@ -183,16 +183,16 @@ Nodes (3): Chọn nhánh, Prototype, Quy tắc cho cả hai
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `Appointments.tsx`, `dataStore.ts`, `QuickEntry.tsx`, `App.tsx`?**
+- **Why does `supabase` connect `supabase.ts` to `dataStore.ts`, `QuickEntry.tsx`, `Appointments.tsx`?**
   _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `QuickEntry.tsx` to `dataStore.ts`, `App.tsx`, `supabase.ts`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
 - **What connects `Chỉnh sửa`, `Thêm mới`, `Chỉnh sửa` to the rest of the system?**
   _219 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dataStore.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.0784313725490196 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07301587301587302 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.0748663101604278 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07816091954022988 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**

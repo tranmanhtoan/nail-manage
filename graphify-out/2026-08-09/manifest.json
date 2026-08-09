@@ -75,8 +75,8 @@
     "semantic_hash": "1f8bd8a76f9730ea96057e7ebfbc776b"
   },
   "src/i18n/en.json": {
-    "mtime": 1786278602.4089928,
-    "ast_hash": "e065b3bb2a69398912d60965f32c69a7",
+    "mtime": 1786281689.2667365,
+    "ast_hash": "a23e96c5fc6112470d7bd07626fc4458",
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "src/i18n/vi.json": {
-    "mtime": 1786278603.694588,
-    "ast_hash": "c9d47fccebcc727b716bfd7d52287fa4",
+    "mtime": 1786281703.790495,
+    "ast_hash": "f3a2bd197d00c678524f6dc9bdaf06a7",
     "semantic_hash": ""
   },
   "src/lib/auth-helpers.ts": {
@@ -180,8 +180,8 @@
     "semantic_hash": "c840b246b5bfea7baf1b738ae4b5195f"
   },
   "src/pages/owner/Settings.tsx": {
-    "mtime": 1786280424.0778902,
-    "ast_hash": "b9b88c102db3e4d4cf7b95e6b455019e",
+    "mtime": 1786281738.1333964,
+    "ast_hash": "d936051d481ddd8adc421adc04a9ddda",
     "semantic_hash": ""
   },
   "src/store/authStore.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786280434.408058,
-    "ast_hash": "d680e57dde6b1b72f24e98d3d0d0f186",
+    "mtime": 1786281667.973435,
+    "ast_hash": "9da84c02febe1e0f22d3688efd7bd0d7",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -425,8 +425,8 @@
     "semantic_hash": ""
   },
   "src/lib/idle-minutes.ts": {
-    "mtime": 1786281218.1014376,
-    "ast_hash": "f24bdaf9d798a083ee18e67ce14da726",
+    "mtime": 1786281725.431626,
+    "ast_hash": "adb57e47badae8995af597fca4a8fec1",
     "semantic_hash": ""
   }
 }

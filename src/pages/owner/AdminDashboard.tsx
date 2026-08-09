@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { Users, Scissors, CalendarDays, UserCheck, Loader2 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
@@ -14,8 +15,13 @@ interface AdminStats {
   totalCustomers: number
 }
 
-export function AdminDashboard() {
+interface AdminDashboardProps {
+  onSwitchTab?: (tab: string) => void
+}
+
+export function AdminDashboard({ onSwitchTab }: AdminDashboardProps) {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [stats, setStats] = useState<AdminStats>({
     totalProfiles: 0,
     totalEmployees: 0,
@@ -80,6 +86,7 @@ export function AdminDashboard() {
       value: stats.totalProfiles,
       icon: UserCheck,
       color: 'bg-violet-100 text-violet-700',
+      onClick: undefined as (() => void) | undefined,
     },
     {
       label: t('nav.employees'),
@@ -87,6 +94,7 @@ export function AdminDashboard() {
       sub: t('settings.activeTotal'),
       icon: Users,
       color: 'bg-emerald-100 text-emerald-700',
+      onClick: () => onSwitchTab?.('employees'),
     },
     {
       label: t('nav.services'),
@@ -94,24 +102,28 @@ export function AdminDashboard() {
       sub: t('settings.activeTotal'),
       icon: Scissors,
       color: 'bg-amber-100 text-amber-700',
+      onClick: () => onSwitchTab?.('services'),
     },
     {
       label: t('appointments.todayTitle'),
       value: stats.todayAppointments,
       icon: CalendarDays,
       color: 'bg-sky-100 text-sky-700',
+      onClick: () => navigate('/appointments'),
     },
     {
       label: t('dashboard.totalAppointments'),
       value: stats.totalAppointments,
       icon: CalendarDays,
       color: 'bg-rose-100 text-rose-700',
+      onClick: () => navigate('/appointments'),
     },
     {
       label: t('customer.title'),
       value: stats.totalCustomers,
       icon: UserCheck,
       color: 'bg-teal-100 text-teal-700',
+      onClick: undefined as (() => void) | undefined,
     },
   ]
 
