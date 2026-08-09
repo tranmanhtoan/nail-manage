@@ -611,6 +611,70 @@ export function Reports() {
           </div>
         </div>
       )}
+
+      {/* Hidden shop report print content */}
+      <div className="hidden">
+        <div ref={shopPrintRef}>
+          <h2>MCC Nail & Spa — {t('reports.shopReport')}</h2>
+          <h3>{new Date(periodStart + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US')} — {new Date(periodEnd + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US')}</h3>
+
+          <h4>{t('reports.topPerformers')}</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{t('common.name')}</th>
+                <th className="right">{t('appointments.turns')}</th>
+                <th className="right">{t('dashboard.revenue')}</th>
+                <th className="right">{t('reports.employeeEarningsLabel')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {employeeSummaries.map((emp, i) => (
+                <tr key={emp.id}>
+                  <td>{i + 1}</td>
+                  <td>{emp.name}</td>
+                  <td className="right">{emp.count}</td>
+                  <td className="right">${emp.revenue.toFixed(0)}</td>
+                  <td className="right">${emp.commission.toFixed(0)}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className="total-row">
+                <td colSpan={2}>{t('common.total')}</td>
+                <td className="right">{employeeSummaries.reduce((s, e) => s + e.count, 0)}</td>
+                <td className="right">${employeeSummaries.reduce((s, e) => s + e.revenue, 0).toFixed(0)}</td>
+                <td className="right">${employeeSummaries.reduce((s, e) => s + e.commission, 0).toFixed(0)}</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <h4>{t('reports.serviceRevenue')}</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>{t('common.service')}</th>
+                <th className="right">{t('dashboard.revenue')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {serviceRevenue.map((svc, i) => (
+                <tr key={i}>
+                  <td>{svc.name}</td>
+                  <td className="right">${svc.revenue.toFixed(0)}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className="total-row">
+                <td>{t('common.total')}</td>
+                <td className="right">${serviceRevenue.reduce((s, sv) => s + sv.revenue, 0).toFixed(0)}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }
