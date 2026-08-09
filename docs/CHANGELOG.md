@@ -34,6 +34,7 @@
 - [19:28] Chỉnh sửa `src/pages/owner/Settings.tsx` — Truyền onSwitchTab callback cho AdminDashboard
 - [18:30] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix lỗi "Cannot read properties of undefined (reading 'split')" khi item.time là undefined, thêm nullish guard
 - [18:33] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty
+- [18:35] Chỉnh sửa `src/components/BottomNav.tsx` — Đổi thứ tự nav employee: My Earnings lên trước Quick Entry
 - [18:30] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix cùng lỗi split undefined trong formatTime(), thêm nullish guard
 - [18:31] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Thêm fallback direct query khi RPC get_my_employee trả empty, fix không hiện earnings cho nhân viên
 - [18:32] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty (bypass RLS issue)
