@@ -126,10 +126,10 @@ export function MyEarnings() {
           rows = (directApts as any[]).map((a) => ({
             apt_id: a.id,
             apt_date: a.date,
-            apt_time: a.time,
+            apt_time: a.time ?? '00:00',
             apt_status: a.status,
-            apt_price: a.price,
-            apt_tip: a.tip,
+            apt_price: Number(a.price) || 0,
+            apt_tip: Number(a.tip) || 0,
             customer_name: a.customers?.name ?? null,
             service_name: a.services?.name ?? null,
           }))

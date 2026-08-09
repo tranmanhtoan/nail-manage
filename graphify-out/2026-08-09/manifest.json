@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "src/components/BottomNav.tsx": {
-    "mtime": 1786281966.7471561,
-    "ast_hash": "8c0e83b117b237af640307dad91f2e93",
+    "mtime": 1786282646.8403895,
+    "ast_hash": "6257c6756dff576050eab5262d344ddb",
     "semantic_hash": ""
   },
   "src/components/EmployeeLayout.tsx": {
@@ -180,8 +180,8 @@
     "semantic_hash": "c840b246b5bfea7baf1b738ae4b5195f"
   },
   "src/pages/owner/Settings.tsx": {
-    "mtime": 1786281738.1333964,
-    "ast_hash": "d936051d481ddd8adc421adc04a9ddda",
+    "mtime": 1786282522.5935502,
+    "ast_hash": "98ea3e230ef16eb1aaf7399226d6d877",
     "semantic_hash": ""
   },
   "src/store/authStore.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786281751.1180906,
-    "ast_hash": "f8ae06bab7a625a3aa531204deb6ad3d",
+    "mtime": 1786282535.2982965,
+    "ast_hash": "51c881f9cb40479e19e458cdb6b41640",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -345,8 +345,8 @@
     "semantic_hash": ""
   },
   "src/pages/owner/AdminDashboard.tsx": {
-    "mtime": 1785420355.6095634,
-    "ast_hash": "da81cf8ddb1e9bd14a25304d90999265",
+    "mtime": 1786282506.1954117,
+    "ast_hash": "0db5c206fc6edcf5a9bebd8b966aab6e",
     "semantic_hash": ""
   },
   "supabase/opt_rls_functions.sql": {
