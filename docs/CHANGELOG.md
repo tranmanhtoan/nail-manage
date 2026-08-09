@@ -18,6 +18,8 @@
 - [19:05] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thay date navigator bằng period selector tabs (Today/7 Days/30 Days) + day navigator chỉ hiện ở day mode
 - [19:05] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Cập nhật mini cards hiển thị label theo viewMode, thêm perCustomerAvg
 - [19:06] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Chart section dùng dynamic weeklyLabels thay vì hardcoded DAYS, badge hiển thị theo viewMode
+- [19:15] Chỉnh sửa `src/pages/owner/Settings.tsx` — Đổi thứ tự tabs: System Overview, General, Services, Employees
+- [19:16] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm useNavigate import cho navigation khi bấm System Overview
 - [18:30] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix lỗi "Cannot read properties of undefined (reading 'split')" khi item.time là undefined, thêm nullish guard
 - [18:33] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty
 - [18:30] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix cùng lỗi split undefined trong formatTime(), thêm nullish guard

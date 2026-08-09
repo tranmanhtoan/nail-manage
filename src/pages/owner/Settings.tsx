@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield, KeyRound, LayoutDashboard } from 'lucide-react'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { useAuthStore } from '@/store/authStore'
@@ -26,10 +27,11 @@ const DEFAULT_TOGGLES: FeatureToggles = {
 
 export function Settings() {
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
   const { user, logout } = useAuthStore()
   const { darkMode, toggleDarkMode } = useThemeStore()
   const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
-  const [tab, setTab] = useState<Tab>('dashboard')
+  const [tab, setTab] = useState<Tab>('general')
   const [toggles, setToggles] = useState<FeatureToggles>(DEFAULT_TOGGLES)
   const [saving, setSaving] = useState(false)
   const [kioskPin, setKioskPin] = useState('')
@@ -131,7 +133,13 @@ export function Settings() {
         {tabs.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
-            onClick={() => setTab(id)}
+            onClick={() => {
+              if (id === 'dashboard') {
+                navigate('/dashboard')
+              } else {
+                setTab(id)
+              }
+            }}
             className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-xs font-medium transition-colors border-b-2 ${
               tab === id
                 ? 'border-[#864e5a] text-[#864e5a]'
