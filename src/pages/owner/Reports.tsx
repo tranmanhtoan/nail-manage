@@ -45,9 +45,16 @@ export function Reports() {
     loadReport()
   }, [period])
 
+  function toLocalDateStr(d: Date): string {
+    const y = d.getFullYear()
+    const m = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${y}-${m}-${day}`
+  }
+
   function getDateRange(): { start: string; end: string } {
     const today = new Date()
-    const todayStr = today.toISOString().slice(0, 10)
+    const todayStr = toLocalDateStr(today)
 
     if (period === 'day') return { start: todayStr, end: todayStr }
 
@@ -58,13 +65,13 @@ export function Reports() {
       monday.setDate(today.getDate() - mondayOffset)
       const sunday = new Date(monday)
       sunday.setDate(monday.getDate() + 6)
-      return { start: monday.toISOString().slice(0, 10), end: sunday.toISOString().slice(0, 10) }
+      return { start: toLocalDateStr(monday), end: toLocalDateStr(sunday) }
     }
 
     // month
-    const monthStart = todayStr.slice(0, 8) + '01'
-    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0)
-    return { start: monthStart, end: nextMonth.toISOString().slice(0, 10) }
+    const monthStart = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-01`
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0)
+    return { start: monthStart, end: toLocalDateStr(lastDay) }
   }
 
   async function loadReport() {
