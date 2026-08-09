@@ -54,6 +54,7 @@
 - [19:10] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Thay date picker bằng tabs Today/Week/Month/Range (max 31 ngày), thêm hiển thị ngày hẹn trên mỗi card
 - [19:15] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix Range hiện ngày tương lai: luôn query per-date (không dùng p_date_from) để lấy tất cả statuses kể cả booked
 - [19:18] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix timezone bug: dùng T12:00:00 và local date format thay vì toISOString() khi generate date range
+- [19:20] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Đổi period: Today/7 Days/30 Days/Range (hiện tương lai), đổi label tabs cho đúng
 - [18:30] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix cùng lỗi split undefined trong formatTime(), thêm nullish guard
 - [18:31] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Thêm fallback direct query khi RPC get_my_employee trả empty, fix không hiện earnings cho nhân viên
 - [18:32] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty (bypass RLS issue)
