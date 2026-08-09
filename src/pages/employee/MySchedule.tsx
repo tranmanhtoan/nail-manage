@@ -16,12 +16,16 @@ interface ScheduleItem {
   service: { name: string } | null
 }
 
+type PeriodType = 'today' | 'week' | 'month' | 'range'
+
 export function MySchedule() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const { data: services } = useServices()
   const [items, setItems] = useState<ScheduleItem[]>([])
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
+  const [period, setPeriod] = useState<PeriodType>('today')
+  const [rangeFrom, setRangeFrom] = useState(new Date().toISOString().slice(0, 10))
+  const [rangeTo, setRangeTo] = useState(new Date().toISOString().slice(0, 10))
   const [showForm, setShowForm] = useState(false)
 
   // New appointment form state
@@ -31,48 +35,123 @@ export function MySchedule() {
   const [formTime, setFormTime] = useState(new Date().toTimeString().slice(0, 5))
   const [submitting, setSubmitting] = useState(false)
 
-  useEffect(() => { if (user) load() }, [date, user])
+  useEffect(() => { if (user) load() }, [period, rangeFrom, rangeTo, user])
+
+  function getDateRange(): { from: string; to: string } {
+    const today = new Date().toISOString().slice(0, 10)
+    switch (period) {
+      case 'today':
+        return { from: today, to: today }
+      case 'week': {
+        const weekAgo = new Date(Date.now() - 6 * 86400000).toISOString().slice(0, 10)
+        return { from: weekAgo, to: today }
+      }
+      case 'month': {
+        const monthStart = today.slice(0, 8) + '01'
+        return { from: monthStart, to: today }
+      }
+      case 'range':
+        return { from: rangeFrom, to: rangeTo }
+    }
+  }
 
   async function load() {
+    const { from, to } = getDateRange()
+
+    // Validate range not exceeding 31 days
+    if (period === 'range') {
+      const diffDays = (new Date(to).getTime() - new Date(from).getTime()) / 86400000
+      if (diffDays > 31 || diffDays < 0) return
+    }
+
     const isOffline = !navigator.onLine
-    const cacheKey = `my_schedule_${user?.id}_${date}`
+    const cacheKey = `my_schedule_${user?.id}_${from}_${to}`
 
     if (isOffline) {
       const cached = localStorage.getItem(cacheKey)
-      if (cached) {
-        setItems(JSON.parse(cached))
-      } else {
-        setItems([])
-      }
+      if (cached) setItems(JSON.parse(cached))
+      else setItems([])
       return
     }
 
     try {
-      const { data } = await supabase.rpc('get_my_appointments', {
-        p_date: date,
+      // Generate dates in range
+      const dates: string[] = []
+      const start = new Date(from + 'T00:00:00')
+      const end = new Date(to + 'T00:00:00')
+      const current = new Date(start)
+      while (current <= end) {
+        dates.push(current.toISOString().slice(0, 10))
+        current.setDate(current.getDate() + 1)
+      }
+
+      // Fetch appointments for each date via RPC (bypasses RLS, no status filter)
+      const allItems: ScheduleItem[] = []
+
+      if (dates.length <= 7) {
+        const results = await Promise.all(
+          dates.map((d) => supabase.rpc('get_my_appointments', { p_date: d }))
+        )
+        for (const res of results) {
+          const rawRows = (res.data ?? []) as any[]
+          allItems.push(...rawRows.map(normalizeRow))
+        }
+      } else {
+        // For larger ranges, use p_date_from
+        const { data } = await supabase.rpc('get_my_appointments', {
+          p_date: to,
+          p_date_from: from,
+        })
+        const rawRows = (data ?? []) as any[]
+        allItems.push(...rawRows.map(normalizeRow))
+
+        // p_date_from branch only returns completed — also fetch non-completed per date for today
+        // Actually for schedule view, also query today without p_date_from for non-completed
+        const today = new Date().toISOString().slice(0, 10)
+        if (from <= today && today <= to) {
+          const { data: todayData } = await supabase.rpc('get_my_appointments', { p_date: today })
+          const todayRows = (todayData ?? []) as any[]
+          for (const r of todayRows.map(normalizeRow)) {
+            if (!allItems.find((i) => i.id === r.id)) allItems.push(r)
+          }
+        }
+      }
+
+      // Sort by date desc, time desc
+      allItems.sort((a, b) => {
+        if (a.date !== b.date) return a.date > b.date ? -1 : 1
+        return (a.time ?? '').localeCompare(b.time ?? '')
       })
 
-      const rawRows = (data ?? []) as any[]
-
-      const formattedItems = rawRows.map((r) => ({
-        id: r.apt_id ?? r.id ?? '',
-        date: r.apt_date ?? r.date ?? '',
-        time: r.apt_time ?? r.time ?? '00:00',
-        status: r.apt_status ?? r.status ?? '',
-        price: Number(r.apt_price ?? r.price) || 0,
-        tip: Number(r.apt_tip ?? r.tip) || 0,
-        customer: (r.customer_name) ? { name: r.customer_name } : null,
-        service: (r.service_name) ? { name: r.service_name } : null,
-      }))
-
-      setItems(formattedItems)
-      localStorage.setItem(cacheKey, JSON.stringify(formattedItems))
+      setItems(allItems)
+      localStorage.setItem(cacheKey, JSON.stringify(allItems))
     } catch (err) {
-      console.error('Failed to load online schedule:', err)
-      const cacheKey = `my_schedule_${user?.id}_${date}`
+      console.error('Failed to load schedule:', err)
+      const cacheKey = `my_schedule_${user?.id}_${from}_${to}`
       const cached = localStorage.getItem(cacheKey)
       if (cached) setItems(JSON.parse(cached))
     }
+  }
+
+  function normalizeRow(r: any): ScheduleItem {
+    return {
+      id: r.apt_id ?? r.id ?? '',
+      date: r.apt_date ?? r.date ?? '',
+      time: r.apt_time ?? r.time ?? '00:00',
+      status: r.apt_status ?? r.status ?? '',
+      price: Number(r.apt_price ?? r.price) || 0,
+      tip: Number(r.apt_tip ?? r.tip) || 0,
+      customer: (r.customer_name) ? { name: r.customer_name } : null,
+      service: (r.service_name) ? { name: r.service_name } : null,
+    }
+  }
+
+  function formatDate(dateStr: string) {
+    if (!dateStr) return '-'
+    const d = new Date(dateStr + 'T00:00:00')
+    return d.toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US', {
+      day: '2-digit', month: '2-digit',
+    })
   }
 
   async function handleAddAppointment(e: React.FormEvent) {
@@ -81,7 +160,6 @@ export function MySchedule() {
     setSubmitting(true)
 
     try {
-      // Get my employee ID
       let employeeId: string | null = null
       const { data: empRows, error: empErr } = await supabase.rpc('get_my_employee')
       if (!empErr && empRows && (empRows as any[]).length > 0) {
@@ -101,7 +179,6 @@ export function MySchedule() {
         return
       }
 
-      // Find or create customer
       let customerId: string | null = null
       if (formCustomer.trim() && formCustomer.trim().toLowerCase() !== 'walk-in') {
         const { data: existing } = await supabase
@@ -136,17 +213,12 @@ export function MySchedule() {
         source: 'walk_in',
       })
 
-      // Reset form and reload
       setShowForm(false)
       setFormCustomer('')
       setFormService('')
       setFormDate(new Date().toISOString().slice(0, 10))
       setFormTime(new Date().toTimeString().slice(0, 5))
-
-      // Reload if viewing the same date
-      if (formDate === date) {
-        load()
-      }
+      load()
     } catch (err) {
       console.error('Failed to add appointment:', err)
       alert(t('common.error') || 'Failed to add appointment')
@@ -168,16 +240,52 @@ export function MySchedule() {
         </button>
       </div>
 
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none"
-      />
+      {/* Period filter tabs */}
+      <div className="flex gap-2">
+        {(['today', 'week', 'month', 'range'] as const).map((p) => (
+          <button
+            key={p}
+            onClick={() => setPeriod(p)}
+            className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${
+              period === p ? 'bg-[#864e5a] text-white' : 'bg-gray-100 text-gray-600'
+            }`}
+          >
+            {p === 'today' ? t('common.today') :
+             p === 'week' ? t('common.week') :
+             p === 'month' ? t('common.month') : 'Range'}
+          </button>
+        ))}
+      </div>
 
+      {/* Range date pickers */}
+      {period === 'range' && (
+        <div className="grid grid-cols-2 gap-3">
+          <input
+            type="date"
+            value={rangeFrom}
+            onChange={(e) => {
+              setRangeFrom(e.target.value)
+              // Auto-limit rangeTo to max 31 days from rangeFrom
+              const maxTo = new Date(new Date(e.target.value).getTime() + 31 * 86400000).toISOString().slice(0, 10)
+              if (rangeTo > maxTo) setRangeTo(maxTo)
+            }}
+            className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none text-sm"
+          />
+          <input
+            type="date"
+            value={rangeTo}
+            min={rangeFrom}
+            max={new Date(new Date(rangeFrom).getTime() + 31 * 86400000).toISOString().slice(0, 10)}
+            onChange={(e) => setRangeTo(e.target.value)}
+            className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none text-sm"
+          />
+        </div>
+      )}
+
+      {/* Appointments list */}
       <div className="space-y-3 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
         {items.length === 0 && (
-          <p className="text-center text-gray-400 py-8">No appointments for this day</p>
+          <p className="text-center text-gray-400 py-8">{t('common.noData') || 'No appointments'}</p>
         )}
         {items.map((item) => {
           const [h, m] = (item.time ?? '00:00').split(':')
@@ -209,8 +317,9 @@ export function MySchedule() {
                 borderBottom: '1px solid rgba(134,78,90,0.1)',
               }}
             >
-              {/* Time */}
+              {/* Date + Time */}
               <div className="flex flex-col items-center border-r border-gray-200 pr-4 min-w-[60px]">
+                <span className="text-[10px] text-gray-400 font-medium">{formatDate(item.date)}</span>
                 <span className="text-lg font-bold text-[#864e5a]">{timeStr}</span>
                 <span className="text-xs text-gray-400 font-semibold">{ampm}</span>
               </div>
@@ -244,7 +353,6 @@ export function MySchedule() {
             </div>
 
             <form onSubmit={handleAddAppointment} className="space-y-4">
-              {/* Customer Name */}
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">Customer Name</label>
                 <input
@@ -256,7 +364,6 @@ export function MySchedule() {
                 />
               </div>
 
-              {/* Service */}
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">Service</label>
                 <select
@@ -272,7 +379,6 @@ export function MySchedule() {
                 </select>
               </div>
 
-              {/* Date & Time */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">Date</label>
