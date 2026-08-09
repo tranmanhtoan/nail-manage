@@ -155,6 +155,13 @@ create policy "Users read own profile" on public.profiles for select
 create policy "Owner read all profiles" on public.profiles for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'owner'));
 
+create policy "Users update own profile" on public.profiles for update
+  using (id = auth.uid())
+  with check (id = auth.uid());
+
+create policy "Owner update all profiles" on public.profiles for update
+  using (exists (select 1 from public.profiles where id = auth.uid() and role = 'owner'));
+
 -- Secure view for login screen (exposes id, full_name, role)
 -- All roles except kiosk can login from this screen
 create view public.login_profiles as

@@ -75,8 +75,8 @@
     "semantic_hash": "1f8bd8a76f9730ea96057e7ebfbc776b"
   },
   "src/i18n/en.json": {
-    "mtime": 1786275071.0802743,
-    "ast_hash": "1a200232b5bbed1d7c4a0db980e944d0",
+    "mtime": 1786275583.8362422,
+    "ast_hash": "e254e4a1f105daacd2a0b70c8d3a33f4",
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {

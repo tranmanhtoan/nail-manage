@@ -79,10 +79,10 @@ export function Settings() {
   async function saveOwnerPin() {
     if (!user || !ownerPin || ownerPin.length < 4) return
     setSaving(true)
-    await supabase
-      .from('profiles')
-      .update({ pin: ownerPin })
-      .eq('id', user.id)
+    await supabase.rpc('update_employee_pin', {
+      p_profile_id: user.id,
+      p_new_pin: ownerPin,
+    })
     setSaving(false)
     setOwnerPinSaved(true)
     setTimeout(() => setOwnerPinSaved(false), 2000)
