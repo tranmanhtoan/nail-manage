@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "src/i18n/vi.json": {
-    "mtime": 1786281703.790495,
-    "ast_hash": "f3a2bd197d00c678524f6dc9bdaf06a7",
+    "mtime": 1786285375.0941768,
+    "ast_hash": "9de5e2ddbd1f98e0ffad8451b80fc292",
     "semantic_hash": ""
   },
   "src/lib/auth-helpers.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786285350.9068,
-    "ast_hash": "69851372d050e42601dc8b5199a31de4",
+    "mtime": 1786285367.9996295,
+    "ast_hash": "0a3ca4c828f7ad9d4ae60b5a33cedfc1",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
