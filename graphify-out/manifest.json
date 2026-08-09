@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786281751.1180906,
-    "ast_hash": "f8ae06bab7a625a3aa531204deb6ad3d",
+    "mtime": 1786281977.4067209,
+    "ast_hash": "05a7582850a004dd22791eae03af68ec",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -345,8 +345,8 @@
     "semantic_hash": ""
   },
   "src/pages/owner/AdminDashboard.tsx": {
-    "mtime": 1785420355.6095634,
-    "ast_hash": "da81cf8ddb1e9bd14a25304d90999265",
+    "mtime": 1786282494.59283,
+    "ast_hash": "6b8373e34273aa2d70963790c2b328bf",
     "semantic_hash": ""
   },
   "supabase/opt_rls_functions.sql": {

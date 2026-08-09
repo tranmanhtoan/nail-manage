@@ -135,7 +135,8 @@ export function AdminDashboard({ onSwitchTab }: AdminDashboardProps) {
         {cards.map((card) => (
           <div
             key={card.label}
-            className="rounded-[1rem] p-4 border border-[rgba(134,78,90,0.1)]"
+            onClick={card.onClick}
+            className={`rounded-[1rem] p-4 border border-[rgba(134,78,90,0.1)] ${card.onClick ? 'cursor-pointer active:scale-[0.97] transition-transform' : ''}`}
             style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
           >
             <div className="flex items-center justify-between mb-3">
