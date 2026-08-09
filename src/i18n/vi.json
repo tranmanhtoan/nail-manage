@@ -275,7 +275,13 @@
     "splitPayDesc": "Chia {{rate}}% tổng (giá + tip)",
     "fixedPayDesc": "Lương cố định ${{rate}} + tip",
     "myEarningsLabel": "Tôi nhận",
-    "employeeEarningsLabel": "NV nhận"
+    "employeeEarningsLabel": "NV nhận",
+    "range": "Tùy chọn",
+    "customRange": "tùy chọn",
+    "rangeMaxError": "Khoảng thời gian không được vượt quá 31 ngày. Vui lòng chọn lại.",
+    "rangeInvalidError": "Ngày kết thúc phải sau ngày bắt đầu.",
+    "printShopReport": "In báo cáo tiệm",
+    "shopReport": "Báo cáo tiệm"
   },
   "pin": {
     "title": "Nhập mã PIN",

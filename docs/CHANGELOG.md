@@ -29,6 +29,7 @@
 - [19:19] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm periodLabel cho 'range', hàm handleShopPrint() xuất report toàn tiệm
 - [19:20] Chỉnh sửa `src/pages/owner/Reports.tsx` — UI period filters thêm nút Range, date picker với validation error, nút Print bên phải
 - [19:21] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm hidden shop report print template (employees + service revenue summary)
+- [19:22] Chỉnh sửa `src/i18n/en.json` — Thêm translation keys: range, customRange, rangeMaxError, rangeInvalidError, printShopReport, shopReport
 - [19:15] Chỉnh sửa `src/pages/owner/Settings.tsx` — Đổi thứ tự tabs: System Overview, General, Services, Employees
 - [19:16] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm useNavigate import cho navigation khi bấm System Overview
 - [19:17] Chỉnh sửa `src/pages/owner/Settings.tsx` — System Overview navigate tới /dashboard, default tab đổi sang general, cập nhật tab click handler
