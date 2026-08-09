@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "src/i18n/vi.json": {
-    "mtime": 1786281703.790495,
-    "ast_hash": "f3a2bd197d00c678524f6dc9bdaf06a7",
+    "mtime": 1786285375.0941768,
+    "ast_hash": "9de5e2ddbd1f98e0ffad8451b80fc292",
     "semantic_hash": ""
   },
   "src/lib/auth-helpers.ts": {
@@ -135,8 +135,8 @@
     "semantic_hash": ""
   },
   "src/pages/employee/MySchedule.tsx": {
-    "mtime": 1786283662.8760505,
-    "ast_hash": "abdca064356e53089d79f24ff584eb23",
+    "mtime": 1786285529.3735187,
+    "ast_hash": "ec55721179504d56384b936eba14bf61",
     "semantic_hash": ""
   },
   "src/pages/kiosk/KioskLayout.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786285350.9068,
-    "ast_hash": "69851372d050e42601dc8b5199a31de4",
+    "mtime": 1786285386.938924,
+    "ast_hash": "25bae44813ccd5aacd683c6856bd1f86",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {

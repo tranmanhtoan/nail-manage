@@ -185,6 +185,18 @@ export function MySchedule() {
           const timeStr = `${(hour % 12) || 12}:${m}`
           const ampm = hour >= 12 ? 'PM' : 'AM'
 
+          const statusLabel =
+            item.status === 'completed' ? 'Done' :
+            item.status === 'booked' ? 'Waiting' :
+            item.status === 'in_progress' ? 'In Progress' :
+            item.status === 'cancelled' ? 'Cancelled' : item.status
+          const statusColor =
+            item.status === 'completed' ? 'bg-emerald-100 text-emerald-700' :
+            item.status === 'booked' ? 'bg-amber-100 text-amber-700' :
+            item.status === 'in_progress' ? 'bg-blue-100 text-blue-700' :
+            item.status === 'cancelled' ? 'bg-gray-100 text-gray-500' :
+            'bg-gray-100 text-gray-600'
+
           return (
             <div
               key={item.id}
@@ -207,10 +219,13 @@ export function MySchedule() {
                 <p className="font-semibold text-gray-900 truncate">{item.service?.name}</p>
                 <p className="text-sm text-gray-500">{item.customer?.name ?? 'Walk-in'}</p>
               </div>
-              {/* Price */}
-              <div className="text-right">
+              {/* Price + Status */}
+              <div className="text-right flex flex-col items-end gap-1">
                 <p className="font-bold text-gray-900">${item.price}</p>
                 {item.tip > 0 && <p className="text-xs text-[#864e5a]">+${item.tip} tip</p>}
+                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${statusColor}`}>
+                  {statusLabel}
+                </span>
               </div>
             </div>
           )
