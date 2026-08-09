@@ -46,10 +46,14 @@ export function Reports() {
   })
   const [rangeError, setRangeError] = useState<string>('')
 
+  // Shop totals
+  const [totals, setTotals] = useState({ revenue: 0, cash: 0, card: 0, turns: 0, tip: 0 })
+
   // Detail modal
   const [selectedEmployee, setSelectedEmployee] = useState<EmployeeSummary | null>(null)
   const [employeeAppointments, setEmployeeAppointments] = useState<EmployeeAppointment[]>([])
   const [loadingDetail, setLoadingDetail] = useState(false)
+  const [showShopReport, setShowShopReport] = useState(false)
   const printRef = useRef<HTMLDivElement>(null)
   const shopPrintRef = useRef<HTMLDivElement>(null)
 
@@ -114,12 +118,23 @@ export function Reports() {
 
     const { data } = await supabase
       .from('appointments')
-      .select('price, tip, employee_id, service_id, services(name), employees(name, commission_rate, pay_type, split_rate, fixed_salary)')
+      .select('price, tip, payment_method, employee_id, service_id, services(name), employees(name, commission_rate, pay_type, split_rate, fixed_salary)')
       .gte('date', start)
       .lte('date', end)
       .eq('status', 'completed')
 
     const rows = data ?? []
+
+    // Shop totals — revenue, cash/card breakdown, turns
+    let totRevenue = 0, totCash = 0, totCard = 0, totTip = 0
+    for (const row of rows) {
+      const amount = row.price + row.tip
+      totRevenue += amount
+      totTip += row.tip
+      if ((row.payment_method ?? 'cash') === 'card') totCard += amount
+      else totCash += amount
+    }
+    setTotals({ revenue: totRevenue, cash: totCash, card: totCard, turns: rows.length, tip: totTip })
 
     // Service Revenue
     const svcMap = new Map<string, { name: string; revenue: number }>()
@@ -349,7 +364,7 @@ export function Reports() {
           ))}
         </div>
         <button
-          onClick={handleShopPrint}
+          onClick={() => setShowShopReport(true)}
           className="p-2.5 bg-[#864e5a]/10 text-[#864e5a] rounded-xl active:scale-90 transition-transform shrink-0"
           title={t('reports.printShopReport')}
         >
@@ -612,11 +627,152 @@ export function Reports() {
         </div>
       )}
 
+      {/* ═══ Shop Report Preview Modal ═══ */}
+      {showShopReport && (
+        <div className="fixed inset-0 bg-black/40 z-[60] flex items-end sm:items-center justify-center" onClick={() => setShowShopReport(false)}>
+          <div className="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl max-h-[90vh] overflow-hidden flex flex-col modal-sheet" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-5 pb-3 border-b border-gray-100">
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">{t('reports.shopReport')}</h3>
+                <p className="text-xs text-gray-500">
+                  {new Date(periodStart + 'T00:00:00').toLocaleDateString('vi-VN')} — {new Date(periodEnd + 'T00:00:00').toLocaleDateString('vi-VN')}
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleShopPrint}
+                  className="p-2 bg-[#864e5a]/10 text-[#864e5a] rounded-xl active:scale-90 transition-transform"
+                  title={t('reports.printShopReport')}
+                >
+                  <Printer size={18} />
+                </button>
+                <button onClick={() => setShowShopReport(false)} className="p-2 text-gray-400">
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="overflow-y-auto flex-1 p-5 space-y-5">
+              {/* Total Summary */}
+              <div>
+                <h4 className="text-sm font-bold text-gray-900 mb-2">{t('reports.totalSummary')}</h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-[#864e5a]/5 rounded-xl p-3 col-span-2 flex items-center justify-between">
+                    <span className="text-xs text-gray-500 uppercase">{t('reports.totalRevenue')}</span>
+                    <span className="text-xl font-bold text-[#864e5a]">{formatCurrency(totals.revenue)}</span>
+                  </div>
+                  <div className="bg-gray-50 rounded-xl p-3 text-center">
+                    <p className="text-base font-bold text-gray-900">{formatCurrency(totals.cash)}</p>
+                    <p className="text-[10px] text-gray-500 uppercase">{t('dashboard.cash')}</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-xl p-3 text-center">
+                    <p className="text-base font-bold text-gray-900">{formatCurrency(totals.card)}</p>
+                    <p className="text-[10px] text-gray-500 uppercase">{t('dashboard.card')}</p>
+                  </div>
+                  <div className="bg-emerald-50 rounded-xl p-3 text-center">
+                    <p className="text-base font-bold text-emerald-600">{formatCurrency(totals.tip)}</p>
+                    <p className="text-[10px] text-gray-500 uppercase">{t('common.tip')}</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-xl p-3 text-center">
+                    <p className="text-base font-bold text-gray-900">{totals.turns}</p>
+                    <p className="text-[10px] text-gray-500 uppercase">{t('appointments.turns')}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Top Performers */}
+              <div>
+                <h4 className="text-sm font-bold text-gray-900 mb-2">{t('reports.topPerformers')}</h4>
+                {employeeSummaries.length === 0 ? (
+                  <p className="text-sm text-gray-400 text-center py-3">{t('reports.noData')}</p>
+                ) : (
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-xs text-gray-500 border-b border-gray-200">
+                        <th className="text-left py-2 font-medium">{t('common.name')}</th>
+                        <th className="text-right py-2 font-medium">{t('appointments.turns')}</th>
+                        <th className="text-right py-2 font-medium">{t('dashboard.revenue')}</th>
+                        <th className="text-right py-2 font-medium">{t('reports.employeeEarningsLabel')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {employeeSummaries.map((emp) => (
+                        <tr key={emp.id} className="border-b border-gray-50">
+                          <td className="py-2 text-gray-700 truncate max-w-[90px]">{emp.name}</td>
+                          <td className="py-2 text-right">{emp.count}</td>
+                          <td className="py-2 text-right font-medium">{formatCurrency(emp.revenue)}</td>
+                          <td className="py-2 text-right text-emerald-600">{formatCurrency(emp.commission)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                    <tfoot>
+                      <tr className="border-t-2 border-gray-200 font-bold">
+                        <td className="py-2">{t('common.total')}</td>
+                        <td className="py-2 text-right">{employeeSummaries.reduce((s, e) => s + e.count, 0)}</td>
+                        <td className="py-2 text-right">{formatCurrency(employeeSummaries.reduce((s, e) => s + e.revenue, 0))}</td>
+                        <td className="py-2 text-right text-emerald-600">{formatCurrency(employeeSummaries.reduce((s, e) => s + e.commission, 0))}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                )}
+              </div>
+
+              {/* Service Revenue */}
+              <div>
+                <h4 className="text-sm font-bold text-gray-900 mb-2">{t('reports.serviceRevenue')}</h4>
+                {serviceRevenue.length === 0 ? (
+                  <p className="text-sm text-gray-400 text-center py-3">{t('reports.noData')}</p>
+                ) : (
+                  <table className="w-full text-sm">
+                    <tbody>
+                      {serviceRevenue.map((svc, i) => (
+                        <tr key={i} className="border-b border-gray-50">
+                          <td className="py-2 text-gray-700">{svc.name}</td>
+                          <td className="py-2 text-right font-medium">{formatCurrency(svc.revenue)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hidden shop report print content */}
       <div className="hidden">
         <div ref={shopPrintRef}>
           <h2>MCC Nail & Spa — {t('reports.shopReport')}</h2>
           <h3>{new Date(periodStart + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US')} — {new Date(periodEnd + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US')}</h3>
+
+          <h4>{t('reports.totalSummary')}</h4>
+          <table>
+            <tbody>
+              <tr>
+                <td>{t('reports.totalRevenue')}</td>
+                <td className="right"><strong>${totals.revenue.toFixed(0)}</strong></td>
+              </tr>
+              <tr>
+                <td>{t('dashboard.cash')}</td>
+                <td className="right">${totals.cash.toFixed(0)}</td>
+              </tr>
+              <tr>
+                <td>{t('dashboard.card')}</td>
+                <td className="right">${totals.card.toFixed(0)}</td>
+              </tr>
+              <tr>
+                <td>{t('common.tip')}</td>
+                <td className="right">${totals.tip.toFixed(0)}</td>
+              </tr>
+              <tr>
+                <td>{t('appointments.turns')}</td>
+                <td className="right">{totals.turns}</td>
+              </tr>
+            </tbody>
+          </table>
 
           <h4>{t('reports.topPerformers')}</h4>
           <table>

@@ -155,3 +155,10 @@
 - [00:00] Chỉnh sửa `src/pages/Login.tsx` — Fix handlePinInput gọi setState lồng nhau gây crash, chuyển sang useEffect trigger khi PIN đủ 4 số
 - [00:00] Chỉnh sửa `src/pages/Login.tsx` — Thêm useEffect vào import
 - [00:00] Chỉnh sửa `src/store/authStore.ts` — Wrap logout trong try-catch toàn bộ để không bị abort khi storage/signOut throw trên iOS
+- [19:30] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm state totals (revenue/cash/card/turns/tip) và showShopReport cho modal preview báo cáo tiệm
+
+- [19:31] Chỉnh sửa `src/pages/owner/Reports.tsx` — loadReport fetch payment_method và tính totals (revenue/cash/card/turns/tip)
+
+- [19:32] Chỉnh sửa `src/pages/owner/Reports.tsx` — Nút print mở modal preview thay vì in trực tiếp
+
+- [19:33] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm section Total Summary vào print template (revenue/cash/card/tip/turns)

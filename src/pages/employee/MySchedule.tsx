@@ -43,12 +43,12 @@ export function MySchedule() {
       case 'today':
         return { from: today, to: today }
       case 'week': {
-        const weekAgo = new Date(Date.now() - 6 * 86400000).toISOString().slice(0, 10)
-        return { from: weekAgo, to: today }
+        const weekLater = new Date(Date.now() + 7 * 86400000).toISOString().slice(0, 10)
+        return { from: today, to: weekLater }
       }
       case 'month': {
-        const monthStart = today.slice(0, 8) + '01'
-        return { from: monthStart, to: today }
+        const monthLater = new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10)
+        return { from: today, to: monthLater }
       }
       case 'range':
         return { from: rangeFrom, to: rangeTo }
