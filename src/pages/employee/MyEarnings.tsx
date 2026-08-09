@@ -104,12 +104,38 @@ export function MyEarnings() {
       if (period === 'month') dateFrom = monthStart
 
       // Get appointments via RPC (bypasses RLS)
+      let rows: AppointmentRow[] = []
       const { data: aptData } = await supabase.rpc('get_my_appointments', {
         p_date: today,
         p_date_from: dateFrom,
       })
+      rows = (aptData ?? []) as AppointmentRow[]
 
-      const rows = (aptData ?? []) as AppointmentRow[]
+      // Fallback: if RPC returned empty, try direct query using employee ID
+      if (rows.length === 0 && empData.id) {
+        const { data: directApts } = await supabase
+          .from('appointments')
+          .select('id, date, time, status, price, tip, customers(name), services(name)')
+          .eq('employee_id', empData.id)
+          .eq('status', 'completed')
+          .gte('date', dateFrom)
+          .order('date', { ascending: false })
+          .order('time', { ascending: false })
+
+        if (directApts && directApts.length > 0) {
+          rows = (directApts as any[]).map((a) => ({
+            apt_id: a.id,
+            apt_date: a.date,
+            apt_time: a.time,
+            apt_status: a.status,
+            apt_price: a.price,
+            apt_tip: a.tip,
+            customer_name: a.customers?.name ?? null,
+            service_name: a.services?.name ?? null,
+          }))
+        }
+      }
+
       setAppointments(rows)
 
       const totalRevenue = rows.reduce((s, a) => s + a.apt_price, 0)
