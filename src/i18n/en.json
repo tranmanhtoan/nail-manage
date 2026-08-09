@@ -281,7 +281,8 @@
     "rangeMaxError": "Range cannot exceed 31 days. Please select a shorter period.",
     "rangeInvalidError": "End date must be after start date.",
     "printShopReport": "Print shop report",
-    "shopReport": "Shop Report"
+    "shopReport": "Shop Report",
+    "totalSummary": "Total Summary"
   },
   "pin": {
     "title": "Enter PIN",
