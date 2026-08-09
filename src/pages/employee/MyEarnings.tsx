@@ -70,8 +70,28 @@ export function MyEarnings() {
       // Get my employee record via RPC (bypasses RLS)
       const { data: empRows } = await supabase.rpc('get_my_employee')
       const empArr = empRows as MyEmployee[] | null
-      if (!empArr || empArr.length === 0) return
-      const empData = empArr[0]
+      let empData: MyEmployee | null = null
+
+      if (empArr && empArr.length > 0) {
+        empData = empArr[0]
+      } else {
+        // Fallback: try direct query using user ID as profile_id
+        const { data: directEmp } = await supabase
+          .from('employees')
+          .select('id, name, pay_type, commission_rate, fixed_salary, split_rate')
+          .eq('profile_id', user!.id)
+          .single()
+        if (directEmp) {
+          empData = directEmp as MyEmployee
+        }
+      }
+
+      if (!empData) {
+        setData({ totalServices: 0, totalRevenue: 0, totalTips: 0, myEarnings: 0 })
+        setAppointments([])
+        return
+      }
+
       setEmployee(empData)
       localStorage.setItem(empCacheKey, JSON.stringify(empData))
 
