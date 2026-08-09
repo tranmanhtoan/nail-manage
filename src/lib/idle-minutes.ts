@@ -81,9 +81,16 @@ export function calculateIdleMinutes(
     const lastTime = lastCompletedTime.get(emp.id)
     if (lastTime) {
       // Idle since last completed appointment
+      // time from DB is in UTC — convert to local timezone offset
       const [h, m] = lastTime.split(':')
-      const completedMinutes = parseInt(h) * 60 + parseInt(m)
-      result[emp.id] = Math.max(0, nowMinutes - completedMinutes)
+      const utcMinutes = parseInt(h) * 60 + parseInt(m)
+      // Get local timezone offset in minutes (negative means ahead of UTC)
+      const tzOffsetMinutes = -now.getTimezoneOffset()
+      let completedLocalMinutes = utcMinutes + tzOffsetMinutes
+      // Handle day wraparound
+      if (completedLocalMinutes < 0) completedLocalMinutes += 24 * 60
+      if (completedLocalMinutes >= 24 * 60) completedLocalMinutes -= 24 * 60
+      result[emp.id] = Math.max(0, nowMinutes - completedLocalMinutes)
     } else {
       // No completed today — idle since activation or shift start (whichever is later)
       let startMinutes = SHIFT_START_MINUTES

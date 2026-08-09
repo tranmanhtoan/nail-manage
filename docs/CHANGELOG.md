@@ -21,6 +21,7 @@
 - [19:15] Chỉnh sửa `src/pages/owner/Settings.tsx` — Đổi thứ tự tabs: System Overview, General, Services, Employees
 - [19:16] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm useNavigate import cho navigation khi bấm System Overview
 - [19:17] Chỉnh sửa `src/pages/owner/Settings.tsx` — System Overview navigate tới /dashboard, default tab đổi sang general, cập nhật tab click handler
+- [19:18] Chỉnh sửa `src/pages/owner/Settings.tsx` — Revert: default tab trả lại dashboard (System Overview), bỏ navigate, giữ nội dung inline như cũ
 - [18:30] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix lỗi "Cannot read properties of undefined (reading 'split')" khi item.time là undefined, thêm nullish guard
 - [18:33] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty
 - [18:30] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix cùng lỗi split undefined trong formatTime(), thêm nullish guard
