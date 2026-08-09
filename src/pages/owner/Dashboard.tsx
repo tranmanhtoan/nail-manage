@@ -491,18 +491,20 @@ export function Dashboard() {
       </div>
       {/* Two Mini Cards */}
       <div className="grid grid-cols-2 gap-3">
-        {/* Day Appointments */}
+        {/* Appointments / Customers */}
         <div
           className="rounded-[1rem] p-4 border border-[rgba(134,78,90,0.1)]"
           style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
         >
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-medium text-gray-500">{formatDateLabel(selectedDate)}</span>
+            <span className="text-xs font-medium text-gray-500">
+              {viewMode === 'day' ? formatDateLabel(selectedDate) : viewMode === 'week' ? t('dashboard.period7Days') : t('dashboard.period30Days')}
+            </span>
             <CalendarDays size={14} className="text-[#864e5a]" />
           </div>
           <p className="text-2xl font-bold text-gray-900">{stats.dayAppointments}</p>
           <p className="text-xs text-gray-500 mt-1">{t('dashboard.appointmentsBooked')}</p>
-          {stats.waitingAppointments > 0 && (
+          {viewMode === 'day' && stats.waitingAppointments > 0 && (
             <p className="text-xs font-semibold text-emerald-500 mt-1.5">
               +{stats.waitingAppointments} {t('dashboard.waiting')}
             </p>
@@ -518,7 +520,7 @@ export function Dashboard() {
             <Star size={14} className="text-amber-400" />
           </div>
           <p className="text-2xl font-bold text-gray-900">${formatCurrency(stats.avgValue)}</p>
-          <p className="text-xs text-gray-500 mt-1">{t('dashboard.perServiceAvg')}</p>
+          <p className="text-xs text-gray-500 mt-1">{t('dashboard.perCustomerAvg')}</p>
         </div>
       </div>
       {/* Weekly Trends */}
