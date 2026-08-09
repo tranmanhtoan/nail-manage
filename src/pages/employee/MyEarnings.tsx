@@ -48,12 +48,9 @@ export function MyEarnings() {
 
     if (isOffline) {
       const cachedEmp = localStorage.getItem(empCacheKey)
-      let empData: MyEmployee | null = null
       if (cachedEmp) {
-        empData = JSON.parse(cachedEmp)
-        setEmployee(empData)
+        setEmployee(JSON.parse(cachedEmp))
       }
-
       const cachedEarnings = localStorage.getItem(earningsCacheKey)
       if (cachedEarnings) {
         const parsed = JSON.parse(cachedEarnings)
@@ -70,31 +67,16 @@ export function MyEarnings() {
       // Get my employee record via RPC (bypasses RLS)
       const { data: empRows } = await supabase.rpc('get_my_employee')
       const empArr = empRows as MyEmployee[] | null
-      let empData: MyEmployee | null = null
-
-      if (empArr && empArr.length > 0) {
-        empData = empArr[0]
-      } else {
-        // Fallback: try direct query using user ID as profile_id
-        const { data: directEmp } = await supabase
-          .from('employees')
-          .select('id, name, pay_type, commission_rate, fixed_salary, split_rate')
-          .eq('profile_id', user!.id)
-          .single()
-        if (directEmp) {
-          empData = directEmp as MyEmployee
-        }
-      }
-
-      if (!empData) {
+      if (!empArr || empArr.length === 0) {
         setData({ totalServices: 0, totalRevenue: 0, totalTips: 0, myEarnings: 0 })
         setAppointments([])
         return
       }
-
+      const empData = empArr[0]
       setEmployee(empData)
       localStorage.setItem(empCacheKey, JSON.stringify(empData))
 
+      // Calculate date range
       const today = new Date().toISOString().slice(0, 10)
       const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
       const monthStart = today.slice(0, 8) + '01'
@@ -103,47 +85,44 @@ export function MyEarnings() {
       if (period === 'week') dateFrom = weekAgo
       if (period === 'month') dateFrom = monthStart
 
-      // Get appointments via RPC (bypasses RLS)
-      let rows: AppointmentRow[] = []
-      const { data: aptData } = await supabase.rpc('get_my_appointments', {
-        p_date: today,
-        p_date_from: dateFrom,
-      })
-      rows = (aptData ?? []) as AppointmentRow[]
+      // Build list of dates in range to query individually via RPC
+      // The RPC without p_date_from does NOT filter by status, so we get all appointments
+      const dates = getDateRange(dateFrom, today)
 
-      // Fallback: if RPC returned empty, try direct query using employee ID
-      if (rows.length === 0 && empData.id) {
-        const { data: directApts } = await supabase
-          .from('appointments')
-          .select('id, date, time, status, price, tip, customers(name), services(name)')
-          .eq('employee_id', empData.id)
-          .eq('status', 'completed')
-          .gte('date', dateFrom)
-          .order('date', { ascending: false })
-          .order('time', { ascending: false })
-
-        if (directApts && directApts.length > 0) {
-          rows = (directApts as any[]).map((a) => ({
-            apt_id: a.id,
-            apt_date: a.date,
-            apt_time: a.time ?? '00:00',
-            apt_status: a.status,
-            apt_price: Number(a.price) || 0,
-            apt_tip: Number(a.tip) || 0,
-            customer_name: a.customers?.name ?? null,
-            service_name: a.services?.name ?? null,
-          }))
+      // Fetch all appointments for the date range using individual RPC calls
+      // (RPC with p_date only — no status filter, bypasses RLS)
+      const allRows: AppointmentRow[] = []
+      const batchSize = 7 // Query in batches of 7 days max
+      
+      if (dates.length <= batchSize) {
+        // For small ranges, query each date
+        const results = await Promise.all(
+          dates.map((d) => supabase.rpc('get_my_appointments', { p_date: d }))
+        )
+        for (const res of results) {
+          const rows = (res.data ?? []) as AppointmentRow[]
+          allRows.push(...rows)
         }
+      } else {
+        // For larger ranges, use p_date_from (which filters status='completed')
+        // This is fine because completed appointments ARE earnings
+        const { data: aptData } = await supabase.rpc('get_my_appointments', {
+          p_date: today,
+          p_date_from: dateFrom,
+        })
+        allRows.push(...((aptData ?? []) as AppointmentRow[]))
       }
 
-      setAppointments(rows)
+      // Filter only completed appointments for earnings calculation
+      const completedRows = allRows.filter((r) => r.apt_status === 'completed')
+      setAppointments(completedRows)
 
-      const totalRevenue = rows.reduce((s, a) => s + (Number(a.apt_price) || 0), 0)
-      const totalTips = rows.reduce((s, a) => s + (Number(a.apt_tip) || 0), 0)
+      const totalRevenue = completedRows.reduce((s, a) => s + (Number(a.apt_price) || 0), 0)
+      const totalTips = completedRows.reduce((s, a) => s + (Number(a.apt_tip) || 0), 0)
       const myEarnings = calcEarnings(empData, totalRevenue, totalTips, period)
 
       const payloadData = {
-        totalServices: rows.length,
+        totalServices: completedRows.length,
         totalRevenue,
         totalTips,
         myEarnings,
@@ -152,7 +131,7 @@ export function MyEarnings() {
 
       localStorage.setItem(
         earningsCacheKey,
-        JSON.stringify({ appointments: rows, data: payloadData })
+        JSON.stringify({ appointments: completedRows, data: payloadData })
       )
     } catch (err) {
       console.error('Failed to load online earnings:', err)
@@ -283,6 +262,19 @@ export function MyEarnings() {
       </section>
     </div>
   )
+}
+
+/** Generate array of date strings (YYYY-MM-DD) between from and to (inclusive) */
+function getDateRange(from: string, to: string): string[] {
+  const dates: string[] = []
+  const start = new Date(from + 'T00:00:00')
+  const end = new Date(to + 'T00:00:00')
+  const current = new Date(start)
+  while (current <= end) {
+    dates.push(current.toISOString().slice(0, 10))
+    current.setDate(current.getDate() + 1)
+  }
+  return dates
 }
 
 function calcEarnings(emp: MyEmployee, revenue: number, tips: number, period: 'today' | 'week' | 'month'): number {

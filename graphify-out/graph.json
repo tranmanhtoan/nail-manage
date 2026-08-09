@@ -51,7 +51,7 @@
       "label": "[2026-08-05]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L51",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_05",
       "community": 13,
@@ -62,7 +62,7 @@
       "label": "Th\u00eam m\u1edbi",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "docs_changelog_th\u00eam_m\u1edbi",
       "community": 13,
@@ -73,9 +73,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L59",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_57",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_59",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -84,7 +84,7 @@
       "label": "[2026-08-04]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L81",
+      "source_location": "L83",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_04",
       "community": 13,
@@ -95,9 +95,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L83",
+      "source_location": "L85",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_83",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_85",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -106,7 +106,7 @@
       "label": "[2026-08-03]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L94",
+      "source_location": "L96",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_03",
       "community": 13,
@@ -117,9 +117,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L96",
+      "source_location": "L98",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_96",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_98",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -128,7 +128,7 @@
       "label": "[2026-07-31]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L105",
+      "source_location": "L107",
       "_origin": "ast",
       "id": "docs_changelog_2026_07_31",
       "community": 13,
@@ -139,9 +139,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L107",
+      "source_location": "L109",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_107",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_109",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -152,10 +152,10 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_pages_employee_myearnings",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "myearnings.tsx"
+      "norm_label": "myearnings.tsx",
+      "id": "src_pages_employee_myearnings"
     },
     {
       "label": "EarningData",
@@ -163,10 +163,10 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "src_pages_employee_myearnings_earningdata",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "earningdata"
+      "norm_label": "earningdata",
+      "id": "src_pages_employee_myearnings_earningdata"
     },
     {
       "label": "MyEmployee",
@@ -174,10 +174,10 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "src_pages_employee_myearnings_myemployee",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "myemployee"
+      "norm_label": "myemployee",
+      "id": "src_pages_employee_myearnings_myemployee"
     },
     {
       "label": "AppointmentRow",
@@ -185,10 +185,10 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L23",
       "_origin": "ast",
-      "id": "src_pages_employee_myearnings_appointmentrow",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "appointmentrow"
+      "norm_label": "appointmentrow",
+      "id": "src_pages_employee_myearnings_appointmentrow"
     },
     {
       "label": "MyEarnings()",
@@ -196,10 +196,10 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "src_pages_employee_myearnings_myearnings",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "myearnings()"
+      "norm_label": "myearnings()",
+      "id": "src_pages_employee_myearnings_myearnings"
     },
     {
       "label": "calcEarnings()",
@@ -207,10 +207,10 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L288",
       "_origin": "ast",
-      "id": "src_pages_employee_myearnings_calcearnings",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "calcearnings()"
+      "norm_label": "calcearnings()",
+      "id": "src_pages_employee_myearnings_calcearnings"
     },
     {
       "label": "BottomNav.tsx",
@@ -4728,7 +4728,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L105",
+      "source_location": "L107",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4739,7 +4739,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L94",
+      "source_location": "L96",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4750,7 +4750,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L81",
+      "source_location": "L83",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4761,7 +4761,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L51",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4794,18 +4794,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_05",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_57",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_59",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_05",
@@ -4816,33 +4816,33 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L83",
+      "source_location": "L85",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_83",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_85",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L96",
+      "source_location": "L98",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_96",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_98",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L107",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_107",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_109",
       "confidence_score": 1.0
     },
     {
@@ -4865,9 +4865,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_lib_database_types",
-      "confidence_score": 1.0
+      "target": "src_lib_database_types"
     },
     {
       "relation": "imports",
@@ -4877,9 +4877,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_lib_database_types_paytype",
-      "confidence_score": 1.0
+      "target": "src_lib_database_types_paytype"
     },
     {
       "relation": "imports_from",
@@ -4889,9 +4889,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_lib_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase"
     },
     {
       "relation": "imports",
@@ -4901,9 +4901,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_lib_supabase_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -4912,9 +4912,9 @@
       "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_pages_employee_myearnings_appointmentrow",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_myearnings_appointmentrow"
     },
     {
       "relation": "contains",
@@ -4923,9 +4923,9 @@
       "source_location": "L288",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_pages_employee_myearnings_calcearnings",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_myearnings_calcearnings"
     },
     {
       "relation": "contains",
@@ -4934,9 +4934,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_pages_employee_myearnings_earningdata",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_myearnings_earningdata"
     },
     {
       "relation": "contains",
@@ -4945,9 +4945,9 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_pages_employee_myearnings_myearnings",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_myearnings_myearnings"
     },
     {
       "relation": "contains",
@@ -4956,9 +4956,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_pages_employee_myearnings_myemployee",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_myearnings_myemployee"
     },
     {
       "relation": "imports_from",
@@ -4968,9 +4968,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_store_authstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore"
     },
     {
       "relation": "imports",
@@ -4980,9 +4980,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myearnings",
-      "target": "src_store_authstore_useauthstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore_useauthstore"
     },
     {
       "relation": "imports",
@@ -10860,5 +10860,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1162a125be2b46eebaafdd69cda8211c5cd5c0d1"
+  "built_at_commit": "4c851e5d844ee06c2515b447b7375941b7825341"
 }
