@@ -18,6 +18,7 @@
 - [19:05] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thay date navigator bằng period selector tabs (Today/7 Days/30 Days) + day navigator chỉ hiện ở day mode
 - [19:05] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Cập nhật mini cards hiển thị label theo viewMode, thêm perCustomerAvg
 - [19:06] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Chart section dùng dynamic weeklyLabels thay vì hardcoded DAYS, badge hiển thị theo viewMode
+- [19:10] Chỉnh sửa `src/pages/owner/Reports.tsx` — Fix timezone bug trong getDateRange() dùng toLocalDateStr thay vì toISOString để tránh lệch ngày do UTC conversion
 - [19:15] Chỉnh sửa `src/pages/owner/Settings.tsx` — Đổi thứ tự tabs: System Overview, General, Services, Employees
 - [19:16] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm useNavigate import cho navigation khi bấm System Overview
 - [19:17] Chỉnh sửa `src/pages/owner/Settings.tsx` — System Overview navigate tới /dashboard, default tab đổi sang general, cập nhật tab click handler

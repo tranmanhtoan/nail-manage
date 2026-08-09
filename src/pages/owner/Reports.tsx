@@ -153,6 +153,26 @@ export function Reports() {
       price: row.price,
       tip: row.tip,
     }))
+
+    // Recalculate summary stats from the actual fetched data to stay in sync with the selected period
+    const totalPrice = apts.reduce((s, a) => s + a.price, 0)
+    const totalTip = apts.reduce((s, a) => s + a.tip, 0)
+    const totalRevenue = totalPrice + totalTip
+    const count = apts.length
+
+    let commission = 0
+    if (emp.payType === 'commission') {
+      commission = (totalPrice * (emp.payRate ?? 60) / 100) + totalTip
+    } else if (emp.payType === 'split') {
+      commission = totalRevenue * (emp.payRate ?? 60) / 100
+    } else {
+      // fixed salary: scale weekly fixed salary based on period
+      const fixedWeekly = emp.payRate ?? 0
+      const scaledSalary = period === 'day' ? (fixedWeekly / 7) : period === 'month' ? (fixedWeekly * 30 / 7) : fixedWeekly
+      commission = scaledSalary + totalTip
+    }
+
+    setSelectedEmployee({ ...emp, count, revenue: totalRevenue, commission })
     setEmployeeAppointments(apts)
     setLoadingDetail(false)
   }
