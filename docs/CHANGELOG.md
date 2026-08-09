@@ -19,6 +19,14 @@
 - [19:05] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Cập nhật mini cards hiển thị label theo viewMode, thêm perCustomerAvg
 - [19:06] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Chart section dùng dynamic weeklyLabels thay vì hardcoded DAYS, badge hiển thị theo viewMode
 - [19:10] Chỉnh sửa `src/pages/owner/Reports.tsx` — Fix timezone bug trong getDateRange() dùng toLocalDateStr thay vì toISOString để tránh lệch ngày do UTC conversion
+- [19:11] Chỉnh sửa `src/pages/owner/Reports.tsx` — openEmployeeDetail recalculate count/revenue/commission từ dữ liệu fetch thực tế theo period đang chọn
+- [19:15] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm Period type 'range' và import CalendarRange icon cho tính năng chọn khoảng ngày tùy chỉnh
+- [19:16] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm state rangeStart, rangeEnd, rangeError, shopPrintRef cho custom date range picker
+- [19:17] Chỉnh sửa `src/pages/owner/Reports.tsx` — useEffect xử lý period 'range' với validation 31 ngày trước khi loadReport
+- [19:17] Chỉnh sửa `src/pages/owner/Reports.tsx` — getDateRange() hỗ trợ period 'range' trả về rangeStart/rangeEnd
+- [19:18] Chỉnh sửa `src/pages/owner/Reports.tsx` — Cập nhật fixed salary scaling trong loadReport cho period 'range'
+- [19:18] Chỉnh sửa `src/pages/owner/Reports.tsx` — Cập nhật fixed salary scaling trong openEmployeeDetail cho period 'range'
+- [19:19] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm periodLabel cho 'range', hàm handleShopPrint() xuất report toàn tiệm
 - [19:15] Chỉnh sửa `src/pages/owner/Settings.tsx` — Đổi thứ tự tabs: System Overview, General, Services, Employees
 - [19:16] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm useNavigate import cho navigation khi bấm System Overview
 - [19:17] Chỉnh sửa `src/pages/owner/Settings.tsx` — System Overview navigate tới /dashboard, default tab đổi sang general, cập nhật tab click handler

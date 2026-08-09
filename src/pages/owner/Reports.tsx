@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Wallet, X, Printer } from 'lucide-react'
+import { Wallet, X, Printer, CalendarRange } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
-type Period = 'day' | 'week' | 'month'
+type Period = 'day' | 'week' | 'month' | 'range'
 
 interface ServiceRevenue {
   name: string
@@ -35,15 +35,45 @@ export function Reports() {
   const [employeeSummaries, setEmployeeSummaries] = useState<EmployeeSummary[]>([])
   const [loading, setLoading] = useState(true)
 
+  // Custom range state
+  const [rangeStart, setRangeStart] = useState<string>(() => {
+    const d = new Date(); d.setDate(d.getDate() - 6)
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+  })
+  const [rangeEnd, setRangeEnd] = useState<string>(() => {
+    const d = new Date()
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+  })
+  const [rangeError, setRangeError] = useState<string>('')
+
   // Detail modal
   const [selectedEmployee, setSelectedEmployee] = useState<EmployeeSummary | null>(null)
   const [employeeAppointments, setEmployeeAppointments] = useState<EmployeeAppointment[]>([])
   const [loadingDetail, setLoadingDetail] = useState(false)
   const printRef = useRef<HTMLDivElement>(null)
+  const shopPrintRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    loadReport()
-  }, [period])
+    if (period === 'range') {
+      // Validate range before loading
+      if (!rangeStart || !rangeEnd) return
+      const diffMs = new Date(rangeEnd).getTime() - new Date(rangeStart).getTime()
+      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24)) + 1
+      if (diffDays > 31) {
+        setRangeError(t('reports.rangeMaxError'))
+        return
+      }
+      if (diffDays < 1) {
+        setRangeError(t('reports.rangeInvalidError'))
+        return
+      }
+      setRangeError('')
+      loadReport()
+    } else {
+      setRangeError('')
+      loadReport()
+    }
+  }, [period, rangeStart, rangeEnd])
 
   function toLocalDateStr(d: Date): string {
     const y = d.getFullYear()
@@ -66,6 +96,10 @@ export function Reports() {
       const sunday = new Date(monday)
       sunday.setDate(monday.getDate() + 6)
       return { start: toLocalDateStr(monday), end: toLocalDateStr(sunday) }
+    }
+
+    if (period === 'range') {
+      return { start: rangeStart, end: rangeEnd }
     }
 
     // month
@@ -120,7 +154,7 @@ export function Reports() {
         // fixed salary + tips
         // Scale the weekly fixed salary based on the active report period
         const tips = rows.filter((r) => (r.employee_id ?? 'unknown') === key).reduce((s, r) => s + r.tip, 0)
-        const scaledSalary = period === 'day' ? (fixedSalary / 7) : period === 'month' ? (fixedSalary * 30 / 7) : fixedSalary
+        const scaledSalary = period === 'day' ? (fixedSalary / 7) : period === 'month' ? (fixedSalary * 30 / 7) : period === 'range' ? (fixedSalary * Math.min(31, Math.ceil((new Date(rangeEnd).getTime() - new Date(rangeStart).getTime()) / (1000 * 60 * 60 * 24)) + 1) / 7) : fixedSalary
         existing.commission = scaledSalary + tips
       }
 
@@ -168,7 +202,8 @@ export function Reports() {
     } else {
       // fixed salary: scale weekly fixed salary based on period
       const fixedWeekly = emp.payRate ?? 0
-      const scaledSalary = period === 'day' ? (fixedWeekly / 7) : period === 'month' ? (fixedWeekly * 30 / 7) : fixedWeekly
+      const rangeDays = period === 'range' ? Math.min(31, Math.ceil((new Date(rangeEnd).getTime() - new Date(rangeStart).getTime()) / (1000 * 60 * 60 * 24)) + 1) : 7
+      const scaledSalary = period === 'day' ? (fixedWeekly / 7) : period === 'month' ? (fixedWeekly * 30 / 7) : period === 'range' ? (fixedWeekly * rangeDays / 7) : fixedWeekly
       commission = scaledSalary + totalTip
     }
 
@@ -242,8 +277,41 @@ export function Reports() {
   }
 
   const maxServiceRevenue = serviceRevenue.length > 0 ? serviceRevenue[0].revenue : 1
-  const periodLabel = period === 'day' ? t('reports.thisDay') : period === 'week' ? t('reports.thisWeek') : t('reports.thisMonth')
+  const periodLabel = period === 'day' ? t('reports.thisDay') : period === 'week' ? t('reports.thisWeek') : period === 'range' ? t('reports.customRange') : t('reports.thisMonth')
   const { start: periodStart, end: periodEnd } = getDateRange()
+
+  function handleShopPrint() {
+    if (!shopPrintRef.current) return
+    const printContent = shopPrintRef.current.innerHTML
+    const win = window.open('', '_blank', 'width=600,height=800')
+    if (!win) return
+    win.document.write(`
+      <html>
+        <head>
+          <title>Shop Report — MCC Nail & Spa</title>
+          <style>
+            body { font-family: -apple-system, sans-serif; padding: 20px; font-size: 12px; color: #333; }
+            h2 { font-size: 16px; margin-bottom: 4px; }
+            h3 { font-size: 13px; color: #666; margin-top: 0; }
+            h4 { font-size: 12px; margin: 16px 0 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 8px; margin-bottom: 16px; }
+            th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #eee; font-size: 11px; }
+            th { font-weight: 600; color: #555; border-bottom: 2px solid #ddd; }
+            .right { text-align: right; }
+            .total-row { border-top: 2px solid #333; font-weight: bold; font-size: 12px; }
+            .footer { margin-top: 20px; text-align: center; color: #999; font-size: 10px; }
+            @media print { body { padding: 10px; } }
+          </style>
+        </head>
+        <body>
+          ${printContent}
+          <div class="footer">Generated by MCC Nail & Spa &bull; ${new Date().toLocaleDateString('vi-VN')}</div>
+        </body>
+      </html>
+    `)
+    win.document.close()
+    setTimeout(() => { win.print(); win.close() }, 300)
+  }
 
   if (loading) {
     return (
@@ -263,22 +331,58 @@ export function Reports() {
         </div>
       </div>
 
-      {/* Period Filters */}
-      <div className="flex gap-2">
-        {(['day', 'week', 'month'] as Period[]).map((p) => (
-          <button
-            key={p}
-            onClick={() => setPeriod(p)}
-            className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
-              period === p
-                ? 'bg-[#864e5a] text-white'
-                : 'bg-gray-100 text-gray-600'
-            }`}
-          >
-            {p === 'day' ? t('reports.day') : p === 'week' ? t('reports.week') : t('reports.month')}
-          </button>
-        ))}
+      {/* Period Filters + Print */}
+      <div className="flex items-center gap-2">
+        <div className="flex gap-2 flex-1 flex-wrap">
+          {(['day', 'week', 'month', 'range'] as Period[]).map((p) => (
+            <button
+              key={p}
+              onClick={() => setPeriod(p)}
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                period === p
+                  ? 'bg-[#864e5a] text-white'
+                  : 'bg-gray-100 text-gray-600'
+              }`}
+            >
+              {p === 'day' ? t('reports.day') : p === 'week' ? t('reports.week') : p === 'month' ? t('reports.month') : t('reports.range')}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={handleShopPrint}
+          className="p-2.5 bg-[#864e5a]/10 text-[#864e5a] rounded-xl active:scale-90 transition-transform shrink-0"
+          title={t('reports.printShopReport')}
+        >
+          <Printer size={18} />
+        </button>
       </div>
+
+      {/* Custom Range Picker */}
+      {period === 'range' && (
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 flex-1">
+              <CalendarRange size={14} className="text-gray-400 shrink-0" />
+              <input
+                type="date"
+                value={rangeStart}
+                onChange={(e) => setRangeStart(e.target.value)}
+                className="flex-1 text-sm border border-gray-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#864e5a]/30"
+              />
+              <span className="text-gray-400 text-xs">—</span>
+              <input
+                type="date"
+                value={rangeEnd}
+                onChange={(e) => setRangeEnd(e.target.value)}
+                className="flex-1 text-sm border border-gray-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#864e5a]/30"
+              />
+            </div>
+          </div>
+          {rangeError && (
+            <p className="text-xs text-red-500 font-medium">{rangeError}</p>
+          )}
+        </div>
+      )}
 
       {/* Top Performers — clickable */}
       <section className="space-y-3">

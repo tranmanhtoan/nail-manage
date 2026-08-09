@@ -51,7 +51,7 @@
       "label": "[2026-08-05]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_05",
       "community": 13,
@@ -62,7 +62,7 @@
       "label": "Th\u00eam m\u1edbi",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L59",
+      "source_location": "L60",
       "_origin": "ast",
       "id": "docs_changelog_th\u00eam_m\u1edbi",
       "community": 13,
@@ -73,9 +73,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L63",
+      "source_location": "L64",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_63",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_64",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -84,7 +84,7 @@
       "label": "[2026-08-04]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L87",
+      "source_location": "L88",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_04",
       "community": 13,
@@ -95,9 +95,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L89",
+      "source_location": "L90",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_89",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_90",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -106,7 +106,7 @@
       "label": "[2026-08-03]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L100",
+      "source_location": "L101",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_03",
       "community": 13,
@@ -117,9 +117,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L102",
+      "source_location": "L103",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_102",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_103",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -128,7 +128,7 @@
       "label": "[2026-07-31]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L111",
+      "source_location": "L112",
       "_origin": "ast",
       "id": "docs_changelog_2026_07_31",
       "community": 13,
@@ -139,9 +139,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L113",
+      "source_location": "L114",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_113",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_114",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -152,10 +152,10 @@
       "source_file": "src/pages/employee/MySchedule.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_pages_employee_myschedule",
       "community": 10,
       "community_name": "supabase",
-      "norm_label": "myschedule.tsx"
+      "norm_label": "myschedule.tsx",
+      "id": "src_pages_employee_myschedule"
     },
     {
       "label": "ScheduleItem",
@@ -163,10 +163,10 @@
       "source_file": "src/pages/employee/MySchedule.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "src_pages_employee_myschedule_scheduleitem",
       "community": 10,
       "community_name": "supabase",
-      "norm_label": "scheduleitem"
+      "norm_label": "scheduleitem",
+      "id": "src_pages_employee_myschedule_scheduleitem"
     },
     {
       "label": "MySchedule()",
@@ -174,10 +174,10 @@
       "source_file": "src/pages/employee/MySchedule.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "id": "src_pages_employee_myschedule_myschedule",
       "community": 10,
       "community_name": "supabase",
-      "norm_label": "myschedule()"
+      "norm_label": "myschedule()",
+      "id": "src_pages_employee_myschedule_myschedule"
     },
     {
       "label": "MyEarnings.tsx",
@@ -4750,7 +4750,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L111",
+      "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4761,7 +4761,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L100",
+      "source_location": "L101",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4772,7 +4772,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L87",
+      "source_location": "L88",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4783,7 +4783,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4816,18 +4816,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_05",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_63",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_64",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L59",
+      "source_location": "L60",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_05",
@@ -4838,33 +4838,33 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L89",
+      "source_location": "L90",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_89",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_90",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L102",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_102",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_103",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L113",
+      "source_location": "L114",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_113",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_114",
       "confidence_score": 1.0
     },
     {
@@ -4887,9 +4887,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myschedule",
-      "target": "src_lib_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase"
     },
     {
       "relation": "imports",
@@ -4899,9 +4899,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myschedule",
-      "target": "src_lib_supabase_supabase",
-      "confidence_score": 1.0
+      "target": "src_lib_supabase_supabase"
     },
     {
       "relation": "contains",
@@ -4910,9 +4910,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myschedule",
-      "target": "src_pages_employee_myschedule_myschedule",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_myschedule_myschedule"
     },
     {
       "relation": "contains",
@@ -4921,9 +4921,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myschedule",
-      "target": "src_pages_employee_myschedule_scheduleitem",
-      "confidence_score": 1.0
+      "target": "src_pages_employee_myschedule_scheduleitem"
     },
     {
       "relation": "imports_from",
@@ -4933,9 +4933,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myschedule",
-      "target": "src_store_authstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore"
     },
     {
       "relation": "imports",
@@ -4945,9 +4945,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_pages_employee_myschedule",
-      "target": "src_store_authstore_useauthstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore_useauthstore"
     },
     {
       "relation": "imports",
@@ -10904,5 +10904,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "fcab14ec1bf280b84545565a1fea13a1d9e2654e"
+  "built_at_commit": "d6056e0bcd8e2e21d538a486781e3c4e030bc14e"
 }
