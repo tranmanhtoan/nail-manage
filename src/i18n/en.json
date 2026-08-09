@@ -275,7 +275,13 @@
     "splitPayDesc": "Split {{rate}}% of total (price + tip)",
     "fixedPayDesc": "Fixed salary ${{rate}} + tip",
     "myEarningsLabel": "My Earnings",
-    "employeeEarningsLabel": "Employee gets"
+    "employeeEarningsLabel": "Employee gets",
+    "range": "Range",
+    "customRange": "custom range",
+    "rangeMaxError": "Range cannot exceed 31 days. Please select a shorter period.",
+    "rangeInvalidError": "End date must be after start date.",
+    "printShopReport": "Print shop report",
+    "shopReport": "Shop Report"
   },
   "pin": {
     "title": "Enter PIN",
