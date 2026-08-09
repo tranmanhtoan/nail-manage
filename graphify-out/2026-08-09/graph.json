@@ -51,7 +51,7 @@
       "label": "[2026-08-05]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L49",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_05",
       "community": 13,
@@ -62,7 +62,7 @@
       "label": "Th\u00eam m\u1edbi",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L51",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "docs_changelog_th\u00eam_m\u1edbi",
       "community": 13,
@@ -73,9 +73,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L55",
+      "source_location": "L56",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_55",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_56",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -84,7 +84,7 @@
       "label": "[2026-08-04]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L79",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_04",
       "community": 13,
@@ -95,9 +95,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L81",
+      "source_location": "L82",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_81",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_82",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -106,7 +106,7 @@
       "label": "[2026-08-03]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L92",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "docs_changelog_2026_08_03",
       "community": 13,
@@ -117,9 +117,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L94",
+      "source_location": "L95",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_94",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_95",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -128,7 +128,7 @@
       "label": "[2026-07-31]",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L103",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "docs_changelog_2026_07_31",
       "community": 13,
@@ -139,9 +139,9 @@
       "label": "Ch\u1ec9nh s\u1eeda",
       "file_type": "document",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L105",
+      "source_location": "L106",
       "_origin": "ast",
-      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_105",
+      "id": "docs_changelog_ch\u1ec9nh_s\u1eeda_106",
       "community": 13,
       "community_name": "MCC Nail & Spa \u2014 Changelog",
       "norm_label": "chinh sua"
@@ -152,10 +152,10 @@
       "source_file": "src/components/BottomNav.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_components_bottomnav",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "bottomnav.tsx"
+      "norm_label": "bottomnav.tsx",
+      "id": "src_components_bottomnav"
     },
     {
       "label": "BottomNav()",
@@ -163,10 +163,10 @@
       "source_file": "src/components/BottomNav.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "src_components_bottomnav_bottomnav",
       "community": 10,
       "community_name": "QuickEntry.tsx",
-      "norm_label": "bottomnav()"
+      "norm_label": "bottomnav()",
+      "id": "src_components_bottomnav_bottomnav"
     },
     {
       "label": "AdminDashboard.tsx",
@@ -4728,7 +4728,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L103",
+      "source_location": "L104",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4739,7 +4739,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L92",
+      "source_location": "L93",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4750,7 +4750,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L79",
+      "source_location": "L80",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4761,7 +4761,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_mcc_nail_spa_changelog",
@@ -4794,18 +4794,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L55",
+      "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_05",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_55",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_56",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_05",
@@ -4816,33 +4816,33 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L81",
+      "source_location": "L82",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_04",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_81",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_82",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L94",
+      "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_08_03",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_94",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_95",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/CHANGELOG.md",
-      "source_location": "L105",
+      "source_location": "L106",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_changelog_2026_07_31",
-      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_105",
+      "target": "docs_changelog_ch\u1ec9nh_s\u1eeda_106",
       "confidence_score": 1.0
     },
     {
@@ -4864,9 +4864,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_bottomnav",
-      "target": "src_components_bottomnav_bottomnav",
-      "confidence_score": 1.0
+      "target": "src_components_bottomnav_bottomnav"
     },
     {
       "relation": "imports_from",
@@ -4876,9 +4876,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_bottomnav",
-      "target": "src_store_authstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore"
     },
     {
       "relation": "imports",
@@ -4888,9 +4888,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_components_bottomnav",
-      "target": "src_store_authstore_useauthstore",
-      "confidence_score": 1.0
+      "target": "src_store_authstore_useauthstore"
     },
     {
       "relation": "imports_from",
@@ -10860,5 +10860,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "32c23d66561bbd4969ad4a724dcdf9029ddf5f78"
+  "built_at_commit": "8351012f79c03db6f30770c40b52ecafb94d34c2"
 }

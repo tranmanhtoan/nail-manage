@@ -257,12 +257,12 @@ export function MyEarnings() {
                 {appointments.map((apt) => (
                   <tr key={apt.apt_id} className="border-b border-gray-50">
                     <td className="py-2.5 px-3 text-gray-700 whitespace-nowrap">
-                      {new Date(apt.apt_date + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US', { day: '2-digit', month: '2-digit' })}
+                      {apt.apt_date ? new Date(apt.apt_date + 'T00:00:00').toLocaleDateString(i18n.language === 'vi' ? 'vi-VN' : 'en-US', { day: '2-digit', month: '2-digit' }) : '-'}
                       <span className="text-gray-400 ml-1 text-xs">{formatTime(apt.apt_time)}</span>
                     </td>
                     <td className="py-2.5 px-3 text-gray-700 truncate max-w-[120px]">{apt.service_name ?? '-'}</td>
-                    <td className="py-2.5 px-3 text-right font-medium">${apt.apt_price}</td>
-                    <td className="py-2.5 px-3 text-right text-emerald-600">${apt.apt_tip}</td>
+                    <td className="py-2.5 px-3 text-right font-medium">${Number(apt.apt_price) || 0}</td>
+                    <td className="py-2.5 px-3 text-right text-emerald-600">${Number(apt.apt_tip) || 0}</td>
                   </tr>
                 ))}
               </tbody>
