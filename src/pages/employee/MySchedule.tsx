@@ -77,11 +77,14 @@ export function MySchedule() {
     try {
       // Generate dates in range
       const dates: string[] = []
-      const start = new Date(from + 'T00:00:00')
-      const end = new Date(to + 'T00:00:00')
+      const start = new Date(from + 'T12:00:00') // Use noon to avoid timezone shift issues
+      const end = new Date(to + 'T12:00:00')
       const current = new Date(start)
       while (current <= end) {
-        dates.push(current.toISOString().slice(0, 10))
+        const y = current.getFullYear()
+        const mo = String(current.getMonth() + 1).padStart(2, '0')
+        const d = String(current.getDate()).padStart(2, '0')
+        dates.push(`${y}-${mo}-${d}`)
         current.setDate(current.getDate() + 1)
       }
 
