@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { supabaseAdmin } from '@/lib/supabase'
 import { toAuthEmail } from '@/lib/auth-helpers'
 import type { Employee, PayType } from '@/lib/database.types'
+import type { TablesInsert, TablesUpdate } from '@/lib/database.generated'
 
 export function Employees() {
   const { t } = useTranslation()
@@ -103,12 +104,12 @@ export function Employees() {
     const hasIdentities = (signUpData.user?.identities?.length ?? 0) > 0
 
     if (userId && hasIdentities) {
-      await supabase.from('employees').insert({ ...empData, profile_id: userId })
+      await supabase.from('employees').insert({ ...empData, profile_id: userId } as TablesInsert<'employees'>)
       await updatePin(userId, initialPin)
       setCreatedCreds({ login: create_email || loginId, password: initialPin })
     } else {
       // User might already exist — create employee without linking
-      await supabase.from('employees').insert(empData)
+      await supabase.from('employees').insert(empData as TablesInsert<'employees'>)
       alert(`Tài khoản "${loginId}" đã tồn tại. Nhân viên được tạo nhưng chưa link tài khoản.`)
     }
     setShowForm(false)
@@ -120,7 +121,7 @@ export function Employees() {
 
   async function toggleEmployeeActive(emp: Employee, e: React.MouseEvent) {
     e.stopPropagation()
-    const updates: Record<string, unknown> = { is_active: !emp.is_active }
+    const updates: TablesUpdate<'employees'> = { is_active: !emp.is_active }
     // When activating, record the activation time
     if (!emp.is_active) {
       updates.activated_at = new Date().toISOString()

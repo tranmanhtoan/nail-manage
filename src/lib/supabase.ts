@@ -1,14 +1,17 @@
 import { createClient } from '@supabase/supabase-js'
+import type { Database } from './database.generated'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string
 
-// ponytail: skip typed client generic — real types come from `supabase gen types`
-// when connected to actual DB. Using untyped client for now.
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Typed client — the Database generic is derived from supabase/schema.sql
+// (see database.generated.ts). This gives compile-time checking of table
+// columns and RPC argument/return shapes.
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey)
 
-// Separate client for creating new users (avoids session conflict with logged-in owner)
-export const supabaseAdmin = createClient(supabaseUrl, supabaseAnonKey, {
+// Separate client for creating new users (avoids session conflict with logged-in owner).
+// Uses the same anon key — NOT a service-role key (kept out of the frontend bundle).
+export const supabaseAdmin = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: false,
     persistSession: false,

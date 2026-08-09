@@ -345,3 +345,9 @@ export type Database = {
     CompositeTypes: Record<PropertyKey, never>
   }
 }
+
+// Convenience helpers mirroring Supabase's generated output.
+type PublicTables = Database['public']['Tables']
+export type Tables<T extends keyof PublicTables> = PublicTables[T]['Row']
+export type TablesInsert<T extends keyof PublicTables> = PublicTables[T]['Insert']
+export type TablesUpdate<T extends keyof PublicTables> = PublicTables[T]['Update']

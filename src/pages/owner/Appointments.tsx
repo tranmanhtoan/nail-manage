@@ -6,6 +6,7 @@ import { useSuperModeStore } from '@/store/superModeStore'
 import { useDataStore } from '@/store/dataStore'
 import { calculateIdleMinutes } from '@/lib/idle-minutes'
 import type { AppointmentStatus } from '@/lib/database.types'
+import type { TablesInsert, TablesUpdate } from '@/lib/database.generated'
 
 interface AppointmentRow {
   id: string
@@ -218,7 +219,7 @@ export function Appointments() {
   }
 
   async function updateStatus(id: string, status: AppointmentStatus) {
-    const updateData: Record<string, unknown> = { status }
+    const updateData: TablesUpdate<'appointments'> = { status }
 
     if (status === 'in_progress') {
       const now = new Date()
@@ -313,11 +314,15 @@ export function Appointments() {
 
   async function saveRotationOrder(list?: RotationEmployee[]) {
     const toSave = list ?? rotation
-    const updates = toSave.map((emp, i) => ({
-      id: emp.id,
-      rotation_order: i,
-    }))
-    const { error } = await supabase.from('employees').upsert(updates)
+    // Partial upsert by id: only the rotation_order column is changed. The field
+    // names are still checked against the employees Insert type via Pick.
+    const updates = toSave.map(
+      (emp, i): Pick<TablesInsert<'employees'>, 'id' | 'rotation_order'> => ({
+        id: emp.id,
+        rotation_order: i,
+      }),
+    )
+    const { error } = await supabase.from('employees').upsert(updates as TablesInsert<'employees'>[])
     if (error) {
       console.error('Failed to save rotation order:', error)
     }
@@ -693,7 +698,7 @@ function AppointmentCard({ apt, onStatusChange, onEdit, t, superMode, services, 
 
   async function saveSuperEdit() {
     setSavingSuper(true)
-    const updates: Record<string, unknown> = {
+    const updates: TablesUpdate<'appointments'> = {
       status: editStatus,
       price: parseFloat(priceInput) || 0,
       tip: parseFloat(tipInput) || 0,

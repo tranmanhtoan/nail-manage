@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Plus, X, ToggleLeft, ToggleRight } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import type { Service } from '@/lib/database.types'
+import type { TablesInsert } from '@/lib/database.generated'
 
 const CATEGORIES = ['manicure', 'pedicure', 'gel', 'acrylic', 'dip', 'wax', 'other'] as const
 
@@ -23,7 +24,7 @@ export function Services() {
     if (editing) {
       await supabase.from('services').update(form).eq('id', editing.id)
     } else {
-      await supabase.from('services').insert(form)
+      await supabase.from('services').insert(form as TablesInsert<'services'>)
     }
     setShowForm(false)
     setEditing(null)

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Plus, Search, X, ChevronDown } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import type { Customer } from '@/lib/database.types'
+import type { TablesInsert } from '@/lib/database.generated'
 
 const PAGE_SIZE = 30
 
@@ -63,7 +64,7 @@ export function Customers() {
     if (editing) {
       await supabase.from('customers').update(form).eq('id', editing.id)
     } else {
-      await supabase.from('customers').insert(form)
+      await supabase.from('customers').insert(form as TablesInsert<'customers'>)
     }
     setShowForm(false)
     setEditing(null)
