@@ -29,8 +29,8 @@ export function BottomNav() {
 
   const employeeTabs = [
     { to: '/my-schedule', icon: CalendarDays, label: t('nav.mySchedule') },
-    { to: '/quick-entry', icon: PenLine, label: t('nav.quickEntry') },
     { to: '/my-earnings', icon: BarChart3, label: t('nav.myEarnings') },
+    { to: '/quick-entry', icon: PenLine, label: t('nav.quickEntry') },
   ]
 
   const tabs = role === 'owner' ? ownerTabs : employeeTabs

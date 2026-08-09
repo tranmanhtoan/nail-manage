@@ -30,6 +30,8 @@
 - [19:24] Chỉnh sửa `src/i18n/en.json` — Thêm keys workHours, workHoursDesc, openTime, closeTime
 - [19:24] Chỉnh sửa `src/i18n/vi.json` — Thêm Vietnamese keys cho giờ làm việc
 - [19:26] Chỉnh sửa `src/components/BottomNav.tsx` — Đổi vị trí Reports lên trên Quick Entry trong sidebar/bottom nav
+- [19:28] Chỉnh sửa `src/pages/owner/AdminDashboard.tsx` — Cards Employees/Services/Appointments có thể click để chuyển tab hoặc navigate
+- [19:28] Chỉnh sửa `src/pages/owner/Settings.tsx` — Truyền onSwitchTab callback cho AdminDashboard
 - [18:30] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix lỗi "Cannot read properties of undefined (reading 'split')" khi item.time là undefined, thêm nullish guard
 - [18:33] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty
 - [18:30] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix cùng lỗi split undefined trong formatTime(), thêm nullish guard
