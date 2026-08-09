@@ -1,16 +1,16 @@
 # Graph Report - Nail Manange  (2026-08-09)
 
 ## Corpus Check
-- 86 files · ~57,588 words
+- 86 files · ~57,658 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 461 nodes · 584 edges · 41 communities (32 shown, 9 thin omitted)
+- 462 nodes · 585 edges · 40 communities (32 shown, 8 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `628a399f`
+- Built from commit: `606f090d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -50,7 +50,6 @@
 - datetime.ts
 - Appointments.tsx
 - payroll.ts
-- index.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `supabase` - 20 edges
@@ -75,19 +74,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (41 total, 9 thin omitted)
+## Communities (40 total, 8 thin omitted)
 
 ### Community 0 - "QuickEntry.tsx"
 Cohesion: 0.10
-Nodes (21): BottomNav(), FloatingBackHome(), OfflineSyncBanner(), useInactivityTimeout(), useServices(), CheckIn(), MySchedule(), PeriodType (+13 more)
+Nodes (22): BottomNav(), FloatingBackHome(), OfflineSyncBanner(), useInactivityTimeout(), useServices(), CheckIn(), MyEarnings(), MySchedule() (+14 more)
 
 ### Community 1 - "dataStore.ts"
 Cohesion: 0.10
 Nodes (11): UseDataResult, Employee, DAYS, EmployeeOption, RecentItem, Stats, ViewMode, CacheEntry (+3 more)
 
 ### Community 2 - "App.tsx"
-Cohesion: 0.07
-Nodes (19): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+11 more)
+Cohesion: 0.06
+Nodes (17): Appointments, BookingPage, Customers, Dashboard, EmployeeLayout, KioskLayout, PinGate, QuickEntry (+9 more)
 
 ### Community 3 - "devDependencies"
 Cohesion: 0.07
@@ -103,7 +102,7 @@ Nodes (24): For /graphify add and --watch, For /graphify query, For the commit h
 
 ### Community 6 - "supabase.ts"
 Cohesion: 0.05
-Nodes (31): PinGateProps, toAuthEmail(), Appointment, Customer, PayType, Service, UserRole, initAuthListener() (+23 more)
+Nodes (33): LanguageSwitch(), PinGateProps, toAuthEmail(), Appointment, Customer, PayType, Service, UserRole (+25 more)
 
 ### Community 7 - "dependencies"
 Cohesion: 0.06
@@ -188,12 +187,12 @@ Nodes (5): calcEarnings(), EarningsPeriod, getPeriodDays(), PayConfig, PayType
 ## Knowledge Gaps
 - **231 isolated node(s):** `NOW`, `emps`, `PayType`, `EarningsPeriod`, `name` (+226 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `QuickEntry.tsx`, `dataStore.ts`, `App.tsx`, `Appointments.tsx`?**
+- **Why does `supabase` connect `supabase.ts` to `QuickEntry.tsx`, `dataStore.ts`, `Appointments.tsx`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `QuickEntry.tsx` to `dataStore.ts`, `App.tsx`, `supabase.ts`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
@@ -202,8 +201,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `NOW`, `emps`, `PayType` to the rest of the system?**
   _231 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `QuickEntry.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.09915966386554621 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
 - **Should `dataStore.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.09881422924901186 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.0748663101604278 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06349206349206349 - nodes in this community are weakly interconnected._

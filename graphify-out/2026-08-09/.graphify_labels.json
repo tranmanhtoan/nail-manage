@@ -1,6 +1,6 @@
 {
   "0": "QuickEntry.tsx",
-  "1": "authStore.ts",
+  "1": "dataStore.ts",
   "2": "App.tsx",
   "3": "devDependencies",
   "4": "compilerOptions",

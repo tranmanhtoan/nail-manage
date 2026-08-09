@@ -1,22 +1,22 @@
 # Graph Report - Nail Manange  (2026-08-09)
 
 ## Corpus Check
-- 85 files · ~57,020 words
+- 86 files · ~57,588 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 458 nodes · 578 edges · 41 communities (32 shown, 9 thin omitted)
+- 461 nodes · 584 edges · 41 communities (32 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `091442d1`
+- Built from commit: `628a399f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - QuickEntry.tsx
-- authStore.ts
+- dataStore.ts
 - App.tsx
 - devDependencies
 - compilerOptions
@@ -78,12 +78,12 @@
 ## Communities (41 total, 9 thin omitted)
 
 ### Community 0 - "QuickEntry.tsx"
-Cohesion: 0.07
-Nodes (26): BottomNav(), FloatingBackHome(), OfflineSyncBanner(), useInactivityTimeout(), useServices(), PayType, CheckIn(), AppointmentRow (+18 more)
+Cohesion: 0.10
+Nodes (21): BottomNav(), FloatingBackHome(), OfflineSyncBanner(), useInactivityTimeout(), useServices(), CheckIn(), MySchedule(), PeriodType (+13 more)
 
-### Community 1 - "authStore.ts"
-Cohesion: 0.08
-Nodes (16): UseDataResult, Appointment, Customer, Employee, Service, UserRole, DAYS, EmployeeOption (+8 more)
+### Community 1 - "dataStore.ts"
+Cohesion: 0.10
+Nodes (11): UseDataResult, Employee, DAYS, EmployeeOption, RecentItem, Stats, ViewMode, CacheEntry (+3 more)
 
 ### Community 2 - "App.tsx"
 Cohesion: 0.07
@@ -102,8 +102,8 @@ Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
 ### Community 6 - "supabase.ts"
-Cohesion: 0.07
-Nodes (21): PinGateProps, toAuthEmail(), initAuthListener(), stopAuthListener(), supabase, supabaseAdmin, supabaseAnonKey, supabaseUrl (+13 more)
+Cohesion: 0.05
+Nodes (31): PinGateProps, toAuthEmail(), Appointment, Customer, PayType, Service, UserRole, initAuthListener() (+23 more)
 
 ### Community 7 - "dependencies"
 Cohesion: 0.06
@@ -178,32 +178,32 @@ Cohesion: 0.73
 Nodes (4): addDays(), dateRangeInclusive(), parseLocalDate(), toLocalDateStr()
 
 ### Community 39 - "Appointments.tsx"
-Cohesion: 0.12
-Nodes (14): AppointmentStatus, calculateIdleMinutes(), getShiftStartMinutes(), IdleCalcAppointment, IdleCalcEmployee, AppointmentRow, Appointments(), Employee (+6 more)
+Cohesion: 0.11
+Nodes (16): AppointmentStatus, calculateIdleMinutes(), getShiftStartMinutes(), IdleCalcAppointment, IdleCalcEmployee, emps, NOW, AppointmentRow (+8 more)
 
 ### Community 40 - "payroll.ts"
 Cohesion: 0.43
 Nodes (5): calcEarnings(), EarningsPeriod, getPeriodDays(), PayConfig, PayType
 
 ## Knowledge Gaps
-- **231 isolated node(s):** `PayType`, `EarningsPeriod`, `name`, `private`, `version` (+226 more)
+- **231 isolated node(s):** `NOW`, `emps`, `PayType`, `EarningsPeriod`, `name` (+226 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `QuickEntry.tsx`, `authStore.ts`, `App.tsx`, `Appointments.tsx`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `supabase` connect `supabase.ts` to `QuickEntry.tsx`, `dataStore.ts`, `App.tsx`, `Appointments.tsx`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `useAuthStore` connect `QuickEntry.tsx` to `dataStore.ts`, `App.tsx`, `supabase.ts`?**
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `dependencies`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **Why does `useAuthStore` connect `QuickEntry.tsx` to `authStore.ts`, `App.tsx`, `supabase.ts`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **What connects `PayType`, `EarningsPeriod`, `name` to the rest of the system?**
+- **What connects `NOW`, `emps`, `PayType` to the rest of the system?**
   _231 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `QuickEntry.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07399577167019028 - nodes in this community are weakly interconnected._
-- **Should `authStore.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.07899159663865546 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09915966386554621 - nodes in this community are weakly interconnected._
+- **Should `dataStore.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.09881422924901186 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.0748663101604278 - nodes in this community are weakly interconnected._

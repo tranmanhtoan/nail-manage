@@ -6,7 +6,16 @@
 
 ## [2026-08-09]
 
+### Thêm mới
+- [16:00] Tạo mới `vitest.config.ts` — Cấu hình Vitest riêng (alias `@`→src, môi trường jsdom, coverage v8 cho src/lib)
+- [16:00] Tạo mới `src/lib/payroll.ts` — Hàm thuần tính lương (commission/fixed/split) + getPeriodDays, gói đúng công thức hiện có ở Reports/MyEarnings (chưa rewire)
+- [16:00] Tạo mới `src/lib/datetime.ts` — Helper ngày an toàn timezone (toLocalDateStr, parseLocalDate, dateRangeInclusive, addDays) làm nền cho refactor gom datetime
+- [16:00] Tạo mới `src/lib/payroll.test.ts` — 19 test cho calcEarnings 3 hình thức lương và getPeriodDays
+- [16:00] Tạo mới `src/lib/datetime.test.ts` — 10 test cho helper ngày (local date, range inclusive, month/DST boundary)
+- [16:00] Tạo mới `src/lib/idle-minutes.test.ts` — 11 test cho calculateIdleMinutes (busy/idle/shift start/activation/non-today), mock localStorage in-memory, TZ=UTC
+
 ### Chỉnh sửa
+- [16:00] Chỉnh sửa `package.json` — Thêm devDeps Vitest/jsdom/RTL/coverage và script test, test:watch, test:cov (chạy với TZ=UTC)
 - [19:00] Chỉnh sửa `src/i18n/en.json` — Thêm translation keys cho period selector Dashboard (periodToday, period7Days, period30Days, totalCustomers, perCustomerAvg)
 - [19:00] Chỉnh sửa `src/i18n/vi.json` — Thêm Vietnamese translation keys cho period selector Dashboard
 - [19:01] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm ViewMode type và mở rộng Stats interface cho period selector (7 ngày, 30 ngày)

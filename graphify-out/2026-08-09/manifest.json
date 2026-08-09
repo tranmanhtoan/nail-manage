@@ -453,5 +453,10 @@
     "mtime": 1786291101.6121197,
     "ast_hash": "1cfd75b08a91467e7e5e733b1a01030e",
     "semantic_hash": ""
+  },
+  "src/lib/idle-minutes.test.ts": {
+    "mtime": 1786291137.070296,
+    "ast_hash": "e9f1d1f817edc6729ac807649ef93630",
+    "semantic_hash": ""
   }
 }
