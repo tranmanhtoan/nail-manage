@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "src/lib/supabase.ts": {
-    "mtime": 1785778761.756333,
-    "ast_hash": "ed117f3095a2cec50885655eb8d46a30",
+    "mtime": 1786292131.0575948,
+    "ast_hash": "2ec45742e983f001df7b81c6b052ee79",
     "semantic_hash": ""
   },
   "src/main.tsx": {
@@ -150,13 +150,13 @@
     "semantic_hash": ""
   },
   "src/pages/owner/Appointments.tsx": {
-    "mtime": 1785885594.3904643,
-    "ast_hash": "dff2cfe96696dc110c60a6e4f02cdf81",
+    "mtime": 1786292386.3980417,
+    "ast_hash": "a33500b869ed54d8f7fa673a584f0b7f",
     "semantic_hash": ""
   },
   "src/pages/owner/Customers.tsx": {
-    "mtime": 1785883548.7828605,
-    "ast_hash": "128b00335c99d5df226e012274a28526",
+    "mtime": 1786292300.4502656,
+    "ast_hash": "c9e43c14d53a725bfc59ed9bdbaef49e",
     "semantic_hash": ""
   },
   "src/pages/owner/Dashboard.tsx": {
@@ -165,8 +165,8 @@
     "semantic_hash": ""
   },
   "src/pages/owner/Employees.tsx": {
-    "mtime": 1785883752.0428135,
-    "ast_hash": "3868bf815831370744a9fff4c58d921e",
+    "mtime": 1786292339.6745548,
+    "ast_hash": "103f986067cc051ab3055d48bc6d40ff",
     "semantic_hash": ""
   },
   "src/pages/owner/Reports.tsx": {
@@ -175,9 +175,9 @@
     "semantic_hash": ""
   },
   "src/pages/owner/Services.tsx": {
-    "mtime": 1784877561.4483595,
-    "ast_hash": "c840b246b5bfea7baf1b738ae4b5195f",
-    "semantic_hash": "c840b246b5bfea7baf1b738ae4b5195f"
+    "mtime": 1786292276.301416,
+    "ast_hash": "dd9f03c6e1abc3dbe3ba10c02e03d7ec",
+    "semantic_hash": ""
   },
   "src/pages/owner/Settings.tsx": {
     "mtime": 1786282522.5935502,
@@ -465,8 +465,8 @@
     "semantic_hash": ""
   },
   "src/lib/database.generated.ts": {
-    "mtime": 1786292115.2075927,
-    "ast_hash": "ab555ee592ed3fe14e74a239c0c6b165",
+    "mtime": 1786292258.422468,
+    "ast_hash": "fe2c8eb5c1479a86c4c5f8fdcef76974",
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {

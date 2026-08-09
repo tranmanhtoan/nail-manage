@@ -2,13 +2,13 @@
   "version": "v1",
   "hooks": [
     {
-      "name": "Auto commit and push on file save",
+      "name": "Auto commit on file save (local only)",
       "trigger": "PostFileSave",
-      "description": "Automatically commits and pushes changes whenever a code file is saved, but only if TypeScript compiles successfully.",
+      "description": "Commits changes locally when a code file is saved, ONLY if TypeScript compiles. Does NOT push — pushing is a deliberate action via a branch + PR so CI can gate main.",
       "matcher": "\\.(tsx?|json|css|html)$",
       "action": {
         "type": "command",
-        "command": "cd \"/Users/trantoan/Library/CloudStorage/OneDrive-Personal/___VibeCode/Kiro/Nail Manange\" && npx tsc --noEmit 2>/dev/null && git add -A && git diff --cached --quiet || (git commit -m \"auto: update $(date +%H:%M)\" && git push)"
+        "command": "cd \"/Users/trantoan/Library/CloudStorage/OneDrive-Personal/___VibeCode/Kiro/Nail Manange\" && npx tsc --noEmit 2>/dev/null && git add -A && (git diff --cached --quiet || git commit -m \"auto: update $(date +%H:%M)\")"
       }
     }
   ]

@@ -7,6 +7,9 @@
 ## [2026-08-09]
 
 ### Thêm mới
+- [16:20] Tạo mới `eslint.config.js` — ESLint 9 flat config (typescript-eslint + react-hooks rules-of-hooks/exhaustive-deps), no-explicit-any=warn cho nợ cũ (#7)
+- [16:20] Tạo mới `.github/workflows/ci.yml` — GitHub Actions CI: npm ci + tsc + lint + test trên push/PR vào main (#7)
+- [16:20] Tạo mới `src/lib/database.generated.ts` — Database type suy ra từ schema.sql (tables/view/functions + helper Tables/TablesInsert/TablesUpdate) cho typed Supabase client (#2)
 - [16:00] Tạo mới `vitest.config.ts` — Cấu hình Vitest riêng (alias `@`→src, môi trường jsdom, coverage v8 cho src/lib)
 - [16:00] Tạo mới `src/lib/payroll.ts` — Hàm thuần tính lương (commission/fixed/split) + getPeriodDays, gói đúng công thức hiện có ở Reports/MyEarnings (chưa rewire)
 - [16:00] Tạo mới `src/lib/datetime.ts` — Helper ngày an toàn timezone (toLocalDateStr, parseLocalDate, dateRangeInclusive, addDays) làm nền cho refactor gom datetime
@@ -15,6 +18,12 @@
 - [16:00] Tạo mới `src/lib/idle-minutes.test.ts` — 11 test cho calculateIdleMinutes (busy/idle/shift start/activation/non-today), mock localStorage in-memory, TZ=UTC
 
 ### Chỉnh sửa
+- [16:20] Chỉnh sửa `package.json` — Thêm devDeps ESLint (eslint, typescript-eslint, plugin react-hooks/react-refresh, globals) và script `lint` (#7)
+- [16:20] Chỉnh sửa `src/lib/supabase.ts` — Gắn createClient<Database> cho cả client chính và admin; làm rõ admin dùng anon key (không phải service-role) (#2)
+- [16:20] Chỉnh sửa `src/pages/owner/Services.tsx` — Cast insert sang TablesInsert<'services'> cho typed client (#2)
+- [16:20] Chỉnh sửa `src/pages/owner/Customers.tsx` — Cast insert sang TablesInsert<'customers'> cho typed client (#2)
+- [16:20] Chỉnh sửa `src/pages/owner/Employees.tsx` — Type updates=TablesUpdate<'employees'>, cast insert sang TablesInsert<'employees'> (#2)
+- [16:20] Chỉnh sửa `src/pages/owner/Appointments.tsx` — Type updateData/updates=TablesUpdate<'appointments'>, rotation upsert dùng Pick<TablesInsert> (#2)
 - [16:00] Chỉnh sửa `package.json` — Thêm devDeps Vitest/jsdom/RTL/coverage và script test, test:watch, test:cov (chạy với TZ=UTC)
 - [19:00] Chỉnh sửa `src/i18n/en.json` — Thêm translation keys cho period selector Dashboard (periodToday, period7Days, period30Days, totalCustomers, perCustomerAvg)
 - [19:00] Chỉnh sửa `src/i18n/vi.json` — Thêm Vietnamese translation keys cho period selector Dashboard
