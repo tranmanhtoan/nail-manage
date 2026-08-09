@@ -523,7 +523,7 @@ export function Dashboard() {
           <p className="text-xs text-gray-500 mt-1">{t('dashboard.perCustomerAvg')}</p>
         </div>
       </div>
-      {/* Weekly Trends */}
+      {/* Revenue Trends */}
       <div
         className="rounded-[1rem] p-5 border border-[rgba(134,78,90,0.1)]"
         style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
@@ -531,7 +531,7 @@ export function Dashboard() {
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-semibold text-gray-900">{t('dashboard.weeklyTrends')}</h3>
           <span className="text-xs text-[#864e5a] border border-[#864e5a]/20 rounded-full px-3 py-1 font-semibold">
-            {t('dashboard.last7Days')}
+            {viewMode === 'day' ? t('dashboard.last7Days') : viewMode === 'week' ? t('dashboard.period7Days') : t('dashboard.period30Days')}
           </span>
         </div>
         {/* Bar chart */}
@@ -557,14 +557,14 @@ export function Dashboard() {
           })}
         </div>
         <div className="flex justify-between gap-2">
-          {DAYS.map((day, i) => (
+          {stats.weeklyLabels.map((label, i) => (
             <span
-              key={day}
+              key={`${label}-${i}`}
               className={`flex-1 text-center text-[10px] font-medium ${
                 i === selectedDayIndex ? 'text-[#864e5a] font-bold' : 'text-gray-400'
               }`}
             >
-              {day}
+              {label}
             </span>
           ))}
         </div>
