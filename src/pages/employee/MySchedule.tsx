@@ -86,34 +86,18 @@ export function MySchedule() {
       }
 
       // Fetch appointments for each date via RPC (bypasses RLS, no status filter)
+      // Always query per-date to include all statuses (booked, completed, etc.)
       const allItems: ScheduleItem[] = []
+      const batchSize = 5
 
-      if (dates.length <= 7) {
+      for (let i = 0; i < dates.length; i += batchSize) {
+        const batch = dates.slice(i, i + batchSize)
         const results = await Promise.all(
-          dates.map((d) => supabase.rpc('get_my_appointments', { p_date: d }))
+          batch.map((d) => supabase.rpc('get_my_appointments', { p_date: d }))
         )
         for (const res of results) {
           const rawRows = (res.data ?? []) as any[]
           allItems.push(...rawRows.map(normalizeRow))
-        }
-      } else {
-        // For larger ranges, use p_date_from
-        const { data } = await supabase.rpc('get_my_appointments', {
-          p_date: to,
-          p_date_from: from,
-        })
-        const rawRows = (data ?? []) as any[]
-        allItems.push(...rawRows.map(normalizeRow))
-
-        // p_date_from branch only returns completed — also fetch non-completed per date for today
-        // Actually for schedule view, also query today without p_date_from for non-completed
-        const today = new Date().toISOString().slice(0, 10)
-        if (from <= today && today <= to) {
-          const { data: todayData } = await supabase.rpc('get_my_appointments', { p_date: today })
-          const todayRows = (todayData ?? []) as any[]
-          for (const r of todayRows.map(normalizeRow)) {
-            if (!allItems.find((i) => i.id === r.id)) allItems.push(r)
-          }
         }
       }
 

@@ -1,6 +1,6 @@
 {
-  "0": "Reports.tsx",
-  "1": "Appointments.tsx",
+  "0": "EmployeeLayout.tsx",
+  "1": "dataStore.ts",
   "2": "App.tsx",
   "3": "devDependencies",
   "4": "compilerOptions",
@@ -9,8 +9,8 @@
   "7": "dependencies",
   "8": "MCC Nail & Spa — Tổng quan Module",
   "9": "validations.ts",
-  "10": "supabase",
-  "11": "Settings.tsx",
+  "10": "QuickEntry.tsx",
+  "11": "Appointments.tsx",
   "12": "graphify reference: extra exports and benchmark",
   "13": "MCC Nail & Spa — Changelog",
   "14": "vite-env.d.ts",
@@ -36,5 +36,6 @@
   "34": "implement.md",
   "35": "grill-me.md",
   "36": "grill-with-docs.md",
-  "37": "grilling.md"
+  "37": "grilling.md",
+  "38": "index.ts"
 }
