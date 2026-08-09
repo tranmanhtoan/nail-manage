@@ -233,6 +233,7 @@
     "ownerPin": "Mã PIN đăng nhập",
     "ownerPinDesc": "Mã PIN cá nhân của bạn để đăng nhập (tối thiểu 4 số)",
     "ownerPinChanged": "Đã đổi PIN thành công",
+    "changePin": "Đổi mã PIN",
     "darkMode": "Chế độ tối",
     "darkModeDesc": "Bật/Tắt giao diện tối cho ứng dụng",
     "systemOverview": "Tổng quan hệ thống",
