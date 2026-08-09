@@ -4,15 +4,70 @@
   "graph": {},
   "nodes": [
     {
+      "label": "datetime.ts",
+      "file_type": "code",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_datetime",
+      "community": 38,
+      "community_name": "datetime.ts",
+      "norm_label": "datetime.ts"
+    },
+    {
+      "label": "toLocalDateStr()",
+      "file_type": "code",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_lib_datetime_tolocaldatestr",
+      "community": 38,
+      "community_name": "datetime.ts",
+      "norm_label": "tolocaldatestr()"
+    },
+    {
+      "label": "parseLocalDate()",
+      "file_type": "code",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "src_lib_datetime_parselocaldate",
+      "community": 38,
+      "community_name": "datetime.ts",
+      "norm_label": "parselocaldate()"
+    },
+    {
+      "label": "dateRangeInclusive()",
+      "file_type": "code",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "src_lib_datetime_daterangeinclusive",
+      "community": 38,
+      "community_name": "datetime.ts",
+      "norm_label": "daterangeinclusive()"
+    },
+    {
+      "label": "addDays()",
+      "file_type": "code",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "src_lib_datetime_adddays",
+      "community": 38,
+      "community_name": "datetime.ts",
+      "norm_label": "adddays()"
+    },
+    {
       "label": "payroll.ts",
       "file_type": "code",
       "source_file": "src/lib/payroll.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_lib_payroll",
       "community": 40,
       "community_name": "payroll.ts",
-      "norm_label": "payroll.ts"
+      "norm_label": "payroll.ts",
+      "id": "src_lib_payroll"
     },
     {
       "label": "PayType",
@@ -20,10 +75,10 @@
       "source_file": "src/lib/payroll.ts",
       "source_location": "L22",
       "_origin": "ast",
-      "id": "src_lib_payroll_paytype",
       "community": 40,
       "community_name": "payroll.ts",
-      "norm_label": "paytype"
+      "norm_label": "paytype",
+      "id": "src_lib_payroll_paytype"
     },
     {
       "label": "PayConfig",
@@ -31,10 +86,10 @@
       "source_file": "src/lib/payroll.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "id": "src_lib_payroll_payconfig",
       "community": 40,
       "community_name": "payroll.ts",
-      "norm_label": "payconfig"
+      "norm_label": "payconfig",
+      "id": "src_lib_payroll_payconfig"
     },
     {
       "label": "EarningsPeriod",
@@ -42,10 +97,10 @@
       "source_file": "src/lib/payroll.ts",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "src_lib_payroll_earningsperiod",
       "community": 40,
       "community_name": "payroll.ts",
-      "norm_label": "earningsperiod"
+      "norm_label": "earningsperiod",
+      "id": "src_lib_payroll_earningsperiod"
     },
     {
       "label": "getPeriodDays()",
@@ -53,10 +108,10 @@
       "source_file": "src/lib/payroll.ts",
       "source_location": "L42",
       "_origin": "ast",
-      "id": "src_lib_payroll_getperioddays",
       "community": 40,
       "community_name": "payroll.ts",
-      "norm_label": "getperioddays()"
+      "norm_label": "getperioddays()",
+      "id": "src_lib_payroll_getperioddays"
     },
     {
       "label": "calcEarnings()",
@@ -64,10 +119,10 @@
       "source_file": "src/lib/payroll.ts",
       "source_location": "L75",
       "_origin": "ast",
-      "id": "src_lib_payroll_calcearnings",
       "community": 40,
       "community_name": "payroll.ts",
-      "norm_label": "calcearnings()"
+      "norm_label": "calcearnings()",
+      "id": "src_lib_payroll_calcearnings"
     },
     {
       "label": "package.json",
@@ -890,7 +945,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "myschedule.tsx",
       "id": "src_pages_employee_myschedule"
     },
@@ -901,7 +956,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "scheduleitem",
       "id": "src_pages_employee_myschedule_scheduleitem"
     },
@@ -912,7 +967,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "periodtype",
       "id": "src_pages_employee_myschedule_periodtype"
     },
@@ -923,7 +978,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "myschedule()",
       "id": "src_pages_employee_myschedule_myschedule"
     },
@@ -1000,7 +1055,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "myearnings.tsx",
       "id": "src_pages_employee_myearnings"
     },
@@ -1011,7 +1066,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "earningdata",
       "id": "src_pages_employee_myearnings_earningdata"
     },
@@ -1022,7 +1077,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "myemployee",
       "id": "src_pages_employee_myearnings_myemployee"
     },
@@ -1033,7 +1088,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "appointmentrow",
       "id": "src_pages_employee_myearnings_appointmentrow"
     },
@@ -1044,7 +1099,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "normalizeaptrow()",
       "id": "src_pages_employee_myearnings_normalizeaptrow"
     },
@@ -1055,7 +1110,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "myearnings()",
       "id": "src_pages_employee_myearnings_myearnings"
     },
@@ -1066,7 +1121,7 @@
       "source_location": "L294",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "getdaterange()",
       "id": "src_pages_employee_myearnings_getdaterange"
     },
@@ -1077,7 +1132,7 @@
       "source_location": "L306",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "calcearnings()",
       "id": "src_pages_employee_myearnings_calcearnings"
     },
@@ -1088,7 +1143,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "bottomnav.tsx",
       "id": "src_components_bottomnav"
     },
@@ -1099,7 +1154,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "bottomnav()",
       "id": "src_components_bottomnav_bottomnav"
     },
@@ -1153,8 +1208,8 @@
       "source_file": "src/lib/idle-minutes.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 38,
-      "community_name": "Appointments.tsx",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
       "norm_label": "idle-minutes.ts",
       "id": "src_lib_idle_minutes"
     },
@@ -1164,8 +1219,8 @@
       "source_file": "src/lib/idle-minutes.ts",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 38,
-      "community_name": "Appointments.tsx",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
       "norm_label": "getshiftstartminutes()",
       "id": "src_lib_idle_minutes_getshiftstartminutes"
     },
@@ -1175,8 +1230,8 @@
       "source_file": "src/lib/idle-minutes.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 38,
-      "community_name": "Appointments.tsx",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
       "norm_label": "idlecalcappointment",
       "id": "src_lib_idle_minutes_idlecalcappointment"
     },
@@ -1186,8 +1241,8 @@
       "source_file": "src/lib/idle-minutes.ts",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 38,
-      "community_name": "Appointments.tsx",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
       "norm_label": "idlecalcemployee",
       "id": "src_lib_idle_minutes_idlecalcemployee"
     },
@@ -1197,8 +1252,8 @@
       "source_file": "src/lib/idle-minutes.ts",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 38,
-      "community_name": "Appointments.tsx",
+      "community": 11,
+      "community_name": "QuickEntry.tsx",
       "norm_label": "calculateidleminutes()",
       "id": "src_lib_idle_minutes_calculateidleminutes"
     },
@@ -1274,8 +1329,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "dashboard.tsx",
       "id": "src_pages_owner_dashboard"
     },
@@ -1285,8 +1340,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "viewmode",
       "id": "src_pages_owner_dashboard_viewmode"
     },
@@ -1296,8 +1351,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "stats",
       "id": "src_pages_owner_dashboard_stats"
     },
@@ -1307,8 +1362,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "recentitem",
       "id": "src_pages_owner_dashboard_recentitem"
     },
@@ -1318,8 +1373,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "employeeoption",
       "id": "src_pages_owner_dashboard_employeeoption"
     },
@@ -1329,8 +1384,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "days",
       "id": "src_pages_owner_dashboard_days"
     },
@@ -1340,8 +1395,8 @@
       "source_file": "src/pages/owner/Dashboard.tsx",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 1,
+      "community_name": "Appointments.tsx",
       "norm_label": "dashboard()",
       "id": "src_pages_owner_dashboard_dashboard"
     },
@@ -1384,7 +1439,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "appointments.tsx",
       "id": "src_pages_owner_appointments"
@@ -1395,7 +1450,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "appointmentrow",
       "id": "src_pages_owner_appointments_appointmentrow"
@@ -1406,7 +1461,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "employee",
       "id": "src_pages_owner_appointments_employee"
@@ -1417,7 +1472,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "service",
       "id": "src_pages_owner_appointments_service"
@@ -1428,7 +1483,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "rotationstatus",
       "id": "src_pages_owner_appointments_rotationstatus"
@@ -1439,7 +1494,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L41",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "rotationemployee",
       "id": "src_pages_owner_appointments_rotationemployee"
@@ -1450,7 +1505,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L50",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "getchibiemoji()",
       "id": "src_pages_owner_appointments_getchibiemoji"
@@ -1461,7 +1516,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L59",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "appointments()",
       "id": "src_pages_owner_appointments_appointments"
@@ -1472,7 +1527,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L640",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "appointmentcard()",
       "id": "src_pages_owner_appointments_appointmentcard"
@@ -1483,7 +1538,7 @@
       "source_file": "src/pages/owner/Appointments.tsx",
       "source_location": "L928",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "newappointmentform()",
       "id": "src_pages_owner_appointments_newappointmentform"
@@ -1538,8 +1593,8 @@
       "source_file": "src/pages/QuickEntry.tsx",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "quickentry()",
       "id": "src_pages_quickentry_quickentry"
     },
@@ -1671,7 +1726,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "customers.tsx",
       "id": "src_pages_owner_customers"
     },
@@ -1682,7 +1737,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "customers()",
       "id": "src_pages_owner_customers_customers"
     },
@@ -1693,7 +1748,7 @@
       "source_location": "L150",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "customerform()",
       "id": "src_pages_owner_customers_customerform"
     },
@@ -1704,7 +1759,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "checkin.tsx",
       "id": "src_pages_employee_checkin"
     },
@@ -1715,7 +1770,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "checkin()",
       "id": "src_pages_employee_checkin_checkin"
     },
@@ -1726,7 +1781,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "usestoredata.ts",
       "id": "src_hooks_usestoredata"
     },
@@ -1737,7 +1792,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "usedataresult",
       "id": "src_hooks_usestoredata_usedataresult"
     },
@@ -1748,7 +1803,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "useemployees()",
       "id": "src_hooks_usestoredata_useemployees"
     },
@@ -1759,7 +1814,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "useservices()",
       "id": "src_hooks_usestoredata_useservices"
     },
@@ -1770,7 +1825,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "usecustomers()",
       "id": "src_hooks_usestoredata_usecustomers"
     },
@@ -1781,7 +1836,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "useemployeesandservices()",
       "id": "src_hooks_usestoredata_useemployeesandservices"
     },
@@ -2485,7 +2540,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "datastore.ts",
       "id": "src_store_datastore"
     },
@@ -2496,7 +2551,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "cacheentry",
       "id": "src_store_datastore_cacheentry"
     },
@@ -2507,7 +2562,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "datastate",
       "id": "src_store_datastore_datastate"
     },
@@ -2518,7 +2573,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "isstale()",
       "id": "src_store_datastore_isstale"
     },
@@ -2529,7 +2584,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "getcached()",
       "id": "src_store_datastore_getcached"
     },
@@ -2540,7 +2595,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "setcache()",
       "id": "src_store_datastore_setcache"
     },
@@ -2551,7 +2606,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "emptycache()",
       "id": "src_store_datastore_emptycache"
     },
@@ -2562,7 +2617,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "inflightrequests",
       "id": "src_store_datastore_inflightrequests"
     },
@@ -2573,7 +2628,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "deduplicatedfetch()",
       "id": "src_store_datastore_deduplicatedfetch"
     },
@@ -2584,7 +2639,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "usedatastore",
       "id": "src_store_datastore_usedatastore"
     },
@@ -2704,8 +2759,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 39,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "index.ts",
       "id": "src_i18n_index"
     },
@@ -2715,8 +2770,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 39,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "getsavedlang()",
       "id": "src_i18n_index_getsavedlang"
     },
@@ -2726,8 +2781,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 39,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "loadtranslation()",
       "id": "src_i18n_index_loadtranslation"
     },
@@ -2737,8 +2792,8 @@
       "source_file": "src/i18n/index.ts",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 39,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "initiallng",
       "id": "src_i18n_index_initiallng"
     },
@@ -2748,8 +2803,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "login.tsx",
       "id": "src_pages_login"
     },
@@ -2759,8 +2814,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "ownerprofile",
       "id": "src_pages_login_ownerprofile"
     },
@@ -2770,8 +2825,8 @@
       "source_file": "src/pages/Login.tsx",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "App.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "login()",
       "id": "src_pages_login_login"
     },
@@ -2781,8 +2836,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "authstore.ts",
       "id": "src_store_authstore"
     },
@@ -2792,8 +2847,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 6,
-      "community_name": "supabase.ts",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "authstate",
       "id": "src_store_authstore_authstate"
     },
@@ -2804,7 +2859,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "useauthstore",
       "id": "src_store_authstore_useauthstore"
     },
@@ -2814,8 +2869,8 @@
       "source_file": "src/main.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 39,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "main.tsx",
       "id": "src_main"
     },
@@ -2825,8 +2880,8 @@
       "source_file": "src/main.tsx",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 39,
-      "community_name": "index.ts",
+      "community": 2,
+      "community_name": "App.tsx",
       "norm_label": "registerswupdatehandler()",
       "id": "src_main_registerswupdatehandler"
     },
@@ -3001,7 +3056,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "supermodestore.ts",
       "id": "src_store_supermodestore"
@@ -3012,7 +3067,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "supermodestate",
       "id": "src_store_supermodestore_supermodestate"
@@ -3023,7 +3078,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "getsupermode()",
       "id": "src_store_supermodestore_getsupermode"
@@ -3034,7 +3089,7 @@
       "source_file": "src/store/superModeStore.ts",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 38,
+      "community": 1,
       "community_name": "Appointments.tsx",
       "norm_label": "usesupermodestore",
       "id": "src_store_supermodestore_usesupermodestore"
@@ -3046,7 +3101,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "database.types.ts",
       "id": "src_lib_database_types"
     },
@@ -3057,7 +3112,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "paytype",
       "id": "src_lib_database_types_paytype"
     },
@@ -3068,7 +3123,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "appointmentstatus",
       "id": "src_lib_database_types_appointmentstatus"
     },
@@ -3078,8 +3133,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "dataStore.ts",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "userrole",
       "id": "src_lib_database_types_userrole"
     },
@@ -3090,7 +3145,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "employee",
       "id": "src_lib_database_types_employee"
     },
@@ -3101,7 +3156,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "service",
       "id": "src_lib_database_types_service"
     },
@@ -3112,7 +3167,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "customer",
       "id": "src_lib_database_types_customer"
     },
@@ -3123,7 +3178,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "community": 1,
-      "community_name": "dataStore.ts",
+      "community_name": "Appointments.tsx",
       "norm_label": "appointment",
       "id": "src_lib_database_types_appointment"
     },
@@ -3133,8 +3188,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "kioskpersonal.tsx",
       "id": "src_pages_kiosk_kioskpersonal"
     },
@@ -3144,8 +3199,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "profileoption",
       "id": "src_pages_kiosk_kioskpersonal_profileoption"
     },
@@ -3155,8 +3210,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "getchibiemoji()",
       "id": "src_pages_kiosk_kioskpersonal_getchibiemoji"
     },
@@ -3166,8 +3221,8 @@
       "source_file": "src/pages/kiosk/KioskPersonal.tsx",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "QuickEntry.tsx",
+      "community": 0,
+      "community_name": "authStore.ts",
       "norm_label": "kioskpersonal()",
       "id": "src_pages_kiosk_kioskpersonal_kioskpersonal"
     },
@@ -3178,7 +3233,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "employeelayout.tsx",
       "id": "src_components_employeelayout"
     },
@@ -3189,7 +3244,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "community": 0,
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "norm_label": "employeelayout()",
       "id": "src_components_employeelayout_employeelayout"
     },
@@ -4136,7 +4191,7 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "floatingbackhome.tsx",
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "id": "src_components_floatingbackhome"
     },
     {
@@ -4147,7 +4202,7 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "floatingbackhome()",
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "id": "src_components_floatingbackhome_floatingbackhome"
     },
     {
@@ -4156,9 +4211,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch.tsx",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch"
     },
     {
@@ -4167,9 +4222,9 @@
       "source_file": "src/components/LanguageSwitch.tsx",
       "source_location": "L3",
       "_origin": "ast",
-      "community": 2,
+      "community": 6,
       "norm_label": "languageswitch()",
-      "community_name": "App.tsx",
+      "community_name": "supabase.ts",
       "id": "src_components_languageswitch_languageswitch"
     },
     {
@@ -4202,7 +4257,7 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "useinactivitytimeout.ts",
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "id": "src_hooks_useinactivitytimeout"
     },
     {
@@ -4213,7 +4268,7 @@
       "_origin": "ast",
       "community": 0,
       "norm_label": "useinactivitytimeout()",
-      "community_name": "EmployeeLayout.tsx",
+      "community_name": "authStore.ts",
       "id": "src_hooks_useinactivitytimeout_useinactivitytimeout"
     },
     {
@@ -4222,9 +4277,9 @@
       "source_file": "src/i18n.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 39,
+      "community": 2,
       "norm_label": "i18n.ts",
-      "community_name": "index.ts",
+      "community_name": "App.tsx",
       "id": "src_i18n"
     },
     {
@@ -4266,9 +4321,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "bookingpage.tsx",
-      "community_name": "dataStore.ts",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage"
     },
     {
@@ -4277,9 +4332,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "bookingpage()",
-      "community_name": "dataStore.ts",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage_bookingpage"
     },
     {
@@ -4288,9 +4343,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
+      "community": 0,
       "norm_label": "kiosklayout.tsx",
-      "community_name": "QuickEntry.tsx",
+      "community_name": "authStore.ts",
       "id": "src_pages_kiosk_kiosklayout"
     },
     {
@@ -4299,9 +4354,9 @@
       "source_file": "src/pages/kiosk/KioskLayout.tsx",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 11,
+      "community": 0,
       "norm_label": "kiosklayout()",
-      "community_name": "QuickEntry.tsx",
+      "community_name": "authStore.ts",
       "id": "src_pages_kiosk_kiosklayout_kiosklayout"
     },
     {
@@ -4969,13 +5024,81 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_datetime",
+      "target": "src_lib_datetime_adddays",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_datetime",
+      "target": "src_lib_datetime_daterangeinclusive",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_datetime",
+      "target": "src_lib_datetime_parselocaldate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_datetime",
+      "target": "src_lib_datetime_tolocaldatestr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_datetime_daterangeinclusive",
+      "target": "src_lib_datetime_tolocaldatestr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/datetime.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_datetime_daterangeinclusive",
+      "target": "src_lib_datetime_parselocaldate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/lib/payroll.ts",
       "source_location": "L75",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_payroll",
-      "target": "src_lib_payroll_calcearnings",
-      "confidence_score": 1.0
+      "target": "src_lib_payroll_calcearnings"
     },
     {
       "relation": "contains",
@@ -4984,9 +5107,9 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_payroll",
-      "target": "src_lib_payroll_earningsperiod",
-      "confidence_score": 1.0
+      "target": "src_lib_payroll_earningsperiod"
     },
     {
       "relation": "contains",
@@ -4995,9 +5118,9 @@
       "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_payroll",
-      "target": "src_lib_payroll_getperioddays",
-      "confidence_score": 1.0
+      "target": "src_lib_payroll_getperioddays"
     },
     {
       "relation": "contains",
@@ -5006,9 +5129,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_payroll",
-      "target": "src_lib_payroll_payconfig",
-      "confidence_score": 1.0
+      "target": "src_lib_payroll_payconfig"
     },
     {
       "relation": "contains",
@@ -5017,9 +5140,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_payroll",
-      "target": "src_lib_payroll_paytype",
-      "confidence_score": 1.0
+      "target": "src_lib_payroll_paytype"
     },
     {
       "relation": "contains",
@@ -11373,5 +11496,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ada0a518d984238a01a8bc47adc179c1c70c1959"
+  "built_at_commit": "008e070b2bb576f39d84df1354ab8a459bc0dba4"
 }

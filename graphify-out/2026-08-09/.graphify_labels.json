@@ -1,6 +1,6 @@
 {
-  "0": "EmployeeLayout.tsx",
-  "1": "dataStore.ts",
+  "0": "authStore.ts",
+  "1": "Appointments.tsx",
   "2": "App.tsx",
   "3": "devDependencies",
   "4": "compilerOptions",
@@ -37,7 +37,6 @@
   "35": "grill-me.md",
   "36": "grill-with-docs.md",
   "37": "grilling.md",
-  "38": "Appointments.tsx",
-  "39": "index.ts",
+  "38": "datetime.ts",
   "40": "payroll.ts"
 }
