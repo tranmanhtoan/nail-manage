@@ -53,6 +53,11 @@
   "dashboard": {
     "greeting": "Hello",
     "subtitle": "Here is your salon's performance today.",
+    "periodToday": "Today",
+    "period7Days": "7 Days",
+    "period30Days": "30 Days",
+    "totalCustomers": "Total Customers",
+    "perCustomerAvg": "Per customer avg",
     "totalRevenue": "Total Revenue",
     "fromLastWeek": "from last week",
     "cash": "Cash",

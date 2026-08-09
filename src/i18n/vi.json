@@ -53,6 +53,11 @@
   "dashboard": {
     "greeting": "Xin chào",
     "subtitle": "Hiệu suất tiệm của bạn hôm nay.",
+    "periodToday": "Hôm nay",
+    "period7Days": "7 ngày",
+    "period30Days": "30 ngày",
+    "totalCustomers": "Tổng khách",
+    "perCustomerAvg": "TB mỗi khách",
     "totalRevenue": "Tổng doanh thu",
     "fromLastWeek": "so với tuần trước",
     "cash": "Tiền mặt",
