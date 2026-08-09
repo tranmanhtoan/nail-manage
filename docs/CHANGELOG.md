@@ -41,6 +41,7 @@
 - [18:38] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix NaN/Invalid Date: parse numeric fields với Number(), fallback time null thành '00:00'
 - [18:39] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix NaN trong totalRevenue/totalTips reduce: wrap Number() khi cộng apt_price/apt_tip
 - [18:40] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix Invalid Date và $NaN trong render: guard apt_date null, Number() cho price/tip hiển thị
+- [18:45] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Rewrite: bỏ fallback direct query (bị RLS chặn), dùng RPC per-date để bypass status filter, filter completed ở frontend
 - [18:00] Chỉnh sửa `src/i18n/vi.json` — Thêm translation keys cho chức năng đổi Owner PIN (ownerPin, ownerPinDesc, ownerPinChanged)
 - [18:00] Chỉnh sửa `src/i18n/en.json` — Thêm English translation keys cho chức năng đổi Owner PIN
 - [18:02] Chỉnh sửa `src/i18n/vi.json` — Thêm key `changePin` cho section gom PIN
