@@ -36,6 +36,7 @@ export function Settings() {
   const [pinSaved, setPinSaved] = useState(false)
   const [ownerPin, setOwnerPin] = useState('')
   const [ownerPinSaved, setOwnerPinSaved] = useState(false)
+  const [pinTarget, setPinTarget] = useState<'kiosk' | 'owner'>('kiosk')
 
   useEffect(() => {
     loadToggles()
@@ -216,62 +217,62 @@ export function Settings() {
             )}
           </div>
 
-          {/* Kiosk PIN */}
+          {/* Change PIN */}
           <div
             className="rounded-[1rem] p-5 space-y-3 border border-[rgba(134,78,90,0.1)]"
             style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
           >
             <div className="flex items-center gap-2">
               <KeyRound size={16} className="text-[#864e5a]" />
-              <h3 className="text-[13px] font-semibold text-[#864e5a] uppercase tracking-widest">{t('settings.kioskPin')}</h3>
+              <h3 className="text-[13px] font-semibold text-[#864e5a] uppercase tracking-widest">{t('settings.changePin')}</h3>
             </div>
-            <p className="text-xs text-gray-500">{t('settings.kioskPinDesc')}</p>
-            <div className="flex items-center gap-3">
-              <input
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                value={kioskPin}
-                onChange={(e) => setKioskPin(e.target.value.replace(/\D/g, '').slice(0, 8))}
-                maxLength={8}
-                className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none text-center text-lg font-mono tracking-[0.3em]"
-              />
+
+            {/* Toggle: Kiosk / Owner */}
+            <div className="flex rounded-xl overflow-hidden border border-gray-200">
               <button
-                onClick={saveKioskPin}
-                disabled={!kioskPin || kioskPin.length < 4}
-                className="px-4 py-3 bg-[#864e5a] text-white font-semibold rounded-xl text-sm disabled:opacity-40 active:scale-[0.98] transition-transform"
+                onClick={() => setPinTarget('kiosk')}
+                className={`flex-1 py-2 text-sm font-medium transition-colors ${
+                  pinTarget === 'kiosk'
+                    ? 'bg-[#864e5a] text-white'
+                    : 'bg-white text-gray-600 hover:bg-gray-50'
+                }`}
               >
-                {pinSaved ? '✓' : t('common.save')}
+                KIOSK
+              </button>
+              <button
+                onClick={() => setPinTarget('owner')}
+                className={`flex-1 py-2 text-sm font-medium transition-colors ${
+                  pinTarget === 'owner'
+                    ? 'bg-[#864e5a] text-white'
+                    : 'bg-white text-gray-600 hover:bg-gray-50'
+                }`}
+              >
+                OWNER
               </button>
             </div>
-          </div>
 
-          {/* Owner PIN */}
-          <div
-            className="rounded-[1rem] p-5 space-y-3 border border-[rgba(134,78,90,0.1)]"
-            style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
-          >
-            <div className="flex items-center gap-2">
-              <KeyRound size={16} className="text-[#864e5a]" />
-              <h3 className="text-[13px] font-semibold text-[#864e5a] uppercase tracking-widest">{t('settings.ownerPin')}</h3>
-            </div>
-            <p className="text-xs text-gray-500">{t('settings.ownerPinDesc')}</p>
+            <p className="text-xs text-gray-500">
+              {pinTarget === 'kiosk' ? t('settings.kioskPinDesc') : t('settings.ownerPinDesc')}
+            </p>
             <div className="flex items-center gap-3">
               <input
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
-                value={ownerPin}
-                onChange={(e) => setOwnerPin(e.target.value.replace(/\D/g, '').slice(0, 8))}
+                value={pinTarget === 'kiosk' ? kioskPin : ownerPin}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, '').slice(0, 8)
+                  pinTarget === 'kiosk' ? setKioskPin(val) : setOwnerPin(val)
+                }}
                 maxLength={8}
                 className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#864e5a] outline-none text-center text-lg font-mono tracking-[0.3em]"
               />
               <button
-                onClick={saveOwnerPin}
-                disabled={!ownerPin || ownerPin.length < 4}
+                onClick={pinTarget === 'kiosk' ? saveKioskPin : saveOwnerPin}
+                disabled={pinTarget === 'kiosk' ? (!kioskPin || kioskPin.length < 4) : (!ownerPin || ownerPin.length < 4)}
                 className="px-4 py-3 bg-[#864e5a] text-white font-semibold rounded-xl text-sm disabled:opacity-40 active:scale-[0.98] transition-transform"
               >
-                {ownerPinSaved ? '✓' : t('common.save')}
+                {(pinTarget === 'kiosk' ? pinSaved : ownerPinSaved) ? '✓' : t('common.save')}
               </button>
             </div>
           </div>

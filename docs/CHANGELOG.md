@@ -9,7 +9,7 @@
 ### Chỉnh sửa
 - [18:00] Chỉnh sửa `src/i18n/vi.json` — Thêm translation keys cho chức năng đổi Owner PIN (ownerPin, ownerPinDesc, ownerPinChanged)
 - [18:00] Chỉnh sửa `src/i18n/en.json` — Thêm English translation keys cho chức năng đổi Owner PIN
-- [18:01] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thêm state, loadOwnerPin và saveOwnerPin functions cho chức năng đổi Owner PIN
+- [18:01] Chỉnh sửa `src/pages/owner/Settings.tsx` — Gom Kiosk PIN và Owner PIN thành 1 section "Change PIN" với toggle chọn KIOSK/OWNER
 
 ---
 

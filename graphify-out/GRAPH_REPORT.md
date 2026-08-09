@@ -1,7 +1,7 @@
 # Graph Report - Nail Manange  (2026-08-09)
 
 ## Corpus Check
-- 80 files · ~50,461 words
+- 80 files · ~50,665 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a1c9b48f`
+- Built from commit: `d09ee8a0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
