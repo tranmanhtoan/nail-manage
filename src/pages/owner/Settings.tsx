@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { Users, Scissors, Settings2, ToggleLeft, ToggleRight, Shield, KeyRound, LayoutDashboard } from 'lucide-react'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { useAuthStore } from '@/store/authStore'
-import { useThemeStore } from '@/store/themeStore'
 import { useSuperModeStore } from '@/store/superModeStore'
 import { Employees } from './Employees'
 import { Services } from './Services'
@@ -25,9 +24,8 @@ const DEFAULT_TOGGLES: FeatureToggles = {
 }
 
 export function Settings() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { user, logout } = useAuthStore()
-  const { darkMode, toggleDarkMode } = useThemeStore()
   const { superMode, toggle: toggleSuperMode } = useSuperModeStore()
   const [tab, setTab] = useState<Tab>('dashboard')
   const [toggles, setToggles] = useState<FeatureToggles>(DEFAULT_TOGGLES)
@@ -37,11 +35,15 @@ export function Settings() {
   const [ownerPin, setOwnerPin] = useState('')
   const [ownerPinSaved, setOwnerPinSaved] = useState(false)
   const [pinTarget, setPinTarget] = useState<'kiosk' | 'owner'>('kiosk')
+  const [workStart, setWorkStart] = useState('09:00')
+  const [workEnd, setWorkEnd] = useState('19:00')
+  const [workHoursSaved, setWorkHoursSaved] = useState(false)
 
   useEffect(() => {
     loadToggles()
     loadKioskPin()
     loadOwnerPin()
+    loadWorkHours()
   }, [])
 
   async function loadKioskPin() {
@@ -86,6 +88,33 @@ export function Settings() {
     setSaving(false)
     setOwnerPinSaved(true)
     setTimeout(() => setOwnerPinSaved(false), 2000)
+  }
+
+  async function loadWorkHours() {
+    const { data } = await supabase
+      .from('shop_settings')
+      .select('key, value')
+      .in('key', ['work_start_time', 'work_end_time'])
+    if (data) {
+      for (const row of data) {
+        if (row.key === 'work_start_time') setWorkStart(row.value)
+        if (row.key === 'work_end_time') setWorkEnd(row.value)
+      }
+    }
+  }
+
+  async function saveWorkHours() {
+    setSaving(true)
+    await Promise.all([
+      supabase.from('shop_settings').upsert({ key: 'work_start_time', value: workStart }, { onConflict: 'key' }),
+      supabase.from('shop_settings').upsert({ key: 'work_end_time', value: workEnd }, { onConflict: 'key' }),
+    ])
+    // Also update localStorage for idle-minutes to pick up immediately
+    localStorage.setItem('work_start_time', workStart)
+    localStorage.setItem('work_end_time', workEnd)
+    setSaving(false)
+    setWorkHoursSaved(true)
+    setTimeout(() => setWorkHoursSaved(false), 2000)
   }
 
   async function loadToggles() {
@@ -163,25 +192,45 @@ export function Settings() {
             </div>
           </div>
 
-          {/* Dark Mode */}
+          {/* Working Hours */}
           <div
             className="rounded-[1rem] p-4 border border-[rgba(134,78,90,0.1)]"
             style={{ background: 'rgba(255, 248, 248, 0.6)', backdropFilter: 'blur(12px)' }}
           >
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
-                  {t('settings.darkMode') || (i18n.language === 'vi' ? 'Chế độ tối' : 'Dark Mode')}
-                </span>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  {t('settings.darkModeDesc') || (i18n.language === 'vi' ? 'Giao diện tối dịu mắt' : 'Dark color theme for nighttime')}
-                </p>
+            <div className="mb-3">
+              <span className="text-sm font-medium text-gray-800">
+                {t('settings.workHours') || 'Working Hours'}
+              </span>
+              <p className="text-xs text-gray-500 mt-0.5">
+                {t('settings.workHoursDesc') || 'Shop open/close time, affects idle calculation'}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="flex-1">
+                <label className="text-[10px] text-gray-500 uppercase font-semibold">{t('settings.openTime') || 'Open'}</label>
+                <input
+                  type="time"
+                  value={workStart}
+                  onChange={(e) => setWorkStart(e.target.value)}
+                  className="w-full mt-1 px-3 py-2 rounded-xl border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#864e5a]/40 focus:border-[#864e5a]"
+                />
+              </div>
+              <span className="text-gray-400 mt-5">—</span>
+              <div className="flex-1">
+                <label className="text-[10px] text-gray-500 uppercase font-semibold">{t('settings.closeTime') || 'Close'}</label>
+                <input
+                  type="time"
+                  value={workEnd}
+                  onChange={(e) => setWorkEnd(e.target.value)}
+                  className="w-full mt-1 px-3 py-2 rounded-xl border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#864e5a]/40 focus:border-[#864e5a]"
+                />
               </div>
               <button
-                onClick={toggleDarkMode}
-                className={`shrink-0 transition-colors ${darkMode ? 'text-[#864e5a] dark:text-[#c9949f]' : 'text-gray-300'}`}
+                onClick={saveWorkHours}
+                disabled={saving}
+                className="mt-5 px-4 py-2 rounded-xl bg-[#864e5a] text-white text-xs font-semibold disabled:opacity-50"
               >
-                {darkMode ? <ToggleRight size={28} /> : <ToggleLeft size={28} />}
+                {workHoursSaved ? '✓' : t('common.save') || 'Save'}
               </button>
             </div>
           </div>

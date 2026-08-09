@@ -8,7 +8,18 @@
  * - If no completions → idle since shift start or activation time (whichever is later)
  */
 
-const SHIFT_START_MINUTES = 9 * 60 // 9:00 AM
+function getShiftStartMinutes(): number {
+  try {
+    const stored = localStorage.getItem('work_start_time')
+    if (stored) {
+      const [h, m] = stored.split(':')
+      return parseInt(h) * 60 + parseInt(m)
+    }
+  } catch {
+    // ignore
+  }
+  return 9 * 60 // default 9:00 AM
+}
 
 export interface IdleCalcAppointment {
   employee_id: string | null
@@ -93,13 +104,13 @@ export function calculateIdleMinutes(
       result[emp.id] = Math.max(0, nowMinutes - completedLocalMinutes)
     } else {
       // No completed today — idle since activation or shift start (whichever is later)
-      let startMinutes = SHIFT_START_MINUTES
+      let startMinutes = getShiftStartMinutes()
       if (emp.activated_at) {
         const activatedDate = new Date(emp.activated_at)
         const activatedDateStr = activatedDate.toISOString().slice(0, 10)
         if (activatedDateStr === todayStr) {
           const activatedMinutes = activatedDate.getHours() * 60 + activatedDate.getMinutes()
-          startMinutes = Math.max(SHIFT_START_MINUTES, activatedMinutes)
+          startMinutes = Math.max(getShiftStartMinutes(), activatedMinutes)
         }
       }
       result[emp.id] = Math.max(0, nowMinutes - startMinutes)

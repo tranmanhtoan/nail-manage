@@ -241,6 +241,10 @@
     "changePin": "Đổi mã PIN",
     "darkMode": "Chế độ tối",
     "darkModeDesc": "Bật/Tắt giao diện tối cho ứng dụng",
+    "workHours": "Giờ làm việc",
+    "workHoursDesc": "Giờ mở/đóng cửa tiệm, ảnh hưởng tính idle",
+    "openTime": "Mở cửa",
+    "closeTime": "Đóng cửa",
     "systemOverview": "Tổng quan hệ thống",
     "activeTotal": "hoạt động/tổng",
     "userAccounts": "Tài khoản (Users)"

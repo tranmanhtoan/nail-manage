@@ -241,6 +241,10 @@
     "changePin": "Change PIN",
     "darkMode": "Dark Mode",
     "darkModeDesc": "Toggle dark/light theme for the application",
+    "workHours": "Working Hours",
+    "workHoursDesc": "Shop open/close time, affects idle calculation",
+    "openTime": "Open",
+    "closeTime": "Close",
     "systemOverview": "System Overview",
     "activeTotal": "active/total",
     "userAccounts": "User Accounts"
