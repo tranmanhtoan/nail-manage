@@ -20,8 +20,8 @@
     "semantic_hash": "481f100e0627bc7ffa49c2d54c9517ce"
   },
   "package.json": {
-    "mtime": 1785772976.336404,
-    "ast_hash": "9256815cdb252eb00f96e132a72f2c75",
+    "mtime": 1786290955.2767181,
+    "ast_hash": "0969d2a0bc7bf25504d445e7a77a869b",
     "semantic_hash": ""
   },
   "src/App.tsx": {
@@ -427,6 +427,11 @@
   "src/lib/idle-minutes.ts": {
     "mtime": 1786281725.431626,
     "ast_hash": "adb57e47badae8995af597fca4a8fec1",
+    "semantic_hash": ""
+  },
+  "vitest.config.ts": {
+    "mtime": 1786290998.0099332,
+    "ast_hash": "96fa15d391e30825366f0fef16510e74",
     "semantic_hash": ""
   }
 }
