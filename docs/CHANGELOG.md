@@ -4,6 +4,13 @@
 
 ---
 
+## [2026-08-09]
+
+### Chỉnh sửa
+- [18:00] Chỉnh sửa `src/i18n/vi.json` — Thêm translation keys cho chức năng đổi Owner PIN (ownerPin, ownerPinDesc, ownerPinChanged)
+
+---
+
 ## [2026-08-05]
 
 ### Thêm mới
