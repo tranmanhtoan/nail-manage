@@ -60,8 +60,8 @@
     "semantic_hash": "90246fb8a0054c5a9b1a436a4ec8a9cd"
   },
   "src/components/PinGate.tsx": {
-    "mtime": 1785946907.5566633,
-    "ast_hash": "4c7e4d9a0a2d39880ef5666d2a0fcbbb",
+    "mtime": 1785947071.868742,
+    "ast_hash": "ec9b1e96c0d37b51252c92fa1c79da7b",
     "semantic_hash": ""
   },
   "src/hooks/useInactivityTimeout.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1785942990.21487,
-    "ast_hash": "76335a8f83d95cc4e139085fe637d241",
+    "mtime": 1785946919.5138798,
+    "ast_hash": "dc15742ff257e785de0fd4f1d73715eb",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
