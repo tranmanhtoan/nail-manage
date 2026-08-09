@@ -1,7 +1,7 @@
 # Graph Report - Nail Manange  (2026-08-09)
 
 ## Corpus Check
-- 80 files · ~52,566 words
+- 80 files · ~52,591 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `438c4b27`
+- Built from commit: `93070833`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -176,7 +176,7 @@ Cohesion: 0.50
 Nodes (3): Chọn nhánh, Prototype, Quy tắc cho cả hai
 
 ## Knowledge Gaps
-- **220 isolated node(s):** `EarningData`, `MyEmployee`, `AppointmentRow`, `Chỉnh sửa`, `Thêm mới` (+215 more)
+- **220 isolated node(s):** `Chỉnh sửa`, `Thêm mới`, `Chỉnh sửa`, `Chỉnh sửa`, `Chỉnh sửa` (+215 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -187,7 +187,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **Why does `useAuthStore` connect `QuickEntry.tsx` to `dataStore.ts`, `App.tsx`, `supabase.ts`?**
   _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **What connects `EarningData`, `MyEmployee`, `AppointmentRow` to the rest of the system?**
+- **What connects `Chỉnh sửa`, `Thêm mới`, `Chỉnh sửa` to the rest of the system?**
   _220 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `dataStore.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.09881422924901186 - nodes in this community are weakly interconnected._

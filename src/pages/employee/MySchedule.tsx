@@ -42,48 +42,18 @@ export function MySchedule() {
         p_date: date,
       })
 
-      let rows = (data ?? []) as { apt_id: string; apt_date: string; apt_time: string; apt_status: string; apt_price: number; apt_tip: number; customer_name: string | null; service_name: string | null }[]
+      const rawRows = (data ?? []) as any[]
 
-      // Fallback: if RPC returned empty, try direct query using profile_id
-      if (rows.length === 0 && user) {
-        const { data: emp } = await supabase
-          .from('employees')
-          .select('id')
-          .eq('profile_id', user.id)
-          .single()
-
-        if (emp) {
-          const { data: directApts } = await supabase
-            .from('appointments')
-            .select('id, date, time, status, price, tip, customers(name), services(name)')
-            .eq('employee_id', (emp as { id: string }).id)
-            .eq('date', date)
-            .order('time', { ascending: true })
-
-          if (directApts && directApts.length > 0) {
-            rows = (directApts as any[]).map((a) => ({
-              apt_id: a.id,
-              apt_date: a.date,
-              apt_time: a.time,
-              apt_status: a.status,
-              apt_price: a.price,
-              apt_tip: a.tip,
-              customer_name: a.customers?.name ?? null,
-              service_name: a.services?.name ?? null,
-            }))
-          }
-        }
-      }
-
-      const formattedItems = rows.map((r) => ({
-        id: r.apt_id,
-        date: r.apt_date,
-        time: r.apt_time,
-        status: r.apt_status,
-        price: r.apt_price,
-        tip: r.apt_tip,
-        customer: r.customer_name ? { name: r.customer_name } : null,
-        service: r.service_name ? { name: r.service_name } : null,
+      // RPC may return fields with or without apt_ prefix depending on DB version
+      const formattedItems = rawRows.map((r) => ({
+        id: r.apt_id ?? r.id ?? '',
+        date: r.apt_date ?? r.date ?? '',
+        time: r.apt_time ?? r.time ?? '00:00',
+        status: r.apt_status ?? r.status ?? '',
+        price: Number(r.apt_price ?? r.price) || 0,
+        tip: Number(r.apt_tip ?? r.tip) || 0,
+        customer: (r.customer_name) ? { name: r.customer_name } : null,
+        service: (r.service_name) ? { name: r.service_name } : null,
       }))
 
       setItems(formattedItems)

@@ -44,6 +44,7 @@
 - [18:45] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Rewrite: bỏ fallback direct query (bị RLS chặn), dùng RPC per-date để bypass status filter, filter completed ở frontend
 - [18:50] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix root cause: RPC trả field names không có prefix apt_, thêm normalizeAptRow() để map cả 2 format
 - [18:51] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix get_my_employee RPC không tồn tại trong DB: thêm error handling và fallback direct query
+- [18:52] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Apply normalizeAptRow() vào kết quả RPC để map field names đúng
 - [18:00] Chỉnh sửa `src/i18n/vi.json` — Thêm translation keys cho chức năng đổi Owner PIN (ownerPin, ownerPinDesc, ownerPinChanged)
 - [18:00] Chỉnh sửa `src/i18n/en.json` — Thêm English translation keys cho chức năng đổi Owner PIN
 - [18:02] Chỉnh sửa `src/i18n/vi.json` — Thêm key `changePin` cho section gom PIN
