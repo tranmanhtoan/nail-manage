@@ -443,5 +443,10 @@
     "mtime": 1786291055.6867633,
     "ast_hash": "282f2d35993f18ceef62b5a644b7dcd6",
     "semantic_hash": ""
+  },
+  "src/lib/payroll.test.ts": {
+    "mtime": 1786291081.732621,
+    "ast_hash": "b5914fb42dc87e600f5b2e03d4033b9d",
+    "semantic_hash": ""
   }
 }

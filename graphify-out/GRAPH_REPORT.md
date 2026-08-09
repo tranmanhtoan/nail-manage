@@ -1,31 +1,30 @@
 # Graph Report - Nail Manange  (2026-08-09)
 
 ## Corpus Check
-- 84 files · ~56,807 words
+- 85 files · ~57,020 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 457 nodes · 573 edges · 42 communities (33 shown, 9 thin omitted)
+- 458 nodes · 578 edges · 41 communities (32 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5fc4fe49`
+- Built from commit: `091442d1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- supabase.ts
-- dataStore.ts
+- QuickEntry.tsx
+- authStore.ts
 - App.tsx
 - devDependencies
 - compilerOptions
 - What You Must Do When Invoked
-- Settings.tsx
+- supabase.ts
 - dependencies
 - MCC Nail & Spa — Tổng quan Module
 - validations.ts
-- QuickEntry.tsx
 - graphify reference: extra exports and benchmark
 - MCC Nail & Spa — Changelog
 - vite-env.d.ts
@@ -76,15 +75,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (42 total, 9 thin omitted)
+## Communities (41 total, 9 thin omitted)
 
-### Community 0 - "supabase.ts"
-Cohesion: 0.06
-Nodes (34): BottomNav(), FloatingBackHome(), PinGateProps, useInactivityTimeout(), useServices(), toAuthEmail(), initAuthListener(), stopAuthListener() (+26 more)
+### Community 0 - "QuickEntry.tsx"
+Cohesion: 0.07
+Nodes (26): BottomNav(), FloatingBackHome(), OfflineSyncBanner(), useInactivityTimeout(), useServices(), PayType, CheckIn(), AppointmentRow (+18 more)
 
-### Community 1 - "dataStore.ts"
+### Community 1 - "authStore.ts"
 Cohesion: 0.08
-Nodes (13): UseDataResult, Appointment, AppointmentStatus, Customer, Employee, PayType, Service, UserRole (+5 more)
+Nodes (16): UseDataResult, Appointment, Customer, Employee, Service, UserRole, DAYS, EmployeeOption (+8 more)
 
 ### Community 2 - "App.tsx"
 Cohesion: 0.07
@@ -102,9 +101,9 @@ Nodes (25): DOM, DOM.Iterable, ES2023, src, vite/client, compilerOptions, allowA
 Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
-### Community 6 - "Settings.tsx"
-Cohesion: 0.15
-Nodes (9): AdminDashboard(), AdminDashboardProps, AdminStats, Employees(), CATEGORIES, Services(), DEFAULT_TOGGLES, FeatureToggles (+1 more)
+### Community 6 - "supabase.ts"
+Cohesion: 0.07
+Nodes (21): PinGateProps, toAuthEmail(), initAuthListener(), stopAuthListener(), supabase, supabaseAdmin, supabaseAnonKey, supabaseUrl (+13 more)
 
 ### Community 7 - "dependencies"
 Cohesion: 0.06
@@ -117,10 +116,6 @@ Nodes (15): 10. `src/hooks/` — Custom Hooks, 11. `src/i18n/` — Đa ngôn ng�
 ### Community 9 - "validations.ts"
 Cohesion: 0.12
 Nodes (14): AppointmentInput, appointmentSchema, BookingInput, bookingSchema, CustomerInput, customerSchema, EmployeeInput, employeeSchema (+6 more)
-
-### Community 11 - "QuickEntry.tsx"
-Cohesion: 0.26
-Nodes (8): OfflineSyncBanner(), Employee, Service, Step, FailedAction, SyncAction, SyncState, useSyncStore
 
 ### Community 12 - "graphify reference: extra exports and benchmark"
 Cohesion: 0.22
@@ -179,12 +174,12 @@ Cohesion: 0.50
 Nodes (3): Chọn nhánh, Prototype, Quy tắc cho cả hai
 
 ### Community 38 - "datetime.ts"
-Cohesion: 0.60
-Nodes (3): dateRangeInclusive(), parseLocalDate(), toLocalDateStr()
+Cohesion: 0.73
+Nodes (4): addDays(), dateRangeInclusive(), parseLocalDate(), toLocalDateStr()
 
 ### Community 39 - "Appointments.tsx"
-Cohesion: 0.13
-Nodes (13): calculateIdleMinutes(), getShiftStartMinutes(), IdleCalcAppointment, IdleCalcEmployee, AppointmentRow, Appointments(), Employee, getChibiEmoji() (+5 more)
+Cohesion: 0.12
+Nodes (14): AppointmentStatus, calculateIdleMinutes(), getShiftStartMinutes(), IdleCalcAppointment, IdleCalcEmployee, AppointmentRow, Appointments(), Employee (+6 more)
 
 ### Community 40 - "payroll.ts"
 Cohesion: 0.43
@@ -198,17 +193,17 @@ Nodes (5): calcEarnings(), EarningsPeriod, getPeriodDays(), PayConfig, PayType
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `supabase` connect `supabase.ts` to `dataStore.ts`, `App.tsx`, `Settings.tsx`, `Appointments.tsx`, `QuickEntry.tsx`?**
+- **Why does `supabase` connect `supabase.ts` to `QuickEntry.tsx`, `authStore.ts`, `App.tsx`, `Appointments.tsx`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `dependencies`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **Why does `useAuthStore` connect `supabase.ts` to `App.tsx`, `QuickEntry.tsx`, `Settings.tsx`?**
+- **Why does `useAuthStore` connect `QuickEntry.tsx` to `authStore.ts`, `App.tsx`, `supabase.ts`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **What connects `PayType`, `EarningsPeriod`, `name` to the rest of the system?**
   _231 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `supabase.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05928614640048397 - nodes in this community are weakly interconnected._
-- **Should `dataStore.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.08021390374331551 - nodes in this community are weakly interconnected._
+- **Should `QuickEntry.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.07399577167019028 - nodes in this community are weakly interconnected._
+- **Should `authStore.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.07899159663865546 - nodes in this community are weakly interconnected._
 - **Should `App.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.0748663101604278 - nodes in this community are weakly interconnected._
