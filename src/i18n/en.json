@@ -233,6 +233,7 @@
     "ownerPin": "Login PIN",
     "ownerPinDesc": "Your personal PIN for login (min 4 digits)",
     "ownerPinChanged": "PIN changed successfully",
+    "changePin": "Change PIN",
     "darkMode": "Dark Mode",
     "darkModeDesc": "Toggle dark/light theme for the application",
     "systemOverview": "System Overview",

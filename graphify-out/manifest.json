@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "src/i18n/vi.json": {
-    "mtime": 1786275043.779886,
-    "ast_hash": "9240af885a57a884c89a049b0d599747",
+    "mtime": 1786275574.7892804,
+    "ast_hash": "ccb6d54e991a6e5e7937f94412331e32",
     "semantic_hash": ""
   },
   "src/lib/auth-helpers.ts": {
