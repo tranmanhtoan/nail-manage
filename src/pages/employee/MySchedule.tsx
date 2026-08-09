@@ -238,8 +238,8 @@ export function MySchedule() {
             }`}
           >
             {p === 'today' ? t('common.today') :
-             p === 'week' ? t('common.week') :
-             p === 'month' ? t('common.month') : 'Range'}
+             p === 'week' ? '7 Days' :
+             p === 'month' ? '30 Days' : 'Range'}
           </button>
         ))}
       </div>

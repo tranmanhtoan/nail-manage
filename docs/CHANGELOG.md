@@ -164,3 +164,5 @@
 - [19:33] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm section Total Summary vào print template (revenue/cash/card/tip/turns)
 
 - [19:34] Chỉnh sửa `src/pages/owner/Reports.tsx` — Thêm modal preview báo cáo tiệm (Total Summary + Top Performers + Service Revenue) với nút in bên trong
+
+- [19:35] Chỉnh sửa `src/i18n/en.json` + `src/i18n/vi.json` — Thêm key reports.totalSummary (Total Summary / Tổng kết)
