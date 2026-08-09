@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786280218.134427,
-    "ast_hash": "5836959bec8475d1624e2dd1a017da53",
+    "mtime": 1786280434.408058,
+    "ast_hash": "d680e57dde6b1b72f24e98d3d0d0f186",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
@@ -425,8 +425,8 @@
     "semantic_hash": ""
   },
   "src/lib/idle-minutes.ts": {
-    "mtime": 1785885494.642158,
-    "ast_hash": "e1d72c1598032c9045ddcdc61ebf86a1",
+    "mtime": 1786281218.1014376,
+    "ast_hash": "f24bdaf9d798a083ee18e67ce14da726",
     "semantic_hash": ""
   }
 }

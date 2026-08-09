@@ -22,8 +22,8 @@ export function BottomNav() {
   const ownerTabs = [
     { to: '/dashboard', icon: LayoutDashboard, label: t('nav.dashboard') },
     { to: '/appointments', icon: CalendarDays, label: t('nav.appointments') },
-    { to: '/quick-entry', icon: PenLine, label: t('nav.quickEntry') },
     { to: '/reports', icon: BarChart3, label: t('nav.reports') },
+    { to: '/quick-entry', icon: PenLine, label: t('nav.quickEntry') },
     { to: '/settings', icon: Settings, label: t('nav.settings') },
   ]
 

@@ -25,6 +25,10 @@
 - [19:20] Chỉnh sửa `src/lib/idle-minutes.ts` — Fix bug timezone: convert UTC time từ DB sang local time trước khi tính idle minutes
 - [19:22] Chỉnh sửa `src/pages/owner/Settings.tsx` — Thay Dark Mode bằng Working Hours picker (open/close time), lưu vào shop_settings + localStorage
 - [19:23] Chỉnh sửa `src/lib/idle-minutes.ts` — Đổi SHIFT_START_MINUTES hardcoded sang getShiftStartMinutes() đọc từ localStorage (work_start_time)
+- [19:24] Chỉnh sửa `src/lib/idle-minutes.ts` — Fix lỗi còn sót SHIFT_START_MINUTES trong nhánh activated_at
+- [19:24] Chỉnh sửa `src/pages/owner/Settings.tsx` — Fix unused i18n import, thêm translation keys cho working hours
+- [19:24] Chỉnh sửa `src/i18n/en.json` — Thêm keys workHours, workHoursDesc, openTime, closeTime
+- [19:24] Chỉnh sửa `src/i18n/vi.json` — Thêm Vietnamese keys cho giờ làm việc
 - [18:30] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix lỗi "Cannot read properties of undefined (reading 'split')" khi item.time là undefined, thêm nullish guard
 - [18:33] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty
 - [18:30] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix cùng lỗi split undefined trong formatTime(), thêm nullish guard
