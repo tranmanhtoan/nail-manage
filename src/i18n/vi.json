@@ -281,7 +281,8 @@
     "rangeMaxError": "Khoảng thời gian không được vượt quá 31 ngày. Vui lòng chọn lại.",
     "rangeInvalidError": "Ngày kết thúc phải sau ngày bắt đầu.",
     "printShopReport": "In báo cáo tiệm",
-    "shopReport": "Báo cáo tiệm"
+    "shopReport": "Báo cáo tiệm",
+    "totalSummary": "Tổng kết"
   },
   "pin": {
     "title": "Nhập mã PIN",

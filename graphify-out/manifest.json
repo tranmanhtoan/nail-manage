@@ -75,8 +75,8 @@
     "semantic_hash": "1f8bd8a76f9730ea96057e7ebfbc776b"
   },
   "src/i18n/en.json": {
-    "mtime": 1786285358.1346252,
-    "ast_hash": "2b43789a3067b31987212b8f31690d57",
+    "mtime": 1786289157.8153567,
+    "ast_hash": "49523eac5848a1c0ff69989c096a3445",
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "docs/CHANGELOG.md": {
-    "mtime": 1786289107.148596,
-    "ast_hash": "79538041bf782f7619c40e0bffb7e0e5",
+    "mtime": 1786289144.0981383,
+    "ast_hash": "5db0da7c1055c8f42ccfb2014f2f5f9e",
     "semantic_hash": ""
   },
   "docs/PROJECT_OVERVIEW.md": {
