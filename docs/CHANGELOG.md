@@ -12,6 +12,7 @@
 - [18:02] Chỉnh sửa `src/i18n/vi.json` — Thêm key `changePin` cho section gom PIN
 - [18:02] Chỉnh sửa `src/i18n/en.json` — Thêm key `changePin` cho section gom PIN
 - [18:01] Chỉnh sửa `src/pages/owner/Settings.tsx` — Gom Kiosk PIN và Owner PIN thành 1 section "Change PIN" với toggle chọn KIOSK/OWNER
+- [18:03] Chỉnh sửa `src/pages/owner/Settings.tsx` — Đổi saveOwnerPin dùng RPC `update_employee_pin` thay vì update trực tiếp (bypass RLS)
 
 ---
 

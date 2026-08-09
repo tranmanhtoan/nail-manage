@@ -79,7 +79,7 @@ export function MySchedule() {
           <p className="text-center text-gray-400 py-8">No appointments for this day</p>
         )}
         {items.map((item) => {
-          const [h, m] = item.time.split(':')
+          const [h, m] = (item.time ?? '00:00').split(':')
           const hour = parseInt(h)
           const timeStr = `${(hour % 12) || 12}:${m}`
           const ampm = hour >= 12 ? 'PM' : 'AM'
