@@ -75,8 +75,8 @@
     "semantic_hash": "1f8bd8a76f9730ea96057e7ebfbc776b"
   },
   "src/i18n/en.json": {
-    "mtime": 1786275583.8362422,
-    "ast_hash": "e254e4a1f105daacd2a0b70c8d3a33f4",
+    "mtime": 1786278602.4089928,
+    "ast_hash": "e065b3bb2a69398912d60965f32c69a7",
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "src/i18n/vi.json": {
-    "mtime": 1786275574.7892804,
-    "ast_hash": "ccb6d54e991a6e5e7937f94412331e32",
+    "mtime": 1786278603.694588,
+    "ast_hash": "c9d47fccebcc727b716bfd7d52287fa4",
     "semantic_hash": ""
   },
   "src/lib/auth-helpers.ts": {
