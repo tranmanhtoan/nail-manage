@@ -1,5 +1,17 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { calculateIdleMinutes, type IdleCalcEmployee, type IdleCalcAppointment } from './idle-minutes'
+
+// jsdom's localStorage under Vitest 4 is unreliable, so install a minimal
+// in-memory implementation the util can read `work_start_time` from.
+function installMemoryLocalStorage() {
+  const store = new Map<string, string>()
+  vi.stubGlobal('localStorage', {
+    getItem: (k: string) => (store.has(k) ? store.get(k)! : null),
+    setItem: (k: string, v: string) => void store.set(k, String(v)),
+    removeItem: (k: string) => void store.delete(k),
+    clear: () => store.clear(),
+  })
+}
 
 // These tests run with TZ=UTC (set in the `test` npm script), so
 // now.getTimezoneOffset() === 0 and appointment times (stored as UTC) map 1:1
@@ -14,8 +26,9 @@ const emps: IdleCalcEmployee[] = [
 ]
 
 beforeEach(() => {
-  // Default shift start (09:00) unless a test sets work_start_time explicitly.
-  localStorage.clear()
+  // Fresh in-memory localStorage each test -> default shift start (09:00)
+  // unless a test sets work_start_time explicitly.
+  installMemoryLocalStorage()
 })
 
 describe('calculateIdleMinutes', () => {

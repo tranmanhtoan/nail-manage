@@ -4,15 +4,48 @@
   "graph": {},
   "nodes": [
     {
+      "label": "idle-minutes.test.ts",
+      "file_type": "code",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_lib_idle_minutes_test",
+      "community": 39,
+      "community_name": "Appointments.tsx",
+      "norm_label": "idle-minutes.test.ts"
+    },
+    {
+      "label": "NOW",
+      "file_type": "code",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_lib_idle_minutes_test_now",
+      "community": 39,
+      "community_name": "Appointments.tsx",
+      "norm_label": "now"
+    },
+    {
+      "label": "emps",
+      "file_type": "code",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_lib_idle_minutes_test_emps",
+      "community": 39,
+      "community_name": "Appointments.tsx",
+      "norm_label": "emps"
+    },
+    {
       "label": "datetime.test.ts",
       "file_type": "code",
       "source_file": "src/lib/datetime.test.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_lib_datetime_test",
       "community": 38,
       "community_name": "datetime.ts",
-      "norm_label": "datetime.test.ts"
+      "norm_label": "datetime.test.ts",
+      "id": "src_lib_datetime_test"
     },
     {
       "label": "payroll.test.ts",
@@ -1076,8 +1109,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "myearnings.tsx",
       "id": "src_pages_employee_myearnings"
     },
@@ -1087,8 +1120,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "earningdata",
       "id": "src_pages_employee_myearnings_earningdata"
     },
@@ -1098,8 +1131,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "myemployee",
       "id": "src_pages_employee_myearnings_myemployee"
     },
@@ -1109,8 +1142,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "appointmentrow",
       "id": "src_pages_employee_myearnings_appointmentrow"
     },
@@ -1120,8 +1153,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "normalizeaptrow()",
       "id": "src_pages_employee_myearnings_normalizeaptrow"
     },
@@ -1131,8 +1164,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L48",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "myearnings()",
       "id": "src_pages_employee_myearnings_myearnings"
     },
@@ -1142,8 +1175,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L294",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "getdaterange()",
       "id": "src_pages_employee_myearnings_getdaterange"
     },
@@ -1153,8 +1186,8 @@
       "source_file": "src/pages/employee/MyEarnings.tsx",
       "source_location": "L306",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "calcearnings()",
       "id": "src_pages_employee_myearnings_calcearnings"
     },
@@ -1352,7 +1385,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "dashboard.tsx",
       "id": "src_pages_owner_dashboard"
     },
@@ -1363,7 +1396,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "viewmode",
       "id": "src_pages_owner_dashboard_viewmode"
     },
@@ -1374,7 +1407,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "stats",
       "id": "src_pages_owner_dashboard_stats"
     },
@@ -1385,7 +1418,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "recentitem",
       "id": "src_pages_owner_dashboard_recentitem"
     },
@@ -1396,7 +1429,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "employeeoption",
       "id": "src_pages_owner_dashboard_employeeoption"
     },
@@ -1407,7 +1440,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "days",
       "id": "src_pages_owner_dashboard_days"
     },
@@ -1418,7 +1451,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "dashboard()",
       "id": "src_pages_owner_dashboard_dashboard"
     },
@@ -1747,8 +1780,8 @@
       "source_file": "src/pages/owner/Customers.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customers.tsx",
       "id": "src_pages_owner_customers"
     },
@@ -1758,8 +1791,8 @@
       "source_file": "src/pages/owner/Customers.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customers()",
       "id": "src_pages_owner_customers_customers"
     },
@@ -1769,8 +1802,8 @@
       "source_file": "src/pages/owner/Customers.tsx",
       "source_location": "L150",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customerform()",
       "id": "src_pages_owner_customers_customerform"
     },
@@ -1803,7 +1836,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "usestoredata.ts",
       "id": "src_hooks_usestoredata"
     },
@@ -1814,7 +1847,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "usedataresult",
       "id": "src_hooks_usestoredata_usedataresult"
     },
@@ -1825,7 +1858,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "useemployees()",
       "id": "src_hooks_usestoredata_useemployees"
     },
@@ -1847,7 +1880,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "usecustomers()",
       "id": "src_hooks_usestoredata_usecustomers"
     },
@@ -1858,7 +1891,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "useemployeesandservices()",
       "id": "src_hooks_usestoredata_useemployeesandservices"
     },
@@ -2562,7 +2595,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "datastore.ts",
       "id": "src_store_datastore"
     },
@@ -2573,7 +2606,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "cacheentry",
       "id": "src_store_datastore_cacheentry"
     },
@@ -2584,7 +2617,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "datastate",
       "id": "src_store_datastore_datastate"
     },
@@ -2595,7 +2628,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "isstale()",
       "id": "src_store_datastore_isstale"
     },
@@ -2606,7 +2639,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "getcached()",
       "id": "src_store_datastore_getcached"
     },
@@ -2617,7 +2650,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "setcache()",
       "id": "src_store_datastore_setcache"
     },
@@ -2628,7 +2661,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "emptycache()",
       "id": "src_store_datastore_emptycache"
     },
@@ -2639,7 +2672,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "inflightrequests",
       "id": "src_store_datastore_inflightrequests"
     },
@@ -2650,7 +2683,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "deduplicatedfetch()",
       "id": "src_store_datastore_deduplicatedfetch"
     },
@@ -2661,7 +2694,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "usedatastore",
       "id": "src_store_datastore_usedatastore"
     },
@@ -2858,8 +2891,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "authstore.ts",
       "id": "src_store_authstore"
     },
@@ -2869,8 +2902,8 @@
       "source_file": "src/store/authStore.ts",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "authstate",
       "id": "src_store_authstore_authstate"
     },
@@ -3122,8 +3155,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "database.types.ts",
       "id": "src_lib_database_types"
     },
@@ -3133,8 +3166,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 0,
-      "community_name": "QuickEntry.tsx",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "paytype",
       "id": "src_lib_database_types_paytype"
     },
@@ -3155,8 +3188,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "userrole",
       "id": "src_lib_database_types_userrole"
     },
@@ -3167,7 +3200,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 1,
-      "community_name": "authStore.ts",
+      "community_name": "dataStore.ts",
       "norm_label": "employee",
       "id": "src_lib_database_types_employee"
     },
@@ -3177,8 +3210,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "service",
       "id": "src_lib_database_types_service"
     },
@@ -3188,8 +3221,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "customer",
       "id": "src_lib_database_types_customer"
     },
@@ -3199,8 +3232,8 @@
       "source_file": "src/lib/database.types.ts",
       "source_location": "L43",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "authStore.ts",
+      "community": 6,
+      "community_name": "supabase.ts",
       "norm_label": "appointment",
       "id": "src_lib_database_types_appointment"
     },
@@ -4343,9 +4376,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "bookingpage.tsx",
-      "community_name": "authStore.ts",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage"
     },
     {
@@ -4354,9 +4387,9 @@
       "source_file": "src/pages/booking/BookingPage.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 1,
+      "community": 6,
       "norm_label": "bookingpage()",
-      "community_name": "authStore.ts",
+      "community_name": "supabase.ts",
       "id": "src_pages_booking_bookingpage_bookingpage"
     },
     {
@@ -5047,13 +5080,83 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_idle_minutes_test",
+      "target": "src_lib_idle_minutes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_idle_minutes_test",
+      "target": "src_lib_idle_minutes_calculateidleminutes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_idle_minutes_test",
+      "target": "src_lib_idle_minutes_idlecalcappointment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_idle_minutes_test",
+      "target": "src_lib_idle_minutes_idlecalcemployee",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_idle_minutes_test",
+      "target": "src_lib_idle_minutes_test_emps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/idle-minutes.test.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_lib_idle_minutes_test",
+      "target": "src_lib_idle_minutes_test_now",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/lib/datetime.test.ts",
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_datetime_test",
-      "target": "src_lib_datetime",
-      "confidence_score": 1.0
+      "target": "src_lib_datetime"
     },
     {
       "relation": "imports",
@@ -5063,9 +5166,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_datetime_test",
-      "target": "src_lib_datetime_adddays",
-      "confidence_score": 1.0
+      "target": "src_lib_datetime_adddays"
     },
     {
       "relation": "imports",
@@ -5075,9 +5178,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_datetime_test",
-      "target": "src_lib_datetime_daterangeinclusive",
-      "confidence_score": 1.0
+      "target": "src_lib_datetime_daterangeinclusive"
     },
     {
       "relation": "imports",
@@ -5087,9 +5190,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_datetime_test",
-      "target": "src_lib_datetime_parselocaldate",
-      "confidence_score": 1.0
+      "target": "src_lib_datetime_parselocaldate"
     },
     {
       "relation": "imports",
@@ -5099,9 +5202,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "src_lib_datetime_test",
-      "target": "src_lib_datetime_tolocaldatestr",
-      "confidence_score": 1.0
+      "target": "src_lib_datetime_tolocaldatestr"
     },
     {
       "relation": "imports_from",
@@ -11626,5 +11729,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "091442d1a79163eb94832e42f208f89943789774"
+  "built_at_commit": "628a399faa053d5a6c7e5b5dd5bf4c0631211589"
 }
