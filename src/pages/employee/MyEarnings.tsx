@@ -138,8 +138,8 @@ export function MyEarnings() {
 
       setAppointments(rows)
 
-      const totalRevenue = rows.reduce((s, a) => s + a.apt_price, 0)
-      const totalTips = rows.reduce((s, a) => s + a.apt_tip, 0)
+      const totalRevenue = rows.reduce((s, a) => s + (Number(a.apt_price) || 0), 0)
+      const totalTips = rows.reduce((s, a) => s + (Number(a.apt_tip) || 0), 0)
       const myEarnings = calcEarnings(empData, totalRevenue, totalTips, period)
 
       const payloadData = {
