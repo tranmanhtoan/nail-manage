@@ -7,6 +7,14 @@
 ## [2026-08-09]
 
 ### Chỉnh sửa
+- [19:00] Chỉnh sửa `src/i18n/en.json` — Thêm translation keys cho period selector Dashboard (periodToday, period7Days, period30Days, totalCustomers, perCustomerAvg)
+- [19:00] Chỉnh sửa `src/i18n/vi.json` — Thêm Vietnamese translation keys cho period selector Dashboard
+- [19:01] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm ViewMode type và mở rộng Stats interface cho period selector (7 ngày, 30 ngày)
+- [19:02] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Thêm viewMode state, weeklyLabels, totalCustomers vào stats initialization
+- [19:02] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — useEffect phản ứng theo cả viewMode, truyền viewMode vào loadStats
+- [19:03] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Viết lại loadStats() hỗ trợ 3 chế độ day/week/month với date range, chart buckets, previous period comparison
+- [19:03] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Cập nhật comment growth percentage (period over period)
+- [19:04] Chỉnh sửa `src/pages/owner/Dashboard.tsx` — Chart selectedDayIndex chỉ highlight khi ở day mode
 - [18:30] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Fix lỗi "Cannot read properties of undefined (reading 'split')" khi item.time là undefined, thêm nullish guard
 - [18:33] Chỉnh sửa `src/pages/employee/MySchedule.tsx` — Thêm fallback direct query appointments khi RPC get_my_appointments trả empty
 - [18:30] Chỉnh sửa `src/pages/employee/MyEarnings.tsx` — Fix cùng lỗi split undefined trong formatTime(), thêm nullish guard

@@ -4,6 +4,9 @@ import { CalendarDays, Star, TrendingUp, Wallet, Banknote, CreditCard, ChevronLe
 import { supabase } from '@/lib/supabase'
 import { useAuthStore } from '@/store/authStore'
 import { useDataStore } from '@/store/dataStore'
+
+type ViewMode = 'day' | 'week' | 'month'
+
 interface Stats {
   totalRevenue: number
   cashRevenue: number
@@ -12,8 +15,10 @@ interface Stats {
   waitingAppointments: number
   avgValue: number
   weeklyData: number[]
+  weeklyLabels: string[]
   recentActivity: RecentItem[]
   lastWeekRevenue: number
+  totalCustomers: number
 }
 interface RecentItem {
   id: string
@@ -30,6 +35,7 @@ const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 export function Dashboard() {
   const { t, i18n } = useTranslation()
   const user = useAuthStore((s) => s.user)
+  const [viewMode, setViewMode] = useState<ViewMode>('day')
   const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().slice(0, 10))
   const [stats, setStats] = useState<Stats>({
     totalRevenue: 0,
@@ -39,8 +45,10 @@ export function Dashboard() {
     waitingAppointments: 0,
     avgValue: 0,
     weeklyData: [0, 0, 0, 0, 0, 0, 0],
+    weeklyLabels: DAYS,
     recentActivity: [],
     lastWeekRevenue: 0,
+    totalCustomers: 0,
   })
   const [loading, setLoading] = useState(true)
   const [employees, setEmployees] = useState<EmployeeOption[]>([])
@@ -52,7 +60,7 @@ export function Dashboard() {
   const realtimeDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    loadStats(selectedDate)
+    loadStats(selectedDate, viewMode)
 
     // Listen to realtime updates on the appointments table
     // Debounced: multiple rapid changes (e.g. bulk status updates) only trigger one reload
@@ -64,7 +72,7 @@ export function Dashboard() {
         () => {
           if (realtimeDebounceRef.current) clearTimeout(realtimeDebounceRef.current)
           realtimeDebounceRef.current = setTimeout(() => {
-            loadStats(selectedDate)
+            loadStats(selectedDate, viewMode)
           }, 1000)
         }
       )
@@ -74,7 +82,7 @@ export function Dashboard() {
       if (realtimeDebounceRef.current) clearTimeout(realtimeDebounceRef.current)
       supabase.removeChannel(channel)
     }
-  }, [selectedDate])
+  }, [selectedDate, viewMode])
   useEffect(() => {
     loadEmployees()
   }, [])
@@ -107,86 +115,177 @@ export function Dashboard() {
     const month = (d.getMonth() + 1).toString().padStart(2, '0')
     return `${day}/${month}`
   }
-  async function loadStats(dateStr: string) {
+  async function loadStats(dateStr: string, mode: ViewMode) {
     const requestId = ++loadStatsRequestId.current
 
-    const target = new Date(dateStr + 'T00:00:00')
-    // Get start of the week containing the selected date (Monday)
-    const dayOfWeek = target.getDay()
-    const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1
-    const monday = new Date(target)
-    monday.setDate(target.getDate() - mondayOffset)
-    const mondayStr = monday.toISOString().slice(0, 10)
-    const sunday = new Date(monday)
-    sunday.setDate(monday.getDate() + 6)
-    const sundayStr = sunday.toISOString().slice(0, 10)
-    // Last week range
-    const lastMonday = new Date(monday)
-    lastMonday.setDate(monday.getDate() - 7)
-    const lastSunday = new Date(monday)
-    lastSunday.setDate(monday.getDate() - 1)
+    const today = new Date(dateStr + 'T00:00:00')
 
-    const [dayCompletedRes, dayWaitingRes, rangeRes] = await Promise.all([
-      // Completed appointments for selected day (with price, tip, and joins for recent activity)
+    // Determine date range based on view mode
+    let startDate: string
+    let endDate: string
+    let prevStartDate: string
+    let prevEndDate: string
+
+    if (mode === 'day') {
+      startDate = dateStr
+      endDate = dateStr
+      // Previous period = previous day
+      const prev = new Date(today)
+      prev.setDate(today.getDate() - 1)
+      prevStartDate = prev.toISOString().slice(0, 10)
+      prevEndDate = prevStartDate
+    } else if (mode === 'week') {
+      // Last 7 days (including selected date)
+      const start = new Date(today)
+      start.setDate(today.getDate() - 6)
+      startDate = start.toISOString().slice(0, 10)
+      endDate = dateStr
+      // Previous 7 days before that
+      const prevEnd = new Date(start)
+      prevEnd.setDate(start.getDate() - 1)
+      const prevStart = new Date(prevEnd)
+      prevStart.setDate(prevEnd.getDate() - 6)
+      prevStartDate = prevStart.toISOString().slice(0, 10)
+      prevEndDate = prevEnd.toISOString().slice(0, 10)
+    } else {
+      // Last 30 days (including selected date)
+      const start = new Date(today)
+      start.setDate(today.getDate() - 29)
+      startDate = start.toISOString().slice(0, 10)
+      endDate = dateStr
+      // Previous 30 days before that
+      const prevEnd = new Date(start)
+      prevEnd.setDate(start.getDate() - 1)
+      const prevStart = new Date(prevEnd)
+      prevStart.setDate(prevEnd.getDate() - 29)
+      prevStartDate = prevStart.toISOString().slice(0, 10)
+      prevEndDate = prevEnd.toISOString().slice(0, 10)
+    }
+
+    const [completedRes, waitingRes, prevRes] = await Promise.all([
+      // Completed appointments in the range
       supabase
         .from('appointments')
         .select('id, price, tip, date, time, customer_id, payment_method, service_id, employee_id, services(name), employees(name)')
-        .eq('date', dateStr)
+        .gte('date', startDate)
+        .lte('date', endDate)
         .eq('status', 'completed')
         .order('time', { ascending: false }),
-      // Waiting/booked appointments for selected day
-      supabase
-        .from('appointments')
-        .select('id')
-        .eq('date', dateStr)
-        .in('status', ['booked', 'in_progress']),
-      // Completed appointments from last week\'s Monday to this week\'s Sunday
+      // Waiting/booked appointments (only for single day mode)
+      mode === 'day'
+        ? supabase
+            .from('appointments')
+            .select('id')
+            .eq('date', dateStr)
+            .in('status', ['booked', 'in_progress'])
+        : Promise.resolve({ data: [] }),
+      // Previous period for comparison
       supabase
         .from('appointments')
         .select('price, tip, date')
-        .gte('date', lastMonday.toISOString().slice(0, 10))
-        .lte('date', sundayStr)
+        .gte('date', prevStartDate)
+        .lte('date', prevEndDate)
         .eq('status', 'completed'),
     ])
 
-    const dayCompletedData = dayCompletedRes.data ?? []
-    const rangeData = rangeRes.data ?? []
+    const completedData = completedRes.data ?? []
+    const prevData = prevRes.data ?? []
 
-    // Filter weekData and lastWeekData locally
-    const weekData = rangeData.filter((r) => r.date >= mondayStr && r.date <= sundayStr)
-    const lastWeekData = rangeData.filter(
-      (r) =>
-        r.date >= lastMonday.toISOString().slice(0, 10) &&
-        r.date <= lastSunday.toISOString().slice(0, 10)
-    )
+    // Revenue
+    const totalRevenue = completedData.reduce((sum, r) => sum + r.price + r.tip, 0)
+    const lastWeekRevenue = prevData.reduce((sum, r) => sum + r.price + r.tip, 0)
 
-    // Day revenue
-    const totalRevenue = dayCompletedData.reduce((sum, r) => sum + r.price + r.tip, 0)
-    const lastWeekRevenue = lastWeekData.reduce((sum, r) => sum + r.price + r.tip, 0)
-    // Cash vs Card breakdown for the selected day
-    const cashRevenue = dayCompletedData
+    // Cash vs Card breakdown
+    const cashRevenue = completedData
       .filter((r) => (r.payment_method ?? 'cash') === 'cash')
       .reduce((sum, r) => sum + r.price + r.tip, 0)
-    const cardRevenue = dayCompletedData
+    const cardRevenue = completedData
       .filter((r) => r.payment_method === 'card')
       .reduce((sum, r) => sum + r.price + r.tip, 0)
-    // Average spend per customer for selected day
-    // Each appointment without customer_id counts as a separate walk-in customer
-    const withCustomerId = dayCompletedData.filter((r) => r.customer_id)
+
+    // Total customers
+    const withCustomerId = completedData.filter((r) => r.customer_id)
     const uniqueNamedCustomers = new Set(withCustomerId.map((r) => r.customer_id)).size
-    const walkInCount = dayCompletedData.length - withCustomerId.length
-    const totalCustomers = uniqueNamedCustomers + walkInCount || 1
-    const avgValue = totalRevenue / totalCustomers
-    // Weekly breakdown by day (for the chart)
-    const weeklyBreakdown = [0, 0, 0, 0, 0, 0, 0]
-    for (const row of weekData) {
-      const d = new Date(row.date + 'T00:00:00')
-      const dow = d.getDay()
-      const idx = dow === 0 ? 6 : dow - 1
-      weeklyBreakdown[idx] += row.price + row.tip
+    const walkInCount = completedData.length - withCustomerId.length
+    const totalCustomers = uniqueNamedCustomers + walkInCount
+    const avgValue = totalCustomers > 0 ? totalRevenue / totalCustomers : 0
+
+    // Chart data based on mode
+    let weeklyBreakdown: number[]
+    let weeklyLabels: string[]
+
+    if (mode === 'day') {
+      // Show current calendar week (Mon-Sun)
+      const dayOfWeek = today.getDay()
+      const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1
+      const monday = new Date(today)
+      monday.setDate(today.getDate() - mondayOffset)
+      const mondayStr = monday.toISOString().slice(0, 10)
+      const sunday = new Date(monday)
+      sunday.setDate(monday.getDate() + 6)
+      const sundayStr = sunday.toISOString().slice(0, 10)
+
+      // Need to fetch week data for the chart
+      const { data: weekChartData } = await supabase
+        .from('appointments')
+        .select('price, tip, date')
+        .gte('date', mondayStr)
+        .lte('date', sundayStr)
+        .eq('status', 'completed')
+
+      weeklyBreakdown = [0, 0, 0, 0, 0, 0, 0]
+      for (const row of (weekChartData ?? [])) {
+        const d = new Date(row.date + 'T00:00:00')
+        const dow = d.getDay()
+        const idx = dow === 0 ? 6 : dow - 1
+        weeklyBreakdown[idx] += row.price + row.tip
+      }
+      weeklyLabels = DAYS
+    } else if (mode === 'week') {
+      // 7 bars, one per day
+      weeklyBreakdown = [0, 0, 0, 0, 0, 0, 0]
+      weeklyLabels = []
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(today)
+        d.setDate(today.getDate() - i)
+        const dayStr = d.toISOString().slice(0, 10)
+        const idx = 6 - i
+        weeklyLabels.push(`${d.getDate()}/${d.getMonth() + 1}`)
+        for (const row of completedData) {
+          if (row.date === dayStr) {
+            weeklyBreakdown[idx] += row.price + row.tip
+          }
+        }
+      }
+    } else {
+      // 30 days → group by ~5-day buckets (6 bars)
+      const bucketCount = 6
+      const daysPerBucket = 5
+      weeklyBreakdown = new Array(bucketCount).fill(0)
+      weeklyLabels = []
+      for (let b = 0; b < bucketCount; b++) {
+        const bucketEnd = new Date(today)
+        bucketEnd.setDate(today.getDate() - (bucketCount - 1 - b) * daysPerBucket)
+        const bucketStart = new Date(bucketEnd)
+        bucketStart.setDate(bucketEnd.getDate() - daysPerBucket + 1)
+        const bStartStr = bucketStart.toISOString().slice(0, 10)
+        const bEndStr = bucketEnd.toISOString().slice(0, 10)
+        weeklyLabels.push(`${bucketStart.getDate()}/${bucketStart.getMonth() + 1}`)
+        for (const row of completedData) {
+          if (row.date >= bStartStr && row.date <= bEndStr) {
+            weeklyBreakdown[b] += row.price + row.tip
+          }
+        }
+      }
     }
-    // Recent activity
-    const recent: RecentItem[] = dayCompletedData.map((r) => {
+
+    // Recent activity (show most recent 20 for multi-day, all for single day)
+    const sortedCompleted = [...completedData].sort((a, b) => {
+      if (a.date !== b.date) return b.date.localeCompare(a.date)
+      return b.time.localeCompare(a.time)
+    })
+    const recentSlice = mode === 'day' ? sortedCompleted : sortedCompleted.slice(0, 20)
+    const recent: RecentItem[] = recentSlice.map((r) => {
       const svc = r.services as unknown as { name: string } | null
       const emp = r.employees as unknown as { name: string } | null
       return {
@@ -197,19 +296,22 @@ export function Dashboard() {
         time: formatTime(r.date, r.time),
       }
     })
-    // Only update state if this is still the latest request (prevents stale data overwrite)
+
+    // Only update state if this is still the latest request
     if (requestId !== loadStatsRequestId.current) return
 
     setStats({
       totalRevenue,
       cashRevenue,
       cardRevenue,
-      dayAppointments: dayCompletedData.length,
-      waitingAppointments: dayWaitingRes.data?.length ?? 0,
+      dayAppointments: completedData.length,
+      waitingAppointments: waitingRes.data?.length ?? 0,
       avgValue,
       weeklyData: weeklyBreakdown,
+      weeklyLabels,
       recentActivity: recent,
       lastWeekRevenue,
+      totalCustomers,
     })
     setLoading(false)
   }
@@ -230,7 +332,7 @@ export function Dashboard() {
     if (value >= 1000) return `${(value / 1000).toFixed(0)}k`
     return value.toFixed(0)
   }
-  // Growth percentage (week over week)
+  // Growth percentage (period over period)
   const growth = stats.lastWeekRevenue > 0
     ? ((stats.totalRevenue - stats.lastWeekRevenue) / stats.lastWeekRevenue * 100).toFixed(1)
     : '0'
@@ -262,6 +364,7 @@ export function Dashboard() {
   // Chart max for scaling bars
   const chartMax = Math.max(...stats.weeklyData, 1)
   const selectedDayIndex = (() => {
+    if (viewMode !== 'day') return -1 // no highlight for multi-day modes
     const d = new Date(selectedDate + 'T00:00:00').getDay()
     return d === 0 ? 6 : d - 1
   })()
@@ -282,33 +385,59 @@ export function Dashboard() {
         <div className="flex items-center mt-1">
           <p className="text-sm text-gray-500">{t('dashboard.subtitle')}</p>
         </div>
-        {/* Date navigator */}
-        <div className="flex items-center justify-center gap-2 mt-3">
-          <button
-            type="button"
-            onClick={goToPrevDay}
-            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors touch-manipulation"
-          >
-            <ChevronLeft size={20} className="text-gray-600" />
-          </button>
-          <button
-            type="button"
-            onClick={goToToday}
-            className={`min-w-[80px] px-4 py-1.5 rounded-full text-sm font-semibold transition-colors touch-manipulation ${
-              isToday(selectedDate)
-                ? 'bg-[#864e5a] text-white'
-                : 'bg-[#864e5a]/10 text-[#864e5a] hover:bg-[#864e5a]/20'
-            }`}
-          >
-            {formatDateLabel(selectedDate)}
-          </button>
-          <button
-            type="button"
-            onClick={goToNextDay}
-            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors touch-manipulation"
-          >
-            <ChevronRight size={20} className="text-gray-600" />
-          </button>
+        {/* Period selector + Date navigator */}
+        <div className="flex flex-col items-center gap-2 mt-3">
+          {/* Period tabs */}
+          <div className="flex items-center bg-gray-100 rounded-full p-1 gap-0.5">
+            {([
+              { key: 'day' as ViewMode, label: t('dashboard.periodToday') },
+              { key: 'week' as ViewMode, label: t('dashboard.period7Days') },
+              { key: 'month' as ViewMode, label: t('dashboard.period30Days') },
+            ]).map(({ key, label }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => { setViewMode(key); setSelectedDate(new Date().toISOString().slice(0, 10)) }}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all touch-manipulation ${
+                  viewMode === key
+                    ? 'bg-[#864e5a] text-white shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          {/* Day navigator (only shown in day mode) */}
+          {viewMode === 'day' && (
+            <div className="flex items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={goToPrevDay}
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors touch-manipulation"
+              >
+                <ChevronLeft size={20} className="text-gray-600" />
+              </button>
+              <button
+                type="button"
+                onClick={goToToday}
+                className={`min-w-[80px] px-4 py-1.5 rounded-full text-sm font-semibold transition-colors touch-manipulation ${
+                  isToday(selectedDate)
+                    ? 'bg-[#864e5a] text-white'
+                    : 'bg-[#864e5a]/10 text-[#864e5a] hover:bg-[#864e5a]/20'
+                }`}
+              >
+                {formatDateLabel(selectedDate)}
+              </button>
+              <button
+                type="button"
+                onClick={goToNextDay}
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors touch-manipulation"
+              >
+                <ChevronRight size={20} className="text-gray-600" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {/* Total Revenue Card — 2 columns */}
